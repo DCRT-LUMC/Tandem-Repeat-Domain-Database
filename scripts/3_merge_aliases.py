@@ -37,7 +37,7 @@ for alias in parent:
     alias_groups.setdefault(rep, set()).add(alias)
 
 # --- Step 2: Load transcripts file and merge records based on alias groups ---
-with open('data/ensembl_transcripts_test.json', 'r') as f:
+with open('data/ensembl_transcripts.json', 'r') as f:
     transcript_records = json.load(f)
 
 merged = {}  # Key: representative alias; Value: merged record

@@ -1,5 +1,7 @@
 import requests
 import json
+from tqdm import tqdm
+import time
 
 ''' Reads the gene names from the uniprot_gene_alias.json,
     looks up their Ensembl IDs and transcripts,
@@ -38,11 +40,18 @@ for entry in entries:
                 gene_set.add(gene.strip())
 
 gene_names = sorted(list(gene_set))
+total_genes = len(gene_names)
+
+print(f"Found {total_genes} unique gene names to process")
 
 # Create a list to hold the new database records
 ensembl_db = []
 
-for gene in gene_names:
+# Use tqdm to create a progress bar
+for gene in tqdm(gene_names, desc="Processing genes", unit="gene"):
+    # Small delay to prevent hitting API rate limits
+    time.sleep(0.05)
+    
     ensembl_id = get_ensembl_id(gene)
     if ensembl_id:
         transcripts = get_transcripts(ensembl_id)
@@ -52,12 +61,15 @@ for gene in gene_names:
             "transcripts": transcripts
         }
         ensembl_db.append(record)
-        print(f"Gene: {gene} (Ensembl ID: {ensembl_id}), Transcripts: {transcripts}")
+        
+        # Update the progress bar description with the current gene
+        tqdm.write(f"✓ Gene: {gene} (Ensembl ID: {ensembl_id}), Transcripts: {len(transcripts)}")
     else:
-        print(f"Gene: {gene} not found in Ensembl")
+        tqdm.write(f"✗ Gene: {gene} not found in Ensembl")
 
 # Write the new JSON database file
 with open('data/ensembl_transcripts.json', 'w') as outfile:
     json.dump(ensembl_db, outfile, indent=4)
 
+print(f"\nProcessed {total_genes} genes. Found Ensembl IDs for {len(ensembl_db)} genes.")
 print("New Ensembl database created as data/ensembl_transcripts.json")
