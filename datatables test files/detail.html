@@ -1,0 +1,590 @@
+<div id="detailsContainer" class="my-4">
+    <h2 id="recordTitle" class="mb-4 text-primary">Gene Details</h2>
+    
+    <div id="loading" class="text-center my-5 py-4">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Loading gene details...</p>
+    </div>
+    
+    <div id="recordDetails" style="display: none;"></div>
+</div>
+
+<script>
+$(document).ready(function() {
+    // Parse URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    const name = urlParams.get('name');
+    
+    // Set the page title with the gene name
+    if (name) {
+        $("#recordTitle").text("Gene: " + decodeURIComponent(name));
+        document.title = decodeURIComponent(name) + " - Gene Details";
+    }
+    
+    // Fetch the data
+    $.ajax({
+        url: './assets/js/repeats_with_transcripts.json',  // Use the new enriched data file
+        dataType: 'json',
+        success: function(data) {
+            // Find the record that matches either by ensembl_id or gene name
+            const record = data.find(item => 
+                (id && item.ensembl_id == id) || 
+                (name && item.gene.toUpperCase() == decodeURIComponent(name).toUpperCase())
+            );
+            
+            if (record) {
+                // Create HTML structure for gene details
+                let html = `
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Gene icon and basic info -->
+                            <div class="col-md-4 text-center mb-4 mb-md-0">
+                                <div class="mb-3">
+                                    <img src="https://www.genecards.org/genelogo/${record.gene.toLowerCase()}.png" 
+                                         alt="${record.gene}" class="img-fluid rounded" style="max-height: 150px;"
+                                         onerror="this.onerror=null; this.src='./assets/img/dna-placeholder.png';">
+                                </div>
+                                <h4>${record.gene || 'Unknown Gene'}</h4>
+                                <p class="text-muted">${record.uniprot_id || 'No UniProt ID'}</p>
+                                <div class="badge bg-${record.reviewed === 'reviewed' ? 'success' : 'secondary'}">${record.reviewed || 'unreviewed'}</div>
+                            </div>
+                            
+                            <!-- Primary gene info -->
+                            <div class="col-md-8">
+                                <div class="card mb-3">
+                                    <div class="card-header bg-light">
+                                        <h5 class="mb-0">Gene Information</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col-md-4 fw-bold">Gene Symbol:</div>
+                                            <div class="col-md-8">${record.gene || 'N/A'}</div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col-md-4 fw-bold">Ensembl ID:</div>
+                                            <div class="col-md-8">
+                                                ${record.ensembl_id ? 
+                                                   `<a href="https://www.ensembl.org/Homo_sapiens/Gene/Summary?g=${record.ensembl_id}" target="_blank">${record.ensembl_id}</a>` : 
+                                                   'N/A'}
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col-md-4 fw-bold">UniProt ID:</div>
+                                            <div class="col-md-8">
+                                                ${record.uniprot_id ? 
+                                                   `<a href="https://www.uniprot.org/uniprotkb/${record.uniprot_id}" target="_blank">${record.uniprot_id}</a>` : 
+                                                   'N/A'}
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col-md-4 fw-bold">Entry Name:</div>
+                                            <div class="col-md-8">${record.entry_name || 'N/A'}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card">
+                                    <div class="card-header bg-light">
+                                        <h5 class="mb-0">Protein Information</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col-md-3 fw-bold">Protein Name:</div>
+                                            <div class="col-md-9">${record.protein_name || 'N/A'}</div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col-md-3 fw-bold">Aliases:</div>
+                                            <div class="col-md-9">${record.aliases && record.aliases.length ? record.aliases.join(', ') : 'No aliases'}</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3 fw-bold">Summary:</div>
+                                            <div class="col-md-9">
+                                                <span class="badge bg-info me-2">${record.transcripts ? record.transcripts.length : '0'} Transcripts</span>
+                                                <span class="badge bg-warning">${record.repeats ? record.repeats.length : '0'} Repeat Regions</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                
+                // Add Transcripts section if available
+                if (record.transcripts && record.transcripts.length > 0) {
+                    html += `
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Transcripts (${record.transcripts.length})</h5>
+                            <button class="btn btn-sm btn-outline-primary toggle-section" type="button" data-bs-toggle="collapse" data-bs-target="#transcriptsCollapse" aria-expanded="true">
+                                Hide
+                            </button>
+                        </div>
+                        <div class="collapse show" id="transcriptsCollapse">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Transcript ID</th>
+                                                <th>Associated Repeats</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>`;
+                    
+                    record.transcripts.forEach((transcript, index) => {
+                        // Count how many repeats are associated with this transcript
+                        const associatedRepeats = record.repeats ? record.repeats.filter(repeat => 
+                            repeat.transcript_overlaps && 
+                            repeat.transcript_overlaps.some(overlap => 
+                                overlap.transcript_id === transcript && 
+                                overlap.is_known_transcript
+                            )
+                        ).length : 0;
+                        
+                        html += `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${transcript}</td>
+                            <td>
+                                ${associatedRepeats > 0 ? 
+                                  `<span class="badge bg-info">${associatedRepeats} repeat${associatedRepeats !== 1 ? 's' : ''}</span>` : 
+                                  'None'}
+                            </td>
+                            <td>
+                                <a href="https://www.ensembl.org/Homo_sapiens/Transcript/Summary?t=${transcript}" target="_blank" class="btn btn-sm btn-outline-info">
+                                    <i class="fas fa-external-link-alt"></i> View in Ensembl
+                                </a>
+                            </td>
+                        </tr>`;
+                    });
+                    
+                    html += `
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                }
+                
+                // Add Repeats section if available
+                if (record.repeats && record.repeats.length > 0) {
+                    // Count repeats with transcript information
+                    const repeatsWithTranscriptData = record.repeats.filter(r => r.transcript_overlaps && r.transcript_overlaps.length > 0).length;
+                    const exonicRepeats = record.repeats.filter(r => 
+                        r.transcript_overlaps && r.transcript_overlaps.some(t => t.in_exon)
+                    ).length;
+                    
+                    html += `
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                Tandem Repeats (${record.repeats.length}) 
+                                <span class="ms-2 small">
+                                    ${repeatsWithTranscriptData > 0 ? 
+                                      `<span class="badge bg-info me-1" title="Repeats mapped to transcripts">${repeatsWithTranscriptData} mapped</span>` : ''}
+                                    ${exonicRepeats > 0 ? 
+                                      `<span class="badge bg-success" title="Repeats in coding regions">${exonicRepeats} exonic</span>` : ''}
+                                </span>
+                            </h5>
+                            <button class="btn btn-sm btn-outline-primary toggle-section" type="button" data-bs-toggle="collapse" data-bs-target="#repeatsCollapse" aria-expanded="true">
+                                Hide
+                            </button>
+                        </div>
+                        <div class="collapse show" id="repeatsCollapse">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Location</th>
+                                                <th>Length</th>
+                                                <th>Type</th>
+                                                <th>Comment</th>
+                                                <th>Publications</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>`;
+                    
+                    record.repeats.forEach((repeat, index) => {
+                        const hasLocation = repeat.chrom && repeat.chromStart && repeat.chromEnd;
+                        const location = hasLocation ? 
+                            `${repeat.chrom}:${repeat.chromStart}-${repeat.chromEnd}` : 'N/A';
+                        const length = hasLocation ? 
+                            (repeat.chromEnd - repeat.chromStart) + " bp" : 'N/A';
+                        const comments = repeat.comments || repeat.position || '';
+                        
+                        // Determine if repeat is exonic, intronic, or unmapped
+                        let repeatType = 'Unknown';
+                        let typeClass = 'bg-secondary';
+                        
+                        if (repeat.transcript_overlaps && repeat.transcript_overlaps.length > 0) {
+                            if (repeat.transcript_overlaps.some(t => t.in_exon)) {
+                                repeatType = 'Exonic';
+                                typeClass = 'bg-success';
+                            } else {
+                                repeatType = 'Intronic';
+                                typeClass = 'bg-info';
+                            }
+                        } else if (hasLocation) {
+                            repeatType = 'Unmapped';
+                            typeClass = 'bg-warning';
+                        }
+                        
+                        html += `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td>${location}</td>
+                            <td>${length}</td>
+                            <td><span class="badge ${typeClass}">${repeatType}</span></td>
+                            <td>${comments}</td>
+                            <td>`;
+                        
+                        // Handle PMIDs with links
+                        if (repeat.pmids) {
+                            const pmids = repeat.pmids.split(',');
+                            pmids.forEach(pmid => {
+                                const trimmedPmid = pmid.trim();
+                                if (trimmedPmid) {
+                                    html += `<a href="https://pubmed.ncbi.nlm.nih.gov/${trimmedPmid}" 
+                                             class="badge bg-secondary text-decoration-none me-1" 
+                                             target="_blank">PMID:${trimmedPmid}</a> `;
+                                }
+                            });
+                        } else {
+                            html += 'None';
+                        }
+                        
+                        html += `</td>
+                        </tr>`;
+                        
+                        // Add details row for transcript overlaps and other information
+                        const hasTranscriptInfo = repeat.transcript_overlaps && repeat.transcript_overlaps.length > 0;
+                        const hasAdditionalInfo = Object.keys(repeat).some(key => 
+                            !['chrom', 'chromStart', 'chromEnd', 'comments', 'position', 'pmids', 'transcript_overlaps'].includes(key) && repeat[key]);
+                            
+                        if (hasTranscriptInfo || hasAdditionalInfo) {
+                            html += `
+                            <tr class="repeat-details bg-light">
+                                <td></td>
+                                <td colspan="5">
+                                    <div class="mt-2 mb-2">`;
+                            
+                            // Transcript overlaps section
+                            if (hasTranscriptInfo) {
+                                html += `
+                                <button class="btn btn-sm btn-outline-primary me-2" type="button" data-bs-toggle="collapse" 
+                                       data-bs-target="#repeatTranscripts${index}" aria-expanded="false" aria-controls="repeatTranscripts${index}">
+                                    Transcript Mapping
+                                </button>`;
+                            }
+                            
+                            // Additional details section
+                            if (hasAdditionalInfo) {
+                                html += `
+                                <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="collapse" 
+                                       data-bs-target="#repeatDetails${index}" aria-expanded="false" aria-controls="repeatDetails${index}">
+                                    Additional Details
+                                </button>`;
+                            }
+                            
+                            // Transcript overlaps content
+                            if (hasTranscriptInfo) {
+                                html += `
+                                <div class="collapse mt-3" id="repeatTranscripts${index}">
+                                    <div class="card">
+                                        <div class="card-header bg-light">
+                                            <h6 class="mb-0">Transcript Overlaps (${repeat.transcript_overlaps.length})</h6>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm mb-0">
+                                                    <thead class="table-secondary">
+                                                        <tr>
+                                                            <th>Transcript ID</th>
+                                                            <th>Location</th>
+                                                            <th>Biotype</th>
+                                                            <th>Known</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>`;
+                                
+                                // Group by known/unknown transcripts
+                                const knownTranscripts = repeat.transcript_overlaps.filter(t => t.is_known_transcript);
+                                const unknownTranscripts = repeat.transcript_overlaps.filter(t => !t.is_known_transcript);
+                                
+                                // Show known transcripts first
+                                knownTranscripts.forEach(transcript => {
+                                    const locationClass = transcript.in_exon ? 'text-success fw-bold' : 'text-info';
+                                    const locationType = transcript.in_exon ? 'Exon' : 'Intron';
+                                    const exonDetails = transcript.in_exon && transcript.exon_details ? 
+                                        ` (${transcript.exon_details.exon_id})` : '';
+                                        
+                                    html += `
+                                    <tr>
+                                        <td>
+                                            <a href="https://www.ensembl.org/Homo_sapiens/Transcript/Summary?t=${transcript.transcript_id}" 
+                                               target="_blank" class="text-decoration-none">
+                                                ${transcript.transcript_id}
+                                            </a>
+                                        </td>
+                                        <td class="${locationClass}">${locationType}${exonDetails}</td>
+                                        <td>${transcript.biotype || 'Unknown'}</td>
+                                        <td><span class="badge bg-success">Yes</span></td>
+                                    </tr>`;
+                                });
+                                
+                                // Then show unknown transcripts
+                                unknownTranscripts.forEach(transcript => {
+                                    const locationClass = transcript.in_exon ? 'text-success' : 'text-info';
+                                    const locationType = transcript.in_exon ? 'Exon' : 'Intron';
+                                    const exonDetails = transcript.in_exon && transcript.exon_details ? 
+                                        ` (${transcript.exon_details.exon_id})` : '';
+                                        
+                                    html += `
+                                    <tr>
+                                        <td>
+                                            <a href="https://www.ensembl.org/Homo_sapiens/Transcript/Summary?t=${transcript.transcript_id}" 
+                                               target="_blank" class="text-decoration-none">
+                                                ${transcript.transcript_id}
+                                            </a>
+                                        </td>
+                                        <td class="${locationClass}">${locationType}${exonDetails}</td>
+                                        <td>${transcript.biotype || 'Unknown'}</td>
+                                        <td><span class="badge bg-secondary">No</span></td>
+                                    </tr>`;
+                                });
+                                
+                                html += `
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                            }
+                            
+                            // Additional details content
+                            if (hasAdditionalInfo) {
+                                html += `
+                                <div class="collapse mt-3" id="repeatDetails${index}">
+                                    <div class="card">
+                                        <div class="card-header bg-light">
+                                            <h6 class="mb-0">Additional Repeat Information</h6>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <div class="table-responsive">
+                                                <table class="table table-sm mb-0">
+                                                    <tbody>`;
+                                                    
+                                for (const [key, value] of Object.entries(repeat)) {
+                                    if (!['chrom', 'chromStart', 'chromEnd', 'comments', 'position', 'pmids', 'transcript_overlaps'].includes(key) && value) {
+                                        html += `
+                                        <tr>
+                                            <td class="fw-bold" style="width:30%">${key}:</td>
+                                            <td>${value}</td>
+                                        </tr>`;
+                                    }
+                                }
+                                                    
+                                html += `
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                            }
+                            
+                            html += `
+                                    </div>
+                                </td>
+                            </tr>`;
+                        }
+                    });
+                    
+                    html += `
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                }
+                
+                // Add Raw Data section (collapsible)
+                html += `
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                        <button class="btn btn-link text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#rawDataCollapse">
+                            Show Raw Data
+                        </button>
+                    </div>
+                    <div class="collapse" id="rawDataCollapse">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Property</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>`;
+                
+                // Add all properties to the table
+                for (const [key, value] of Object.entries(record)) {
+                    if (key !== 'repeats' && key !== 'transcripts') {
+                        html += `
+                        <tr>
+                            <td class="fw-bold">${key}</td>
+                            <td>${Array.isArray(value) ? JSON.stringify(value) : value}</td>
+                        </tr>`;
+                    } else {
+                        html += `
+                        <tr>
+                            <td class="fw-bold">${key}</td>
+                            <td>[${Array.isArray(value) ? value.length : 0} items]</td>
+                        </tr>`;
+                    }
+                }
+                
+                html += `
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                
+                // Hide loading, show details
+                $("#loading").hide();
+                $("#recordDetails").html(html).show();
+                
+                // Add event listener for toggle buttons
+                $(".toggle-section").click(function() {
+                    const isCollapsed = $($(this).data("bs-target")).hasClass("show");
+                    $(this).text(isCollapsed ? "Show" : "Hide");
+                });
+            } else {
+                // Record not found
+                $("#loading").hide();
+                $("#recordDetails").html('<div class="alert alert-danger p-4 text-center"><i class="fas fa-exclamation-triangle me-2"></i> Gene record not found</div>').show();
+            }
+        },
+        error: function() {
+            // Error fetching data
+            $("#loading").hide();
+            $("#recordDetails").html('<div class="alert alert-danger p-4 text-center"><i class="fas fa-exclamation-triangle me-2"></i> Error loading gene data</div>').show();
+        }
+    });
+});
+
+// Function to draw repeat visualization
+function drawRepeatVisualization(containerId, transcriptId, exonDetails, repeatStart, repeatEnd, offset=0) {
+    // Create the container for this transcript
+    const vizContainer = document.getElementById(containerId);
+    if (!vizContainer) return;
+    
+    const transcriptViz = document.createElement('div');
+    transcriptViz.className = 'transcript-viz mb-4';
+    transcriptViz.style.position = 'relative';
+    transcriptViz.style.height = '60px';
+    transcriptViz.style.marginTop = (offset * 80) + 'px';
+    vizContainer.appendChild(transcriptViz);
+    
+    // Create a label for the transcript
+    const transcriptLabel = document.createElement('div');
+    transcriptLabel.className = 'transcript-label';
+    transcriptLabel.textContent = transcriptId;
+    transcriptLabel.style.position = 'absolute';
+    transcriptLabel.style.left = '0';
+    transcriptLabel.style.top = '-20px';
+    transcriptLabel.style.fontSize = '0.8rem';
+    transcriptLabel.style.fontWeight = 'bold';
+    transcriptViz.appendChild(transcriptLabel);
+    
+    // Create the visualization
+    const canvas = document.createElement('canvas');
+    canvas.width = vizContainer.offsetWidth;
+    canvas.height = 40;
+    canvas.style.width = '100%';
+    canvas.style.height = '40px';
+    transcriptViz.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Get exon coordinates
+    const exonStart = exonDetails.exon_start;
+    const exonEnd = exonDetails.exon_end;
+    
+    // Calculate the scale - use the exon as reference with padding
+    const padding = (exonEnd - exonStart) * 0.2; // 20% padding on each side
+    const vizStart = exonStart - padding;
+    const vizEnd = exonEnd + padding;
+    const vizWidth = vizEnd - vizStart;
+    const scale = canvas.width / vizWidth;
+    
+    // Draw intron line
+    ctx.beginPath();
+    ctx.moveTo(0, 20);
+    ctx.lineTo(canvas.width, 20);
+    ctx.strokeStyle = '#ccc';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    
+    // Draw exon as a box
+    const exonLeft = (exonStart - vizStart) * scale;
+    const exonWidth = (exonEnd - exonStart) * scale;
+    ctx.fillStyle = '#337ab7'; // Blue for exons
+    ctx.fillRect(exonLeft, 10, exonWidth, 20);
+    
+    // Draw repeat as a highlighted box
+    const repeatLeft = Math.max(0, (repeatStart - vizStart) * scale);
+    const repeatWidth = Math.min(canvas.width - repeatLeft, (repeatEnd - repeatStart) * scale);
+    
+    // Use a semi-transparent overlay for the repeat
+    ctx.fillStyle = 'rgba(255, 193, 7, 0.8)'; // Yellow for repeats
+    ctx.fillRect(repeatLeft, 5, repeatWidth, 30);
+    
+    // Draw exon label
+    ctx.fillStyle = '#000';
+    ctx.font = '10px Arial';
+    ctx.fillText('Exon', exonLeft + 5, 40);
+    
+    // Draw repeat label
+    ctx.fillStyle = '#000';
+    ctx.font = '10px Arial';
+    ctx.fillText('Repeat', repeatLeft + 5, 40);
+    
+    // Add coordinates to bottom
+    ctx.fillStyle = '#666';
+    ctx.font = '9px Arial';
+    ctx.fillText(`${vizStart.toLocaleString()}`, 5, 55);
+    ctx.fillText(`${vizEnd.toLocaleString()}`, canvas.width - 60, 55);
+    
+    // Add a legend
+    const legend = document.createElement('div');
+    legend.className = 'viz-legend';
+    legend.style.marginTop = '10px';
+    legend.style.fontSize = '0.8rem';
+    legend.innerHTML = `
+        <div class="d-inline-block me-3">
+            <span style="display:inline-block;width:15px;height:15px;background:#337ab7;margin-right:5px;"></span>Exon
+        </div>
+        <div class="d-inline-block">
+            <span style="display:inline-block;width:15px;height:15px;background:rgba(255, 193, 7, 0.8);margin-right:5px;"></span>Repeat
+        </div>
+        <div class="small text-muted mt-1">Position: ${repeatStart.toLocaleString()} - ${repeatEnd.toLocaleString()} (${(repeatEnd - repeatStart).toLocaleString()} bp)</div>
+    `;
+    transcriptViz.appendChild(legend);
+}
+</script>

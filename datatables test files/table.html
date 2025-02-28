@@ -1,0 +1,137 @@
+<table id="dataTable" class="table"></table>
+
+<script>
+$(document).ready(function() {
+    $('#dataTable').DataTable({
+        layout: {
+            topStart: 'searchBuilder'
+        },
+        processing: true,
+        deferRender: true,
+        responsive: {
+            details: {
+                display: $.fn.DataTable.Responsive.display.modal({
+                    header: function () { return 'Details'; }
+                }),
+                renderer: $.fn.DataTable.Responsive.renderer.tableAll({
+                    tableClass: 'table'
+                })
+            }
+        },
+        scrollY: '60vh',
+        scrollX: true,  // Add horizontal scrolling
+        scroller: true,
+        ajax: {
+            url: './assets/js/repeats_with_transcripts.json',
+            dataSrc: '' // Direct array in this file
+        },
+        columns: [
+            { 
+                data: 'gene', 
+                title: 'Gene',
+                defaultContent: '',
+                responsivePriority: 1, // Make sure gene is always visible
+                width: '10%'
+            },
+            { 
+                data: 'uniprot_id', 
+                title: 'UniProt ID',
+                defaultContent: '',
+                responsivePriority: 2,
+                width: '10%'
+            },
+            { 
+                data: 'protein_name', 
+                title: 'Protein Name',
+                defaultContent: '',
+                responsivePriority: 12,
+                width: '30%',
+                render: function(data, type, row) {
+                    // Use regular rendering for sorting and filtering
+                    if (type !== 'display') {
+                        return data;
+                    }
+                    
+                    // For display, truncate long text with ellipsis and add tooltip
+                    if (data && data.length > 50) {
+                        return '<span title="' + data.replace(/"/g, '&quot;') + '">' + 
+                               data.substring(0, 50) + '...</span>';
+                    }
+                    return data;
+                }
+            },
+            { 
+                data: 'entry_name', 
+                title: 'Entry Name',
+                defaultContent: '',
+                responsivePriority: 4,
+                width: '10%'
+            },
+            { 
+                data: 'repeats', 
+                title: 'Repeats',
+                defaultContent: '0',
+                width: '8%',
+                render: function(data, type, row) {
+                    return data ? data.length : '0';
+                },
+                responsivePriority: 5
+            },
+            { data: 'ensembl_id', title: 'Ensembl ID', className: 'none', defaultContent: '' },
+            { 
+                data: 'aliases', 
+                title: 'Aliases',
+                defaultContent: '',
+                render: function(data, type, row) {
+                    return data ? data.join(', ') : '';
+                },
+                className: 'none'
+            },
+            { 
+                data: 'transcripts', 
+                title: 'Transcripts',
+                defaultContent: '0',
+                render: function(data, type, row) {
+                    return data ? data.length : '0';
+                },
+                className: 'none'
+            },
+            { data: 'reviewed', title: 'Status', className: 'none', defaultContent: '' },
+            { 
+                data: null,
+                title: 'Link',
+                width: '8%',
+                render: function(data, type, row) {
+                    let geneId = row.ensembl_id || '';
+                    let geneName = encodeURIComponent(row.gene || '');
+                    return '<a href="detail.html?id=' + geneId + '&name=' + geneName + '" class="btn btn-sm btn-primary" target="_blank">View Details</a>';
+                },
+                responsivePriority: 6
+            }
+        ],
+        // Add order to sort by gene name by default
+        order: [[0, 'asc']]
+    });
+});
+</script>
+
+<style>
+/* Add some styling to ensure table behaves well */
+#dataTable {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#dataTable td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 0; /* This forces text-overflow to work */
+}
+
+/* Make the button smaller and more compact */
+#dataTable .btn-sm {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+}
+</style>

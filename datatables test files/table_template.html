@@ -1,0 +1,48 @@
+<table id="dataTable" class="table"></table>
+
+<script>
+$(document).ready(function() {
+    $('#dataTable').DataTable({
+        layout: {
+            topStart: 'searchBuilder'
+        },
+        processing: true,
+        deferRender: true,
+        responsive: {
+            details: {
+                display: $.fn.DataTable.Responsive.display.modal({
+                    header: function () { return 'Details'; }
+                }),
+                renderer: $.fn.DataTable.Responsive.renderer.tableAll({
+                    tableClass: 'table'
+                })
+            }
+        },
+        scrollY: '60vh',
+        scroller: true,
+        ajax: {
+            url: './assets/js/data.json',
+            dataSrc: 'data'
+        },
+        columns: [
+            { data: 'id', title: 'ID', className: 'none' },
+            { data: 'name', title: 'Name' },
+            { data: 'age', title: 'Age' },
+            { data: 'city', title: 'City' },
+            { data: 'email', title: 'Email' },
+            { data: 'phone', title: 'Phone' },
+            { data: 'status', title: 'Status' },
+            { data: 'date', title: 'Date', className: 'none' },
+            { data: 'score', title: 'Score', className: 'none' },
+            { data: 'department', title: 'Department' },
+            { 
+                data: null,
+                title: 'Link',
+                render: function(data, type, row) {
+                    return '<a href="detail.html?id=' + row.id + '&name=' + encodeURIComponent(row.name) + '" class="btn btn-sm btn-primary" target="_blank">View Site</a>';
+                }
+            }
+        ]
+    });
+});
+</script>
