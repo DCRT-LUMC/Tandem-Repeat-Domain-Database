@@ -373,8 +373,14 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
     print(f"Updated repeat data saved to {output_file}")
 
 if __name__ == "__main__":
-    input_file = r"C:\Users\ojfab\Documents\GitHub\Tandem-Repeat-Domain-Database\merge_test_small\data\gname_hg38_repeats_100.json"
-    output_file = r"C:\Users\ojfab\Documents\GitHub\Tandem-Repeat-Domain-Database\merge_test_small\data\ensembl_exons_hg38_repeats_10.json"
+    # Get the directory where the script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    # Get the parent directory (project root)
+    project_root = os.path.dirname(script_dir)
+    
+    # Default paths relative to project root
+    input_file = os.path.join(project_root, "data", "gname_hg38_repeats_100.json")
+    output_file = os.path.join(project_root, "data", "ensembl_exons_hg38_repeats_10.json")
     
     # Allow command-line arguments to override default file paths
     if len(sys.argv) > 1:
