@@ -52,9 +52,6 @@
         {
           "transcript_id": "ENST00000338591",
           "transcript_name": "KLHL17-201",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -85,9 +82,6 @@
         {
           "transcript_id": "ENST00000466300",
           "transcript_name": "KLHL17-203",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": false,
           "biotype": "nonsense_mediated_decay",
           "location": "exonic",
@@ -171,9 +165,6 @@
         {
           "transcript_id": "ENST00000338591",
           "transcript_name": "KLHL17-201",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -204,9 +195,6 @@
         {
           "transcript_id": "ENST00000466300",
           "transcript_name": "KLHL17-203",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": false,
           "biotype": "nonsense_mediated_decay",
           "location": "exonic",
@@ -293,9 +281,6 @@
         {
           "transcript_id": "ENST00000338591",
           "transcript_name": "KLHL17-201",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -336,9 +321,6 @@
         {
           "transcript_id": "ENST00000466300",
           "transcript_name": "KLHL17-203",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": false,
           "biotype": "nonsense_mediated_decay",
           "location": "exonic",
@@ -379,9 +361,6 @@
         {
           "transcript_id": "ENST00000481067",
           "transcript_name": "KLHL17-204",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": true,
           "biotype": "retained_intron",
           "location": "exonic",
@@ -465,9 +444,6 @@
         {
           "transcript_id": "ENST00000338591",
           "transcript_name": "KLHL17-201",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -498,9 +474,6 @@
         {
           "transcript_id": "ENST00000466300",
           "transcript_name": "KLHL17-203",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": false,
           "biotype": "nonsense_mediated_decay",
           "location": "exonic",
@@ -531,9 +504,6 @@
         {
           "transcript_id": "ENST00000481067",
           "transcript_name": "KLHL17-204",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": true,
           "biotype": "retained_intron",
           "location": "exonic",
@@ -607,9 +577,6 @@
         {
           "transcript_id": "ENST00000338591",
           "transcript_name": "KLHL17-201",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -640,9 +607,6 @@
         {
           "transcript_id": "ENST00000466300",
           "transcript_name": "KLHL17-203",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": false,
           "biotype": "nonsense_mediated_decay",
           "location": "exonic",
@@ -713,9 +677,6 @@
         {
           "transcript_id": "ENST00000338591",
           "transcript_name": "KLHL17-201",
-          "gene_name": "KLHL17",
-          "gene_id": "ENSG00000187961",
-          "strand": "+",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -790,9 +751,6 @@
         {
           "transcript_id": "ENST00000328596",
           "transcript_name": "TNFRSF18-201",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -813,9 +771,6 @@
         {
           "transcript_id": "ENST00000379268",
           "transcript_name": "TNFRSF18-203",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -846,9 +801,6 @@
         {
           "transcript_id": "ENST00000486728",
           "transcript_name": "TNFRSF18-204",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -879,9 +831,6 @@
         {
           "transcript_id": "ENST00000379265",
           "transcript_name": "TNFRSF18-202",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -966,9 +915,6 @@
         {
           "transcript_id": "ENST00000328596",
           "transcript_name": "TNFRSF18-201",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -999,9 +945,6 @@
         {
           "transcript_id": "ENST00000379268",
           "transcript_name": "TNFRSF18-203",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1032,9 +975,6 @@
         {
           "transcript_id": "ENST00000486728",
           "transcript_name": "TNFRSF18-204",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1065,9 +1005,6 @@
         {
           "transcript_id": "ENST00000379265",
           "transcript_name": "TNFRSF18-202",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1152,9 +1089,6 @@
         {
           "transcript_id": "ENST00000328596",
           "transcript_name": "TNFRSF18-201",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1185,9 +1119,6 @@
         {
           "transcript_id": "ENST00000379268",
           "transcript_name": "TNFRSF18-203",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1218,9 +1149,6 @@
         {
           "transcript_id": "ENST00000486728",
           "transcript_name": "TNFRSF18-204",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1241,9 +1169,6 @@
         {
           "transcript_id": "ENST00000379265",
           "transcript_name": "TNFRSF18-202",
-          "gene_name": "TNFRSF18",
-          "gene_id": "ENSG00000186891",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1327,9 +1252,6 @@
         {
           "transcript_id": "ENST00000699969",
           "transcript_name": "TNFRSF4-204",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1350,9 +1272,6 @@
         {
           "transcript_id": "ENST00000699970",
           "transcript_name": "TNFRSF4-205",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "non_stop_decay",
           "location": "exonic",
@@ -1383,9 +1302,6 @@
         {
           "transcript_id": "ENST00000497869",
           "transcript_name": "TNFRSF4-203",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "retained_intron",
           "location": "exonic",
@@ -1416,9 +1332,6 @@
         {
           "transcript_id": "ENST00000379236",
           "transcript_name": "TNFRSF4-201",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": true,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1449,9 +1362,6 @@
         {
           "transcript_id": "ENST00000699971",
           "transcript_name": "TNFRSF4-206",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1482,9 +1392,6 @@
         {
           "transcript_id": "ENST00000699972",
           "transcript_name": "TNFRSF4-207",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": true,
           "biotype": "retained_intron",
           "location": "exonic",
@@ -1515,9 +1422,6 @@
         {
           "transcript_id": "ENST00000699973",
           "transcript_name": "TNFRSF4-208",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "nonsense_mediated_decay",
           "location": "exonic",
@@ -1548,9 +1452,6 @@
         {
           "transcript_id": "ENST00000699974",
           "transcript_name": "TNFRSF4-209",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1581,9 +1482,6 @@
         {
           "transcript_id": "ENST00000699975",
           "transcript_name": "TNFRSF4-210",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "intronic",
@@ -1593,9 +1491,6 @@
         {
           "transcript_id": "ENST00000699976",
           "transcript_name": "TNFRSF4-211",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1616,9 +1511,6 @@
         {
           "transcript_id": "ENST00000699977",
           "transcript_name": "TNFRSF4-212",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding",
           "location": "exonic",
@@ -1649,9 +1541,6 @@
         {
           "transcript_id": "ENST00000699978",
           "transcript_name": "TNFRSF4-213",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "non_stop_decay",
           "location": "exonic",
@@ -1682,9 +1571,6 @@
         {
           "transcript_id": "ENST00000699979",
           "transcript_name": "TNFRSF4-214",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "non_stop_decay",
           "location": "exonic",
@@ -1705,9 +1591,6 @@
         {
           "transcript_id": "ENST00000453580",
           "transcript_name": "TNFRSF4-202",
-          "gene_name": "TNFRSF4",
-          "gene_id": "ENSG00000186827",
-          "strand": "-",
           "is_canonical": false,
           "biotype": "protein_coding_CDS_not_defined",
           "location": "exonic",

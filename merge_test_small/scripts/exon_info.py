@@ -1,11 +1,43 @@
 import json
 import requests
 import time
-import pandas as pd
 from tqdm import tqdm
 import os
-from collections import defaultdict
 import sys
+import logging
+import datetime
+
+# First, determine project root directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(script_dir)
+
+# Create logs directory if it doesn't exist
+logs_dir = os.path.join(project_root, "logs")
+os.makedirs(logs_dir, exist_ok=True)
+
+# Simple logging setup with logs in the logs directory
+log_filename = f"ensembl_api_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+log_filepath = os.path.join(logs_dir, log_filename)
+
+file_handler = logging.FileHandler(log_filepath)
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(logging.Formatter('%(levelname)s - %(message)s'))  # No timestamp
+
+logging.basicConfig(
+    level=logging.INFO,
+    handlers=[file_handler, console_handler]
+)
+
+logging.info(f"Logging to file: {log_filepath}")
+
+# Global stats dictionary for tracking API usage
+api_stats = {
+    "requests": 0,
+    "rate_limits": 0,
+    "errors": 0
+}
 
 # Create a cache to avoid redundant API calls
 query_cache = {}
@@ -36,11 +68,18 @@ class EnsemblRestClient(object):
         if self.req_count >= self.reqs_per_sec:
             delta = time.time() - self.last_req
             if delta < 1:
-                time.sleep(1 - delta)
+                wait_time = 1 - delta
+                api_stats["rate_limits"] += 1
+                logging.info(f"Rate limited: waiting {wait_time:.2f}s before requesting {endpoint}")
+                time.sleep(wait_time)
             self.last_req = time.time()
             self.req_count = 0
         
         try:
+            # Log the request
+            api_stats["requests"] += 1
+            logging.debug(f"API request: {endpoint}")
+            
             # Use requests instead of urllib for consistency with the rest of your code
             response = requests.get(url, headers=hdrs, params=params, timeout=15)
             
@@ -52,13 +91,17 @@ class EnsemblRestClient(object):
             elif response.status_code == 429:
                 if 'Retry-After' in response.headers:
                     retry = response.headers['Retry-After']
+                    api_stats["rate_limits"] += 1
+                    logging.warning(f"Server rate limit hit: waiting {retry}s before retrying {endpoint}")
                     time.sleep(float(retry))
                     return self.perform_rest_action(endpoint, hdrs, params)
             else:
-                print(f"Request failed for {endpoint}: Status code: {response.status_code}")
+                api_stats["errors"] += 1
+                logging.error(f"Request failed: {endpoint} (Status {response.status_code})")
                 
         except Exception as e:
-            print(f"Error performing request to {endpoint}: {e}")
+            api_stats["errors"] += 1
+            logging.error(f"Request error: {endpoint} - {str(e)}")
             
         return data
 
@@ -432,5 +475,22 @@ if __name__ == "__main__":
     if len(sys.argv) > 2:
         output_file = sys.argv[2]
         
-    # Process only the first 10 repeats
-    process_repeat_data(input_file, output_file, limit=10)
+    try:
+        # Start timing BEFORE processing
+        start_time = time.time()
+        
+        # Run the processing
+        process_repeat_data(input_file, output_file, limit=10)
+        
+        # Calculate duration AFTER processing
+        duration = time.time() - start_time
+        
+        # Log summary statistics
+        logging.info("=== Processing Summary ===")
+        logging.info(f"Total API requests: {api_stats['requests']}")
+        logging.info(f"Rate limits encountered: {api_stats['rate_limits']}")
+        logging.info(f"Errors: {api_stats['errors']}")
+        logging.info(f"Total runtime: {duration:.2f} seconds")
+        logging.info("========================")
+    except Exception as e:
+        logging.exception("Script failed with error:")
