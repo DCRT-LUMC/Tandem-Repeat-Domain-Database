@@ -59,7 +59,7 @@ def process_entry(entry):
 
 def main():
     # Path to your input JSON file
-    input_file = "merge_test_small/data/hg38_repeats_100.json"
+    input_file = "merge_test_small/data/hg38_repeats.json"
     output_file = "merge_test_small/data/gname_hg38_repeats_100.json"
     
     # Ensure the input file exists
