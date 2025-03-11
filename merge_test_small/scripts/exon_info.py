@@ -202,7 +202,7 @@ def get_coding_status(exon, transcript, repeat_start, repeat_end):
 
 def process_repeat_data(repeat_data_file, output_file, limit=None):
     """
-    Process the repeat data JSON and add comprehensive exon information using Ensembl API.
+    Process the repeat data JSON and add exon information using Ensembl API.
     
     Parameters:
         repeat_data_file: Input JSON file with repeat data
@@ -234,6 +234,11 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
         chrom = repeat["chrom"]
         start = int(repeat["chromStart"])
         end = int(repeat["chromEnd"])
+
+        # Get the repeat's strand
+        repeat_strand = repeat.get("strand", "")
+        # Convert to Ensembl format for comparison
+        expected_ensembl_strand = 1 if repeat_strand == "+" else -1 if repeat_strand == "-" else None
         
         # Get transcript and exon information from Ensembl
         api_data = get_ensembl_info(chrom, start, end)
@@ -259,6 +264,10 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
         
         for transcript in all_transcripts:
             try:
+                # Skip transcripts with different strand if repeat strand is specified
+                if expected_ensembl_strand is not None and transcript.get("strand") != expected_ensembl_strand:
+                    continue
+
                 # Check if this is likely the canonical transcript
                 is_canonical = is_canonical_transcript(transcript, all_transcripts)
                 
@@ -330,9 +339,6 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
                 transcript_info.append({
                     "transcript_id": transcript_id,
                     "transcript_name": transcript.get("display_name", ""),
-                    "gene_name": gene_name,
-                    "gene_id": transcript.get("Parent", ""),
-                    "strand": strand,
                     "is_canonical": is_canonical,
                     "biotype": biotype,
                     "location": location,
