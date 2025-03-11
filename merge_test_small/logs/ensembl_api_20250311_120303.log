@@ -1,0 +1,7 @@
+2025-03-11 12:03:03,592 - INFO - Logging to file: c:\Users\ojfab\Documents\GitHub\Tandem-Repeat-Domain-Database\merge_test_small\logs\ensembl_api_20250311_120303.log
+2025-03-11 12:06:45,000 - INFO - === Processing Summary ===
+2025-03-11 12:06:45,001 - INFO - Total API requests: 1198
+2025-03-11 12:06:45,001 - INFO - Rate limits encountered: 0
+2025-03-11 12:06:45,002 - INFO - Errors: 0
+2025-03-11 12:06:45,002 - INFO - Total runtime: 221.41 seconds
+2025-03-11 12:06:45,003 - INFO - ========================
