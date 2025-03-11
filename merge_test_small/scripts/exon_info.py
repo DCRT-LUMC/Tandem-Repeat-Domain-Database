@@ -10,6 +10,58 @@ import sys
 # Create a cache to avoid redundant API calls
 query_cache = {}
 
+class EnsemblRestClient(object):
+    """
+    Client for the Ensembl REST API with proper rate limiting
+    """
+    def __init__(self, server='https://rest.ensembl.org', reqs_per_sec=15):
+        self.server = server
+        self.reqs_per_sec = reqs_per_sec
+        self.req_count = 0
+        self.last_req = 0
+
+    def perform_rest_action(self, endpoint, hdrs=None, params=None):
+        if hdrs is None:
+            hdrs = {}
+
+        if 'Content-Type' not in hdrs:
+            hdrs['Content-Type'] = 'application/json'
+
+        # Build URL with parameters
+        url = self.server + endpoint
+        
+        data = None
+
+        # Check if we need to rate limit ourselves
+        if self.req_count >= self.reqs_per_sec:
+            delta = time.time() - self.last_req
+            if delta < 1:
+                time.sleep(1 - delta)
+            self.last_req = time.time()
+            self.req_count = 0
+        
+        try:
+            # Use requests instead of urllib for consistency with the rest of your code
+            response = requests.get(url, headers=hdrs, params=params, timeout=15)
+            
+            if response.status_code == 200:
+                data = response.json()
+                self.req_count += 1
+                
+            # Check if we are being rate limited by the server
+            elif response.status_code == 429:
+                if 'Retry-After' in response.headers:
+                    retry = response.headers['Retry-After']
+                    time.sleep(float(retry))
+                    return self.perform_rest_action(endpoint, hdrs, params)
+            else:
+                print(f"Request failed for {endpoint}: Status code: {response.status_code}")
+                
+        except Exception as e:
+            print(f"Error performing request to {endpoint}: {e}")
+            
+        return data
+
 def get_ensembl_info(chrom, start, end, species="human"):
     """
     Get transcript and exon information using the Ensembl API.
@@ -22,44 +74,31 @@ def get_ensembl_info(chrom, start, end, species="human"):
     if cache_key in query_cache:
         return query_cache[cache_key]
     
-    # Define server and endpoints
-    server = "https://rest.ensembl.org"
-    
-    # We'll make three requests to get comprehensive information
-    # 1. Get transcripts overlapping the region
-    transcripts_ext = f"/overlap/region/{species}/{chrom_id}:{start}-{end}?feature=transcript"
-    # 2. Get exons overlapping the region
-    exons_ext = f"/overlap/region/{species}/{chrom_id}:{start}-{end}?feature=exon"
-    
+    # Initialize Ensembl REST client
+    client = EnsemblRestClient()
     headers = {"Content-Type": "application/json"}
     
     result = {"transcripts": [], "exons": []}
     
-    # Make the transcript request with error handling
-    try:
-        # Add delay to respect rate limits
-        time.sleep(0.5)
-        
-        transcript_response = requests.get(server + transcripts_ext, headers=headers, timeout=15)
-        if transcript_response.status_code == 200:
-            result["transcripts"] = transcript_response.json()
-        else:
-            print(f"Error: {transcript_response.status_code} when retrieving transcripts for {cache_key}")
-    except Exception as e:
-        print(f"Error querying Ensembl transcripts for {cache_key}: {e}")
+    # Get transcripts overlapping the region
+    transcripts = client.perform_rest_action(
+        endpoint=f"/overlap/region/{species}/{chrom_id}:{start}-{end}",
+        hdrs=headers,
+        params={'feature': 'transcript'}
+    )
     
-    # Make the exon request
-    try:
-        # Add delay to respect rate limits
-        time.sleep(0.5)
-        
-        exon_response = requests.get(server + exons_ext, headers=headers, timeout=15)
-        if exon_response.status_code == 200:
-            result["exons"] = exon_response.json()
-        else:
-            print(f"Error: {exon_response.status_code} when retrieving exons for {cache_key}")
-    except Exception as e:
-        print(f"Error querying Ensembl exons for {cache_key}: {e}")
+    if transcripts:
+        result["transcripts"] = transcripts
+    
+    # Get exons overlapping the region
+    exons = client.perform_rest_action(
+        endpoint=f"/overlap/region/{species}/{chrom_id}:{start}-{end}",
+        hdrs=headers,
+        params={'feature': 'exon'}
+    )
+    
+    if exons:
+        result["exons"] = exons
     
     # For each transcript, get detailed info including all its exons
     transcript_details = {}
@@ -68,17 +107,16 @@ def get_ensembl_info(chrom, start, end, species="human"):
         try:
             transcript_id = transcript["id"]
             
-            # Add delay to respect rate limits
-            time.sleep(0.5)
-            
             # Get detailed transcript information with all exons
-            transcript_ext = f"/lookup/id/{transcript_id}?expand=1"
-            transcript_detail_response = requests.get(server + transcript_ext, headers=headers, timeout=15)
+            transcript_detail = client.perform_rest_action(
+                endpoint=f"/lookup/id/{transcript_id}",
+                hdrs=headers,
+                params={'expand': 1}
+            )
             
-            if transcript_detail_response.status_code == 200:
-                transcript_details[transcript_id] = transcript_detail_response.json()
-            else:
-                print(f"Error: {transcript_detail_response.status_code} when retrieving details for transcript {transcript_id}")
+            if transcript_detail:
+                transcript_details[transcript_id] = transcript_detail
+                
         except Exception as e:
             print(f"Error querying Ensembl transcript details for {transcript_id}: {e}")
     
