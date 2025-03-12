@@ -1,0 +1,12 @@
+PS C:\Users\ojfab\Documents\GitHub\Tandem-Repeat-Domain-Database> & c:/Users/ojfab/Documents/GitHub/Tandem-Repeat-Domain-Database/.venv/Scripts/python.exe c:/Users/ojfab/Documents/GitHub/Tandem-Repeat-Domain-Database/merge_test_small/scripts/update_gene_names.py
+Loaded 15594 entries. Starting API queries...
+Processing entries: 100%|███████████████████████| 15594/15594 [06:17<00:00, 41.30it/s]
+
+Cache statistics:
+Total entries processed: 15594
+Unique UniProt IDs: 2924
+API calls made: 2924
+Cache hits: 12670
+API call reduction: 81.25%
+
+Updated data written to merge_test_small\data\gname_hg38_repeats.json

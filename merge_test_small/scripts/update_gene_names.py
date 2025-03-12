@@ -18,6 +18,10 @@ retries = Retry(
 session = requests.Session()
 session.mount("https://", HTTPAdapter(max_retries=retries))
 
+# Cache for UniProt gene information
+uniprot_cache = {}
+cache_hits = 0
+api_calls = 0
 
 def check_response(response):
     """Check if the API response is valid"""
@@ -32,14 +36,23 @@ def check_response(response):
 
 def get_uniprot_gene_info(uniprot_id):
     """Fetch gene name and aliases from UniProt API for a given UniProt ID"""
+    global cache_hits, api_calls
+    
     if not uniprot_id:
         return None, None
     
+    # Check if we have this UniProt ID in cache
+    if uniprot_id in uniprot_cache:
+        cache_hits += 1
+        return uniprot_cache[uniprot_id]
+    
     url = f"{API_URL}/uniprotkb/{uniprot_id}.json"
+    api_calls += 1
     
     try:
         response = session.get(url)
         if not check_response(response):
+            uniprot_cache[uniprot_id] = (None, None)
             return None, None
         
         data = response.json()
@@ -57,10 +70,14 @@ def get_uniprot_gene_info(uniprot_id):
         primary_name = gene_info.get("primary", "")
         synonyms = gene_info.get("synonyms", [])
         
-        return primary_name, synonyms
+        # Store in cache for future use
+        result = (primary_name, synonyms)
+        uniprot_cache[uniprot_id] = result
+        return result
     
     except Exception as e:
         print(f"Exception when fetching {uniprot_id}: {str(e)}")
+        uniprot_cache[uniprot_id] = (None, None)
         return None, None
 
 
@@ -76,13 +93,13 @@ def process_entry(entry):
         
         # Store synonyms as an array
         if synonyms:
-            entry["geneName2"] = synonyms
+            entry["aliases"] = synonyms
     
     return entry
 
 
 def main():
-    input_file = os.path.join("merge_test_small", "data", "hg38_repeats_100.json")
+    input_file = os.path.join("merge_test_small", "data", "length_filtered_hg38_repeats.json")
     output_file = os.path.join("merge_test_small", "data", "gname_hg38_repeats.json")
     
     # Ensure the input file exists
@@ -104,14 +121,25 @@ def main():
     for entry in progress_bar:
         updated_entry = process_entry(entry)
         updated_data.append(updated_entry)
-        # Small delay to avoid overwhelming the API
-        time.sleep(0.1)
+        # Small delay only when making actual API calls
+        if api_calls > 0 and api_calls % 10 == 0:
+            time.sleep(0.1)
     
     # Write updated JSON data
     with open(output_file, 'w') as f:
         json.dump(updated_data, f, indent=2)
     
-    print(f"Updated data written to {output_file}")
+    # Report cache statistics
+    unique_proteins = len(uniprot_cache)
+    print(f"\nCache statistics:")
+    print(f"Total entries processed: {total_entries}")
+    print(f"Unique UniProt IDs: {unique_proteins}")
+    print(f"API calls made: {api_calls}")
+    print(f"Cache hits: {cache_hits}")
+    if api_calls > 0:
+        print(f"API call reduction: {cache_hits/(api_calls+cache_hits)*100:.2f}%")
+    
+    print(f"\nUpdated data written to {output_file}")
 
 
 if __name__ == "__main__":

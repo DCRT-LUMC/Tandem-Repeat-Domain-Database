@@ -34,20 +34,11 @@ def add_repeat_length_and_filter(input_file, output_file, min_length=60):
             excluded_count += 1
             continue
         
-        # Create a new dictionary with the repeatLength field inserted after "comments"
-        new_repeat = {}
-        for key, value in repeat.items():
-            new_repeat[key] = value
-            # Insert repeatLength right after comments
-            if key == "comments":
-                new_repeat["repeatLength"] = repeat_length
+        # Simply add the repeatLength field to the existing entry
+        repeat["repeatLength"] = repeat_length
         
-        # If "comments" wasn't found, add it at the end
-        if "repeatLength" not in new_repeat:
-            new_repeat["repeatLength"] = repeat_length
-        
-        # Add the modified repeat to our filtered list
-        filtered_repeats.append(new_repeat)
+        # Add the repeat to our filtered list
+        filtered_repeats.append(repeat)
     
     # Save the modified and filtered JSON
     with open(output_file, 'w') as f:
@@ -61,8 +52,8 @@ if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
     
-    input_file = os.path.join(project_root, "data", "hg38_repeats_100.json")
-    output_file = os.path.join(project_root, "data", "100_length_filtered_hg38_repeats.json")
+    input_file = os.path.join(project_root, "data", "hg38_repeats.json")
+    output_file = os.path.join(project_root, "data", "length_filtered_hg38_repeats.json")
     
     # Process the file, filtering out repeats shorter than 60 bp
     add_repeat_length_and_filter(input_file, output_file, min_length=60)
