@@ -1,0 +1,101 @@
+chrom	chromStart	chromEnd	name	score	strand	thickStart	thickEnd	reserved	blockCount	blockSizes	chromStarts	name2	cdsStartStat	cdsEndStat	exonFrames	type	geneName	geneName2	geneType	status	annotationType	position	longName	syns	subCellLoc	comments	uniProtId	pmids
+chr1	962901	963233	repeat	1000	+	962901	963233	12,12,120	2	16,125	0,207		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 343-389 on protein Q6TDP4				Kelch 1	Q6TDP4	
+chr1	963233	963457	repeat	1000	+	963233	963457	12,12,120	2	20,121	0,103		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 390-436 on protein Q6TDP4				Kelch 2	Q6TDP4	
+chr1	963460	964111	repeat	1000	+	963460	964111	12,12,120	3	44,89,5	0,459,646		cmpl	cmpl	0,0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 438-483 on protein Q6TDP4				Kelch 3	Q6TDP4	
+chr1	964111	964420	repeat	1000	+	964111	964420	12,12,120	2	69,72	0,237		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 484-530 on protein Q6TDP4				Kelch 4	Q6TDP4	
+chr1	964423	964993	repeat	1000	+	964423	964993	12,12,120	2	107,31	0,539		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 532-577 on protein Q6TDP4				Kelch 5	Q6TDP4	
+chr1	964993	965134	repeat	1000	+	964993	965134	12,12,120	1	141	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 578-624 on protein Q6TDP4				Kelch 6	Q6TDP4	
+chr1	1204175	1204454	repeat	1000	-	1204175	1204454	12,12,120	2	61,56	0,223		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 115-153 on protein Q9Y5U5				TNFR-Cys 3	Q9Y5U5	
+chr1	1204460	1205460	repeat	1000	-	1204460	1205460	12,12,120	2	26,91	0,909		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 74-112 on protein Q9Y5U5				TNFR-Cys 2	Q9Y5U5	
+chr1	1205463	1206472	repeat	1000	-	1205463	1206472	12,12,120	2	29,88	0,921		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 34-72 on protein Q9Y5U5				TNFR-Cys 1	Q9Y5U5	
+chr1	1212074	1212696	repeat	1000	-	1212074	1212696	12,12,120	2	64,59	0,563		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 127-167 on protein P43489				TNFR-Cys 4	P43489	
+chr1	1212695	1212704	repeat	0	-	1212695	1212704	0,150,250	1	9	0		cmpl	cmpl	0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 66-107 on protein A0A8V8TQH9				TNFR-Cys	A0A8V8TQH9	
+chr1	1212696	1213040	repeat	1000	-	1212696	1213040	12,12,120	2	8,49	0,295		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 108-126 on protein P43489				TNFR-Cys 3; truncated	P43489	
+chr1	1213040	1213735	repeat	1000	-	1213040	1213735	12,12,120	2	53,73	0,622		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 66-107 on protein P43489				TNFR-Cys 2	P43489	
+chr1	1213040	1213735	repeat	0	-	1213040	1213735	0,150,250	2	53,73	0,622		cmpl	cmpl	0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 66-107 on protein A0A8V8TP56				TNFR-Cys	A0A8V8TP56	
+chr1	1213735	1214040	repeat	1000	-	1213735	1214040	12,12,120	2	50,58	0,247		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 30-65 on protein P43489				TNFR-Cys 1	P43489	
+chr1	1213738	1214040	repeat	0	-	1213738	1214040	0,150,250	2	47,58	0,244		cmpl	cmpl	0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 30-64 on protein A0A8V8TP56				TNFR-Cys	A0A8V8TP56	
+chr1	1293677	1293881	repeat	1000	-	1293677	1293881	12,12,120	2	31,59	0,145		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 768-797 on protein Q96P50				ANK 3	Q96P50	
+chr1	1293881	1294136	repeat	0	-	1293881	1294136	0,150,250	2	52,47	0,208		cmpl	cmpl	0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 27-59 on protein Q8N2W2				ANK	Q8N2W2	
+chr1	1293890	1294136	repeat	1000	-	1293890	1294136	12,12,120	2	43,47	0,199		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 735-764 on protein Q96P50				ANK 2	Q96P50	
+chr1	1294136	1294437	repeat	0	-	1294136	1294437	0,150,250	2	63,36	0,265		cmpl	cmpl	0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 190-222 on protein Q8WTZ1				ANK	Q8WTZ1	
+chr1	1294136	1294416	repeat	0	-	1294136	1294416	0,150,250	2	63,15	0,265		cmpl	cmpl	0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 1-26 on protein Q8N2W2				ANK	Q8N2W2	
+chr1	1294145	1294437	repeat	1000	-	1294145	1294437	12,12,120	2	54,36	0,256		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 702-731 on protein Q96P50				ANK 1	Q96P50	
+chr1	1419210	1419300	repeat	1000	-	1419210	1419300	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 334-363 on protein E5RJM6				ANK 10	E5RJM6	
+chr1	1419309	1419399	repeat	1000	-	1419309	1419399	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 301-330 on protein E5RJM6				ANK 9	E5RJM6	
+chr1	1419408	1419498	repeat	1000	-	1419408	1419498	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 268-297 on protein E5RJM6				ANK 8	E5RJM6	
+chr1	1419507	1420099	repeat	1000	-	1419507	1420099	12,12,120	2	42,48	0,544		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 235-264 on protein E5RJM6				ANK 7	E5RJM6	
+chr1	1420108	1420183	repeat	1000	-	1420108	1420183	12,12,120	1	75	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 207-231 on protein E5RJM6				ANK 6	E5RJM6	
+chr1	1420186	1420276	repeat	1000	-	1420186	1420276	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 176-205 on protein E5RJM6				ANK 5	E5RJM6	
+chr1	1420297	1420387	repeat	1000	-	1420297	1420387	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 139-168 on protein E5RJM6				ANK 4	E5RJM6	
+chr1	1420396	1420486	repeat	1000	-	1420396	1420486	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 106-135 on protein E5RJM6				ANK 3	E5RJM6	
+chr1	1420495	1420585	repeat	1000	-	1420495	1420585	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 73-102 on protein E5RJM6				ANK 2	E5RJM6	
+chr1	1420798	1420888	repeat	1000	-	1420798	1420888	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 40-69 on protein E5RJM6				ANK 1	E5RJM6	
+chr1	1627310	1627409	repeat	0	+	1627310	1627409	0,150,250	1	99	0		cmpl	cmpl	0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 399-431 on protein A0A8C8N694				ANK	A0A8C8N694	
+chr1	1627310	1627400	repeat	1000	+	1627310	1627400	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 464-493 on protein Q96AX9				ANK 1	Q96AX9	
+chr1	1627409	1627736	repeat	0	+	1627409	1627736	0,150,250	2	35,64	0,263		cmpl	cmpl	0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 432-464 on protein A0A8C8N694				ANK	A0A8C8N694	
+chr1	1627409	1627727	repeat	1000	+	1627409	1627727	12,12,120	2	35,55	0,263		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 497-526 on protein Q96AX9				ANK 2	Q96AX9	
+chr1	1627736	1628024	repeat	0	+	1627736	1628024	0,150,250	2	93,6	0,282		cmpl	cmpl	0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 465-497 on protein A0A8C8N694				ANK	A0A8C8N694	
+chr1	1627736	1627826	repeat	1000	+	1627736	1627826	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 530-559 on protein Q96AX9				ANK 3	Q96AX9	
+chr1	1628024	1628123	repeat	1000	+	1628024	1628123	12,12,120	1	99	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 563-595 on protein Q96AX9				ANK 4	Q96AX9	
+chr1	1628132	1628315	repeat	1000	+	1628132	1628315	12,12,120	2	47,43	0,140		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 599-628 on protein Q96AX9				ANK 5	Q96AX9	
+chr1	1628327	1628509	repeat	1000	+	1628327	1628509	12,12,120	2	72,21	0,161		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 633-663 on protein Q96AX9				ANK 6	Q96AX9	
+chr1	1628327	1628491	repeat	0	+	1628327	1628491	0,150,250	2	72,3	0,161		cmpl	cmpl	0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 568-592 on protein A0A8C8N694				ANK	A0A8C8N694	
+chr1	1628518	1628617	repeat	0	+	1628518	1628617	0,150,250	1	99	0		cmpl	cmpl	0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 602-634 on protein A0A8C8N694				ANK	A0A8C8N694	
+chr1	1628518	1628608	repeat	1000	+	1628518	1628608	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 667-696 on protein Q96AX9				ANK 7	Q96AX9	
+chr1	1628617	1628704	repeat	1000	+	1628617	1628704	12,12,120	1	87	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 700-728 on protein Q96AX9				ANK 8	Q96AX9	
+chr1	1629234	1629397	repeat	1000	+	1629234	1629397	12,12,120	2	77,13	0,150		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 769-798 on protein Q96AX9				ANK 9	Q96AX9	
+chr1	1787333	1787432	repeat	0	-	1787333	1787432	0,150,250	1	99	0		cmpl	cmpl	0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 308-340 on protein A0A2L0WW42				WD	A0A2L0WW42	
+chr1	1787333	1787426	repeat	1000	-	1787333	1787426	12,12,120	1	93	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 310-340 on protein P62873				WD 7	P62873	
+chr1	1789074	1789167	repeat	1000	-	1789074	1789167	12,12,120	1	93	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 268-298 on protein P62873				WD 6	P62873	
+chr1	1789074	1789152	repeat	0	-	1789074	1789152	0,150,250	1	78	0		cmpl	cmpl	0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 273-298 on protein A0A2L0WW42				WD	A0A2L0WW42	
+chr1	1789179	1790430	repeat	0	-	1789179	1790430	0,150,250	2	90,36	0,1215		cmpl	cmpl	0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 222-263 on protein A0A2L0WW42				WD	A0A2L0WW42	
+chr1	1789206	1790424	repeat	1000	-	1789206	1790424	12,12,120	2	63,30	0,1188		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 224-254 on protein P62873				WD 5	P62873	
+chr1	1790430	1790556	repeat	0	-	1790430	1790556	0,150,250	1	126	0		cmpl	cmpl	0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 180-221 on protein A0A2L0WW42				WD	A0A2L0WW42	
+chr1	1790457	1790550	repeat	1000	-	1790457	1790550	12,12,120	1	93	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 182-212 on protein P62873				WD 4	P62873	
+chr1	1790556	1804434	repeat	0	-	1790556	1804434	0,150,250	3	40,67,16	0,2688,13862		cmpl	cmpl	0,0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 139-179 on protein A0A2L0WW42				WD	A0A2L0WW42	
+chr1	1790583	1804428	repeat	1000	-	1790583	1804428	12,12,120	3	13,67,10	0,2661,13835		cmpl	cmpl	0,0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 141-170 on protein P62873				WD 3	P62873	
+chr1	1804473	1804566	repeat	1000	-	1804473	1804566	12,12,120	1	93	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 95-125 on protein P62873				WD 2	P62873	
+chr1	1804572	1815808	repeat	0	-	1804572	1815808	0,150,250	3	9,64,53	0,1902,11183		cmpl	cmpl	0,0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 51-92 on protein A0A2L0WW42				WD	A0A2L0WW42	
+chr1	1806492	1815802	repeat	1000	-	1806492	1815802	12,12,120	2	46,47	0,9263		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 53-83 on protein P62873				WD 1	P62873	
+chr1	2374494	2384983	repeat	1000	-	2374494	2384983	12,12,120	2	63,6	0,10483		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 178-200 on protein Q5T089				MORN 7	Q5T089	
+chr1	2384983	2385052	repeat	1000	-	2384983	2385052	12,12,120	1	69	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 155-177 on protein Q5T089				MORN 6	Q5T089	
+chr1	2385052	2385862	repeat	1000	-	2385052	2385862	12,12,120	2	13,56	0,754		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 132-154 on protein Q5T089				MORN 5	Q5T089	
+chr1	2385862	2387452	repeat	1000	-	2385862	2387452	12,12,120	2	35,34	0,1556		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 109-131 on protein Q5T089				MORN 4	Q5T089	
+chr1	2387452	2387521	repeat	1000	-	2387452	2387521	12,12,120	1	69	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 86-108 on protein Q5T089				MORN 3	Q5T089	
+chr1	2387524	2388302	repeat	1000	-	2387524	2388302	12,12,120	2	5,64	0,714		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 62-84 on protein Q5T089				MORN 2	Q5T089	
+chr1	2388302	2389958	repeat	1000	-	2388302	2389958	12,12,120	2	35,34	0,1622		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 39-61 on protein Q5T089				MORN 1	Q5T089	
+chr1	2557776	2558389	repeat	0	+	2557776	2558389	0,150,250	2	58,47	0,566		cmpl	cmpl	0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 41-75 on protein B4DU65				TNFR-Cys	B4DU65	
+chr1	2557779	2558389	repeat	1000	+	2557779	2558389	12,12,120	2	55,47	0,563		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 42-75 on protein Q92956				TNFR-Cys 1	Q92956	
+chr1	2558392	2559875	repeat	0	+	2558392	2559875	0,150,250	2	76,53	0,1430		cmpl	cmpl	0,0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 77-119 on protein B9A034				TNFR-Cys	B9A034	
+chr1	2558392	2558467	repeat	0	+	2558392	2558467	0,150,250	1	75	0		cmpl	cmpl	0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 77-118 on protein B4E0P6				TNFR-Cys	B4E0P6	
+chr1	2558395	2559875	repeat	1000	+	2558395	2559875	12,12,120	2	73,53	0,1427		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 78-119 on protein Q92956				TNFR-Cys 2	Q92956	
+chr1	2559878	2560649	repeat	1000	+	2559878	2560649	12,12,120	2	100,26	0,745		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 121-162 on protein Q92956				TNFR-Cys 3	Q92956	
+chr1	2641433	2641535	repeat	1000	-	2641433	2641535	12,12,120	1	102	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 512-545 on protein A8MYJ7				TPR 8	A8MYJ7	
+chr1	2641577	2641679	repeat	1000	-	2641577	2641679	12,12,120	1	102	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 464-497 on protein A8MYJ7				TPR 7	A8MYJ7	
+chr1	2641577	2641679	repeat	0	-	2641577	2641679	0,150,250	1	102	0		cmpl	cmpl	0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 977-1010 on protein A0A1C7CYW7				TPR	A0A1C7CYW7	
+chr1	2641697	2641799	repeat	1000	-	2641697	2641799	12,12,120	1	102	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 424-457 on protein A8MYJ7				TPR 6	A8MYJ7	
+chr1	2644317	2644416	repeat	1000	-	2644317	2644416	12,12,120	1	99	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 341-373 on protein A8MYJ7				TPR 5	A8MYJ7	
+chr1	2644419	2645335	repeat	1000	-	2644419	2645335	12,12,120	2	59,43	0,873		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 306-339 on protein A8MYJ7				TPR 4	A8MYJ7	
+chr1	2645515	2783662	repeat	1000	-	2645515	2783662	12,12,120	2	48,54	0,138093		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 212-245 on protein A8MYJ7				TPR 3	A8MYJ7	
+chr1	2783662	2783764	repeat	1000	-	2783662	2783764	12,12,120	1	102	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 178-211 on protein A8MYJ7				TPR 2	A8MYJ7	
+chr1	2787546	2787648	repeat	1000	-	2787546	2787648	12,12,120	1	102	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 50-83 on protein A8MYJ7				TPR 1	A8MYJ7	
+chr1	3631475	3631595	repeat	1000	-	3631475	3631595	12,12,120	1	120	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 371-410 on protein Q9P2S5				WD 6	Q9P2S5	
+chr1	3631598	3632279	repeat	1000	-	3631598	3632279	12,12,120	2	59,67	0,614		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 328-369 on protein Q9P2S5				WD 5	Q9P2S5	
+chr1	3635032	3635237	repeat	1000	-	3635032	3635237	12,12,120	2	42,78	0,127		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 221-260 on protein Q9P2S5				WD 4	Q9P2S5	
+chr1	3635267	3636021	repeat	1000	-	3635267	3636021	12,12,120	2	27,78	0,676		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 176-210 on protein Q9P2S5				WD 3	Q9P2S5	
+chr1	3638774	3646740	repeat	1000	-	3638774	3646740	12,12,120	2	48,75	0,7891		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 89-129 on protein Q9P2S5				WD 2	Q9P2S5	
+chr1	3646746	3647494	repeat	1000	-	3646746	3647494	12,12,120	2	36,87	0,661		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 46-86 on protein Q9P2S5				WD 1	Q9P2S5	
+chr1	3787187	3787250	repeat	1000	-	3787187	3787250	12,12,120	1	63	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 226-246 on protein Q8N1G4				LRR 7	Q8N1G4	
+chr1	3787250	3795870	repeat	1000	-	3787250	3795870	12,12,120	2	60,9	0,8611		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 203-225 on protein Q8N1G4				LRR 6	Q8N1G4	
+chr1	3795870	3795939	repeat	1000	-	3795870	3795939	12,12,120	1	69	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 180-202 on protein Q8N1G4				LRR 5	Q8N1G4	
+chr1	3795951	3796017	repeat	1000	-	3795951	3796017	12,12,120	1	66	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 154-175 on protein Q8N1G4				LRR 4	Q8N1G4	
+chr1	3796020	3796089	repeat	1000	-	3796020	3796089	12,12,120	1	69	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 130-152 on protein Q8N1G4				LRR 3	Q8N1G4	
+chr1	3796113	3796179	repeat	1000	-	3796113	3796179	12,12,120	1	66	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 100-121 on protein Q8N1G4				LRR 2	Q8N1G4	
+chr1	3796191	3796251	repeat	1000	-	3796191	3796251	12,12,120	1	60	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 76-95 on protein Q8N1G4				LRR 1	Q8N1G4	
+chr1	3829913	3831072	repeat	1000	-	3829913	3831072	12,12,120	2	84,27	0,1132		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 604-640 on protein O60308				HEAT 2	O60308	
+chr1	3831180	3833936	repeat	1000	-	3831180	3833936	12,12,120	2	42,75	0,2681		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 529-567 on protein O60308				HEAT 1	O60308	
+chr1	6424955	6425048	repeat	1000	+	6424955	6425048	12,12,120	1	93	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 1-31 on protein B1AK53				ANK 1	B1AK53	
+chr1	6425057	6425147	repeat	1000	+	6425057	6425147	12,12,120	1	90	0		cmpl	cmpl	0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 35-64 on protein B1AK53				ANK 2	B1AK53	
+chr1	6425159	6428228	repeat	1000	+	6425159	6428228	12,12,120	2	90,3	0,3066		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 69-99 on protein B1AK53				ANK 3	B1AK53	
+chr1	6425159	6425234	repeat	0	+	6425159	6425234	0,150,250	1	75	0		cmpl	cmpl	0	trembl				Unreviewed (TrEMBL)	repeat	amino acids 69-93 on protein A0A1B0GUN9				ANK	A0A1B0GUN9	

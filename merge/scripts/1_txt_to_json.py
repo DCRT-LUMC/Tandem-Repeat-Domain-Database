@@ -4,13 +4,13 @@ import re
 
 # This converts the hg38_repeats.txt into a usable .json
 
-input_file = 'data/hg38_repeats.txt'
-output_file = 'data/hg38_repeats.json'
+input_file = 'merge/data/hg38_repeats.txt'
+output_file = 'merge/data/hg38_repeats.json'
 
 json_data = []
 
 # Fields that should be converted from comma-separated strings to arrays
-array_fields = ['reserved', 'blockSizes', 'chromStarts', 'geneName2']
+array_fields = ['reserved', 'blockSizes', 'chromStarts', 'aliases']
 
 # Fields that should be converted to integers
 int_fields = ['chromStart', 'chromEnd', 'blockCount']
@@ -18,8 +18,7 @@ int_fields = ['chromStart', 'chromEnd', 'blockCount']
 # Fields to remove from output
 fields_to_remove = [
     'score', 'name', 'name2', 'cdsStartStat', 'cdsEndStat', 'exonFrames', 'type', 
-    'annotationType', 'longName', 'syns', 'subCellLoc', 'pmids',
-    'thickStart', 'thickEnd'
+    'annotationType', 'longName', 'syns', 'subCellLoc', 'pmids', 'thickStart', 'thickEnd'
 ]
 
 # Field mappings for renaming

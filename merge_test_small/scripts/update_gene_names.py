@@ -3,18 +3,15 @@ import time
 import os
 import requests
 from requests.adapters import HTTPAdapter, Retry
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from tqdm import tqdm
 
 # Constants
 API_URL = "https://rest.uniprot.org"
-DEFAULT_BATCH_SIZE = 100
-MAX_WORKERS = 5
 
 # Setup session with proper retry handling
 retries = Retry(
     total=5,
-    backoff_factor=0.5,
+    backoff_factor=0.25,
     status_forcelist=[429, 500, 502, 503, 504],
     respect_retry_after_header=True
 )
@@ -84,17 +81,6 @@ def process_entry(entry):
     return entry
 
 
-def process_batch(batch):
-    """Process a batch of entries with proper rate limiting"""
-    results = []
-    # Add tqdm progress bar for entries within a batch
-    for entry in tqdm(batch, desc="Processing entries", leave=False):
-        results.append(process_entry(entry))
-        # Small delay to avoid overwhelming the API
-        time.sleep(0.1)
-    return results
-
-
 def main():
     input_file = os.path.join("merge_test_small", "data", "hg38_repeats_100.json")
     output_file = os.path.join("merge_test_small", "data", "gname_hg38_repeats.json")
@@ -111,36 +97,15 @@ def main():
     total_entries = len(data)
     print(f"Loaded {total_entries} entries. Starting API queries...")
     
-    # Split data into batches for parallel processing
-    batch_size = min(DEFAULT_BATCH_SIZE, total_entries)
-    batches = [data[i:i+batch_size] for i in range(0, total_entries, batch_size)]
-    
-    # Process batches in parallel
+    # Process entries sequentially with a progress bar
     updated_data = []
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        future_to_batch = {executor.submit(process_batch, batch): i for i, batch in enumerate(batches)}
-        
-        # Create progress bar for overall batch processing
-        progress_bar = tqdm(total=len(batches), desc="Processing batches")
-        
-        for future in as_completed(future_to_batch):
-            batch_index = future_to_batch[future]
-            try:
-                batch_results = future.result()
-                updated_data.extend(batch_results)
-                
-                # Update progress bar
-                progress_bar.update(1)
-                progress_bar.set_postfix(batch=f"{batch_index+1}/{len(batches)}", entries=f"{len(updated_data)}/{total_entries}")
-                
-            except Exception as e:
-                print(f"Batch {batch_index} generated an exception: {e}")
-        
-        progress_bar.close()
+    progress_bar = tqdm(data, desc="Processing entries")
     
-    # Ensure the output is in the same order as the input
-    if len(updated_data) != total_entries:
-        print(f"Warning: Output size ({len(updated_data)}) doesn't match input size ({total_entries})")
+    for entry in progress_bar:
+        updated_entry = process_entry(entry)
+        updated_data.append(updated_entry)
+        # Small delay to avoid overwhelming the API
+        time.sleep(0.1)
     
     # Write updated JSON data
     with open(output_file, 'w') as f:

@@ -3,11 +3,7 @@
     "chrom": "chr1",
     "chromStart": 962901,
     "chromEnd": 963233,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 962901,
-    "thickEnd": 963233,
     "reserved": [
       "12",
       "12",
@@ -22,36 +18,19 @@
       "0",
       "207"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 343-389 on protein Q6TDP4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "Kelch 1",
-    "uniProtId": "Q6TDP4",
-    "pmids": ""
+    "repeatType": "Kelch 1",
+    "uniProtId": "Q6TDP4"
   },
   {
     "chrom": "chr1",
     "chromStart": 963233,
     "chromEnd": 963457,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 963233,
-    "thickEnd": 963457,
     "reserved": [
       "12",
       "12",
@@ -66,36 +45,19 @@
       "0",
       "103"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 390-436 on protein Q6TDP4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "Kelch 2",
-    "uniProtId": "Q6TDP4",
-    "pmids": ""
+    "repeatType": "Kelch 2",
+    "uniProtId": "Q6TDP4"
   },
   {
     "chrom": "chr1",
     "chromStart": 963460,
     "chromEnd": 964111,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 963460,
-    "thickEnd": 964111,
     "reserved": [
       "12",
       "12",
@@ -112,37 +74,19 @@
       "459",
       "646"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 438-483 on protein Q6TDP4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "Kelch 3",
-    "uniProtId": "Q6TDP4",
-    "pmids": ""
+    "repeatType": "Kelch 3",
+    "uniProtId": "Q6TDP4"
   },
   {
     "chrom": "chr1",
     "chromStart": 964111,
     "chromEnd": 964420,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 964111,
-    "thickEnd": 964420,
     "reserved": [
       "12",
       "12",
@@ -157,36 +101,19 @@
       "0",
       "237"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 484-530 on protein Q6TDP4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "Kelch 4",
-    "uniProtId": "Q6TDP4",
-    "pmids": ""
+    "repeatType": "Kelch 4",
+    "uniProtId": "Q6TDP4"
   },
   {
     "chrom": "chr1",
     "chromStart": 964423,
     "chromEnd": 964993,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 964423,
-    "thickEnd": 964993,
     "reserved": [
       "12",
       "12",
@@ -201,36 +128,19 @@
       "0",
       "539"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 532-577 on protein Q6TDP4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "Kelch 5",
-    "uniProtId": "Q6TDP4",
-    "pmids": ""
+    "repeatType": "Kelch 5",
+    "uniProtId": "Q6TDP4"
   },
   {
     "chrom": "chr1",
     "chromStart": 964993,
     "chromEnd": 965134,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 964993,
-    "thickEnd": 965134,
     "reserved": [
       "12",
       "12",
@@ -243,35 +153,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 578-624 on protein Q6TDP4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "Kelch 6",
-    "uniProtId": "Q6TDP4",
-    "pmids": ""
+    "repeatType": "Kelch 6",
+    "uniProtId": "Q6TDP4"
   },
   {
     "chrom": "chr1",
     "chromStart": 1204175,
     "chromEnd": 1204454,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1204175,
-    "thickEnd": 1204454,
     "reserved": [
       "12",
       "12",
@@ -286,36 +180,19 @@
       "0",
       "223"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 115-153 on protein Q9Y5U5",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys 3",
-    "uniProtId": "Q9Y5U5",
-    "pmids": ""
+    "repeatType": "TNFR-Cys 3",
+    "uniProtId": "Q9Y5U5"
   },
   {
     "chrom": "chr1",
     "chromStart": 1204460,
     "chromEnd": 1205460,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1204460,
-    "thickEnd": 1205460,
     "reserved": [
       "12",
       "12",
@@ -330,36 +207,19 @@
       "0",
       "909"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 74-112 on protein Q9Y5U5",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys 2",
-    "uniProtId": "Q9Y5U5",
-    "pmids": ""
+    "repeatType": "TNFR-Cys 2",
+    "uniProtId": "Q9Y5U5"
   },
   {
     "chrom": "chr1",
     "chromStart": 1205463,
     "chromEnd": 1206472,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1205463,
-    "thickEnd": 1206472,
     "reserved": [
       "12",
       "12",
@@ -374,36 +234,19 @@
       "0",
       "921"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 34-72 on protein Q9Y5U5",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys 1",
-    "uniProtId": "Q9Y5U5",
-    "pmids": ""
+    "repeatType": "TNFR-Cys 1",
+    "uniProtId": "Q9Y5U5"
   },
   {
     "chrom": "chr1",
     "chromStart": 1212074,
     "chromEnd": 1212696,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1212074,
-    "thickEnd": 1212696,
     "reserved": [
       "12",
       "12",
@@ -418,36 +261,19 @@
       "0",
       "563"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 127-167 on protein P43489",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys 4",
-    "uniProtId": "P43489",
-    "pmids": ""
+    "repeatType": "TNFR-Cys 4",
+    "uniProtId": "P43489"
   },
   {
     "chrom": "chr1",
     "chromStart": 1212695,
     "chromEnd": 1212704,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1212695,
-    "thickEnd": 1212704,
     "reserved": [
       "0",
       "150",
@@ -460,35 +286,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 66-107 on protein A0A8V8TQH9",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys",
-    "uniProtId": "A0A8V8TQH9",
-    "pmids": ""
+    "repeatType": "TNFR-Cys",
+    "uniProtId": "A0A8V8TQH9"
   },
   {
     "chrom": "chr1",
     "chromStart": 1212696,
     "chromEnd": 1213040,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1212696,
-    "thickEnd": 1213040,
     "reserved": [
       "12",
       "12",
@@ -503,36 +313,19 @@
       "0",
       "295"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 108-126 on protein P43489",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys 3; truncated",
-    "uniProtId": "P43489",
-    "pmids": ""
+    "repeatType": "TNFR-Cys 3; truncated",
+    "uniProtId": "P43489"
   },
   {
     "chrom": "chr1",
     "chromStart": 1213040,
     "chromEnd": 1213735,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1213040,
-    "thickEnd": 1213735,
     "reserved": [
       "12",
       "12",
@@ -547,36 +340,19 @@
       "0",
       "622"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 66-107 on protein P43489",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys 2",
-    "uniProtId": "P43489",
-    "pmids": ""
+    "repeatType": "TNFR-Cys 2",
+    "uniProtId": "P43489"
   },
   {
     "chrom": "chr1",
     "chromStart": 1213040,
     "chromEnd": 1213735,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1213040,
-    "thickEnd": 1213735,
     "reserved": [
       "0",
       "150",
@@ -591,36 +367,19 @@
       "0",
       "622"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 66-107 on protein A0A8V8TP56",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys",
-    "uniProtId": "A0A8V8TP56",
-    "pmids": ""
+    "repeatType": "TNFR-Cys",
+    "uniProtId": "A0A8V8TP56"
   },
   {
     "chrom": "chr1",
     "chromStart": 1213735,
     "chromEnd": 1214040,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1213735,
-    "thickEnd": 1214040,
     "reserved": [
       "12",
       "12",
@@ -635,36 +394,19 @@
       "0",
       "247"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 30-65 on protein P43489",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys 1",
-    "uniProtId": "P43489",
-    "pmids": ""
+    "repeatType": "TNFR-Cys 1",
+    "uniProtId": "P43489"
   },
   {
     "chrom": "chr1",
     "chromStart": 1213738,
     "chromEnd": 1214040,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1213738,
-    "thickEnd": 1214040,
     "reserved": [
       "0",
       "150",
@@ -679,36 +421,19 @@
       "0",
       "244"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 30-64 on protein A0A8V8TP56",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys",
-    "uniProtId": "A0A8V8TP56",
-    "pmids": ""
+    "repeatType": "TNFR-Cys",
+    "uniProtId": "A0A8V8TP56"
   },
   {
     "chrom": "chr1",
     "chromStart": 1293677,
     "chromEnd": 1293881,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1293677,
-    "thickEnd": 1293881,
     "reserved": [
       "12",
       "12",
@@ -723,36 +448,19 @@
       "0",
       "145"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 768-797 on protein Q96P50",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 3",
-    "uniProtId": "Q96P50",
-    "pmids": ""
+    "repeatType": "ANK 3",
+    "uniProtId": "Q96P50"
   },
   {
     "chrom": "chr1",
     "chromStart": 1293881,
     "chromEnd": 1294136,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1293881,
-    "thickEnd": 1294136,
     "reserved": [
       "0",
       "150",
@@ -767,36 +475,19 @@
       "0",
       "208"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 27-59 on protein Q8N2W2",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK",
-    "uniProtId": "Q8N2W2",
-    "pmids": ""
+    "repeatType": "ANK",
+    "uniProtId": "Q8N2W2"
   },
   {
     "chrom": "chr1",
     "chromStart": 1293890,
     "chromEnd": 1294136,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1293890,
-    "thickEnd": 1294136,
     "reserved": [
       "12",
       "12",
@@ -811,36 +502,19 @@
       "0",
       "199"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 735-764 on protein Q96P50",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 2",
-    "uniProtId": "Q96P50",
-    "pmids": ""
+    "repeatType": "ANK 2",
+    "uniProtId": "Q96P50"
   },
   {
     "chrom": "chr1",
     "chromStart": 1294136,
     "chromEnd": 1294437,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1294136,
-    "thickEnd": 1294437,
     "reserved": [
       "0",
       "150",
@@ -855,36 +529,19 @@
       "0",
       "265"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 190-222 on protein Q8WTZ1",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK",
-    "uniProtId": "Q8WTZ1",
-    "pmids": ""
+    "repeatType": "ANK",
+    "uniProtId": "Q8WTZ1"
   },
   {
     "chrom": "chr1",
     "chromStart": 1294136,
     "chromEnd": 1294416,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1294136,
-    "thickEnd": 1294416,
     "reserved": [
       "0",
       "150",
@@ -899,36 +556,19 @@
       "0",
       "265"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 1-26 on protein Q8N2W2",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK",
-    "uniProtId": "Q8N2W2",
-    "pmids": ""
+    "repeatType": "ANK",
+    "uniProtId": "Q8N2W2"
   },
   {
     "chrom": "chr1",
     "chromStart": 1294145,
     "chromEnd": 1294437,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1294145,
-    "thickEnd": 1294437,
     "reserved": [
       "12",
       "12",
@@ -943,36 +583,19 @@
       "0",
       "256"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 702-731 on protein Q96P50",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 1",
-    "uniProtId": "Q96P50",
-    "pmids": ""
+    "repeatType": "ANK 1",
+    "uniProtId": "Q96P50"
   },
   {
     "chrom": "chr1",
     "chromStart": 1419210,
     "chromEnd": 1419300,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1419210,
-    "thickEnd": 1419300,
     "reserved": [
       "12",
       "12",
@@ -985,35 +608,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 334-363 on protein E5RJM6",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 10",
-    "uniProtId": "E5RJM6",
-    "pmids": ""
+    "repeatType": "ANK 10",
+    "uniProtId": "E5RJM6"
   },
   {
     "chrom": "chr1",
     "chromStart": 1419309,
     "chromEnd": 1419399,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1419309,
-    "thickEnd": 1419399,
     "reserved": [
       "12",
       "12",
@@ -1026,35 +633,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 301-330 on protein E5RJM6",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 9",
-    "uniProtId": "E5RJM6",
-    "pmids": ""
+    "repeatType": "ANK 9",
+    "uniProtId": "E5RJM6"
   },
   {
     "chrom": "chr1",
     "chromStart": 1419408,
     "chromEnd": 1419498,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1419408,
-    "thickEnd": 1419498,
     "reserved": [
       "12",
       "12",
@@ -1067,35 +658,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 268-297 on protein E5RJM6",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 8",
-    "uniProtId": "E5RJM6",
-    "pmids": ""
+    "repeatType": "ANK 8",
+    "uniProtId": "E5RJM6"
   },
   {
     "chrom": "chr1",
     "chromStart": 1419507,
     "chromEnd": 1420099,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1419507,
-    "thickEnd": 1420099,
     "reserved": [
       "12",
       "12",
@@ -1110,36 +685,19 @@
       "0",
       "544"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 235-264 on protein E5RJM6",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 7",
-    "uniProtId": "E5RJM6",
-    "pmids": ""
+    "repeatType": "ANK 7",
+    "uniProtId": "E5RJM6"
   },
   {
     "chrom": "chr1",
     "chromStart": 1420108,
     "chromEnd": 1420183,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1420108,
-    "thickEnd": 1420183,
     "reserved": [
       "12",
       "12",
@@ -1152,35 +710,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 207-231 on protein E5RJM6",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 6",
-    "uniProtId": "E5RJM6",
-    "pmids": ""
+    "repeatType": "ANK 6",
+    "uniProtId": "E5RJM6"
   },
   {
     "chrom": "chr1",
     "chromStart": 1420186,
     "chromEnd": 1420276,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1420186,
-    "thickEnd": 1420276,
     "reserved": [
       "12",
       "12",
@@ -1193,35 +735,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 176-205 on protein E5RJM6",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 5",
-    "uniProtId": "E5RJM6",
-    "pmids": ""
+    "repeatType": "ANK 5",
+    "uniProtId": "E5RJM6"
   },
   {
     "chrom": "chr1",
     "chromStart": 1420297,
     "chromEnd": 1420387,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1420297,
-    "thickEnd": 1420387,
     "reserved": [
       "12",
       "12",
@@ -1234,35 +760,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 139-168 on protein E5RJM6",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 4",
-    "uniProtId": "E5RJM6",
-    "pmids": ""
+    "repeatType": "ANK 4",
+    "uniProtId": "E5RJM6"
   },
   {
     "chrom": "chr1",
     "chromStart": 1420396,
     "chromEnd": 1420486,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1420396,
-    "thickEnd": 1420486,
     "reserved": [
       "12",
       "12",
@@ -1275,35 +785,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 106-135 on protein E5RJM6",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 3",
-    "uniProtId": "E5RJM6",
-    "pmids": ""
+    "repeatType": "ANK 3",
+    "uniProtId": "E5RJM6"
   },
   {
     "chrom": "chr1",
     "chromStart": 1420495,
     "chromEnd": 1420585,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1420495,
-    "thickEnd": 1420585,
     "reserved": [
       "12",
       "12",
@@ -1316,35 +810,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 73-102 on protein E5RJM6",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 2",
-    "uniProtId": "E5RJM6",
-    "pmids": ""
+    "repeatType": "ANK 2",
+    "uniProtId": "E5RJM6"
   },
   {
     "chrom": "chr1",
     "chromStart": 1420798,
     "chromEnd": 1420888,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1420798,
-    "thickEnd": 1420888,
     "reserved": [
       "12",
       "12",
@@ -1357,35 +835,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 40-69 on protein E5RJM6",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 1",
-    "uniProtId": "E5RJM6",
-    "pmids": ""
+    "repeatType": "ANK 1",
+    "uniProtId": "E5RJM6"
   },
   {
     "chrom": "chr1",
     "chromStart": 1627310,
     "chromEnd": 1627409,
-    "name": "repeat",
-    "score": 0,
     "strand": "+",
-    "thickStart": 1627310,
-    "thickEnd": 1627409,
     "reserved": [
       "0",
       "150",
@@ -1398,35 +860,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 399-431 on protein A0A8C8N694",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK",
-    "uniProtId": "A0A8C8N694",
-    "pmids": ""
+    "repeatType": "ANK",
+    "uniProtId": "A0A8C8N694"
   },
   {
     "chrom": "chr1",
     "chromStart": 1627310,
     "chromEnd": 1627400,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 1627310,
-    "thickEnd": 1627400,
     "reserved": [
       "12",
       "12",
@@ -1439,35 +885,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 464-493 on protein Q96AX9",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 1",
-    "uniProtId": "Q96AX9",
-    "pmids": ""
+    "repeatType": "ANK 1",
+    "uniProtId": "Q96AX9"
   },
   {
     "chrom": "chr1",
     "chromStart": 1627409,
     "chromEnd": 1627736,
-    "name": "repeat",
-    "score": 0,
     "strand": "+",
-    "thickStart": 1627409,
-    "thickEnd": 1627736,
     "reserved": [
       "0",
       "150",
@@ -1482,36 +912,19 @@
       "0",
       "263"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 432-464 on protein A0A8C8N694",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK",
-    "uniProtId": "A0A8C8N694",
-    "pmids": ""
+    "repeatType": "ANK",
+    "uniProtId": "A0A8C8N694"
   },
   {
     "chrom": "chr1",
     "chromStart": 1627409,
     "chromEnd": 1627727,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 1627409,
-    "thickEnd": 1627727,
     "reserved": [
       "12",
       "12",
@@ -1526,36 +939,19 @@
       "0",
       "263"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 497-526 on protein Q96AX9",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 2",
-    "uniProtId": "Q96AX9",
-    "pmids": ""
+    "repeatType": "ANK 2",
+    "uniProtId": "Q96AX9"
   },
   {
     "chrom": "chr1",
     "chromStart": 1627736,
     "chromEnd": 1628024,
-    "name": "repeat",
-    "score": 0,
     "strand": "+",
-    "thickStart": 1627736,
-    "thickEnd": 1628024,
     "reserved": [
       "0",
       "150",
@@ -1570,36 +966,19 @@
       "0",
       "282"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 465-497 on protein A0A8C8N694",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK",
-    "uniProtId": "A0A8C8N694",
-    "pmids": ""
+    "repeatType": "ANK",
+    "uniProtId": "A0A8C8N694"
   },
   {
     "chrom": "chr1",
     "chromStart": 1627736,
     "chromEnd": 1627826,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 1627736,
-    "thickEnd": 1627826,
     "reserved": [
       "12",
       "12",
@@ -1612,35 +991,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 530-559 on protein Q96AX9",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 3",
-    "uniProtId": "Q96AX9",
-    "pmids": ""
+    "repeatType": "ANK 3",
+    "uniProtId": "Q96AX9"
   },
   {
     "chrom": "chr1",
     "chromStart": 1628024,
     "chromEnd": 1628123,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 1628024,
-    "thickEnd": 1628123,
     "reserved": [
       "12",
       "12",
@@ -1653,35 +1016,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 563-595 on protein Q96AX9",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 4",
-    "uniProtId": "Q96AX9",
-    "pmids": ""
+    "repeatType": "ANK 4",
+    "uniProtId": "Q96AX9"
   },
   {
     "chrom": "chr1",
     "chromStart": 1628132,
     "chromEnd": 1628315,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 1628132,
-    "thickEnd": 1628315,
     "reserved": [
       "12",
       "12",
@@ -1696,36 +1043,19 @@
       "0",
       "140"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 599-628 on protein Q96AX9",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 5",
-    "uniProtId": "Q96AX9",
-    "pmids": ""
+    "repeatType": "ANK 5",
+    "uniProtId": "Q96AX9"
   },
   {
     "chrom": "chr1",
     "chromStart": 1628327,
     "chromEnd": 1628509,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 1628327,
-    "thickEnd": 1628509,
     "reserved": [
       "12",
       "12",
@@ -1740,36 +1070,19 @@
       "0",
       "161"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 633-663 on protein Q96AX9",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 6",
-    "uniProtId": "Q96AX9",
-    "pmids": ""
+    "repeatType": "ANK 6",
+    "uniProtId": "Q96AX9"
   },
   {
     "chrom": "chr1",
     "chromStart": 1628327,
     "chromEnd": 1628491,
-    "name": "repeat",
-    "score": 0,
     "strand": "+",
-    "thickStart": 1628327,
-    "thickEnd": 1628491,
     "reserved": [
       "0",
       "150",
@@ -1784,36 +1097,19 @@
       "0",
       "161"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 568-592 on protein A0A8C8N694",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK",
-    "uniProtId": "A0A8C8N694",
-    "pmids": ""
+    "repeatType": "ANK",
+    "uniProtId": "A0A8C8N694"
   },
   {
     "chrom": "chr1",
     "chromStart": 1628518,
     "chromEnd": 1628617,
-    "name": "repeat",
-    "score": 0,
     "strand": "+",
-    "thickStart": 1628518,
-    "thickEnd": 1628617,
     "reserved": [
       "0",
       "150",
@@ -1826,35 +1122,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 602-634 on protein A0A8C8N694",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK",
-    "uniProtId": "A0A8C8N694",
-    "pmids": ""
+    "repeatType": "ANK",
+    "uniProtId": "A0A8C8N694"
   },
   {
     "chrom": "chr1",
     "chromStart": 1628518,
     "chromEnd": 1628608,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 1628518,
-    "thickEnd": 1628608,
     "reserved": [
       "12",
       "12",
@@ -1867,35 +1147,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 667-696 on protein Q96AX9",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 7",
-    "uniProtId": "Q96AX9",
-    "pmids": ""
+    "repeatType": "ANK 7",
+    "uniProtId": "Q96AX9"
   },
   {
     "chrom": "chr1",
     "chromStart": 1628617,
     "chromEnd": 1628704,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 1628617,
-    "thickEnd": 1628704,
     "reserved": [
       "12",
       "12",
@@ -1908,35 +1172,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 700-728 on protein Q96AX9",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 8",
-    "uniProtId": "Q96AX9",
-    "pmids": ""
+    "repeatType": "ANK 8",
+    "uniProtId": "Q96AX9"
   },
   {
     "chrom": "chr1",
     "chromStart": 1629234,
     "chromEnd": 1629397,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 1629234,
-    "thickEnd": 1629397,
     "reserved": [
       "12",
       "12",
@@ -1951,36 +1199,19 @@
       "0",
       "150"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 769-798 on protein Q96AX9",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 9",
-    "uniProtId": "Q96AX9",
-    "pmids": ""
+    "repeatType": "ANK 9",
+    "uniProtId": "Q96AX9"
   },
   {
     "chrom": "chr1",
     "chromStart": 1787333,
     "chromEnd": 1787432,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1787333,
-    "thickEnd": 1787432,
     "reserved": [
       "0",
       "150",
@@ -1993,35 +1224,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 308-340 on protein A0A2L0WW42",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD",
-    "uniProtId": "A0A2L0WW42",
-    "pmids": ""
+    "repeatType": "WD",
+    "uniProtId": "A0A2L0WW42"
   },
   {
     "chrom": "chr1",
     "chromStart": 1787333,
     "chromEnd": 1787426,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1787333,
-    "thickEnd": 1787426,
     "reserved": [
       "12",
       "12",
@@ -2034,35 +1249,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 310-340 on protein P62873",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 7",
-    "uniProtId": "P62873",
-    "pmids": ""
+    "repeatType": "WD 7",
+    "uniProtId": "P62873"
   },
   {
     "chrom": "chr1",
     "chromStart": 1789074,
     "chromEnd": 1789167,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1789074,
-    "thickEnd": 1789167,
     "reserved": [
       "12",
       "12",
@@ -2075,35 +1274,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 268-298 on protein P62873",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 6",
-    "uniProtId": "P62873",
-    "pmids": ""
+    "repeatType": "WD 6",
+    "uniProtId": "P62873"
   },
   {
     "chrom": "chr1",
     "chromStart": 1789074,
     "chromEnd": 1789152,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1789074,
-    "thickEnd": 1789152,
     "reserved": [
       "0",
       "150",
@@ -2116,35 +1299,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 273-298 on protein A0A2L0WW42",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD",
-    "uniProtId": "A0A2L0WW42",
-    "pmids": ""
+    "repeatType": "WD",
+    "uniProtId": "A0A2L0WW42"
   },
   {
     "chrom": "chr1",
     "chromStart": 1789179,
     "chromEnd": 1790430,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1789179,
-    "thickEnd": 1790430,
     "reserved": [
       "0",
       "150",
@@ -2159,36 +1326,19 @@
       "0",
       "1215"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 222-263 on protein A0A2L0WW42",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD",
-    "uniProtId": "A0A2L0WW42",
-    "pmids": ""
+    "repeatType": "WD",
+    "uniProtId": "A0A2L0WW42"
   },
   {
     "chrom": "chr1",
     "chromStart": 1789206,
     "chromEnd": 1790424,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1789206,
-    "thickEnd": 1790424,
     "reserved": [
       "12",
       "12",
@@ -2203,36 +1353,19 @@
       "0",
       "1188"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 224-254 on protein P62873",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 5",
-    "uniProtId": "P62873",
-    "pmids": ""
+    "repeatType": "WD 5",
+    "uniProtId": "P62873"
   },
   {
     "chrom": "chr1",
     "chromStart": 1790430,
     "chromEnd": 1790556,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1790430,
-    "thickEnd": 1790556,
     "reserved": [
       "0",
       "150",
@@ -2245,35 +1378,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 180-221 on protein A0A2L0WW42",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD",
-    "uniProtId": "A0A2L0WW42",
-    "pmids": ""
+    "repeatType": "WD",
+    "uniProtId": "A0A2L0WW42"
   },
   {
     "chrom": "chr1",
     "chromStart": 1790457,
     "chromEnd": 1790550,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1790457,
-    "thickEnd": 1790550,
     "reserved": [
       "12",
       "12",
@@ -2286,35 +1403,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 182-212 on protein P62873",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 4",
-    "uniProtId": "P62873",
-    "pmids": ""
+    "repeatType": "WD 4",
+    "uniProtId": "P62873"
   },
   {
     "chrom": "chr1",
     "chromStart": 1790556,
     "chromEnd": 1804434,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1790556,
-    "thickEnd": 1804434,
     "reserved": [
       "0",
       "150",
@@ -2331,37 +1432,19 @@
       "2688",
       "13862"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 139-179 on protein A0A2L0WW42",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD",
-    "uniProtId": "A0A2L0WW42",
-    "pmids": ""
+    "repeatType": "WD",
+    "uniProtId": "A0A2L0WW42"
   },
   {
     "chrom": "chr1",
     "chromStart": 1790583,
     "chromEnd": 1804428,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1790583,
-    "thickEnd": 1804428,
     "reserved": [
       "12",
       "12",
@@ -2378,37 +1461,19 @@
       "2661",
       "13835"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 141-170 on protein P62873",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 3",
-    "uniProtId": "P62873",
-    "pmids": ""
+    "repeatType": "WD 3",
+    "uniProtId": "P62873"
   },
   {
     "chrom": "chr1",
     "chromStart": 1804473,
     "chromEnd": 1804566,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1804473,
-    "thickEnd": 1804566,
     "reserved": [
       "12",
       "12",
@@ -2421,35 +1486,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 95-125 on protein P62873",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 2",
-    "uniProtId": "P62873",
-    "pmids": ""
+    "repeatType": "WD 2",
+    "uniProtId": "P62873"
   },
   {
     "chrom": "chr1",
     "chromStart": 1804572,
     "chromEnd": 1815808,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 1804572,
-    "thickEnd": 1815808,
     "reserved": [
       "0",
       "150",
@@ -2466,37 +1515,19 @@
       "1902",
       "11183"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 51-92 on protein A0A2L0WW42",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD",
-    "uniProtId": "A0A2L0WW42",
-    "pmids": ""
+    "repeatType": "WD",
+    "uniProtId": "A0A2L0WW42"
   },
   {
     "chrom": "chr1",
     "chromStart": 1806492,
     "chromEnd": 1815802,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 1806492,
-    "thickEnd": 1815802,
     "reserved": [
       "12",
       "12",
@@ -2511,36 +1542,19 @@
       "0",
       "9263"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 53-83 on protein P62873",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 1",
-    "uniProtId": "P62873",
-    "pmids": ""
+    "repeatType": "WD 1",
+    "uniProtId": "P62873"
   },
   {
     "chrom": "chr1",
     "chromStart": 2374494,
     "chromEnd": 2384983,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2374494,
-    "thickEnd": 2384983,
     "reserved": [
       "12",
       "12",
@@ -2555,36 +1569,19 @@
       "0",
       "10483"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 178-200 on protein Q5T089",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "MORN 7",
-    "uniProtId": "Q5T089",
-    "pmids": ""
+    "repeatType": "MORN 7",
+    "uniProtId": "Q5T089"
   },
   {
     "chrom": "chr1",
     "chromStart": 2384983,
     "chromEnd": 2385052,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2384983,
-    "thickEnd": 2385052,
     "reserved": [
       "12",
       "12",
@@ -2597,35 +1594,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 155-177 on protein Q5T089",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "MORN 6",
-    "uniProtId": "Q5T089",
-    "pmids": ""
+    "repeatType": "MORN 6",
+    "uniProtId": "Q5T089"
   },
   {
     "chrom": "chr1",
     "chromStart": 2385052,
     "chromEnd": 2385862,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2385052,
-    "thickEnd": 2385862,
     "reserved": [
       "12",
       "12",
@@ -2640,36 +1621,19 @@
       "0",
       "754"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 132-154 on protein Q5T089",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "MORN 5",
-    "uniProtId": "Q5T089",
-    "pmids": ""
+    "repeatType": "MORN 5",
+    "uniProtId": "Q5T089"
   },
   {
     "chrom": "chr1",
     "chromStart": 2385862,
     "chromEnd": 2387452,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2385862,
-    "thickEnd": 2387452,
     "reserved": [
       "12",
       "12",
@@ -2684,36 +1648,19 @@
       "0",
       "1556"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 109-131 on protein Q5T089",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "MORN 4",
-    "uniProtId": "Q5T089",
-    "pmids": ""
+    "repeatType": "MORN 4",
+    "uniProtId": "Q5T089"
   },
   {
     "chrom": "chr1",
     "chromStart": 2387452,
     "chromEnd": 2387521,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2387452,
-    "thickEnd": 2387521,
     "reserved": [
       "12",
       "12",
@@ -2726,35 +1673,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 86-108 on protein Q5T089",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "MORN 3",
-    "uniProtId": "Q5T089",
-    "pmids": ""
+    "repeatType": "MORN 3",
+    "uniProtId": "Q5T089"
   },
   {
     "chrom": "chr1",
     "chromStart": 2387524,
     "chromEnd": 2388302,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2387524,
-    "thickEnd": 2388302,
     "reserved": [
       "12",
       "12",
@@ -2769,36 +1700,19 @@
       "0",
       "714"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 62-84 on protein Q5T089",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "MORN 2",
-    "uniProtId": "Q5T089",
-    "pmids": ""
+    "repeatType": "MORN 2",
+    "uniProtId": "Q5T089"
   },
   {
     "chrom": "chr1",
     "chromStart": 2388302,
     "chromEnd": 2389958,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2388302,
-    "thickEnd": 2389958,
     "reserved": [
       "12",
       "12",
@@ -2813,36 +1727,19 @@
       "0",
       "1622"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 39-61 on protein Q5T089",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "MORN 1",
-    "uniProtId": "Q5T089",
-    "pmids": ""
+    "repeatType": "MORN 1",
+    "uniProtId": "Q5T089"
   },
   {
     "chrom": "chr1",
     "chromStart": 2557776,
     "chromEnd": 2558389,
-    "name": "repeat",
-    "score": 0,
     "strand": "+",
-    "thickStart": 2557776,
-    "thickEnd": 2558389,
     "reserved": [
       "0",
       "150",
@@ -2857,36 +1754,19 @@
       "0",
       "566"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 41-75 on protein B4DU65",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys",
-    "uniProtId": "B4DU65",
-    "pmids": ""
+    "repeatType": "TNFR-Cys",
+    "uniProtId": "B4DU65"
   },
   {
     "chrom": "chr1",
     "chromStart": 2557779,
     "chromEnd": 2558389,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 2557779,
-    "thickEnd": 2558389,
     "reserved": [
       "12",
       "12",
@@ -2901,36 +1781,19 @@
       "0",
       "563"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 42-75 on protein Q92956",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys 1",
-    "uniProtId": "Q92956",
-    "pmids": ""
+    "repeatType": "TNFR-Cys 1",
+    "uniProtId": "Q92956"
   },
   {
     "chrom": "chr1",
     "chromStart": 2558392,
     "chromEnd": 2559875,
-    "name": "repeat",
-    "score": 0,
     "strand": "+",
-    "thickStart": 2558392,
-    "thickEnd": 2559875,
     "reserved": [
       "0",
       "150",
@@ -2945,36 +1808,19 @@
       "0",
       "1430"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 77-119 on protein B9A034",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys",
-    "uniProtId": "B9A034",
-    "pmids": ""
+    "repeatType": "TNFR-Cys",
+    "uniProtId": "B9A034"
   },
   {
     "chrom": "chr1",
     "chromStart": 2558392,
     "chromEnd": 2558467,
-    "name": "repeat",
-    "score": 0,
     "strand": "+",
-    "thickStart": 2558392,
-    "thickEnd": 2558467,
     "reserved": [
       "0",
       "150",
@@ -2987,35 +1833,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 77-118 on protein B4E0P6",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys",
-    "uniProtId": "B4E0P6",
-    "pmids": ""
+    "repeatType": "TNFR-Cys",
+    "uniProtId": "B4E0P6"
   },
   {
     "chrom": "chr1",
     "chromStart": 2558395,
     "chromEnd": 2559875,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 2558395,
-    "thickEnd": 2559875,
     "reserved": [
       "12",
       "12",
@@ -3030,36 +1860,19 @@
       "0",
       "1427"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 78-119 on protein Q92956",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys 2",
-    "uniProtId": "Q92956",
-    "pmids": ""
+    "repeatType": "TNFR-Cys 2",
+    "uniProtId": "Q92956"
   },
   {
     "chrom": "chr1",
     "chromStart": 2559878,
     "chromEnd": 2560649,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 2559878,
-    "thickEnd": 2560649,
     "reserved": [
       "12",
       "12",
@@ -3074,36 +1887,19 @@
       "0",
       "745"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 121-162 on protein Q92956",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TNFR-Cys 3",
-    "uniProtId": "Q92956",
-    "pmids": ""
+    "repeatType": "TNFR-Cys 3",
+    "uniProtId": "Q92956"
   },
   {
     "chrom": "chr1",
     "chromStart": 2641433,
     "chromEnd": 2641535,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2641433,
-    "thickEnd": 2641535,
     "reserved": [
       "12",
       "12",
@@ -3116,35 +1912,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 512-545 on protein A8MYJ7",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TPR 8",
-    "uniProtId": "A8MYJ7",
-    "pmids": ""
+    "repeatType": "TPR 8",
+    "uniProtId": "A8MYJ7"
   },
   {
     "chrom": "chr1",
     "chromStart": 2641577,
     "chromEnd": 2641679,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2641577,
-    "thickEnd": 2641679,
     "reserved": [
       "12",
       "12",
@@ -3157,35 +1937,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 464-497 on protein A8MYJ7",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TPR 7",
-    "uniProtId": "A8MYJ7",
-    "pmids": ""
+    "repeatType": "TPR 7",
+    "uniProtId": "A8MYJ7"
   },
   {
     "chrom": "chr1",
     "chromStart": 2641577,
     "chromEnd": 2641679,
-    "name": "repeat",
-    "score": 0,
     "strand": "-",
-    "thickStart": 2641577,
-    "thickEnd": 2641679,
     "reserved": [
       "0",
       "150",
@@ -3198,35 +1962,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 977-1010 on protein A0A1C7CYW7",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TPR",
-    "uniProtId": "A0A1C7CYW7",
-    "pmids": ""
+    "repeatType": "TPR",
+    "uniProtId": "A0A1C7CYW7"
   },
   {
     "chrom": "chr1",
     "chromStart": 2641697,
     "chromEnd": 2641799,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2641697,
-    "thickEnd": 2641799,
     "reserved": [
       "12",
       "12",
@@ -3239,35 +1987,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 424-457 on protein A8MYJ7",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TPR 6",
-    "uniProtId": "A8MYJ7",
-    "pmids": ""
+    "repeatType": "TPR 6",
+    "uniProtId": "A8MYJ7"
   },
   {
     "chrom": "chr1",
     "chromStart": 2644317,
     "chromEnd": 2644416,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2644317,
-    "thickEnd": 2644416,
     "reserved": [
       "12",
       "12",
@@ -3280,35 +2012,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 341-373 on protein A8MYJ7",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TPR 5",
-    "uniProtId": "A8MYJ7",
-    "pmids": ""
+    "repeatType": "TPR 5",
+    "uniProtId": "A8MYJ7"
   },
   {
     "chrom": "chr1",
     "chromStart": 2644419,
     "chromEnd": 2645335,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2644419,
-    "thickEnd": 2645335,
     "reserved": [
       "12",
       "12",
@@ -3323,36 +2039,19 @@
       "0",
       "873"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 306-339 on protein A8MYJ7",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TPR 4",
-    "uniProtId": "A8MYJ7",
-    "pmids": ""
+    "repeatType": "TPR 4",
+    "uniProtId": "A8MYJ7"
   },
   {
     "chrom": "chr1",
     "chromStart": 2645515,
     "chromEnd": 2783662,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2645515,
-    "thickEnd": 2783662,
     "reserved": [
       "12",
       "12",
@@ -3367,36 +2066,19 @@
       "0",
       "138093"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 212-245 on protein A8MYJ7",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TPR 3",
-    "uniProtId": "A8MYJ7",
-    "pmids": ""
+    "repeatType": "TPR 3",
+    "uniProtId": "A8MYJ7"
   },
   {
     "chrom": "chr1",
     "chromStart": 2783662,
     "chromEnd": 2783764,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2783662,
-    "thickEnd": 2783764,
     "reserved": [
       "12",
       "12",
@@ -3409,35 +2091,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 178-211 on protein A8MYJ7",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TPR 2",
-    "uniProtId": "A8MYJ7",
-    "pmids": ""
+    "repeatType": "TPR 2",
+    "uniProtId": "A8MYJ7"
   },
   {
     "chrom": "chr1",
     "chromStart": 2787546,
     "chromEnd": 2787648,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 2787546,
-    "thickEnd": 2787648,
     "reserved": [
       "12",
       "12",
@@ -3450,35 +2116,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 50-83 on protein A8MYJ7",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "TPR 1",
-    "uniProtId": "A8MYJ7",
-    "pmids": ""
+    "repeatType": "TPR 1",
+    "uniProtId": "A8MYJ7"
   },
   {
     "chrom": "chr1",
     "chromStart": 3631475,
     "chromEnd": 3631595,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3631475,
-    "thickEnd": 3631595,
     "reserved": [
       "12",
       "12",
@@ -3491,35 +2141,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 371-410 on protein Q9P2S5",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 6",
-    "uniProtId": "Q9P2S5",
-    "pmids": ""
+    "repeatType": "WD 6",
+    "uniProtId": "Q9P2S5"
   },
   {
     "chrom": "chr1",
     "chromStart": 3631598,
     "chromEnd": 3632279,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3631598,
-    "thickEnd": 3632279,
     "reserved": [
       "12",
       "12",
@@ -3534,36 +2168,19 @@
       "0",
       "614"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 328-369 on protein Q9P2S5",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 5",
-    "uniProtId": "Q9P2S5",
-    "pmids": ""
+    "repeatType": "WD 5",
+    "uniProtId": "Q9P2S5"
   },
   {
     "chrom": "chr1",
     "chromStart": 3635032,
     "chromEnd": 3635237,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3635032,
-    "thickEnd": 3635237,
     "reserved": [
       "12",
       "12",
@@ -3578,36 +2195,19 @@
       "0",
       "127"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 221-260 on protein Q9P2S5",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 4",
-    "uniProtId": "Q9P2S5",
-    "pmids": ""
+    "repeatType": "WD 4",
+    "uniProtId": "Q9P2S5"
   },
   {
     "chrom": "chr1",
     "chromStart": 3635267,
     "chromEnd": 3636021,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3635267,
-    "thickEnd": 3636021,
     "reserved": [
       "12",
       "12",
@@ -3622,36 +2222,19 @@
       "0",
       "676"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 176-210 on protein Q9P2S5",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 3",
-    "uniProtId": "Q9P2S5",
-    "pmids": ""
+    "repeatType": "WD 3",
+    "uniProtId": "Q9P2S5"
   },
   {
     "chrom": "chr1",
     "chromStart": 3638774,
     "chromEnd": 3646740,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3638774,
-    "thickEnd": 3646740,
     "reserved": [
       "12",
       "12",
@@ -3666,36 +2249,19 @@
       "0",
       "7891"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 89-129 on protein Q9P2S5",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 2",
-    "uniProtId": "Q9P2S5",
-    "pmids": ""
+    "repeatType": "WD 2",
+    "uniProtId": "Q9P2S5"
   },
   {
     "chrom": "chr1",
     "chromStart": 3646746,
     "chromEnd": 3647494,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3646746,
-    "thickEnd": 3647494,
     "reserved": [
       "12",
       "12",
@@ -3710,36 +2276,19 @@
       "0",
       "661"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 46-86 on protein Q9P2S5",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "WD 1",
-    "uniProtId": "Q9P2S5",
-    "pmids": ""
+    "repeatType": "WD 1",
+    "uniProtId": "Q9P2S5"
   },
   {
     "chrom": "chr1",
     "chromStart": 3787187,
     "chromEnd": 3787250,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3787187,
-    "thickEnd": 3787250,
     "reserved": [
       "12",
       "12",
@@ -3752,35 +2301,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 226-246 on protein Q8N1G4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "LRR 7",
-    "uniProtId": "Q8N1G4",
-    "pmids": ""
+    "repeatType": "LRR 7",
+    "uniProtId": "Q8N1G4"
   },
   {
     "chrom": "chr1",
     "chromStart": 3787250,
     "chromEnd": 3795870,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3787250,
-    "thickEnd": 3795870,
     "reserved": [
       "12",
       "12",
@@ -3795,36 +2328,19 @@
       "0",
       "8611"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 203-225 on protein Q8N1G4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "LRR 6",
-    "uniProtId": "Q8N1G4",
-    "pmids": ""
+    "repeatType": "LRR 6",
+    "uniProtId": "Q8N1G4"
   },
   {
     "chrom": "chr1",
     "chromStart": 3795870,
     "chromEnd": 3795939,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3795870,
-    "thickEnd": 3795939,
     "reserved": [
       "12",
       "12",
@@ -3837,35 +2353,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 180-202 on protein Q8N1G4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "LRR 5",
-    "uniProtId": "Q8N1G4",
-    "pmids": ""
+    "repeatType": "LRR 5",
+    "uniProtId": "Q8N1G4"
   },
   {
     "chrom": "chr1",
     "chromStart": 3795951,
     "chromEnd": 3796017,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3795951,
-    "thickEnd": 3796017,
     "reserved": [
       "12",
       "12",
@@ -3878,35 +2378,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 154-175 on protein Q8N1G4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "LRR 4",
-    "uniProtId": "Q8N1G4",
-    "pmids": ""
+    "repeatType": "LRR 4",
+    "uniProtId": "Q8N1G4"
   },
   {
     "chrom": "chr1",
     "chromStart": 3796020,
     "chromEnd": 3796089,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3796020,
-    "thickEnd": 3796089,
     "reserved": [
       "12",
       "12",
@@ -3919,35 +2403,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 130-152 on protein Q8N1G4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "LRR 3",
-    "uniProtId": "Q8N1G4",
-    "pmids": ""
+    "repeatType": "LRR 3",
+    "uniProtId": "Q8N1G4"
   },
   {
     "chrom": "chr1",
     "chromStart": 3796113,
     "chromEnd": 3796179,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3796113,
-    "thickEnd": 3796179,
     "reserved": [
       "12",
       "12",
@@ -3960,35 +2428,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 100-121 on protein Q8N1G4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "LRR 2",
-    "uniProtId": "Q8N1G4",
-    "pmids": ""
+    "repeatType": "LRR 2",
+    "uniProtId": "Q8N1G4"
   },
   {
     "chrom": "chr1",
     "chromStart": 3796191,
     "chromEnd": 3796251,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3796191,
-    "thickEnd": 3796251,
     "reserved": [
       "12",
       "12",
@@ -4001,35 +2453,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 76-95 on protein Q8N1G4",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "LRR 1",
-    "uniProtId": "Q8N1G4",
-    "pmids": ""
+    "repeatType": "LRR 1",
+    "uniProtId": "Q8N1G4"
   },
   {
     "chrom": "chr1",
     "chromStart": 3829913,
     "chromEnd": 3831072,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3829913,
-    "thickEnd": 3831072,
     "reserved": [
       "12",
       "12",
@@ -4044,36 +2480,19 @@
       "0",
       "1132"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 604-640 on protein O60308",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "HEAT 2",
-    "uniProtId": "O60308",
-    "pmids": ""
+    "repeatType": "HEAT 2",
+    "uniProtId": "O60308"
   },
   {
     "chrom": "chr1",
     "chromStart": 3831180,
     "chromEnd": 3833936,
-    "name": "repeat",
-    "score": 1000,
     "strand": "-",
-    "thickStart": 3831180,
-    "thickEnd": 3833936,
     "reserved": [
       "12",
       "12",
@@ -4088,36 +2507,19 @@
       "0",
       "2681"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 529-567 on protein O60308",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "HEAT 1",
-    "uniProtId": "O60308",
-    "pmids": ""
+    "repeatType": "HEAT 1",
+    "uniProtId": "O60308"
   },
   {
     "chrom": "chr1",
     "chromStart": 6424955,
     "chromEnd": 6425048,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 6424955,
-    "thickEnd": 6425048,
     "reserved": [
       "12",
       "12",
@@ -4130,35 +2532,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 1-31 on protein B1AK53",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 1",
-    "uniProtId": "B1AK53",
-    "pmids": ""
+    "repeatType": "ANK 1",
+    "uniProtId": "B1AK53"
   },
   {
     "chrom": "chr1",
     "chromStart": 6425057,
     "chromEnd": 6425147,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 6425057,
-    "thickEnd": 6425147,
     "reserved": [
       "12",
       "12",
@@ -4171,35 +2557,19 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 35-64 on protein B1AK53",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 2",
-    "uniProtId": "B1AK53",
-    "pmids": ""
+    "repeatType": "ANK 2",
+    "uniProtId": "B1AK53"
   },
   {
     "chrom": "chr1",
     "chromStart": 6425159,
     "chromEnd": 6428228,
-    "name": "repeat",
-    "score": 1000,
     "strand": "+",
-    "thickStart": 6425159,
-    "thickEnd": 6428228,
     "reserved": [
       "12",
       "12",
@@ -4214,36 +2584,19 @@
       "0",
       "3066"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0",
-      "0"
-    ],
-    "type": "swissprot",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Manually reviewed (Swiss-Prot)",
-    "annotationType": "repeat",
     "position": "amino acids 69-99 on protein B1AK53",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK 3",
-    "uniProtId": "B1AK53",
-    "pmids": ""
+    "repeatType": "ANK 3",
+    "uniProtId": "B1AK53"
   },
   {
     "chrom": "chr1",
     "chromStart": 6425159,
     "chromEnd": 6425234,
-    "name": "repeat",
-    "score": 0,
     "strand": "+",
-    "thickStart": 6425159,
-    "thickEnd": 6425234,
     "reserved": [
       "0",
       "150",
@@ -4256,24 +2609,12 @@
     "chromStarts": [
       "0"
     ],
-    "name2": "",
-    "cdsStartStat": "cmpl",
-    "cdsEndStat": "cmpl",
-    "exonFrames": [
-      "0"
-    ],
-    "type": "trembl",
     "geneName": "",
-    "geneName2": "",
+    "aliases": "",
     "geneType": "",
     "status": "Unreviewed (TrEMBL)",
-    "annotationType": "repeat",
     "position": "amino acids 69-93 on protein A0A1B0GUN9",
-    "longName": "",
-    "syns": "",
-    "subCellLoc": "",
-    "comments": "ANK",
-    "uniProtId": "A0A1B0GUN9",
-    "pmids": ""
+    "repeatType": "ANK",
+    "uniProtId": "A0A1B0GUN9"
   }
 ]
