@@ -1,4 +1,4 @@
-#chrom	chromStart	chromEnd	name	score	strand	thickStart	thickEnd	reserved	blockCount	blockSizes	chromStarts	name2	cdsStartStat	cdsEndStat	exonFrames	type	geneName	geneName2	geneType	status	annotationType	position	longName	syns	subCellLoc	comments	uniProtId	pmids
+chrom	chromStart	chromEnd	name	score	strand	thickStart	thickEnd	reserved	blockCount	blockSizes	chromStarts	name2	cdsStartStat	cdsEndStat	exonFrames	type	geneName	geneName2	geneType	status	annotationType	position	longName	syns	subCellLoc	comments	uniProtId	pmids
 chr1	962901	963233	repeat	1000	+	962901	963233	12,12,120	2	16,125	0,207		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 343-389 on protein Q6TDP4				Kelch 1	Q6TDP4	
 chr1	963233	963457	repeat	1000	+	963233	963457	12,12,120	2	20,121	0,103		cmpl	cmpl	0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 390-436 on protein Q6TDP4				Kelch 2	Q6TDP4	
 chr1	963460	964111	repeat	1000	+	963460	964111	12,12,120	3	44,89,5	0,459,646		cmpl	cmpl	0,0,0	swissprot				Manually reviewed (Swiss-Prot)	repeat	amino acids 438-483 on protein Q6TDP4				Kelch 3	Q6TDP4	
