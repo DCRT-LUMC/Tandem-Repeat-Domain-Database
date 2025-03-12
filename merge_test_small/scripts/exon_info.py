@@ -466,8 +466,8 @@ if __name__ == "__main__":
     project_root = os.path.dirname(script_dir)
     
     # Default paths relative to project root
-    input_file = os.path.join(project_root, "data", "gname_hg38_repeats_100.json")
-    output_file = os.path.join(project_root, "data", "ensembl_exons_hg38_repeats_10.json")
+    input_file = os.path.join(project_root, "data", "100_gname_hg38_repeats.json")
+    output_file = os.path.join(project_root, "data", "100_test_exons_hg38_repeats.json")
     
     # Allow command-line arguments to override default file paths
     if len(sys.argv) > 1:
