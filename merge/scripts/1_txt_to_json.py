@@ -4,8 +4,8 @@ import re
 
 # This converts the hg38_repeats.txt into a usable .json
 
-input_file = 'merge/data/hg38_repeats.txt'
-output_file = 'merge/data/hg38_repeats.json'
+input_file = 'merge/data/1000_hg38_repeats.txt'
+output_file = 'merge/data/1000_hg38_repeats.json'
 
 json_data = []
 
