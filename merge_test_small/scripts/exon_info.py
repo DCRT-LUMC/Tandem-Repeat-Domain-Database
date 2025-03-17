@@ -150,12 +150,18 @@ def get_ensembl_info(chrom, start, end, species="human"):
         try:
             transcript_id = transcript["id"]
             
-            # Get detailed transcript information with all exons
+            # Get detailed transcript information with all exons and version information
             transcript_detail = client.perform_rest_action(
                 endpoint=f"/lookup/id/{transcript_id}",
                 hdrs=headers,
-                params={'expand': 1}
+                params={'expand': 1, 'format': 'full'}  # Add format=full parameter
             )
+            
+            # Construct the versioned ID
+            if transcript_detail and "version" in transcript_detail:
+                versioned_transcript_id = f"{transcript_id}.{transcript_detail['version']}"
+            else:
+                versioned_transcript_id = transcript_id
             
             if transcript_detail:
                 transcript_details[transcript_id] = transcript_detail
@@ -416,9 +422,15 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
                 
                 # Get transcript biotype
                 biotype = transcript.get("biotype", "unknown")
-                
+
+                # Create versioned transcript ID
+                versioned_transcript_id = transcript_id
+                if "version" in transcript:
+                    versioned_transcript_id = f"{transcript_id}.{transcript['version']}"
+
                 transcript_info.append({
-                    "transcript_id": transcript_id,
+                    "transcript_id": transcript_id,  # Keep the unversioned ID for API queries
+                    "versioned_transcript_id": versioned_transcript_id,  # Add this new field
                     "transcript_name": transcript.get("display_name", ""),
                     "is_canonical": is_canonical,
                     "biotype": biotype,
@@ -466,8 +478,8 @@ if __name__ == "__main__":
     project_root = os.path.dirname(script_dir)
     
     # Default paths relative to project root
-    input_file = os.path.join(project_root, "data", "100_gname_hg38_repeats.json")
-    output_file = os.path.join(project_root, "data", "100_test_exons_hg38_repeats.json")
+    input_file = os.path.join(project_root, "data", "1000_gname_hg38_repeats.json")
+    output_file = os.path.join(project_root, "data", "1000_test_exons_hg38_repeats.json")
     
     # Allow command-line arguments to override default file paths
     if len(sys.argv) > 1:
