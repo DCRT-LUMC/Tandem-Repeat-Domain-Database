@@ -407,27 +407,43 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
                         # Get coding status
                         coding_status, utr_status, coding_percentage = get_coding_status(exon, transcript, start, end)
                         
+                        # Determine if exon is in-frame or out-of-frame using phase information
+                        phase = exon.get("phase", -1)
+                        end_phase = exon.get("end_phase", -1)
+                        
+                        frame_status = "non_coding"
+                        if coding_status != "non_coding":
+                            if phase == end_phase and phase != -1:
+                                frame_status = "in_frame"  # Exon contains complete codons or maintains reading frame
+                            elif phase == -1 or end_phase == -1:
+                                frame_status = "non_coding"  # Non-coding exon
+                            else:
+                                frame_status = "out_of_frame"  # Exon contains partial codons
+                        
                         exon_info = {
-                            "exon_id": exon.get("id", ""),
                             "exon_number": exon_number,
-                            "position": position,
-                            "coding_status": coding_status,
+                            "exon_id": exon.get("id", ""),
                             "overlap_bp": overlap_length,
+                            "position": position,
                             "overlap_percentage": round(overlap_percentage, 2),
+                            "coding_status": coding_status,
                             "utr_status": utr_status,
-                            "coding_percentage": coding_percentage
+                            "coding_percentage": coding_percentage,
+                            "phase": phase,
+                            "end_phase": end_phase,
+                            "frame_status": frame_status
                         }
                         
                         containing_exons.append(exon_info)
                 
                 # Get transcript biotype
                 biotype = transcript.get("biotype", "unknown")
-
+                
                 # Create versioned transcript ID
                 versioned_transcript_id = transcript_id
                 if "version" in transcript:
                     versioned_transcript_id = f"{transcript_id}.{transcript['version']}"
-
+                
                 transcript_info.append({
                     "transcript_id": transcript_id,  # Keep the unversioned ID for API queries
                     "versioned_transcript_id": versioned_transcript_id,  # Add this new field
@@ -464,12 +480,11 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
     # Save updated repeat data
     with open(output_file, 'w') as f:
         json.dump(repeats, f, indent=2)
+    print(f"Updated repeat data saved to {output_file}")
     
     # Remove temp file if exists
     if os.path.exists(output_file + ".temp"):
         os.remove(output_file + ".temp")
-    
-    print(f"Updated repeat data saved to {output_file}")
 
 if __name__ == "__main__":
     # Get the directory where the script is located
