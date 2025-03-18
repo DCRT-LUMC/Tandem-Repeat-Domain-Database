@@ -291,6 +291,6 @@ def find_exon_skipping_candidates():
 
 if __name__ == "__main__":
     # Uncomment to run
-    # run_test_queries()
-    # search_gene("MTOR")
-    find_exon_skipping_candidates()
+    run_test_queries()
+    search_gene("MTOR")
+    # find_exon_skipping_candidates()
