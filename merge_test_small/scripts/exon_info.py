@@ -390,6 +390,11 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
                         
                         overlap_start = max(start, exon_start)
                         overlap_end = min(end, exon_end)
+
+                        # Add this adjustment for BED format
+                        if exon_end == end:
+                            overlap_end += 1  # Adjust for BED's exclusive end coordinate
+
                         overlap_length = overlap_end - overlap_start
                         exon_length = exon_end - exon_start
                         overlap_percentage = (overlap_length / exon_length) * 100
