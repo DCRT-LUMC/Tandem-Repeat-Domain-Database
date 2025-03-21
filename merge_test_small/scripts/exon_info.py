@@ -146,7 +146,7 @@ def get_ensembl_info(chrom, start, end, species="human"):
     client = EnsemblRestClient()
     headers = {"Content-Type": "application/json"}
     
-    result = {"transcripts": [], "exons": []}
+    result = {"transcripts": [], "exons": [], "transcript_details": {}}
     
     # Get transcripts overlapping the region
     transcripts = client.perform_rest_action(
@@ -159,7 +159,7 @@ def get_ensembl_info(chrom, start, end, species="human"):
         # Convert coordinates to 0-based
         result["transcripts"] = convert_to_zero_based(transcripts)
     
-    # Get exons overlapping the region
+    # Get exons overlapping the region - this provides phase information
     exons = client.perform_rest_action(
         endpoint=f"/overlap/region/{species}/{chrom_id}:{start}-{end}",
         hdrs=headers,
@@ -170,7 +170,10 @@ def get_ensembl_info(chrom, start, end, species="human"):
         # Convert coordinates to 0-based
         result["exons"] = convert_to_zero_based(exons)
     
-    # For each transcript, get detailed info including all its exons
+    # We still need transcript details because the overlap endpoint doesn't provide:
+    # 1. Complete list of exons for each transcript
+    # 2. Translation information (CDS coordinates)
+    # 3. Detailed transcript metadata
     transcript_details = {}
     
     for transcript in result["transcripts"]:
@@ -187,14 +190,6 @@ def get_ensembl_info(chrom, start, end, species="human"):
             # Convert all coordinates to 0-based
             if transcript_detail:
                 convert_to_zero_based(transcript_detail)
-            
-            # Construct the versioned ID
-            if transcript_detail and "version" in transcript_detail:
-                versioned_transcript_id = f"{transcript_id}.{transcript_detail['version']}"
-            else:
-                versioned_transcript_id = transcript_id
-            
-            if transcript_detail:
                 transcript_details[transcript_id] = transcript_detail
                 
         except Exception as e:
@@ -318,6 +313,24 @@ def get_coding_status(exon, transcript, repeat_start, repeat_end):
     # Fully coding exon
     return "fully_coding", "none", 100
 
+def clean_repeat_type(repeat_type):
+    """
+    Clean repeat type by removing everything after a semicolon or space
+    e.g. "ANK 1" -> "ANK", "TNFR-Cys; trunk" -> "TNFR-Cys"
+    """
+    if not repeat_type:
+        return repeat_type
+        
+    # First check for semicolon
+    if ";" in repeat_type:
+        return repeat_type.split(";")[0].strip()
+    
+    # Then check for space
+    if " " in repeat_type:
+        return repeat_type.split(" ")[0].strip()
+        
+    return repeat_type
+
 def process_repeat_data(repeat_data_file, output_file, limit=None):
     """
     Process the repeat data JSON and add exon information using Ensembl API.
@@ -349,6 +362,10 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
             with open(output_file + ".temp", 'w') as f:
                 json.dump(repeats, f, indent=2)
         
+        # Clean the repeat type before adding to the output
+        if "repeatType" in repeat:
+            repeat["repeatType"] = clean_repeat_type(repeat["repeatType"])
+        
         chrom = repeat["chrom"]
         start = int(repeat["chromStart"])
         end = int(repeat["chromEnd"])
@@ -371,20 +388,22 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
             continue
         
         # Create a dictionary of exon IDs to exon objects from the overlap endpoint results
-        # This gives us access to the phase information
         exon_phase_map = {}
         if "exons" in api_data and api_data["exons"]:
             for exon in api_data["exons"]:
                 if "id" in exon:
                     exon_phase_map[exon["id"]] = exon
         
+        # Transcript details needed for:
+        # 1. Complete list of exons (overlap only shows exons that overlap the region)
+        # 2. Translation/CDS information to determine coding status
+        # 3. Additional transcript metadata
         all_transcripts = []
         transcript_details = api_data["transcript_details"]
         
-        # Use transcript details for comprehensive information
         for transcript_id, transcript in transcript_details.items():
             all_transcripts.append(transcript)
-            
+        
         transcript_info = []
         locations = set()
         
@@ -545,7 +564,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process repeats and add Ensembl exon information.")
     parser.add_argument("--input", "-i", default=os.path.join(project_root, "data", "1000_gname_hg38_repeats.json"),
                         help="Input JSON file containing repeat data")
-    parser.add_argument("--output", "-o", default=os.path.join(project_root, "data", "10_test_exons_hg38_repeats.json"),
+    parser.add_argument("--output", "-o", default=os.path.join(project_root, "data", "1000_test_exons_hg38_repeats.json"),
                         help="Output JSON file to save results")
     parser.add_argument("--limit", "-l", type=int, default=None,
                         help="Limit processing to first N entries (e.g., 10, 100)")

@@ -4,9 +4,18 @@
 CREATE TABLE genes (
     gene_id INTEGER PRIMARY KEY,
     gene_name VARCHAR(50) NOT NULL,
-    aliases TEXT,
     chromosome VARCHAR(10),
-    location VARCHAR(50)
+    location VARCHAR(50),
+    gene_type VARCHAR(100),
+    ensembl_gene_id VARCHAR(50)
+);
+
+-- Gene aliases table
+CREATE TABLE gene_aliases (
+    alias_id INTEGER PRIMARY KEY,
+    gene_id INTEGER NOT NULL,
+    alias_name VARCHAR(100) NOT NULL,
+    FOREIGN KEY (gene_id) REFERENCES genes(gene_id)
 );
 
 -- Proteins table 
@@ -15,7 +24,7 @@ CREATE TABLE proteins (
     gene_id INTEGER,
     length INTEGER,
     description TEXT,
-    status VARCHAR(20),
+    status VARCHAR(100),
     FOREIGN KEY (gene_id) REFERENCES genes(gene_id)
 );
 
@@ -27,6 +36,13 @@ CREATE TABLE repeats (
     start_pos INTEGER,
     end_pos INTEGER,
     sequence TEXT,
+    chrom VARCHAR(10),
+    chrom_start INTEGER,
+    chrom_end INTEGER,
+    strand CHAR(1),
+    repeat_length INTEGER,
+    position TEXT,
+    reserved TEXT,
     FOREIGN KEY (protein_id) REFERENCES proteins(protein_id)
 );
 
@@ -35,6 +51,7 @@ CREATE TABLE transcripts (
     transcript_id VARCHAR(20) PRIMARY KEY,
     gene_id INTEGER,
     description TEXT,
+    ensembl_transcript_id VARCHAR(50),
     FOREIGN KEY (gene_id) REFERENCES genes(gene_id)
 );
 
@@ -52,32 +69,25 @@ CREATE TABLE repeat_transcripts (
 
 -- Exons table
 CREATE TABLE exons (
-    exon_id VARCHAR(20) PRIMARY KEY,
-    gene_id INTEGER,
-    start_pos INTEGER,
-    end_pos INTEGER,
-    length INTEGER,
-    frame_preserving BOOLEAN, -- True if removing preserves reading frame
-    FOREIGN KEY (gene_id) REFERENCES genes(gene_id)
-);
-
--- Transcript-Exon relationship
-CREATE TABLE transcript_exons (
-    transcript_id VARCHAR(20),
-    exon_id VARCHAR(20),
-    exon_number INTEGER,
-    PRIMARY KEY (transcript_id, exon_id),
-    FOREIGN KEY (transcript_id) REFERENCES transcripts(transcript_id),
-    FOREIGN KEY (exon_id) REFERENCES exons(exon_id)
-);
-
--- Repeat-Exon relationship
-CREATE TABLE repeat_exons (
+    exon_id INTEGER PRIMARY KEY,
     repeat_id INTEGER,
-    exon_id VARCHAR(20),
-    overlap_bp INTEGER,
-    overlap_percentage FLOAT,
-    PRIMARY KEY (repeat_id, exon_id),
-    FOREIGN KEY (repeat_id) REFERENCES repeats(repeat_id),
-    FOREIGN KEY (exon_id) REFERENCES exons(exon_id)
+    block_count INTEGER,
+    block_sizes TEXT,
+    block_starts TEXT,
+    ensembl_exon_id VARCHAR(50),
+    phase INTEGER,
+    end_phase INTEGER,
+    frame_status VARCHAR(50),
+    ensembl_info TEXT,
+    FOREIGN KEY (repeat_id) REFERENCES repeats(repeat_id)
+);
+
+-- Genomic coordinates table to store detailed location information
+CREATE TABLE genomic_coordinates (
+    coordinate_id INTEGER PRIMARY KEY,
+    repeat_id INTEGER,
+    chrom_start INTEGER,
+    chrom_end INTEGER,
+    strand CHAR(1),
+    FOREIGN KEY (repeat_id) REFERENCES repeats(repeat_id)
 );
