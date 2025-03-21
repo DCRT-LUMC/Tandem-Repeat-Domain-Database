@@ -105,6 +105,31 @@ class EnsemblRestClient(object):
             
         return data
 
+def convert_to_zero_based(data):
+    """
+    Convert Ensembl 1-based coordinates to 0-based coordinates.
+    This function can be applied to a single object or a list of objects.
+    """
+    if isinstance(data, list):
+        for item in data:
+            convert_to_zero_based(item)
+        return data
+    
+    # Skip if not a dictionary
+    if not isinstance(data, dict):
+        return data
+    
+    # Convert start coordinate from 1-based to 0-based
+    if "start" in data:
+        data["start"] = data["start"] - 1
+    
+    # Process nested objects
+    for key, value in data.items():
+        if isinstance(value, (dict, list)):
+            convert_to_zero_based(value)
+    
+    return data
+
 def get_ensembl_info(chrom, start, end, species="human"):
     """
     Get transcript and exon information using the Ensembl API.
@@ -131,7 +156,8 @@ def get_ensembl_info(chrom, start, end, species="human"):
     )
     
     if transcripts:
-        result["transcripts"] = transcripts
+        # Convert coordinates to 0-based
+        result["transcripts"] = convert_to_zero_based(transcripts)
     
     # Get exons overlapping the region
     exons = client.perform_rest_action(
@@ -141,7 +167,8 @@ def get_ensembl_info(chrom, start, end, species="human"):
     )
     
     if exons:
-        result["exons"] = exons
+        # Convert coordinates to 0-based
+        result["exons"] = convert_to_zero_based(exons)
     
     # For each transcript, get detailed info including all its exons
     transcript_details = {}
@@ -154,8 +181,12 @@ def get_ensembl_info(chrom, start, end, species="human"):
             transcript_detail = client.perform_rest_action(
                 endpoint=f"/lookup/id/{transcript_id}",
                 hdrs=headers,
-                params={'expand': 1, 'format': 'full'}  # Add format=full parameter
+                params={'expand': 1, 'format': 'full'}
             )
+            
+            # Convert all coordinates to 0-based
+            if transcript_detail:
+                convert_to_zero_based(transcript_detail)
             
             # Construct the versioned ID
             if transcript_detail and "version" in transcript_detail:
@@ -339,6 +370,14 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
             }
             continue
         
+        # Create a dictionary of exon IDs to exon objects from the overlap endpoint results
+        # This gives us access to the phase information
+        exon_phase_map = {}
+        if "exons" in api_data and api_data["exons"]:
+            for exon in api_data["exons"]:
+                if "id" in exon:
+                    exon_phase_map[exon["id"]] = exon
+        
         all_transcripts = []
         transcript_details = api_data["transcript_details"]
         
@@ -412,9 +451,13 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
                         # Get coding status
                         coding_status, utr_status, coding_percentage = get_coding_status(exon, transcript, start, end)
                         
-                        # Determine if exon is in-frame or out-of-frame using phase information
-                        phase = exon.get("phase", -1)
-                        end_phase = exon.get("end_phase", -1)
+                        # Look up the exon in our phase map from the overlap endpoint
+                        exon_id = exon.get("id", "")
+                        overlap_exon = exon_phase_map.get(exon_id, {})
+                        
+                        # Get phase and end_phase from the overlap endpoint data
+                        phase = overlap_exon.get("ensembl_phase", -1)
+                        end_phase = overlap_exon.get("ensembl_end_phase", -1)
                         
                         frame_status = "non_coding"
                         if coding_status != "non_coding":
@@ -434,8 +477,8 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
                             "coding_status": coding_status,
                             "utr_status": utr_status,
                             "coding_percentage": coding_percentage,
-                            "phase": phase,
-                            "end_phase": end_phase,
+                            "phase": phase,  # Store the direct value
+                            "end_phase": end_phase,  # Store the direct value
                             "frame_status": frame_status
                         }
                         
@@ -497,22 +540,33 @@ if __name__ == "__main__":
     # Get the parent directory (project root)
     project_root = os.path.dirname(script_dir)
     
-    # Default paths relative to project root
-    input_file = os.path.join(project_root, "data", "1000_gname_hg38_repeats.json")
-    output_file = os.path.join(project_root, "data", "1000_test_exons_hg38_repeats.json")
+    # Set up argument parser for more user-friendly command line options
+    import argparse
+    parser = argparse.ArgumentParser(description="Process repeats and add Ensembl exon information.")
+    parser.add_argument("--input", "-i", default=os.path.join(project_root, "data", "1000_gname_hg38_repeats.json"),
+                        help="Input JSON file containing repeat data")
+    parser.add_argument("--output", "-o", default=os.path.join(project_root, "data", "10_test_exons_hg38_repeats.json"),
+                        help="Output JSON file to save results")
+    parser.add_argument("--limit", "-l", type=int, default=None,
+                        help="Limit processing to first N entries (e.g., 10, 100)")
+    args = parser.parse_args()
     
-    # Allow command-line arguments to override default file paths
-    if len(sys.argv) > 1:
-        input_file = sys.argv[1]
-    if len(sys.argv) > 2:
-        output_file = sys.argv[2]
+    input_file = args.input
+    output_file = args.output
+    limit = args.limit
+    
+    # Display limit information
+    if limit:
+        print(f"Limiting processing to first {limit} entries in the input file")
+    else:
+        print("Processing all entries in the input file")
         
     try:
         # Start timing BEFORE processing
         start_time = time.time()
         
-        # Run the processing
-        process_repeat_data(input_file, output_file, limit=None)
+        # Run the processing with the specified limit
+        process_repeat_data(input_file, output_file, limit=limit)
         
         # Calculate duration AFTER processing
         duration = time.time() - start_time
