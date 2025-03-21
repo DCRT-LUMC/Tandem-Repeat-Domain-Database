@@ -35,7 +35,6 @@ CREATE TABLE repeats (
     repeat_type VARCHAR(50),
     start_pos INTEGER,
     end_pos INTEGER,
-    sequence TEXT,
     chrom VARCHAR(10),
     chrom_start INTEGER,
     chrom_end INTEGER,
@@ -91,3 +90,9 @@ CREATE TABLE genomic_coordinates (
     strand CHAR(1),
     FOREIGN KEY (repeat_id) REFERENCES repeats(repeat_id)
 );
+
+-- Create indexes for improved query performance
+CREATE INDEX idx_exons_ensembl_id ON exons(ensembl_exon_id);
+CREATE INDEX idx_exons_repeat_id ON exons(repeat_id);
+CREATE INDEX idx_repeats_protein_id ON repeats(protein_id);
+CREATE INDEX idx_repeats_type ON repeats(repeat_type);

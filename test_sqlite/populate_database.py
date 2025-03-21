@@ -1,270 +1,435 @@
 import json
 import sqlite3
 import os
-from tqdm import tqdm  # For progress bars
+import sys
+from collections import defaultdict
 
-def populate_test_database(json_file, db_file):
-    """Populate SQLite database from the repeat domain JSON file"""
-    print(f"Creating database from {json_file}...")
-    
-    # Connect to SQLite DB
-    conn = sqlite3.connect(db_file)
-    cursor = conn.cursor()
-    
-    # Create tables using schema file
-    # Get the directory of the script to find the schema file
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    schema_file_path = os.path.join(script_dir, "database_schema.sql")
-    
-    with open(schema_file_path, "r") as schema_file:
-        schema = schema_file.read()
-        conn.executescript(schema)
-    
-    # Load JSON data
-    with open(json_file, "r") as f:
-        data = json.load(f)
-    
-    # Track processed IDs to avoid duplicates
-    processed_genes = {}
-    processed_proteins = {}
-    processed_transcripts = {}
-    processed_exons = {}
+def create_tables(conn, schema_file):
+    """Create database tables from schema file"""
+    with open(schema_file, 'r') as f:
+        schema_sql = f.read()
+        conn.executescript(schema_sql)
+    print("Database tables created successfully")
 
-    # Process each repeat entry
-    for repeat in tqdm(data, desc="Processing repeats"):
-        if not isinstance(repeat, dict) or not repeat:
-            continue  # Skip empty entries
+def insert_or_get_gene(cursor, gene_name, chromosome=None):
+    """Insert gene if not exists and return gene_id"""
+    cursor.execute(
+        "SELECT gene_id FROM genes WHERE gene_name = ?", 
+        (gene_name,)
+    )
+    result = cursor.fetchone()
+    
+    if result:
+        return result[0]
+    
+    cursor.execute(
+        "INSERT INTO genes (gene_name, chromosome) VALUES (?, ?)",
+        (gene_name, chromosome)
+    )
+    return cursor.lastrowid
+
+def insert_gene_aliases(cursor, gene_id, aliases):
+    """Insert gene aliases"""
+    if not aliases:
+        return
         
-        # Get gene info
-        gene_name = repeat.get("geneName", "")
-        if not gene_name:
-            continue
-        
-        # Insert gene if not already processed
-        if gene_name not in processed_genes:
-            aliases = repeat.get("aliases", "")
-            if isinstance(aliases, list):
-                aliases = ",".join(aliases)
-            
-            cursor.execute("""
-                INSERT INTO genes (gene_name, aliases, chromosome, location)
-                VALUES (?, ?, ?, ?)
-            """, (
-                gene_name,
-                aliases,
-                repeat.get("chrom", ""),
-                f"{repeat.get('chrom', '')}:{repeat.get('chromStart', '')}_{repeat.get('chromEnd', '')}"
-            ))
-            processed_genes[gene_name] = cursor.lastrowid
-        
-        gene_id = processed_genes[gene_name]
-        
-        # Process protein
-        uniprot_id = repeat.get("uniProtId", "")
-        if uniprot_id and uniprot_id not in processed_proteins:
-            status = repeat.get("status", "")
-            
-            # Extract length from position if possible: "amino acids 343-389 on protein Q6TDP4"
-            position = repeat.get("position", "")
-            length = 0
-            if position and isinstance(position, str):
-                try:
-                    parts = position.split()
-                    if len(parts) >= 3:
-                        pos = parts[2].split("-")
-                        if len(pos) == 2:
-                            length = int(pos[1]) - int(pos[0]) + 1
-                except:
-                    pass
-            
-            cursor.execute("""
-                INSERT INTO proteins (protein_id, gene_id, length, description, status)
-                VALUES (?, ?, ?, ?, ?)
-            """, (
-                uniprot_id,
-                gene_id,
-                length,
-                f"Protein for {gene_name}",
-                status
-            ))
-            processed_proteins[uniprot_id] = uniprot_id
-        
-        # Process repeat domain
-        amino_start = None
-        amino_end = None
-        if repeat.get("position") and isinstance(repeat.get("position"), str):
-            position = repeat.get("position")
-            try:
-                # Extract positions from "amino acids 343-389 on protein Q6TDP4"
-                parts = position.split()
-                if len(parts) >= 3:
-                    pos = parts[2].split("-")
-                    if len(pos) == 2:
-                        amino_start = int(pos[0])
-                        amino_end = int(pos[1])
-            except:
-                pass
-        
-        # Calculate sequence length from blockSizes
-        sequence_length = 0
-        block_sizes = repeat.get("blockSizes", [])
+    if isinstance(aliases, list):
+        for alias in aliases:
+            if alias:
+                cursor.execute(
+                    "INSERT OR IGNORE INTO gene_aliases (gene_id, alias_name) VALUES (?, ?)",
+                    (gene_id, alias)
+                )
+    elif isinstance(aliases, str) and aliases:
+        cursor.execute(
+            "INSERT OR IGNORE INTO gene_aliases (gene_id, alias_name) VALUES (?, ?)",
+            (gene_id, aliases)
+        )
+
+def insert_or_get_protein(cursor, uniprot_id, gene_id, status=None):
+    """Insert protein if not exists and return protein_id"""
+    cursor.execute(
+        "SELECT protein_id FROM proteins WHERE protein_id = ?", 
+        (uniprot_id,)
+    )
+    result = cursor.fetchone()
+    
+    if result:
+        return result[0]
+    
+    cursor.execute(
+        "INSERT INTO proteins (protein_id, gene_id, status) VALUES (?, ?, ?)",
+        (uniprot_id, gene_id, status)
+    )
+    return uniprot_id
+
+def insert_repeat(cursor, protein_id, repeat_data):
+    """Insert repeat and return repeat_id"""
+    cursor.execute(
+        """
+        INSERT INTO repeats 
+        (protein_id, repeat_type, chrom, chrom_start, chrom_end, 
+        strand, position, repeat_length, reserved) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """,
+        (
+            protein_id, 
+            repeat_data.get('repeatType'), 
+            repeat_data.get('chrom'), 
+            repeat_data.get('chromStart'), 
+            repeat_data.get('chromEnd'),
+            repeat_data.get('strand'), 
+            repeat_data.get('position'), 
+            repeat_data.get('repeatLength'),
+            json.dumps(repeat_data.get('reserved', []))
+        )
+    )
+    repeat_id = cursor.lastrowid
+    
+    # Insert into genomic_coordinates table
+    cursor.execute(
+        """
+        INSERT INTO genomic_coordinates 
+        (repeat_id, chrom_start, chrom_end, strand) 
+        VALUES (?, ?, ?, ?)
+        """,
+        (
+            repeat_id, 
+            repeat_data.get('chromStart'), 
+            repeat_data.get('chromEnd'), 
+            repeat_data.get('strand')
+        )
+    )
+    
+    # Extract start and end positions from position field (e.g., "amino acids 343-389 on protein Q6TDP4")
+    position = repeat_data.get('position', '')
+    start_pos = None
+    end_pos = None
+    
+    if position and 'amino acids' in position:
+        try:
+            pos_part = position.split('amino acids ')[1].split(' on')[0]
+            if '-' in pos_part:
+                start_pos, end_pos = map(int, pos_part.split('-'))
+        except (IndexError, ValueError):
+            pass
+    
+    # Update start_pos and end_pos
+    if start_pos is not None and end_pos is not None:
+        cursor.execute(
+            "UPDATE repeats SET start_pos = ?, end_pos = ? WHERE repeat_id = ?",
+            (start_pos, end_pos, repeat_id)
+        )
+    
+    # Insert exons
+    block_count = repeat_data.get('blockCount', 0)
+    block_sizes = repeat_data.get('blockSizes', [])
+    block_starts = repeat_data.get('chromStarts', [])
+    
+    if block_count and block_sizes and block_starts:
         if isinstance(block_sizes, list):
-            for size in block_sizes:
-                try:
-                    sequence_length += int(size)
-                except:
-                    pass
-        
-        # Insert repeat
-        cursor.execute("""
-            INSERT INTO repeats (protein_id, repeat_type, start_pos, end_pos, sequence)
-            VALUES (?, ?, ?, ?, ?)
-        """, (
-            uniprot_id,
-            repeat.get("repeatType", ""),
-            amino_start,
-            amino_end,
-            "N" * sequence_length  # Placeholder sequence of Ns
-        ))
-        repeat_id = cursor.lastrowid
-        
-        # Process exon information if available
-        if "ensembl_exon_info" not in repeat:
+            block_sizes_str = ','.join(map(str, block_sizes))
+        else:
+            block_sizes_str = str(block_sizes)
+            
+        if isinstance(block_starts, list):
+            block_starts_str = ','.join(map(str, block_starts))
+        else:
+            block_starts_str = str(block_starts)
+            
+        cursor.execute(
+            """
+            INSERT INTO exons 
+            (repeat_id, block_count, block_sizes, block_starts) 
+            VALUES (?, ?, ?, ?)
+            """,
+            (repeat_id, block_count, block_sizes_str, block_starts_str)
+        )
+    
+    return repeat_id
+
+def insert_or_get_transcript(cursor, transcript_data, gene_id):
+    """Insert transcript if not exists and return transcript_id"""
+    transcript_id = transcript_data.get('transcript_id')
+    
+    cursor.execute(
+        "SELECT transcript_id FROM transcripts WHERE transcript_id = ?", 
+        (transcript_id,)
+    )
+    result = cursor.fetchone()
+    
+    if result:
+        return result[0]
+    
+    cursor.execute(
+        """
+        INSERT INTO transcripts 
+        (transcript_id, gene_id, ensembl_transcript_id) 
+        VALUES (?, ?, ?)
+        """,
+        (
+            transcript_id, 
+            gene_id, 
+            transcript_data.get('versioned_transcript_id')
+        )
+    )
+    return transcript_id
+
+def process_ensembl_info(cursor, repeat_id, ensembl_info, gene_id):
+    """Process ensembl exon information and insert related records"""
+    if not ensembl_info or not isinstance(ensembl_info, dict):
+        return
+    
+    transcripts = ensembl_info.get('transcripts', [])
+    if not transcripts:
+        return
+    
+    for transcript_data in transcripts:
+        if not isinstance(transcript_data, dict):
             continue
             
-        exon_info = repeat.get("ensembl_exon_info", {})
-        if not exon_info or "transcripts" not in exon_info:
+        transcript_id = transcript_data.get('transcript_id')
+        if not transcript_id:
             continue
             
-        # Process each transcript
-        for transcript_data in exon_info.get("transcripts", []):
-            transcript_id = transcript_data.get("transcript_id")
-            if not transcript_id:
+        # Insert or get transcript
+        transcript_id = insert_or_get_transcript(cursor, transcript_data, gene_id)
+        
+        # Link repeat to transcript
+        cursor.execute(
+            """
+            INSERT OR IGNORE INTO repeat_transcripts 
+            (repeat_id, transcript_id) 
+            VALUES (?, ?)
+            """,
+            (repeat_id, transcript_id)
+        )
+        
+        # Process exons
+        containing_exons = transcript_data.get('containing_exons', [])
+        if not containing_exons:
+            continue
+            
+        for exon_data in containing_exons:
+            if not isinstance(exon_data, dict):
                 continue
                 
-            # Insert transcript if not already processed
-            if transcript_id not in processed_transcripts:
-                cursor.execute("""
-                    INSERT INTO transcripts (transcript_id, gene_id, description)
-                    VALUES (?, ?, ?)
-                """, (
-                    transcript_id,
-                    gene_id,
-                    f"{transcript_data.get('transcript_name', '')} ({transcript_data.get('biotype', '')})"
-                ))
-                processed_transcripts[transcript_id] = transcript_id
+            # Process exon
+            ensembl_exon_id = exon_data.get('exon_id')
+            if not ensembl_exon_id:
+                continue
             
-            # Create repeat_transcript relationship
-            genomic_start = repeat.get("chromStart", 0)
-            genomic_end = repeat.get("chromEnd", 0)
+            # Store exon number and position with transcript context
+            exon_number = exon_data.get('exon_number')
+            exon_position = exon_data.get('position')
             
-            # Convert exon mapping to JSON string
-            exon_mapping = json.dumps([
-                {
-                    "exon_id": exon.get("exon_id", ""),
-                    "exon_number": exon.get("exon_number", 0),
-                    "overlap_bp": exon.get("overlap_bp", 0),
-                    "overlap_percentage": exon.get("overlap_percentage", 0),
-                    "coding_percentage": exon.get("coding_percentage", 0)
-                } for exon in transcript_data.get("containing_exons", [])
-            ])
+            # Add exon information to existing exon record or create a new one
+            cursor.execute(
+                """
+                SELECT exon_id, ensembl_info FROM exons 
+                WHERE repeat_id = ? AND ensembl_exon_id = ?
+                """, 
+                (repeat_id, ensembl_exon_id)
+            )
+            exon_result = cursor.fetchone()
             
-            cursor.execute("""
-                INSERT INTO repeat_transcripts (
-                    repeat_id, transcript_id, genomic_start, genomic_end, exon_mapping
-                ) VALUES (?, ?, ?, ?, ?)
-            """, (
-                repeat_id, 
-                transcript_id, 
-                genomic_start, 
-                genomic_end, 
-                exon_mapping
-            ))
+            phase = exon_data.get('phase')
+            end_phase = exon_data.get('end_phase')
+            frame_status = exon_data.get('frame_status')
             
-            # Process exons in this transcript
-            for exon_data in transcript_data.get("containing_exons", []):
-                exon_id = exon_data.get("exon_id")
-                if not exon_id or exon_id in processed_exons:
-                    continue
-                    
-                # Estimate exon size from overlap percentage
-                exon_size = 0
-                if exon_data.get("overlap_percentage") and exon_data.get("overlap_bp"):
+            # Create JSON structure with exon information including transcript context
+            ensembl_info_dict = {
+                'overlap_bp': exon_data.get('overlap_bp'),
+                'position': exon_position,
+                'overlap_percentage': exon_data.get('overlap_percentage'),
+                'coding_status': exon_data.get('coding_status'),
+                'utr_status': exon_data.get('utr_status'),
+                'coding_percentage': exon_data.get('coding_percentage'),
+                'exon_number': exon_number,
+                'transcript_id': transcript_id,  # Add transcript context
+                'transcript_name': transcript_data.get('transcript_name')  # Add transcript name
+            }
+            
+            # Convert to JSON string
+            ensembl_info_str = json.dumps(ensembl_info_dict)
+            
+            if exon_result:
+                # Exon record exists - check if we need to update or create a new transcript-specific record
+                existing_exon_id = exon_result[0]
+                existing_info = exon_result[1]
+                
+                # Process existing info
+                if existing_info:
                     try:
-                        exon_size = int(exon_data.get("overlap_bp") * 100 / exon_data.get("overlap_percentage"))
-                    except:
-                        pass
+                        existing_info_dict = json.loads(existing_info)
+                        existing_transcript_id = existing_info_dict.get('transcript_id')
+                        
+                        # If this is info for a different transcript, store both versions
+                        if existing_transcript_id and existing_transcript_id != transcript_id:
+                            # Keep track of different transcripts and their exon positions
+                            if not existing_info_dict.get('other_transcripts'):
+                                existing_info_dict['other_transcripts'] = {}
+                            
+                            # Add this transcript's info to the other_transcripts field
+                            existing_info_dict['other_transcripts'][transcript_id] = {
+                                'position': exon_position,
+                                'exon_number': exon_number,
+                                'transcript_name': transcript_data.get('transcript_name')
+                            }
+                            
+                            # Update JSON string with enriched info
+                            ensembl_info_str = json.dumps(existing_info_dict)
+                        
+                    except json.JSONDecodeError:
+                        pass  # Use the new JSON if old one is corrupt
                 
-                # Calculate if skipping would preserve reading frame
-                frame_preserving = exon_size % 3 == 0
+                # Update exon record with the new or merged information
+                cursor.execute(
+                    """
+                    UPDATE exons SET 
+                    phase = CASE WHEN ? IS NOT NULL THEN ? ELSE phase END, 
+                    end_phase = CASE WHEN ? IS NOT NULL THEN ? ELSE end_phase END,
+                    frame_status = CASE WHEN ? IS NOT NULL THEN ? ELSE frame_status END,
+                    ensembl_info = ?
+                    WHERE exon_id = ?
+                    """,
+                    (phase, phase, end_phase, end_phase, 
+                     frame_status, frame_status, ensembl_info_str, existing_exon_id)
+                )
+            else:
+                # Insert new exon record
+                cursor.execute(
+                    """
+                    INSERT INTO exons 
+                    (repeat_id, ensembl_exon_id, phase, end_phase, frame_status, ensembl_info) 
+                    VALUES (?, ?, ?, ?, ?, ?)
+                    """,
+                    (repeat_id, ensembl_exon_id, phase, end_phase, frame_status, ensembl_info_str)
+                )
+
+def populate_database(json_file, db_file, schema_file):
+    """Populate the database with data from JSON file"""
+    # Check if files exist
+    if not os.path.exists(json_file):
+        print(f"Error: JSON file not found: {json_file}")
+        return False
+        
+    if not os.path.exists(schema_file):
+        print(f"Error: Schema file not found: {schema_file}")
+        return False
+    
+    # Remove existing database if it exists
+    if os.path.exists(db_file):
+        os.remove(db_file)
+        print(f"Removed existing database: {db_file}")
+    
+    # Read JSON data
+    try:
+        with open(json_file, 'r') as f:
+            data = json.load(f)
+            print(f"Loaded {len(data)} items from JSON file")
+    except json.JSONDecodeError as e:
+        print(f"Error parsing JSON file: {e}")
+        return False
+    
+    # Connect to database and create tables
+    conn = sqlite3.connect(db_file)
+    conn.execute("PRAGMA foreign_keys = ON")
+    cursor = conn.cursor()
+    
+    try:
+        create_tables(conn, schema_file)
+        
+        # Track processed genes and proteins to avoid duplicates
+        processed_genes = {}
+        processed_proteins = {}
+        
+        # Process each item
+        for i, item in enumerate(data):
+            if not item:  # Skip empty items
+                continue
                 
-                cursor.execute("""
-                    INSERT INTO exons (
-                        exon_id, gene_id, length, frame_preserving
-                    ) VALUES (?, ?, ?, ?)
-                """, (
-                    exon_id,
-                    gene_id,
-                    exon_size,
-                    frame_preserving
-                ))
-                processed_exons[exon_id] = exon_id
+            if i % 100 == 0:
+                print(f"Processing item {i+1}/{len(data)}")
+            
+            # Extract gene information
+            gene_name = item.get('geneName')
+            if not gene_name:
+                continue
                 
-                # Create transcript_exon relationship
-                cursor.execute("""
-                    INSERT INTO transcript_exons (
-                        transcript_id, exon_id, exon_number
-                    ) VALUES (?, ?, ?)
-                """, (
-                    transcript_id,
-                    exon_id,
-                    exon_data.get("exon_number", 0)
-                ))
+            # Get chromosome from chrom field
+            chromosome = item.get('chrom', '').replace('chr', '')
+            
+            # Insert or get gene
+            if gene_name in processed_genes:
+                gene_id = processed_genes[gene_name]
+            else:
+                gene_id = insert_or_get_gene(cursor, gene_name, chromosome)
+                processed_genes[gene_name] = gene_id
                 
-                # Create repeat_exon relationship
-                cursor.execute("""
-                    INSERT INTO repeat_exons (
-                        repeat_id, exon_id, overlap_bp, overlap_percentage
-                    ) VALUES (?, ?, ?, ?)
-                """, (
-                    repeat_id,
-                    exon_id,
-                    exon_data.get("overlap_bp", 0),
-                    exon_data.get("overlap_percentage", 0)
-                ))
+                # Insert gene aliases
+                aliases = item.get('aliases', [])
+                insert_gene_aliases(cursor, gene_id, aliases)
+            
+            # Extract protein information
+            uniprot_id = item.get('uniProtId')
+            if not uniprot_id:
+                continue
+                
+            status = item.get('status', '')
+            
+            # Insert or get protein
+            if uniprot_id in processed_proteins:
+                protein_id = processed_proteins[uniprot_id]
+            else:
+                protein_id = insert_or_get_protein(cursor, uniprot_id, gene_id, status)
+                processed_proteins[uniprot_id] = protein_id
+            
+            # Insert repeat
+            repeat_id = insert_repeat(cursor, protein_id, item)
+            
+            # Process ensembl exon information
+            ensembl_info = item.get('ensembl_exon_info')
+            if ensembl_info:
+                process_ensembl_info(cursor, repeat_id, ensembl_info, gene_id)
+        
+        # Commit changes
+        conn.commit()
+        print(f"Database populated successfully with data from {len(processed_genes)} genes and {len(processed_proteins)} proteins")
+        
+        # Create example query for exon skipping subjects
+        print("\nExample SQL query for exon skipping subjects:")
+        example_query = """
+        -- Find genes with more than 5 of the same repeat type and exons with significant overlap
+        SELECT g.gene_name, r.repeat_type, COUNT(DISTINCT r.repeat_id) as repeat_count,
+               e.ensembl_exon_id, e.frame_status, e.ensembl_info
+        FROM genes g
+        JOIN proteins p ON g.gene_id = p.gene_id
+        JOIN repeats r ON p.protein_id = r.protein_id
+        JOIN exons e ON r.repeat_id = e.repeat_id
+        WHERE e.frame_status = 'in_frame'
+          AND JSON_EXTRACT(e.ensembl_info, '$.overlap_percentage') >= 70
+        GROUP BY g.gene_id, r.repeat_type
+        HAVING COUNT(DISTINCT r.repeat_id) > 5
+        ORDER BY g.gene_name, repeat_count DESC;
+        """
+        print(example_query)
+        
+        return True
+        
+    except sqlite3.Error as e:
+        print(f"SQLite error: {e}")
+        conn.rollback()
+        return False
+    finally:
+        conn.close()
+
+def main():
+    json_file = 'c:\\Users\\Okke\\Documents\\GitHub\\Tandem-Repeat-Domain-Database\\test_sqlite\\1000_test_exons_hg38_repeats.json'
+    db_file = 'c:\\Users\\Okke\\Documents\\GitHub\\Tandem-Repeat-Domain-Database\\test_sqlite\\repeats.db'
+    schema_file = 'c:\\Users\\Okke\\Documents\\GitHub\\Tandem-Repeat-Domain-Database\\test_sqlite\\database_schema.sql'
     
-    # Commit all changes
-    conn.commit()
-    
-    # Print some statistics
-    cursor.execute("SELECT COUNT(*) FROM genes")
-    gene_count = cursor.fetchone()[0]
-    
-    cursor.execute("SELECT COUNT(*) FROM proteins")
-    protein_count = cursor.fetchone()[0]
-    
-    cursor.execute("SELECT COUNT(*) FROM repeats")
-    repeat_count = cursor.fetchone()[0]
-    
-    cursor.execute("SELECT COUNT(*) FROM exons")
-    exon_count = cursor.fetchone()[0]
-    
-    print(f"\nDatabase populated successfully:")
-    print(f"  - {gene_count} genes")
-    print(f"  - {protein_count} proteins")
-    print(f"  - {repeat_count} repeat domains")
-    print(f"  - {exon_count} exons")
-    
-    conn.close()
-    
-    print(f"\nDatabase created at: {db_file}")
+    populate_database(json_file, db_file, schema_file)
 
 if __name__ == "__main__":
-    # Define file paths - simplified to use the same directory as the script
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    
-    json_file = os.path.join(script_dir, "1000_test_exons_hg38_repeats.json")
-    db_file = os.path.join(script_dir, "tandem_repeats.db")
-    
-    # Create the database
-    populate_test_database(json_file, db_file)
+    main()
