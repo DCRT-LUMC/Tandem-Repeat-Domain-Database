@@ -348,7 +348,7 @@ def debug_exon_info(conn, exon_id=None):
                 print(f"Error parsing ensembl_info: {row['ensembl_info']}")
 
 def main():
-    db_path = 'c:\\Users\\Okke\\Documents\\GitHub\\Tandem-Repeat-Domain-Database\\test_sqlite\\repeats.db'
+    db_path = 'test_sqlite/repeats.db'
     
     conn = connect_to_database(db_path)
     if not conn:
