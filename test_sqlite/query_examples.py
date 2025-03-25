@@ -41,6 +41,7 @@ def find_exon_skipping_subjects(conn, min_repeats=5, min_overlap_percentage=70):
     1. More than 'min_repeats' of the same repeat type
     2. At least one exon with 'min_overlap_percentage' or more overlap
     3. Exons that are in frame
+    4. Repeats with block_count = 1 (single-block repeats)eats)
     """
     cursor = conn.cursor()
     
@@ -51,6 +52,7 @@ def find_exon_skipping_subjects(conn, min_repeats=5, min_overlap_percentage=70):
         FROM genes g
         JOIN proteins p ON g.gene_id = p.gene_id
         JOIN repeats r ON p.protein_id = r.protein_id
+        -- WHERE r.block_count = 1  -- Only include repeats with block_count = 1
         GROUP BY g.gene_id, r.repeat_type
         HAVING COUNT(DISTINCT r.repeat_id) > ?
     )
@@ -64,21 +66,27 @@ def find_exon_skipping_subjects(conn, min_repeats=5, min_overlap_percentage=70):
         e.frame_status,
         r.repeat_id,
         r.position,
-        json_extract(e.ensembl_info, '$.overlap_percentage') as overlap_percentage,
-        json_extract(e.ensembl_info, '$.overlap_bp') as overlap_bp,
-        json_extract(e.ensembl_info, '$.position') as exon_position,
-        json_extract(e.ensembl_info, '$.transcript_id') as transcript_id,
-        json_extract(e.ensembl_info, '$.transcript_name') as transcript_name,
-        json_extract(e.ensembl_info, '$.exon_number') as exon_number
+        te.overlap_percentage,
+        te.overlap_bp,
+        te.exon_position_in_transcript,
+        te.transcript_id,
+        t.transcript_name,
+        te.exon_number,
+        r.block_count,
+        r.repeat_length
     FROM gene_repeat_counts grc
     JOIN genes g ON grc.gene_id = g.gene_id
     JOIN proteins p ON g.gene_id = p.gene_id
     JOIN repeats r ON p.protein_id = r.protein_id AND r.repeat_type = grc.repeat_type
-    JOIN exons e ON r.repeat_id = e.repeat_id
+    JOIN repeat_exons re ON r.repeat_id = re.repeat_id
+    JOIN exons e ON re.exon_id = e.exon_id
+    JOIN transcript_exons te ON e.exon_id = te.exon_id
+    JOIN transcripts t ON te.transcript_id = t.transcript_id
     WHERE 
         e.frame_status = 'in_frame'
-        AND json_extract(e.ensembl_info, '$.overlap_percentage') >= ?
-    ORDER BY grc.gene_name, grc.repeat_count DESC, overlap_percentage DESC
+        AND te.overlap_percentage >= ?
+        AND r.block_count = 1  -- Only include repeats with block_count = 1ude repeats with block_count = 1
+    ORDER BY grc.gene_name, grc.repeat_count DESC, te.overlap_percentage DESC
     """
     
     cursor.execute(query, (min_repeats, min_overlap_percentage))
@@ -104,14 +112,16 @@ def find_exon_skipping_subjects(conn, min_repeats=5, min_overlap_percentage=70):
             'position': row['position'],
             'overlap_percentage': row['overlap_percentage'],
             'overlap_bp': row['overlap_bp'],
-            'exon_position': row['exon_position'],
+            'exon_position': row['exon_position_in_transcript'],
             'transcript_id': row['transcript_id'],
             'transcript_name': row['transcript_name'],
-            'exon_number': row['exon_number']
+            'exon_number': row['exon_number'],
+            'block_count': row['block_count'],
+            'repeat_length': row['repeat_length']
         })
     
     # Display results
-    print(f"\nExon Skipping Subjects (>{min_repeats} repeats, >{min_overlap_percentage}% overlap):")
+    print(f"\nExon Skipping Subjects (>{min_repeats} repeats, >{min_overlap_percentage}% overlap, block_count = 1):")
     print("=====================================================================")
     
     if not gene_results:
@@ -134,6 +144,7 @@ def find_exon_skipping_subjects(conn, min_repeats=5, min_overlap_percentage=70):
             print(f"   Exon Number: {exon['exon_number']} in {exon['transcript_name']}")
             print(f"   Overlap: {exon['overlap_percentage']}% ({exon['overlap_bp']} bp)")
             print(f"   Repeat Position: {exon['position']}")
+            print(f"   Block Count: {exon['block_count']} (matches repeat length: {exon['repeat_length']})")
         
         if len(data['exons']) > 5:
             print(f"   ... and {len(data['exons']) - 5} more exons")
@@ -348,7 +359,7 @@ def debug_exon_info(conn, exon_id=None):
                 print(f"Error parsing ensembl_info: {row['ensembl_info']}")
 
 def main():
-    db_path = 'c:\\Users\\Okke\\Documents\\GitHub\\Tandem-Repeat-Domain-Database\\test_sqlite\\repeats.db'
+    db_path = 'test_sqlite/repeats.db'
     
     conn = connect_to_database(db_path)
     if not conn:
@@ -359,11 +370,11 @@ def main():
         display_database_stats(conn)
         
         # Debug a specific exon by its Ensembl ID
-        debug_exon_info(conn, "ENSE00000769655")  # Check this specific exon
+        # debug_exon_info(conn, "ENSE00000769655")  # Check this specific exon
         
         # Also check a few other exons to see if the issue is widespread
-        print("\nChecking other exons for possible indexing issues:")
-        debug_exon_info(conn, "ENSE00001368267")  # Another exon to check
+        # print("\nChecking other exons for possible indexing issues:")
+        # debug_exon_info(conn, "ENSE00001368267")  # Another exon to check
         
         # Find exon skipping subjects
         find_exon_skipping_subjects(conn, min_repeats=5, min_overlap_percentage=70)
