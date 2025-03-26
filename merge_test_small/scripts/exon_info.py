@@ -316,20 +316,32 @@ def get_coding_status(exon, transcript, repeat_start, repeat_end):
 def clean_repeat_type(repeat_type):
     """
     Clean repeat type by removing everything after a semicolon or space
-    e.g. "ANK 1" -> "ANK", "TNFR-Cys; trunk" -> "TNFR-Cys"
+    e.g. "ANK 1" -> "ANK", "TNFR-Cys; trunk" -> "TNFR-Cys", "LRR 1; degenerate" -> "LRR"
+    
+    If the resulting repeat type is just a number, replace it with "Unknown"
+    to indicate the repeat type is unnamed.
     """
     if not repeat_type:
         return repeat_type
-        
-    # First check for semicolon
-    if ";" in repeat_type:
-        return repeat_type.split(";")[0].strip()
     
-    # Then check for space
-    if " " in repeat_type:
-        return repeat_type.split(" ")[0].strip()
-        
-    return repeat_type
+    cleaned_type = repeat_type
+    
+    # First check for semicolon
+    if ";" in cleaned_type:
+        cleaned_type = cleaned_type.split(";")[0].strip()
+    
+    # Then check for space (now on the already semicolon-cleaned string)
+    if " " in cleaned_type:
+        # Look for the first space followed by a number
+        parts = cleaned_type.split(" ")
+        if len(parts) > 1 and any(part.isdigit() or (part.replace('.', '', 1).isdigit() and part.count('.') <= 1) for part in parts[1:]):
+            cleaned_type = parts[0]
+    
+    # Check if the resulting type is just a number
+    if cleaned_type.isdigit() or (cleaned_type.replace('.', '', 1).isdigit() and cleaned_type.count('.') <= 1):
+        return "Unknown"
+    
+    return cleaned_type
 
 def process_repeat_data(repeat_data_file, output_file, limit=None):
     """
@@ -562,9 +574,9 @@ if __name__ == "__main__":
     # Set up argument parser for more user-friendly command line options
     import argparse
     parser = argparse.ArgumentParser(description="Process repeats and add Ensembl exon information.")
-    parser.add_argument("--input", "-i", default=os.path.join(project_root, "data", "1000_gname_hg38_repeats.json"),
+    parser.add_argument("--input", "-i", default=os.path.join(project_root, "data", "1test.json"),
                         help="Input JSON file containing repeat data")
-    parser.add_argument("--output", "-o", default=os.path.join(project_root, "data", "1000_test_exons_hg38_repeats.json"),
+    parser.add_argument("--output", "-o", default=os.path.join(project_root, "data", "v21test.json"),
                         help="Output JSON file to save results")
     parser.add_argument("--limit", "-l", type=int, default=None,
                         help="Limit processing to first N entries (e.g., 10, 100)")

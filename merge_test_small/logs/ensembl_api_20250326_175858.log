@@ -1,0 +1,8 @@
+2025-03-26 17:58:58,926 - INFO - Logging to file: /home/dogdorgesh/Documents/Github/Tandem-Repeat-Domain-Database/merge_test_small/logs/ensembl_api_20250326_175858.log
+2025-03-26 17:59:20,303 - ERROR - Request error: /lookup/id/ENST00000338591 - HTTPSConnectionPool(host='rest.ensembl.org', port=443): Read timed out. (read timeout=15)
+2025-03-26 17:59:23,010 - INFO - === Processing Summary ===
+2025-03-26 17:59:23,010 - INFO - Total API requests: 4
+2025-03-26 17:59:23,010 - INFO - Rate limits encountered: 0
+2025-03-26 17:59:23,010 - INFO - Errors: 1
+2025-03-26 17:59:23,010 - INFO - Total runtime: 24.08 seconds
+2025-03-26 17:59:23,011 - INFO - ========================

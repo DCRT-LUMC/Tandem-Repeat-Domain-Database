@@ -89,8 +89,8 @@ if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
     
-    input_file = os.path.join(project_root, "data", "1000_hg38_repeats.json")
-    output_file = os.path.join(project_root, "data", "1000_length_filtered_hg38_repeats.json")
+    input_file = os.path.join(project_root, "data", "hg38_repeats.json")
+    output_file = os.path.join(project_root, "data", "DEF_length_filtered_hg38_repeats.json")
     
     # Process the file, filtering out repeats shorter than 60 bp
     add_repeat_length_and_filter(input_file, output_file, min_length=60)

@@ -99,8 +99,8 @@ def process_entry(entry):
 
 
 def main():
-    input_file = os.path.join("merge_test_small", "data", "1000_length_filtered_hg38_repeats.json")
-    output_file = os.path.join("merge_test_small", "data", "1000_gname_hg38_repeats.json")
+    input_file = os.path.join("merge_test_small", "data", "DEF_length_filtered_hg38_repeats.json")
+    output_file = os.path.join("merge_test_small", "data", "DEF_gname_hg38_repeats.json")
     
     # Ensure the input file exists
     if not os.path.exists(input_file):
