@@ -1,7 +1,0 @@
-2025-03-26 12:49:27,964 - INFO - Logging to file: /home/dogdorgesh/Documents/Github/Tandem-Repeat-Domain-Database/merge_test_small/logs/ensembl_api_20250326_124927.log
-2025-03-26 12:49:28,984 - INFO - === Processing Summary ===
-2025-03-26 12:49:28,984 - INFO - Total API requests: 4
-2025-03-26 12:49:28,985 - INFO - Rate limits encountered: 0
-2025-03-26 12:49:28,985 - INFO - Errors: 0
-2025-03-26 12:49:28,985 - INFO - Total runtime: 1.02 seconds
-2025-03-26 12:49:28,986 - INFO - ========================

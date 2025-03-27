@@ -438,7 +438,7 @@ def populate_database(json_file, db_file, schema_file):
         conn.close()
 
 def main():
-    json_file = 'test_sqlite/1000_test_exons_hg38_repeats.json'
+    json_file = 'output/1000_test_exons_hg38_repeats.json'
     db_file = 'test_sqlite/repeats.db'
     schema_file = 'test_sqlite/database_schema.sql'
     
