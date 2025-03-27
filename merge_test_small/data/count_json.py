@@ -23,16 +23,18 @@ def analyze_json_file(file_path):
                 entries_without_blockcount = sum(1 for item in data if "blockCount" not in item)
                 
                 # Count by gene and repeat type to find those with ≥5 repeats of same type
+                # BUT ONLY COUNT REPEATS WITH BLOCKCOUNT = 1
                 gene_repeat_counts = defaultdict(lambda: defaultdict(int))
                 
-                # First pass: count repeats by gene and type
+                # First pass: count repeats by gene and type (only blockCount=1)
                 for item in data:
-                    if "geneName" in item and "repeatType" in item:
+                    if ("geneName" in item and "repeatType" in item and 
+                        "blockCount" in item and item["blockCount"] == 1):
                         gene_name = item["geneName"]
                         repeat_type = item["repeatType"]
                         gene_repeat_counts[gene_name][repeat_type] += 1
                 
-                # Find genes with ≥5 repeats of the same type
+                # Find genes with ≥5 repeats of the same type (with blockCount=1)
                 genes_with_5plus_repeats = set()
                 for gene, type_counts in gene_repeat_counts.items():
                     for repeat_type, count in type_counts.items():
@@ -53,7 +55,6 @@ def analyze_json_file(file_path):
                         # Ensembl exon info is stored in a nested structure
                         if "ensembl_exon_info" in item and isinstance(item["ensembl_exon_info"], dict):
                             exon_info = item["ensembl_exon_info"]
-
                              
                             # Check transcripts for in-frame exons
                             if "transcripts" in exon_info and isinstance(exon_info["transcripts"], list):
@@ -123,7 +124,8 @@ def analyze_json_file(file_path):
                         if has_inframe_canonical_exon:
                             genes_satisfying_all_with_canonical.add(item["geneName"])
                 
-                return {
+                # Add the actual gene names to the results
+                results = {
                     "total_entries": total_entries,
                     "entries_without_genename": entries_without_genename,
                     "entries_with_genename": total_entries - entries_without_genename,
@@ -134,8 +136,12 @@ def analyze_json_file(file_path):
                     "entries_satisfying_all_with_canonical": entries_satisfying_all_with_canonical,
                     "genes_with_5plus_repeats_count": len(genes_with_5plus_repeats),
                     "genes_satisfying_all_criteria_count": len(genes_satisfying_all),
-                    "genes_satisfying_all_with_canonical_count": len(genes_satisfying_all_with_canonical)
+                    "genes_satisfying_all_with_canonical_count": len(genes_satisfying_all_with_canonical),
+                    "genes_satisfying_all": sorted(list(genes_satisfying_all)),  # Add the actual gene names
+                    "genes_satisfying_all_with_canonical": sorted(list(genes_satisfying_all_with_canonical))  # Add canonical gene names
                 }
+                
+                return results
             else:
                 return "Error: JSON root is not a list"
     except json.JSONDecodeError:
@@ -155,10 +161,31 @@ if __name__ == "__main__":
         print(f"  Entries with blockCount = 1: {results['entries_with_blockcount_1']} ({results['entries_with_blockcount_1']/results['total_entries']*100:.2f}%)")
         print(f"  Entries without blockCount field: {results['entries_without_blockcount']} ({results['entries_without_blockcount']/results['total_entries']*100:.2f}%)")
         print(f"  Entries with blockCount = 1 AND in-frame exons: {results['entries_with_blockcount_1_and_inframe']} ({results['entries_with_blockcount_1_and_inframe']/results['total_entries']*100:.2f}%)")
-        print(f"  Number of gene-repeatType combinations with ≥5 repeats: {results['genes_with_5plus_repeats_count']}")
+        print(f"  Number of gene-repeatType combinations with ≥5 repeats of blockCount=1: {results['genes_with_5plus_repeats_count']}")
         print(f"  Entries satisfying all criteria: {results['entries_satisfying_all_criteria']} ({results['entries_satisfying_all_criteria']/results['total_entries']*100:.2f}%)")
         print(f"  Entries satisfying all criteria AND in canonical transcripts: {results['entries_satisfying_all_with_canonical']} ({results['entries_satisfying_all_with_canonical']/results['total_entries']*100:.2f}%)")
         print(f"  Number of unique genes satisfying all criteria: {results['genes_satisfying_all_criteria_count']}")
         print(f"  Number of unique genes satisfying all criteria AND in canonical transcripts: {results['genes_satisfying_all_with_canonical_count']}")
+        
+        # Print the actual gene names
+        print(f"\nGenes satisfying all criteria ({results['genes_satisfying_all_criteria_count']}):")
+        if results['genes_satisfying_all_criteria_count'] > 0:
+            # Print all genes or limit to 20 with indication if there are more
+            gene_list = results["genes_satisfying_all"]
+            if len(gene_list) <= 20:
+                print(", ".join(gene_list))
+            else:
+                print(", ".join(gene_list[:20]) + f", ... and {len(gene_list) - 20} more genes")
+                print(f"(Use '--save-genes filename.txt' option to save the complete list)")
+        
+        # Print the canonical genes
+        print(f"\nGenes satisfying all criteria AND in canonical transcripts ({results['genes_satisfying_all_with_canonical_count']}):")
+        if results['genes_satisfying_all_with_canonical_count'] > 0:
+            gene_list = results["genes_satisfying_all_with_canonical"]
+            if len(gene_list) <= 20:
+                print(", ".join(gene_list))
+            else:
+                print(", ".join(gene_list[:20]) + f", ... and {len(gene_list) - 20} more genes")
+                print(f"(Use '--save-genes filename.txt' option to save the complete list)")
     else:
         print(results)
