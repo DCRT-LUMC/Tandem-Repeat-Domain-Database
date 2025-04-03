@@ -150,7 +150,7 @@ def analyze_json_file(file_path):
         return f"Error: {str(e)}"
 
 if __name__ == "__main__":
-    file_path = sys.argv[1] if len(sys.argv) > 1 else "DEF_gname_hg38_repeats.json"
+    file_path = sys.argv[1] if len(sys.argv) > 1 else "output/1000_test_exons_hg38_repeats.json"
     results = analyze_json_file(file_path)
     
     if isinstance(results, dict):

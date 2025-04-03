@@ -1,0 +1,4 @@
+2025-03-31 16:53:59,276 - INFO - Logging to file: /home/dogdorgesh/Documents/Github/Tandem-Repeat-Domain-Database/col_data/logs/ensembl_api_20250331_165359.log
+2025-03-31 16:53:59,279 - INFO - Logging to file: /home/dogdorgesh/Documents/Github/Tandem-Repeat-Domain-Database/col_data/logs/ensembl_api_20250331_165359.log
+2025-03-31 16:54:03,887 - WARNING - Invalid blockSize value 'invalid' in repeat: unknown
+2025-03-31 16:54:03,887 - WARNING - Missing blockSizes in repeat: test
