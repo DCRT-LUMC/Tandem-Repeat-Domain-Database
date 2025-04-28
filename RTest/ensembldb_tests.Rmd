@@ -129,3 +129,17 @@ library(shiny)
 runApp("/home/dogdorgesh/Documents/Github/Tandem-Repeat-Domain-Database/RTest")
 ```
 
+```{r}
+# Create user library directory if it doesn't exist
+dir.create(Sys.getenv("R_LIBS_USER"), recursive = TRUE)
+
+# Install BiocManager if needed
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager", lib = Sys.getenv("R_LIBS_USER"))
+
+# Install AnnotationHub using BiocManager
+BiocManager::install("AnnotationHub", lib = Sys.getenv("R_LIBS_USER"))
+
+# You'll also need ensembldb for your script
+BiocManager::install("ensembldb", lib = Sys.getenv("R_LIBS_USER"))
+```

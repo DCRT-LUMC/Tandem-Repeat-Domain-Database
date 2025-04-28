@@ -86,10 +86,9 @@ get_overlapping_transcripts <- function(chrom, start, end, strand = NULL, ensdb)
                               
   # Filter to keep only canonical transcripts
   if (length(tx) > 0) {
-    #tx <- tx[tx$tx_is_canonical == TRUE]
-    tx <- tx[tx$tx_biotype == "protein_coding"]
+    tx <- tx[tx$tx_is_canonical == TRUE]
   }
-
+  
   # Return NULL if no transcripts found
   if (length(tx) == 0) {
     return(NULL)
@@ -382,108 +381,105 @@ process_repeat <- function(repeat_data, ensdb) {
       }
     }
     
-    # Skip intronic transcripts - only continue processing for exonic or outside transcripts
-    if (location != "intronic") {
-      locations <- c(locations, location)
-      
-      # Get CDS information
-      tx_cds_start <- transcript$tx_cds_seq_start
-      tx_cds_end <- transcript$tx_cds_seq_end
-      
-      # Get CDS regions for this transcript
-      cds_regions <- NULL
-      if (tx_id %in% names(cds_by_tx)) {
-        cds_regions <- cds_by_tx[[tx_id]]
-      } else {
-        cds_regions <- GRanges()  # Empty GRanges if no CDS found
-      }
-      
-      # Process exons only for exonic transcripts
-      containing_exons <- list()
-      if (location == "exonic") {
-        for (j in 1:length(exons)) {
-          exon <- exons[j]
-          exon_start <- start(exon)
-          exon_end <- end(exon)
-          
-          # Check if repeat overlaps this exon
-          if (max(start, exon_start) < min(end, exon_end)) {
-            exon_number <- j
-            
-            # Calculate overlap statistics
-            overlap_start <- max(start, exon_start)
-            overlap_end <- min(end, exon_end)
-            overlap_length <- overlap_end - overlap_start
-            exon_length <- exon_end - exon_start
-            overlap_percentage <- (overlap_length / exon_length) * 100
-            
-            # Determine position in transcript
-            if (exon_count == 1) {
-              position <- "single_exon"
-            } else if (j == 1) {
-              position <- "first_exon"
-            } else if (j == exon_count) {
-              position <- "last_exon"
-            } else {
-              position <- paste0("middle_exon_", exon_number)
-            }
-            
-            # Get coding status for this exon
-            coding_info <- get_coding_status(exon, tx_cds_start, tx_cds_end)
-            
-            # Calculate phase information from CDS positions instead of database retrieval
-            phase_info <- calculate_phase(exon, cds_regions)
-            phase <- phase_info$phase
-            end_phase <- phase_info$end_phase
-            
-            # Get frame status
-            frame_status <- get_frame_status(phase, end_phase, coding_info$status)
-            
-            # Create exon info object
-            exon_info <- list(
-              exon_number = exon_number,
-              exon_id = exon$exon_id,
-              exon_start = exon_start,
-              exon_end = exon_end,
-              protein_start = exon$protein_start,
-              protein_end = exon$protein_end,
-              overlap_bp = overlap_length,
-              position = position,
-              overlap_percentage = round(overlap_percentage, 2),
-              coding_status = coding_info$status,
-              utr_status = coding_info$utr_status,
-              coding_percentage = coding_info$percentage,
-              phase = phase,
-              end_phase = end_phase,
-              frame_status = frame_status
-            )
-            
-            containing_exons <- c(containing_exons, list(exon_info))
-          }
-        }
-      }
-      
-      # Create transcript info object
-      tx_info <- list(
-        transcript_id = tx_id,
-        versioned_transcript_id = versioned_tx_id,
-        transcript_name = transcript$tx_name,
-        is_canonical = is_canonical,
-        biotype = tx_biotype,
-        location = location,
-        exon_count = exon_count,
-        strand = tx_strand,
-        containing_exons = containing_exons
-      )
-      
-      transcript_info <- c(transcript_info, list(tx_info))
+    locations <- c(locations, location)
+    
+    # Get CDS information
+    tx_cds_start <- transcript$tx_cds_seq_start
+    tx_cds_end <- transcript$tx_cds_seq_end
+    
+    # Get CDS regions for this transcript
+    cds_regions <- NULL
+    if (tx_id %in% names(cds_by_tx)) {
+      cds_regions <- cds_by_tx[[tx_id]]
+    } else {
+      cds_regions <- GRanges()  # Empty GRanges if no CDS found
     }
+    
+    # For each overlapping exon
+    containing_exons <- list()
+    for (j in 1:length(exons)) {
+      exon <- exons[j]
+      exon_start <- start(exon)
+      exon_end <- end(exon)
+      
+      # Check if repeat overlaps this exon
+      if (max(start, exon_start) < min(end, exon_end)) {
+        exon_number <- j
+        
+        # Calculate overlap statistics
+        overlap_start <- max(start, exon_start)
+        overlap_end <- min(end, exon_end)
+        overlap_length <- overlap_end - overlap_start
+        exon_length <- exon_end - exon_start
+        overlap_percentage <- (overlap_length / exon_length) * 100
+        
+        # Determine position in transcript
+        if (exon_count == 1) {
+          position <- "single_exon"
+        } else if (j == 1) {
+          position <- "first_exon"
+        } else if (j == exon_count) {
+          position <- "last_exon"
+        } else {
+          position <- paste0("middle_exon_", exon_number)
+        }
+        
+        # Get coding status for this exon
+        coding_info <- get_coding_status(exon, tx_cds_start, tx_cds_end)
+        
+        # Calculate phase information from CDS positions instead of database retrieval
+        phase_info <- calculate_phase(exon, cds_regions)
+        phase <- phase_info$phase
+        end_phase <- phase_info$end_phase
+        
+        # Get frame status
+        frame_status <- get_frame_status(phase, end_phase, coding_info$status)
+        
+        # Create exon info object
+        exon_info <- list(
+          exon_number = exon_number,
+          exon_id = exon$exon_id,
+          exon_start = exon_start,
+          exon_end = exon_end,
+          protein_start = exon$protein_start,
+          protein_end = exon$protein_end,
+          overlap_bp = overlap_length,
+          position = position,
+          overlap_percentage = round(overlap_percentage, 2),
+          coding_status = coding_info$status,
+          utr_status = coding_info$utr_status,
+          coding_percentage = coding_info$percentage,
+          phase = phase,
+          end_phase = end_phase,
+          frame_status = frame_status
+        )
+        
+        containing_exons <- c(containing_exons, list(exon_info))
+      }
+    }
+    
+    # Create transcript info object
+    tx_info <- list(
+      transcript_id = tx_id,
+      versioned_transcript_id = versioned_tx_id,
+      transcript_name = transcript$tx_name,
+      is_canonical = is_canonical,
+      biotype = tx_biotype,
+      location = location,
+      exon_count = exon_count,
+      strand = tx_strand,
+      containing_exons = containing_exons
+    )
+    
+    transcript_info <- c(transcript_info, list(tx_info))
   }
   
-  # Summarize location (prioritize exonic > outside/unknown)
+  # Summarize location (prioritize exonic > intronic > outside/unknown)
   location_summary <- "unknown"
   if ("exonic" %in% locations) {
     location_summary <- "exonic"
+  } else if ("intronic" %in% locations) {
+    location_summary <- "intronic"
   } else if ("outside" %in% locations) {
     location_summary <- "intergenic"
   }
@@ -501,7 +497,7 @@ process_repeat <- function(repeat_data, ensdb) {
 }
 
 # Main processing function
-simple_process_repeat_data <- function(input_file, output_file, limit = NULL, range = NULL) {
+simple_process_repeat_data <- function(input_file, output_file, limit = NULL) {
   start_time <- Sys.time()
   
   # Load repeat data
@@ -513,26 +509,8 @@ simple_process_repeat_data <- function(input_file, output_file, limit = NULL, ra
     !is.null(r$chrom) && !is.null(r$chromStart) && !is.null(r$chromEnd)
   })]
   
-  # Apply range or limit if specified
-  if (!is.null(range)) {
-    # Parse range in format "start-end"
-    range_parts <- as.integer(unlist(strsplit(range, "-")))
-    if (length(range_parts) == 2) {
-      start_idx <- range_parts[1]
-      end_idx <- range_parts[2]
-      
-      # Validate range
-      if (start_idx >= 1 && end_idx <= length(valid_repeats) && start_idx <= end_idx) {
-        valid_repeats <- valid_repeats[start_idx:end_idx]
-        cat(sprintf("Processing repeats %d to %d out of %d repeats...\n", 
-                   start_idx, end_idx, length(repeats)))
-      } else {
-        cat("Invalid range specified. Using all repeats.\n")
-      }
-    } else {
-      cat("Invalid range format. Use 'start-end' (e.g., '1-1000'). Using all repeats.\n")
-    }
-  } else if (!is.null(limit) && is.numeric(limit) && limit > 0) {
+  # Apply limit if specified
+  if (!is.null(limit) && is.numeric(limit) && limit > 0) {
     valid_repeats <- valid_repeats[1:min(limit, length(valid_repeats))]
     cat("Processing first", length(valid_repeats), "out of", length(repeats), "repeats...\n")
   } else {
@@ -540,9 +518,9 @@ simple_process_repeat_data <- function(input_file, output_file, limit = NULL, ra
   }
   
   # Try parallel processing with BiocParallel
-  num_cores <- 12
+  num_cores <- 16
   #num_cores <- min(detectCores() - 1, 16)  # More conservative core usage
-  cat("Using", num_ores, "cores for processing with BiocParallel...\n")
+  cat("Using", num_cores, "cores for processing with BiocParallel...\n")  # Fix this line
   
   # First try parallel processing
   processed_repeats <- NULL
@@ -596,25 +574,12 @@ simple_process_repeat_data <- function(input_file, output_file, limit = NULL, ra
 if (!interactive()) {
   args <- commandArgs(trailingOnly = TRUE)
   if (length(args) < 2) {
-    stop("Usage: Rscript simple_process_repeats.R <input_json> <output_json> [limit|range]
-          Where range is in format 'start-end' (e.g., '1-1000')")
+    stop("Usage: Rscript simple_process_repeats.R <input_json> <output_json> [limit]")
   }
   
   input_file <- args[1]
   output_file <- args[2]
+  limit <- if (length(args) >= 3) as.numeric(args[3]) else NULL
   
-  # Check if third argument is a range or a limit
-  if (length(args) >= 3) {
-    if (grepl("-", args[3])) {
-      # It's a range parameter
-      range <- args[3]
-      simple_process_repeat_data(input_file, output_file, range = range)
-    } else {
-      # It's a limit parameter
-      limit <- as.numeric(args[3])
-      simple_process_repeat_data(input_file, output_file, limit = limit)
-    }
-  } else {
-    simple_process_repeat_data(input_file, output_file)
-  }
+  simple_process_repeat_data(input_file, output_file, limit)
 }

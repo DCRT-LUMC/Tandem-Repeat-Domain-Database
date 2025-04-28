@@ -1,0 +1,4842 @@
+[
+    {
+      "chrom": "chr1",
+      "chromStart": 962901,
+      "chromEnd": 963233,
+      "strand": "+",
+      "reserved": [
+        "12",
+        "12",
+        "120"
+      ],
+      "blockCount": 2,
+      "blockSizes": [
+        "16",
+        "125"
+      ],
+      "chromStarts": [
+        "0",
+        "207"
+      ],
+      "geneName": "KLHL17",
+      "aliases": [
+        "AF"
+      ],
+      "geneType": "",
+      "status": "Manually reviewed (Swiss-Prot)",
+      "position": "amino acids 343-389 on protein Q6TDP4",
+      "repeatType": "Kelch 1",
+      "uniProtId": "Q6TDP4",
+      "repeatLength": 141
+    },
+    {
+      "chrom": "chr1",
+      "chromStart": 963233,
+      "chromEnd": 963457,
+      "strand": "+",
+      "reserved": [
+        "12",
+        "12",
+        "120"
+      ],
+      "blockCount": 2,
+      "blockSizes": [
+        "20",
+        "121"
+      ],
+      "chromStarts": [
+        "0",
+        "103"
+      ],
+      "geneName": "KLHL17",
+      "aliases": [
+        "AF"
+      ],
+      "geneType": "",
+      "status": "Manually reviewed (Swiss-Prot)",
+      "position": "amino acids 390-436 on protein Q6TDP4",
+      "repeatType": "Kelch 2",
+      "uniProtId": "Q6TDP4",
+      "repeatLength": 141
+    },
+    {
+      "chrom": "chr1",
+      "chromStart": 963460,
+      "chromEnd": 964111,
+      "strand": "+",
+      "reserved": [
+        "12",
+        "12",
+        "120"
+      ],
+      "blockCount": 3,
+      "blockSizes": [
+        "44",
+        "89",
+        "5"
+      ],
+      "chromStarts": [
+        "0",
+        "459",
+        "646"
+      ],
+      "geneName": "KLHL17",
+      "aliases": [
+        "AF"
+      ],
+      "geneType": "",
+      "status": "Manually reviewed (Swiss-Prot)",
+      "position": "amino acids 438-483 on protein Q6TDP4",
+      "repeatType": "Kelch 3",
+      "uniProtId": "Q6TDP4",
+      "repeatLength": 138
+    },
+    {
+      "chrom": "chr1",
+      "chromStart": 964111,
+      "chromEnd": 964420,
+      "strand": "+",
+      "reserved": [
+        "12",
+        "12",
+        "120"
+      ],
+      "blockCount": 2,
+      "blockSizes": [
+        "69",
+        "72"
+      ],
+      "chromStarts": [
+        "0",
+        "237"
+      ],
+      "geneName": "KLHL17",
+      "aliases": [
+        "AF"
+      ],
+      "geneType": "",
+      "status": "Manually reviewed (Swiss-Prot)",
+      "position": "amino acids 484-530 on protein Q6TDP4",
+      "repeatType": "Kelch 4",
+      "uniProtId": "Q6TDP4",
+      "repeatLength": 141
+    },
+    {
+      "chrom": "chr1",
+      "chromStart": 964423,
+      "chromEnd": 964993,
+      "strand": "+",
+      "reserved": [
+        "12",
+        "12",
+        "120"
+      ],
+      "blockCount": 2,
+      "blockSizes": [
+        "107",
+        "31"
+      ],
+      "chromStarts": [
+        "0",
+        "539"
+      ],
+      "geneName": "KLHL17",
+      "aliases": [
+        "AF"
+      ],
+      "geneType": "",
+      "status": "Manually reviewed (Swiss-Prot)",
+      "position": "amino acids 532-577 on protein Q6TDP4",
+      "repeatType": "Kelch 5",
+      "uniProtId": "Q6TDP4",
+      "repeatLength": 138
+    },
+    {
+      "chrom": "chr1",
+      "chromStart": 964993,
+      "chromEnd": 965134,
+      "strand": "+",
+      "reserved": [
+        "12",
+        "12",
+        "120"
+      ],
+      "blockCount": 1,
+      "blockSizes": [
+        "141"
+      ],
+      "chromStarts": [
+        "0"
+      ],
+      "geneName": "KLHL17",
+      "aliases": [
+        "AF"
+      ],
+      "geneType": "",
+      "status": "Manually reviewed (Swiss-Prot)",
+      "position": "amino acids 578-624 on protein Q6TDP4",
+      "repeatType": "Kelch 6",
+      "uniProtId": "Q6TDP4",
+      "repeatLength": 141
+    },
+    {
+      "chrom": "chr1",
+      "chromStart": 1204175,
+      "chromEnd": 1204454,
+      "strand": "-",
+      "reserved": [
+        "12",
+        "12",
+        "120"
+      ],
+      "blockCount": 2,
+      "blockSizes": [
+        "61",
+        "56"
+      ],
+      "chromStarts": [
+        "0",
+        "223"
+      ],
+      "geneName": "TNFRSF18",
+      "aliases": [
+        "AITR",
+        "GITR"
+      ],
+      "geneType": "",
+      "status": "Manually reviewed (Swiss-Prot)",
+      "position": "amino acids 115-153 on protein Q9Y5U5",
+      "repeatType": "TNFR-Cys 3",
+      "uniProtId": "Q9Y5U5",
+      "repeatLength": 117
+    },
+    {
+      "chrom": "chr1",
+      "chromStart": 1204460,
+      "chromEnd": 1205460,
+      "strand": "-",
+      "reserved": [
+        "12",
+        "12",
+        "120"
+      ],
+      "blockCount": 2,
+      "blockSizes": [
+        "26",
+        "91"
+      ],
+      "chromStarts": [
+        "0",
+        "909"
+      ],
+      "geneName": "TNFRSF18",
+      "aliases": [
+        "AITR",
+        "GITR"
+      ],
+      "geneType": "",
+      "status": "Manually reviewed (Swiss-Prot)",
+      "position": "amino acids 74-112 on protein Q9Y5U5",
+      "repeatType": "TNFR-Cys 2",
+      "uniProtId": "Q9Y5U5",
+      "repeatLength": 117
+    },
+    {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 962901,
+        "chromEnd": 963233,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "16",
+          "125"
+        ],
+        "chromStarts": [
+          "0",
+          "207"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 343-389 on protein Q6TDP4",
+        "repeatType": "Kelch 1",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963233,
+        "chromEnd": 963457,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "20",
+          "121"
+        ],
+        "chromStarts": [
+          "0",
+          "103"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 390-436 on protein Q6TDP4",
+        "repeatType": "Kelch 2",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 963460,
+        "chromEnd": 964111,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 3,
+        "blockSizes": [
+          "44",
+          "89",
+          "5"
+        ],
+        "chromStarts": [
+          "0",
+          "459",
+          "646"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 438-483 on protein Q6TDP4",
+        "repeatType": "Kelch 3",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964111,
+        "chromEnd": 964420,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "69",
+          "72"
+        ],
+        "chromStarts": [
+          "0",
+          "237"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 484-530 on protein Q6TDP4",
+        "repeatType": "Kelch 4",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964423,
+        "chromEnd": 964993,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "107",
+          "31"
+        ],
+        "chromStarts": [
+          "0",
+          "539"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 532-577 on protein Q6TDP4",
+        "repeatType": "Kelch 5",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 138
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 964993,
+        "chromEnd": 965134,
+        "strand": "+",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 1,
+        "blockSizes": [
+          "141"
+        ],
+        "chromStarts": [
+          "0"
+        ],
+        "geneName": "KLHL17",
+        "aliases": [
+          "AF"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 578-624 on protein Q6TDP4",
+        "repeatType": "Kelch 6",
+        "uniProtId": "Q6TDP4",
+        "repeatLength": 141
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204175,
+        "chromEnd": 1204454,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "61",
+          "56"
+        ],
+        "chromStarts": [
+          "0",
+          "223"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 115-153 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 3",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      },
+      {
+        "chrom": "chr1",
+        "chromStart": 1204460,
+        "chromEnd": 1205460,
+        "strand": "-",
+        "reserved": [
+          "12",
+          "12",
+          "120"
+        ],
+        "blockCount": 2,
+        "blockSizes": [
+          "26",
+          "91"
+        ],
+        "chromStarts": [
+          "0",
+          "909"
+        ],
+        "geneName": "TNFRSF18",
+        "aliases": [
+          "AITR",
+          "GITR"
+        ],
+        "geneType": "",
+        "status": "Manually reviewed (Swiss-Prot)",
+        "position": "amino acids 74-112 on protein Q9Y5U5",
+        "repeatType": "TNFR-Cys 2",
+        "uniProtId": "Q9Y5U5",
+        "repeatLength": 117
+      }
+    ]
