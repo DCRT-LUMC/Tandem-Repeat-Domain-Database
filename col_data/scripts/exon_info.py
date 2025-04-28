@@ -6,6 +6,8 @@ import os
 import sys
 import logging
 import datetime
+import pickle
+from pathlib import Path
 
 # First, determine project root directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -41,6 +43,96 @@ api_stats = {
 
 # Create a cache to avoid redundant API calls
 query_cache = {}
+
+class PersistentCache:
+    def __init__(self, cache_dir=None):
+        if cache_dir is None:
+            # Create a cache directory in the project root
+            self.cache_dir = Path(project_root) / "cache" / "ensembl_api" 
+        else:
+            self.cache_dir = Path(cache_dir)
+        
+        # Ensure the cache directory exists 
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        
+        # In-memory cache for faster lookups during execution
+        self.memory_cache = {}
+        
+        # Load existing cache files into memory
+        self._load_cache()
+        
+        # Stats
+        self.hits = 0
+        self.misses = 0
+    
+    def _get_cache_path(self, key):
+        """Convert a cache key to a filesystem path"""
+        # Replace characters that might be problematic in filenames
+        safe_key = key.replace(':', '_').replace('/', '_')
+        return self.cache_dir / f"{safe_key}.pkl"
+    
+    def _load_cache(self):
+        """Load existing cache files into memory on startup"""
+        if not self.cache_dir.exists():
+            return
+            
+        cache_files = list(self.cache_dir.glob("*.pkl"))
+        logging.info(f"Found {len(cache_files)} existing cache files")
+    
+    def get(self, key):
+        """Get an item from cache, either from memory or disk"""
+        # First check memory cache
+        if key in self.memory_cache:
+            self.hits += 1
+            return self.memory_cache[key]
+        
+        # Then check disk cache
+        cache_path = self._get_cache_path(key)
+        if cache_path.exists():
+            try:
+                with open(cache_path, 'rb') as f:
+                    data = pickle.load(f)
+                    # Store in memory for faster future access
+                    self.memory_cache[key] = data
+                    self.hits += 1
+                    return data
+            except Exception as e:
+                logging.warning(f"Failed to load cache file {cache_path}: {e}")
+        
+        self.misses += 1
+        return None
+    
+    def set(self, key, value):
+        """Store an item in both memory and disk cache"""
+        # Update memory cache
+        self.memory_cache[key] = value
+        
+        # Write to disk
+        cache_path = self._get_cache_path(key)
+        try:
+            with open(cache_path, 'wb') as f:
+                pickle.dump(value, f)
+            return True
+        except Exception as e:
+            logging.warning(f"Failed to write cache file {cache_path}: {e}")
+            return False
+    
+    def contains(self, key):
+        """Check if a key exists in the cache"""
+        if key in self.memory_cache:
+            return True
+        
+        cache_path = self._get_cache_path(key)
+        return cache_path.exists()
+    
+    def get_stats(self):
+        """Return cache statistics"""
+        return {
+            "hits": self.hits,
+            "misses": self.misses,
+            "cache_size": len(list(self.cache_dir.glob("*.pkl"))),
+            "memory_cache_size": len(self.memory_cache)
+        }
 
 class EnsemblRestClient(object):
     """
@@ -130,6 +222,9 @@ def convert_to_zero_based(data):
     
     return data
 
+# After the api_stats declaration, initialize the persistent cache
+ensembl_cache = PersistentCache()
+
 def get_ensembl_info(chrom, start, end, species="human"):
     """
     Get transcript and exon information using the Ensembl API.
@@ -139,8 +234,15 @@ def get_ensembl_info(chrom, start, end, species="human"):
     
     # Create cache key
     cache_key = f"{chrom_id}:{start}-{end}"
-    if cache_key in query_cache:
-        return query_cache[cache_key]
+    
+    # Check persistent cache first
+    cached_result = ensembl_cache.get(cache_key)
+    if cached_result:
+        logging.debug(f"Cache hit for {cache_key}")
+        return cached_result
+    
+    # If not in cache, proceed with API call
+    logging.debug(f"Cache miss for {cache_key}, fetching from API")
     
     # Initialize Ensembl REST client
     client = EnsemblRestClient()
@@ -197,8 +299,9 @@ def get_ensembl_info(chrom, start, end, species="human"):
     
     result["transcript_details"] = transcript_details
     
-    # Store in cache
-    query_cache[cache_key] = result
+    # Store in persistent cache before returning
+    ensembl_cache.set(cache_key, result)
+    
     return result
 
 def is_canonical_transcript(transcript, all_transcripts):
@@ -567,16 +670,18 @@ def process_repeat_data(repeat_data_file, output_file, limit=None):
 
 if __name__ == "__main__":
     # Get the directory where the script is located
-    script_dir = os.path.dirname(os.path.abspath(__file__))
+    script_dir = os.path.dirname(os.path.abspath(__file__)) 
     # Get the parent directory (project root)
     project_root = os.path.dirname(script_dir)
     
     # Set up argument parser for more user-friendly command line options
     import argparse
     parser = argparse.ArgumentParser(description="Process repeats and add Ensembl exon information.")
-    parser.add_argument("--input", "-i", default=os.path.join(project_root, "data", "1test.json"),
+    parser.add_argument("--input", "-i", 
+                        default="output/DEF_gname_hg38_repeats.json",
                         help="Input JSON file containing repeat data")
-    parser.add_argument("--output", "-o", default=os.path.join(project_root, "data", "v21test.json"),
+    parser.add_argument("--output", "-o", 
+                        default="output/DEF_exon_info_hg38_repeats.json",
                         help="Output JSON file to save results")
     parser.add_argument("--limit", "-l", type=int, default=None,
                         help="Limit processing to first N entries (e.g., 10, 100)")
@@ -607,6 +712,13 @@ if __name__ == "__main__":
         logging.info(f"Total API requests: {api_stats['requests']}")
         logging.info(f"Rate limits encountered: {api_stats['rate_limits']}")
         logging.info(f"Errors: {api_stats['errors']}")
+        
+        # Add cache statistics
+        cache_stats = ensembl_cache.get_stats()
+        logging.info(f"Cache hits: {cache_stats['hits']}")
+        logging.info(f"Cache misses: {cache_stats['misses']}")
+        logging.info(f"Total cached items: {cache_stats['cache_size']}")
+        
         logging.info(f"Total runtime: {duration:.2f} seconds")
         logging.info("========================")
     except Exception as e:

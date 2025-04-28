@@ -1,0 +1,4 @@
+2025-04-08 10:05:27,138 - INFO - Logging to file: /home/dogdorgesh/Documents/Github/Tandem-Repeat-Domain-Database/col_data/logs/ensembl_api_20250408_100527.log
+2025-04-08 10:05:27,143 - INFO - Found 1853 existing cache files
+2025-04-08 12:43:13,281 - ERROR - Request error: /lookup/id/ENST00000477495 - HTTPSConnectionPool(host='rest.ensembl.org', port=443): Read timed out. (read timeout=15)
+2025-04-08 13:23:41,211 - ERROR - Request error: /lookup/id/ENST00000466876 - HTTPSConnectionPool(host='rest.ensembl.org', port=443): Read timed out. (read timeout=15)

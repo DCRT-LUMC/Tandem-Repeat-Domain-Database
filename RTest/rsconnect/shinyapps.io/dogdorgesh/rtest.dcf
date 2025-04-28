@@ -1,0 +1,10 @@
+name: rtest
+title:
+username: dogdorgesh
+account: dogdorgesh
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14525767
+bundleId: 10117764
+url: https://dogdorgesh.shinyapps.io/rtest/
+version: 1

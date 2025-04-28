@@ -1,0 +1,11 @@
+2025-04-07 15:20:33,380 - INFO - Logging to file: /home/dogdorgesh/Documents/Github/Tandem-Repeat-Domain-Database/col_data/logs/ensembl_api_20250407_152033.log
+2025-04-07 15:20:33,382 - INFO - Found 1 existing cache files
+2025-04-07 15:20:33,396 - INFO - === Processing Summary ===
+2025-04-07 15:20:33,396 - INFO - Total API requests: 0
+2025-04-07 15:20:33,396 - INFO - Rate limits encountered: 0
+2025-04-07 15:20:33,396 - INFO - Errors: 0
+2025-04-07 15:20:33,397 - INFO - Cache hits: 1
+2025-04-07 15:20:33,397 - INFO - Cache misses: 0
+2025-04-07 15:20:33,397 - INFO - Total cached items: 1
+2025-04-07 15:20:33,397 - INFO - Total runtime: 0.01 seconds
+2025-04-07 15:20:33,397 - INFO - ========================

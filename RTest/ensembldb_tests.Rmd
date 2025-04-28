@@ -1,0 +1,131 @@
+```{r}
+library(ensembldb)
+library(AnnotationHub)
+hub <- AnnotationHub()
+ensdb <- hub[["AH119325"]]
+```
+
+```{r}
+gnm <- GRanges("X", IRanges(start = c(630898, 644636, 644633, 634829),
+                            width = c(5, 1, 1, 3)))
+gnm_prt <- genomeToProtein(gnm, ensdb)
+```
+```{r}
+hub <- AnnotationHub()
+query(hub, c("ensdb","homo sapiens","113"))
+```
+```{r}
+ensdb <- hub[["AH119325"]]
+```
+```{r}
+gnm_prt[[1]]
+```
+```{r}
+# Define the gene symbol for which to retrieve UniProt IDs
+gene_symbol <- "ANKRD17"
+
+# Use the 'select' function to query the EnsDb database for UniProt IDs
+results <- select(ensdb,
+                  keys = gene_symbol,
+                  keytype = "SYMBOL",
+                  columns = c("GENEID", "SYMBOL", "UNIPROTID"))
+
+print(results)
+```
+```{r}
+result <- select(ensdb,
+                 keys = "ENSP00000362175",     # Replace with your specific protein ID
+                 keytype = "PROTEINID",
+                 columns = c("PROTEINID", "UNIPROTID", "UNIPROTDB", "UNIPROTMAPPINGTYPE"))
+
+print(result)
+
+# If you need protein name aliases, consider querying external resources (e.g., the UniProt API)
+# using the UniProt ID obtained from the EnsDb database.
+```
+
+```{r}
+# KLHL17
+gnm <- GRanges("1", IRanges(start = 32672791, width = 110))
+gnm_prt <- genomeToProtein(gnm, ensdb)
+gnm_prt
+```
+```{r}
+prt <- proteins(ensdb, filter = ProteinIdFilter(names(gnm_prt[[1]])))
+
+# Extract the parts before and after the segment
+before_segment <- substr(prt$protein_sequence[2], 1, 367)
+after_segment <- substr(prt$protein_sequence[2], 405, 425)
+
+# Combine to create sequence with the segment removed
+modified_sequence <- paste0(before_segment, after_segment)
+
+# Print the modified sequence
+cat("Length before removal:", nchar(prt$protein_sequence[2]), "\n")
+cat("Length after removal:", nchar(modified_sequence), "\n")
+
+cat("Original sequence:")
+prt$protein_sequence[2]
+
+cat("Sequence with removed exon:")
+modified_sequence
+```
+
+```{r}
+# Proper ensembldb sequence retrieval - documented functions only
+library(Biostrings)
+
+# Look at available ensembldb functions
+ls("package:ensembldb")
+
+# Get ensembldb documentation
+help(package="ensembldb")
+
+# Get transcripts for KLHL17 gene
+gene_symbol <- "KLHL17"
+txs <- transcripts(ensdb, filter = SymbolFilter(gene_symbol))
+txs
+
+# Get exons for this transcript - this is a documented function
+tx_id <- txs$tx_id[1]
+exns <- exonsBy(ensdb, by = "tx", filter = TxIdFilter(tx_id))
+exns
+
+# Get coding sequences - this is a documented function
+cds <- cdsBy(ensdb, by="tx", filter = TxIdFilter(tx_id))
+cds
+
+# Get sequence from transcript coordinates - documented in ensembldb
+# The actual function is getTranscriptSeqs() not extractTranscriptSeqs
+txSeqs <- getTranscriptSeqs(ensdb, tx_id = tx_id)
+txSeqs
+
+# Get the CDS sequences from the database
+cdsSeqs <- getCdsSeqs(ensdb, tx_id = tx_id)
+cdsSeqs
+
+# Get the spliced transcript sequences - considers exon structure
+splicedSeqs <- getSplicedTranscriptSeqs(ensdb, tx_id = tx_id)
+splicedSeqs
+
+# Get the protein sequences
+proteinSeqs <- getProteinSeqs(ensdb, tx_id = tx_id)
+proteinSeqs
+
+# Mapping between genomic and transcript coordinates
+exon_tx_map <- transcriptToGenome(tx_id, 1:100, ensdb)
+exon_tx_map
+
+# The reverse mapping
+genome_to_tx <- genomeToTranscript(
+  GRanges("1", IRanges(start = 32672791, width = 110)), 
+  ensdb
+)
+genome_to_tx
+```
+
+```{r}
+library(shiny)
+runApp("/home/dogdorgesh/Documents/Github/Tandem-Repeat-Domain-Database/RTest")
+```
+
