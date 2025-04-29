@@ -15,54 +15,6 @@ if (!dir.exists(output_dir)) {
   dir.create(output_dir, recursive = TRUE)
 }
 
-# Process range 1001-1500
-cat("\n=== Processing range 1001-1500 ===\n")
-simple_process_repeat_data(
-  input_file = input_file,
-  output_file = file.path(output_dir, "1001-1500_annotated_repeats.json"),
-  range = "1001-1500"
-)
-
-# Process range 1501-2000
-cat("\n=== Processing range 1501-2000 ===\n")
-simple_process_repeat_data(
-  input_file = input_file,
-  output_file = file.path(output_dir, "1501-2000_annotated_repeats.json"),
-  range = "1501-2000"
-)
-
-# Process range 2001-2500
-cat("\n=== Processing range 2001-2500 ===\n")
-simple_process_repeat_data(
-  input_file = input_file,
-  output_file = file.path(output_dir, "2001-2500_annotated_repeats.json"),
-  range = "2001-2500"
-)
-
-# Process range 2501-3000
-cat("\n=== Processing range 2501-3000 ===\n")
-simple_process_repeat_data(
-  input_file = input_file,
-  output_file = file.path(output_dir, "2501-3000_annotated_repeats.json"),
-  range = "2501-3000"
-)
-
-# Process range 3001-3500
-cat("\n=== Processing range 3001-3500 ===\n")
-simple_process_repeat_data(
-  input_file = input_file,
-  output_file = file.path(output_dir, "3001-3500_annotated_repeats.json"),
-  range = "3001-3500"
-)
-
-# Process range 3501-4000
-cat("\n=== Processing range 3501-4000 ===\n")
-simple_process_repeat_data(
-  input_file = input_file,
-  output_file = file.path(output_dir, "3501-4000_annotated_repeats.json"),
-  range = "3501-4000"
-)
-
 # Process range 4001-4500
 cat("\n=== Processing range 4001-4500 ===\n")
 simple_process_repeat_data(
