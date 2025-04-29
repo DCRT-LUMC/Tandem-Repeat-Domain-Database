@@ -540,9 +540,9 @@ simple_process_repeat_data <- function(input_file, output_file, limit = NULL, ra
   }
   
   # Try parallel processing with BiocParallel
-  num_cores <- 12
+  num_cores <- 8
   #num_cores <- min(detectCores() - 1, 16)  # More conservative core usage
-  cat("Using", num_ores, "cores for processing with BiocParallel...\n")
+  cat("Using", num_cores, "cores for processing with BiocParallel...\n")  # Fix typo: num_ores → num_cores
   
   # First try parallel processing
   processed_repeats <- NULL
@@ -618,3 +618,18 @@ if (!interactive()) {
     simple_process_repeat_data(input_file, output_file)
   }
 }
+
+# Example usage when running directly in R
+# To process repeats in the range 100-200:
+# simple_process_repeat_data(
+#   input_file = "/home/dogdorgesh/Documents/GitHub/Tandem-Repeat-Domain-Database/RTest/DEF_gname_hg38_repeats.json",
+#   output_file = "/home/dogdorgesh/Documents/GitHub/Tandem-Repeat-Domain-Database/RTest/test_annotated_repeats.json",
+#   range = "1-10"  # IMPORTANT: range must be a string with quotes
+# )
+
+# Incorrect usage (will cause error):
+# simple_process_repeat_data(
+#   input_file = "path/to/input.json",
+#   output_file = "path/to/output.json",
+#   range = 1-10  # ERROR: This evaluates to -9, not the string "1-10"
+# )
