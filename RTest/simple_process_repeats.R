@@ -86,7 +86,7 @@ get_overlapping_transcripts <- function(chrom, start, end, strand = NULL, ensdb)
                               
   # Filter to keep only canonical transcripts
   if (length(tx) > 0) {
-    #tx <- tx[tx$tx_is_canonical == TRUE]
+    tx <- tx[tx$tx_is_canonical == TRUE]
     tx <- tx[tx$tx_biotype == "protein_coding"]
   }
 
