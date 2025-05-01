@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tandem Repeat Domain Database</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <!-- Add DataTables Scroller CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.1.1/css/scroller.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Add DataTables Scroller JS -->
+    <script src="https://cdn.datatables.net/scroller/2.1.1/js/dataTables.scroller.min.js"></script>
+    <style>
+        .header {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+        }
+
+        .error-container {
+            margin: 30px auto;
+            max-width: 800px;
+        }
+
+        /* Style for the scrollable table */
+        div.dataTables_wrapper {
+            margin: 0 auto;
+        }
+        
+        div.container {
+            width: 100%;
+        }
+        
+        div.dataTables_scrollBody {
+            background: transparent !important;
+        }
+        
+        /* Style for repeat count input */
+        .repeat-count-group {
+            display: flex;
+            align-items: center;
+        }
+        
+        #minRepeatsCount {
+            width: 60px;
+            margin-left: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Tandem Repeat Domain Database</h1>
+                    <p class="lead">Browse and explore tandem repeat domains in human proteins</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div id="loading" class="loading-container">
+            <div class="text-center">
+                <div class="spinner-border text-primary mb-3" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div>Loading protein data...</div>
+            </div>
+        </div>
+        
+        <div id="content" style="display: none;">
+            <div class="mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Filter Options</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="repeatTypeFilter" class="form-label">Repeat Type</label>
+                                <select id="repeatTypeFilter" class="form-select">
+                                    <option value="">All Types</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="geneNameFilter" class="form-label">Gene Name</label>
+                                <input type="text" id="geneNameFilter" class="form-control" placeholder="Filter by gene name">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="statusFilter" class="form-label">Status</label>
+                                <select id="statusFilter" class="form-select">
+                                    <option value="">All Statuses</option>
+                                    <option value="Manually reviewed (Swiss-Prot)">Swiss-Prot (Reviewed)</option>
+                                    <option value="Unreviewed (TrEMBL)">TrEMBL (Unreviewed)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label for="proteinIdFilter" class="form-label">UniProt ID</label>
+                                <input type="text" id="proteinIdFilter" class="form-control" placeholder="Filter by UniProt ID">
+                            </div>
+                            <div class="col-md-4 mb-3 d-flex align-items-end">
+                                <div class="form-check repeat-count-group">
+                                    <input class="form-check-input" type="checkbox" id="minRepeatsFilter">
+                                    <label class="form-check-label" for="minRepeatsFilter">
+                                        Show only proteins with 
+                                    </label>
+                                    <input type="number" id="minRepeatsCount" class="form-control form-control-sm" 
+                                           value="5" min="1" max="1000">
+                                    <label class="form-check-label ms-1" for="minRepeatsCount">
+                                        or more repeats
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3 d-flex align-items-end">
+                                <button id="resetFilters" class="btn btn-secondary">Reset Filters</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-responsive">
+                <table id="proteinTable" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>UniProt ID</th>
+                            <th>Gene Name</th>
+                            <th>Repeat Type</th>
+                            <th>Status</th>
+                            <th>Repeat Count</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="mt-5 py-4 bg-light">
+        <div class="container text-center">
+            <p>© 2025 DCRT - Tandem Repeat Domain Database. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        let dataTable;
+        let allTableData = []; // Store all processed data
+        
+        $(document).ready(function() {
+            // Load JSON data
+            loadData();
+            
+            // Set up event listeners for filters
+            $('#repeatTypeFilter, #statusFilter').on('change', applyFilters);
+            $('#geneNameFilter, #proteinIdFilter').on('keyup', applyFilters);
+            $('#minRepeatsFilter').on('change', applyFilters);
+            $('#minRepeatsCount').on('change keyup', applyFilters);
+            $('#resetFilters').on('click', resetFilters);
+        });
+        
+        async function loadData() {
+            try {
+                const response = await fetch('./all_annotated_repeats.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (!Array.isArray(data) || data.length === 0) {
+                    throw new Error('Invalid data format or empty data');
+                }
+                
+                processData(data);
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                $('#loading').html(`
+                    <div class="error-container">
+                        <div class="alert alert-danger">
+                            <h4 class="alert-heading">Error loading data</h4>
+                            <p>${error.message || 'NetworkError when attempting to fetch resource'}</p>
+                            <hr>
+                            <p class="mb-0">This error often occurs when opening HTML files directly from the file system.</p>
+                            <h5 class="mt-3">To fix this issue:</h5>
+                            <ol>
+                                <li>Run the local web server using: <code>python ../serve.py</code> from the output directory</li>
+                                <li>Or: <code>python -m http.server</code> in the output directory</li>
+                                <li>Then access the application at: <a href="http://localhost:8000/dynamic_viewer/">http://localhost:8000/dynamic_viewer/</a></li>
+                            </ol>
+                            <button class="btn btn-primary mt-2" onclick="window.location.reload()">Try Again</button>
+                        </div>
+                    </div>
+                `);
+            }
+        }
+        
+        function processData(data) {
+            // Group data by UniProt ID
+            const groupedByUniProt = {};
+            const repeatTypes = new Set();
+            
+            data.forEach(item => {
+                if (item.uniProtId) {
+                    if (!groupedByUniProt[item.uniProtId]) {
+                        groupedByUniProt[item.uniProtId] = {
+                            uniProtId: item.uniProtId,
+                            geneName: item.geneName || 'Unknown',
+                            status: item.status || 'Unknown',
+                            repeatType: item.repeatType || 'Unknown',
+                            count: 0,
+                            items: []
+                        };
+                    }
+                    
+                    groupedByUniProt[item.uniProtId].count++;
+                    groupedByUniProt[item.uniProtId].items.push(item);
+                    
+                    // Add repeat type to set
+                    if (item.repeatType) {
+                        repeatTypes.add(item.repeatType);
+                    }
+                }
+            });
+            
+            // Populate repeat type filter
+            const repeatTypeFilter = $('#repeatTypeFilter');
+            Array.from(repeatTypes).sort().forEach(type => {
+                repeatTypeFilter.append(`<option value="${type}">${type}</option>`);
+            });
+            
+            // Convert grouped data to array
+            allTableData = Object.values(groupedByUniProt);
+            
+            // Initialize DataTable
+            initializeDataTable();
+            
+            // Hide loading indicator and show content
+            $('#loading').hide();
+            $('#content').show();
+        }
+        
+        function initializeDataTable() {
+            // If already initialized, destroy it first
+            if ($.fn.DataTable.isDataTable('#proteinTable')) {
+                $('#proteinTable').DataTable().destroy();
+            }
+            
+            // Create array for DataTables
+            const processedData = allTableData.map(protein => [
+                protein.uniProtId,
+                protein.geneName,
+                protein.repeatType,
+                protein.status,
+                protein.count,
+                `<a href="detail.html?id=${protein.uniProtId}" class="btn btn-sm btn-primary">View Details</a>`
+            ]);
+            
+            dataTable = $('#proteinTable').DataTable({
+                data: processedData,
+                deferRender: true,
+                scrollY: 500,
+                scrollCollapse: true,
+                scroller: true,
+                pageLength: 100,
+                order: [[1, 'asc']],
+                dom: 'rtS', // 'S' is required for Scroller
+                columnDefs: [
+                    {
+                        targets: 5, // Actions column
+                        orderable: false
+                    }
+                ]
+            });
+            
+            // Apply any existing filters
+            if ($('#repeatTypeFilter').val() || $('#geneNameFilter').val() || 
+                $('#statusFilter').val() || $('#proteinIdFilter').val() || 
+                $('#minRepeatsFilter').is(':checked')) {
+                applyFilters();
+            }
+        }
+        
+        function populateTable(data) {
+            allTableData = data;
+            initializeDataTable();
+        }
+        
+        function applyFilters() {
+            const repeatType = $('#repeatTypeFilter').val();
+            const geneName = $('#geneNameFilter').val().toLowerCase();
+            const status = $('#statusFilter').val();
+            const proteinId = $('#proteinIdFilter').val().toLowerCase();
+            const minRepeats = $('#minRepeatsFilter').is(':checked');
+            const minRepeatsCount = parseInt($('#minRepeatsCount').val(), 10) || 5; // Default to 5 if invalid
+            
+            // Clear existing search and then set custom filtering function
+            dataTable.search('').columns().search('').draw();
+            
+            $.fn.dataTable.ext.search.pop(); // Remove any previous custom filter
+            
+            // Add custom filter function
+            $.fn.dataTable.ext.search.push(
+                function(settings, data, dataIndex) {
+                    // Get data from columns: 0=UniProt ID, 1=Gene Name, 2=Repeat Type, 3=Status, 4=Repeat Count
+                    const rowProteinId = data[0].toLowerCase();
+                    const rowGeneName = data[1].toLowerCase();
+                    const rowRepeatType = data[2];
+                    const rowStatus = data[3];
+                    const rowRepeatCount = parseInt(data[4], 10);
+                    
+                    // Apply all filters
+                    const matchesRepeatType = !repeatType || rowRepeatType === repeatType;
+                    const matchesGeneName = !geneName || rowGeneName.includes(geneName);
+                    const matchesStatus = !status || rowStatus === status;
+                    const matchesProteinId = !proteinId || rowProteinId.includes(proteinId);
+                    const matchesMinRepeats = !minRepeats || rowRepeatCount >= minRepeatsCount;
+                    
+                    return matchesRepeatType && matchesGeneName && matchesStatus && 
+                           matchesProteinId && matchesMinRepeats;
+                }
+            );
+            
+            dataTable.draw();
+        }
+        
+        function resetFilters() {
+            $('#repeatTypeFilter').val('');
+            $('#geneNameFilter').val('');
+            $('#statusFilter').val('');
+            $('#proteinIdFilter').val('');
+            $('#minRepeatsFilter').prop('checked', false);
+            $('#minRepeatsCount').val('5'); // Reset to default value
+            
+            applyFilters();
+        }
+        
+        // Remove old filterTable function as it's replaced by applyFilters
+        // function filterTable() { ... }
+    </script>
+</body>
+</html>

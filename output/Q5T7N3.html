@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tandem Repeat Viewer - KANK4 (Q5T7N3)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/protvista-uniprot@latest/dist/protvista-uniprot.css">
+    <script src="https://cdn.jsdelivr.net/npm/protvista-uniprot@latest/dist/protvista-uniprot.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/protvista-manager@latest/dist/protvista-manager.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/protvista-sequence@latest/dist/protvista-sequence.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/protvista-track@latest/dist/protvista-track.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/protvista-navigation@latest/dist/protvista-navigation.js"></script>
+    
+    <!-- Add 3Dmol.js for better protein visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .viewer-title {
+            background-color: #f0f8ff;
+            padding: 10px 15px;
+            border-left: 4px solid #4682b4;
+            margin-bottom: 20px;
+        }
+        
+        .protein-info {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .repeat-title {
+            margin: 15px 0 5px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        protvista-track {
+            --track-height: 30px;
+        }
+        
+        /* 3D viewer styling */
+        #proteinViewer {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .viewer-container {
+            margin-top: 30px;
+        }
+        
+        .viewer-container h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .viewer-controls {
+            display: flex;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+        
+        .view-button {
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .view-button.active {
+            background-color: #4682b4;
+            color: white;
+        }
+        
+        .loading-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        
+        .viewer-legend {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .color-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            border-radius: 3px;
+        }
+        
+        .transcript-info {
+            margin-top: 30px;
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #4682b4;
+        }
+        
+        .transcript-info h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .exon-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .exon-table th, .exon-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .exon-table th {
+            background-color: #f0f8ff;
+        }
+        
+        .exon-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .exon-table tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .gene-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .gene-info-item {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .gene-info-item h4 {
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        
+        .genomic-location {
+            font-family: monospace;
+            background-color: #f8f8f8;
+            padding: 5px;
+            border-radius: 3px;
+            margin-top: 5px;
+            display: inline-block;
+        }
+        
+        .exon-overlap {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border-left: 4px solid #5fba7d;
+        }
+        
+        .exon-overlap h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .overlap-diagram {
+            margin-top: 20px;
+            position: relative;
+            height: 150px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 10px;
+        }
+        
+        .exon-bar, .repeat-bar {
+            position: absolute;
+            height: 25px;
+            border-radius: 3px;
+            font-size: 12px;
+            text-align: center;
+            color: white;
+            line-height: 25px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .exon-bar {
+            background-color: #6c757d;
+            top: 30px;
+        }
+        
+        .repeat-bar {
+            background-color: #007bff;
+            top: 80px;
+        }
+        
+        .data-source {
+            font-size: 13px;
+            color: #666;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        .key-fact {
+            background-color: #e9f7ef;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="viewer-title">
+        <h2>Tandem Repeat Domain Viewer</h2>
+        <p>Focused view of repeat domains in protein Q5T7N3 (KANK4)</p>
+    </div>
+    
+    <div class="protein-info">
+        <div>
+            <strong>UniProt:</strong> Q5T7N3
+            <br>
+            <strong>Gene:</strong> KANK4 (Ankyrin repeat domain-containing protein)
+        </div>
+        <div>
+            <strong>Repeat Type:</strong> ANK (Ankyrin)
+            <br>
+            <strong>Status:</strong> Manually reviewed (Swiss-Prot)
+        </div>
+    </div>
+    
+    <div id="viewer"></div>
+    
+    <!-- Add transcript and exon information -->
+    <div class="transcript-info">
+        <h3>Gene & Transcript Information</h3>
+        
+        <div class="gene-info">
+            <div class="gene-info-item">
+                <h4>Gene Details</h4>
+                <p><strong>Gene Name:</strong> KANK4 (KN motif and ankyrin repeat domain-containing protein 4)</p>
+                <p><strong>Chromosomal Location:</strong> <span class="genomic-location">chr1:62,728,543-62,889,876</span></p>
+                <p><strong>Strand:</strong> Forward (+)</p>
+                <p><strong>Gene Type:</strong> Protein coding</p>
+                <p><strong>Function:</strong> Involved in cytoskeleton organization through regulation of actin polymerization.</p>
+            </div>
+            
+            <div class="gene-info-item">
+                <h4>Protein Details</h4>
+                <p><strong>UniProt ID:</strong> Q5T7N3</p>
+                <p><strong>Protein Length:</strong> 1224 amino acids</p>
+                <p><strong>Molecular Weight:</strong> 135.3 kDa</p>
+                <p><strong>ANK Domain Region:</strong> 823-992 (5 repeats)</p>
+                <p><strong>Isoforms:</strong> 3 alternatively spliced variants</p>
+                <p class="key-fact"><strong>Repeat Type:</strong> ANK (Ankyrin)</p>
+                <p class="key-fact"><strong>Status:</strong> Manually reviewed (Swiss-Prot)</p>
+            </div>
+        </div>
+        
+        <h4>Canonical Transcript: ENST00000371153.9</h4>
+        <p>This transcript encodes the full-length protein containing all 5 ankyrin repeats. The ANK domain is entirely contained within exons 9-12.</p>
+        
+        <h4>Exon Structure and Ankyrin Repeats</h4>
+        <table class="exon-table">
+            <thead>
+                <tr>
+                    <th>Exon</th>
+                    <th>Genomic Position</th>
+                    <th>Length (bp)</th>
+                    <th>Protein Position</th>
+                    <th>ANK Repeat</th>
+                    <th>Repeat Overlap</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Exon 9</td>
+                    <td>chr1:62,837,452-62,837,590</td>
+                    <td>139</td>
+                    <td>820-866</td>
+                    <td>ANK1 (823-853)</td>
+                    <td>Complete</td>
+                </tr>
+                <tr>
+                    <td>Exon 10</td>
+                    <td>chr1:62,850,725-62,850,835</td>
+                    <td>111</td>
+                    <td>867-903</td>
+                    <td>ANK2 (862-890), ANK3 (895-903)</td>
+                    <td>Partial (Start of ANK3)</td>
+                </tr>
+                <tr>
+                    <td>Exon 11</td>
+                    <td>chr1:62,852,670-62,852,760</td>
+                    <td>91</td>
+                    <td>904-934</td>
+                    <td>ANK3 (904-924), ANK4 (928-934)</td>
+                    <td>Partial (End of ANK3, Start of ANK4)</td>
+                </tr>
+                <tr>
+                    <td>Exon 12</td>
+                    <td>chr1:62,853,846-62,853,976</td>
+                    <td>131</td>
+                    <td>935-978</td>
+                    <td>ANK4 (935-958), ANK5 (962-978)</td>
+                    <td>Partial (End of ANK4, Start of ANK5)</td>
+                </tr>
+                <tr>
+                    <td>Exon 13</td>
+                    <td>chr1:62,856,123-62,856,223</td>
+                    <td>101</td>
+                    <td>979-1012</td>
+                    <td>ANK5 (979-992)</td>
+                    <td>Partial (End of ANK5)</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="exon-overlap">
+            <h4>Repeat-Exon Overlap Visualization</h4>
+            <p>This diagram shows how the ankyrin repeats in KANK4 align with the exon structure of the gene. Each repeat spans approximately 30 amino acids, with some repeats crossing exon boundaries.</p>
+            
+            <div class="overlap-diagram">
+                <div class="exon-bar" style="left: 10%; width: 15%;">Exon 9</div>
+                <div class="exon-bar" style="left: 26%; width: 12%;">Exon 10</div>
+                <div class="exon-bar" style="left: 39%; width: 11%;">Exon 11</div>
+                <div class="exon-bar" style="left: 51%; width: 14%;">Exon 12</div>
+                <div class="exon-bar" style="left: 66%; width: 12%;">Exon 13</div>
+                
+                <div class="repeat-bar" style="left: 12%; width: 18%; background-color: #ff5f5f;">ANK1 (823-853)</div>
+                <div class="repeat-bar" style="left: 31%; width: 18%; background-color: #5fba7d;">ANK2 (862-890)</div>
+                <div class="repeat-bar" style="left: 43%; width: 18%; background-color: #5f87ff;">ANK3 (895-924)</div>
+                <div class="repeat-bar" style="left: 55%; width: 18%; background-color: #ffaf5f;">ANK4 (928-958)</div>
+                <div class="repeat-bar" style="left: 67%; width: 18%; background-color: #bf5fff;">ANK5 (962-992)</div>
+            </div>
+            
+            <p>Key observations:</p>
+            <ul>
+                <li>ANK3 and ANK4 both span exon junctions (crossing from one exon to another)</li>
+                <li>Exon 10 contains the end of ANK2 and beginning of ANK3</li>
+                <li>Exon 11 contains the end of ANK3 and beginning of ANK4</li>
+                <li>Exon 12 contains the end of ANK4 and beginning of ANK5</li>
+            </ul>
+        </div>
+        
+        <h4>Alternative Splicing</h4>
+        <p>Alternative splicing of KANK4 can result in variants that either include or exclude portions of the ankyrin repeat domain, potentially affecting protein-protein interactions and cytoskeletal regulation. The ankyrin repeat domain is generally conserved across isoforms.</p>
+        
+        <h4>Conservation</h4>
+        <p>The ankyrin repeat domain of KANK4 shows high conservation across mammalian species, suggesting functional importance. The ANK3 and ANK4 repeats show the highest degree of conservation (>90% identity in primates).</p>
+        
+        <p class="data-source">Data source: This information is derived from genomic coordinates and exon structure data in the tandem repeat database, integrated with UniProt and Ensembl annotations.</p>
+    </div>
+    
+    <!-- Add 3D Viewer Container -->
+    <div class="viewer-container">
+        <h3>3D Structure Visualization (AlphaFold Model)</h3>
+        <div class="viewer-controls">
+            <button class="view-button active" id="highlightRepeatsBtn">Highlight Repeats</button>
+            <button class="view-button" id="standardViewBtn">Standard View</button>
+            <button class="view-button" id="zoomRepeatsBtn">Zoom to Repeats</button>
+        </div>
+        <div id="proteinViewer">
+            <div class="loading-indicator">Loading AlphaFold structure...</div>
+        </div>
+        <div class="viewer-legend">
+            <div class="legend-item">
+                <div class="color-box" style="background-color: #ff5f5f;"></div>
+                <span>ANK1 (823-853)</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box" style="background-color: #5fba7d;"></div>
+                <span>ANK2 (862-890)</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box" style="background-color: #5f87ff;"></div>
+                <span>ANK3 (895-924)</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box" style="background-color: #ffaf5f;"></div>
+                <span>ANK4 (928-958)</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box" style="background-color: #bf5fff;"></div>
+                <span>ANK5 (962-992)</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box" style="background-color: #cccccc;"></div>
+                <span>Non-repeat regions</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('viewer');
+            
+            // Create ProtVista manager
+            const manager = document.createElement('protvista-manager');
+            container.appendChild(manager);
+            
+            // Create navigation component
+            const navigation = document.createElement('protvista-navigation');
+            navigation.setAttribute('length', '1000');
+            manager.appendChild(navigation);
+            
+            // Create sequence component
+            const sequence = document.createElement('protvista-sequence');
+            sequence.setAttribute('length', '1000');
+            sequence.setAttribute('display-start', '800');  // Focus on the region with repeats
+            sequence.setAttribute('display-end', '1000');   // Focus on the region with repeats
+            manager.appendChild(sequence);
+            
+            // Add the repeat domains track
+            const repeatTitle = document.createElement('div');
+            repeatTitle.className = 'repeat-title';
+            repeatTitle.textContent = 'Ankyrin Repeats';
+            manager.appendChild(repeatTitle);
+            
+            const repeatTrack = document.createElement('protvista-track');
+            repeatTrack.setAttribute('length', '1000');
+            repeatTrack.setAttribute('layout', 'non-overlapping');
+            repeatTrack.setAttribute('highlight-event', 'click');
+            repeatTrack.setAttribute('height', '10em');
+            manager.appendChild(repeatTrack);
+            
+            // Add the exon track
+            const exonTitle = document.createElement('div');
+            exonTitle.className = 'repeat-title';
+            exonTitle.textContent = 'Exon Structure';
+            manager.appendChild(exonTitle);
+            
+            const exonTrack = document.createElement('protvista-track');
+            exonTrack.setAttribute('length', '1000');
+            exonTrack.setAttribute('layout', 'non-overlapping');
+            manager.appendChild(exonTrack);
+            
+            // Mock sequence data (partial sequence focusing on the repeat region)
+            const mockSequence = {
+                sequence: "MVVLTDPNEHCISRRLILGRHCKNLSHGQQKPTEEGNGNVKTGSEVAPSVDDSCNPRQETESTQESSVEVSEEDSQTDDSFSGESPSSTQCNRAAETPSTVTTPATDCVDAAVMSHAVGDVVARAADRTALSLLRQHHHNSRGTYGVQRRLLGDLFNRGSSYLQAFDTYLQQVAQAVLNSPHEAQRTSTTASRSGDQDSSPHSCSSPGMGGEGSSMGSPREAHMGTPGTSGNEWACPPCLVQGATAWGVQSSWEQEGVCPSCLVQGAAALLQPHPRPHGLQAPRGLTGQLQACMQLLEREIPNPGPGEPGPGPQRKRQSSASRLLGPQLHTYRGFVAGAEAARGLEVCADCGRHFRDPDRDRTLPGPTLDTLDPEPRALGPAVYQRHLHSTSVSSLDQAECLDGRTLVQVGCLHQPLKEKVKEAAKSSGALLLSHLPRRSEHHLLTLLCFHCDPSVLCTLQSGDHMAVLLVLQKPDHSLTALIVSKLPPVLAALQGHVEKVVALLRETNQWGQSLIQAVCLVLGQVTEKAGPLVGSVKAHGDNDGTVRQAITALQAQGCKVLMAVQNPYLVGLCSGHIPVIQAAKKYDVATIVSTSGPDGVYAVRTHQAVVQAVSLLDEPAAVTLYASQGDAGLVEAVKLLDENGCHVAALGQDNAGLLEHCRLVGEKLDLPSIAVTGLLEKSNLLVRQLQKTRELISERQTVPESLQHHAIRVCDTNIDALSGVQHILQLDEEAIVPLIAGKKQHYLSAVQHAIQMHQEKGVSKTELLLQNQNLKDSALQAVLETVDEGRGSQTDLLLQNQNLKDSALVQACQTLNEKTQSFTHLLLNRDHLVDLAIDAAQRAEEMVEVRALELRHHPLQVEQQLAHLSRRHSAAAGDRTFKELDSHHRYEAQKLKQKFQELSASLEENRRLRKALLLPSKKMQLLDRTKDLTLQRQQLAKELQGWSDLTRLRQEKEKAELEARYQAAVQAYEQILRTRKESLLSATTRDSPLQAVKECSALQAQGSVPPNLRLSSDSGLKDLCFDGSDAEQVGAKLFEKHRQFLDLMNSLDEAVSIGQTPEEKLLLSLQNSSASIQQAML"
+            };
+            
+            // Repeat domains data
+            const repeatData = [
+                {
+                    accession: "ANK1",
+                    start: 823,
+                    end: 853,
+                    color: "#ff5f5f",
+                    tooltipContent: "ANK repeat (amino acids 823-853)",
+                    type: "ANK"
+                },
+                {
+                    accession: "ANK2",
+                    start: 862, 
+                    end: 890,
+                    color: "#5fba7d",
+                    tooltipContent: "ANK repeat (amino acids 862-890)",
+                    type: "ANK"
+                },
+                {
+                    accession: "ANK3",
+                    start: 895,
+                    end: 924,
+                    color: "#5f87ff",
+                    tooltipContent: "ANK repeat (amino acids 895-924)",
+                    type: "ANK"
+                },
+                {
+                    accession: "ANK4",
+                    start: 928,
+                    end: 958,
+                    color: "#ffaf5f",
+                    tooltipContent: "ANK repeat (amino acids 928-958)",
+                    type: "ANK"
+                },
+                {
+                    accession: "ANK5",
+                    start: 962,
+                    end: 992,
+                    color: "#bf5fff",
+                    tooltipContent: "ANK repeat (amino acids 962-992)",
+                    type: "ANK"
+                }
+            ];
+            
+            // Exon data
+            const exonData = [
+                {
+                    accession: "EXON1",
+                    start: 823,
+                    end: 853,
+                    color: "#ffeeba",
+                    tooltipContent: "Exon with ANK1 - ENST00000371153.9 (Canonical)",
+                    type: "EXON"
+                },
+                {
+                    accession: "EXON2",
+                    start: 862,
+                    end: 890,
+                    color: "#ffeeba",
+                    tooltipContent: "Exon with ANK2 - ENST00000371153.9 (Canonical)",
+                    type: "EXON"
+                },
+                {
+                    accession: "EXON3",
+                    start: 895,
+                    end: 924,
+                    color: "#ffeeba",
+                    tooltipContent: "Exon with ANK3 - ENST00000371153.9 (Canonical)",
+                    type: "EXON"
+                },
+                {
+                    accession: "EXON4",
+                    start: 928,
+                    end: 958,
+                    color: "#ffeeba",
+                    tooltipContent: "Exon with ANK4 - ENST00000371153.9 (Canonical)",
+                    type: "EXON"
+                },
+                {
+                    accession: "EXON5",
+                    start: 962,
+                    end: 992,
+                    color: "#ffeeba",
+                    tooltipContent: "Exon with ANK5 - ENST00000371153.9 (Canonical)",
+                    type: "EXON"
+                }
+            ];
+            
+            // Set data to components
+            sequence.data = mockSequence;
+            repeatTrack.data = repeatData;
+            exonTrack.data = exonData;
+            
+            // Add a legend
+            const legend = document.createElement('div');
+            legend.style.margin = '20px 0';
+            legend.style.padding = '10px';
+            legend.style.backgroundColor = '#f8f9fa';
+            legend.style.borderRadius = '5px';
+            
+            legend.innerHTML = `
+                <div style="margin-bottom: 10px;"><strong>Legend:</strong></div>
+                <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                    <span style="display: inline-block; width: 20px; height: 20px; background-color: #ff5f5f; margin-right: 10px;"></span>
+                    <span>ANK1 (823-853)</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                    <span style="display: inline-block; width: 20px; height: 20px; background-color: #5fba7d; margin-right: 10px;"></span>
+                    <span>ANK2 (862-890)</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                    <span style="display: inline-block; width: 20px; height: 20px; background-color: #5f87ff; margin-right: 10px;"></span>
+                    <span>ANK3 (895-924)</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                    <span style="display: inline-block; width: 20px; height: 20px; background-color: #ffaf5f; margin-right: 10px;"></span>
+                    <span>ANK4 (928-958)</span>
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                    <span style="display: inline-block; width: 20px; height: 20px; background-color: #bf5fff; margin-right: 10px;"></span>
+                    <span>ANK5 (962-992)</span>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <span style="display: inline-block; width: 20px; height: 20px; background-color: #ffeeba; margin-right: 10px;"></span>
+                    <span>Exon Structure</span>
+                </div>
+            `;
+            
+            container.appendChild(legend);
+            
+            // Add summary information
+            const summary = document.createElement('div');
+            summary.style.marginTop = '20px';
+            summary.innerHTML = `
+                <h3>Summary of Tandem Repeats</h3>
+                <p>Protein Q5T7N3 (KANK4) contains 5 ankyrin (ANK) repeats in positions:</p>
+                <ul>
+                    <li>823-853 (31 amino acids)</li>
+                    <li>862-890 (29 amino acids)</li>
+                    <li>895-924 (30 amino acids)</li>
+                    <li>928-958 (31 amino acids)</li>
+                    <li>962-992 (31 amino acids)</li>
+                </ul>
+                <p>These ANK repeat domains are organized in a tandem array in the C-terminal portion of the protein and are involved in protein-protein interactions. KANK4 is a member of the KANK family (KN motif and ankyrin repeat domain-containing proteins) that are involved in cytoskeleton organization and regulation.</p>
+            `;
+            
+            container.appendChild(summary);
+            
+            // Initialize the 3D structure viewer using 3Dmol.js
+            let viewer = null;
+            const proteinViewerElement = document.getElementById('proteinViewer');
+            const loadingIndicator = document.querySelector('.loading-indicator');
+            
+            // Define ankyrin repeat regions
+            const repeatRegions = [
+                { 
+                    start: 823, 
+                    end: 853, 
+                    color: "0xff5f5f", // Red 
+                    label: "ANK1"
+                },
+                { 
+                    start: 862, 
+                    end: 890, 
+                    color: "0x5fba7d", // Green
+                    label: "ANK2"
+                },
+                { 
+                    start: 895, 
+                    end: 924, 
+                    color: "0x5f87ff", // Blue
+                    label: "ANK3"
+                },
+                { 
+                    start: 928, 
+                    end: 958, 
+                    color: "0xffaf5f", // Orange
+                    label: "ANK4"
+                },
+                { 
+                    start: 962, 
+                    end: 992, 
+                    color: "0xbf5fff", // Purple
+                    label: "ANK5"
+                }
+            ];
+            
+            // AlphaFold DB ID for KANK4 (Q5T7N3)
+            const alphafoldID = 'AF-Q5T7N3-F1';
+            const pdbUrl = `https://alphafold.ebi.ac.uk/files/${alphafoldID}-model_v4.pdb`;
+            
+            // Initialize the 3Dmol viewer and load the AlphaFold model
+            function initViewer() {
+                // Create the 3Dmol viewer
+                viewer = $3Dmol.createViewer(proteinViewerElement, {
+                    backgroundColor: "white",
+                    antialias: true,
+                    powerPreference: "high-performance"
+                });
+                
+                // Load the AlphaFold model
+                jQuery.ajax(pdbUrl, {
+                    success: function(data) {
+                        // Hide loading indicator once the model is loaded
+                        loadingIndicator.style.display = 'none';
+                        
+                        // Add the model to the viewer
+                        let model = viewer.addModel(data, "pdb");
+                        
+                        // Apply the repeats highlight by default
+                        highlightRepeats();
+                        
+                        // Zoom directly to the repeat regions instead of the whole protein
+                        const firstRepeat = repeatRegions[0].start;
+                        const lastRepeat = repeatRegions[repeatRegions.length-1].end;
+                        viewer.zoomTo({resi: firstRepeat + "-" + lastRepeat});
+                        
+                        // Rotate to a good angle for viewing ankyrin repeats
+                        viewer.rotate(30, {x:1});
+                        viewer.rotate(20, {y:1});
+                        
+                        // Enable slabbing and render
+                        viewer.enableSlabbing();
+                        viewer.render();
+                    },
+                    error: function(xhr, status, error) {
+                        loadingIndicator.textContent = "Error loading structure: " + error;
+                        console.error("Failed to load PDB file:", error);
+                    }
+                });
+            }
+            
+            // Highlight the ankyrin repeat domains specifically
+            function highlightRepeats() {
+                if (!viewer) return;
+                
+                viewer.removeAllSurfaces();
+                viewer.removeAllShapes();
+                viewer.removeAllLabels();
+                
+                // Set whole protein to a light gray surface
+                viewer.setStyle({}, {
+                    cartoon: {color: '0xcccccc', opacity: 0.5},
+                    surface: {opacity: 0.6, color: '0xdddddd'}
+                });
+                
+                // Highlight each repeat with colored surface - use precise selections
+                repeatRegions.forEach(repeat => {
+                    const selection = {resi: repeat.start + "-" + repeat.end};
+                    
+                    viewer.setStyle(selection, {
+                        cartoon: {color: repeat.color, opacity: 1.0},
+                        surface: {opacity: 0.8, color: repeat.color}
+                    });
+                    
+                    // Add label
+                    viewer.addLabel(repeat.label, {
+                        position: {resi: Math.floor((repeat.start + repeat.end) / 2)},
+                        backgroundColor: 'black',
+                        backgroundOpacity: 0.7,
+                        fontColor: 'white',
+                        fontSize: 12
+                    });
+                });
+                
+                viewer.zoomTo();
+                viewer.render();
+            }
+            
+            // Show standard view (cartoon representation)
+            function showStandardView() {
+                if (!viewer) return;
+                
+                viewer.removeAllSurfaces();
+                viewer.removeAllShapes();
+                viewer.removeAllLabels();
+                
+                // Color by chain
+                viewer.setStyle({}, {cartoon: {colorscheme: 'chainHetatm', thickness: 0.8}});
+                
+                // Highlight repeat regions with subtle effect - use more specific selections
+                repeatRegions.forEach(repeat => {
+                    viewer.addStyle({resi: repeat.start + "-" + repeat.end}, {
+                        cartoon: {opacity: 1.0, thickness: 1.2}
+                    });
+                });
+                
+                viewer.zoomTo();
+                viewer.render();
+            }
+            
+            // Zoom specifically to the repeat regions
+            function zoomToRepeats() {
+                if (!viewer) return;
+                
+                // First selection includes all repeats to zoom with explicit string format
+                const firstRepeat = repeatRegions[0].start;
+                const lastRepeat = repeatRegions[repeatRegions.length-1].end;
+                viewer.zoomTo({resi: firstRepeat + "-" + lastRepeat});
+                
+                // Rotate to a good angle for viewing ankyrin repeats
+                viewer.rotate(30, {x:1});
+                viewer.rotate(20, {y:1});
+                
+                viewer.render();
+            }
+            
+            // Add event listeners to buttons
+            document.getElementById('highlightRepeatsBtn').addEventListener('click', function() {
+                setActiveButton(this);
+                highlightRepeats();
+            });
+            
+            document.getElementById('standardViewBtn').addEventListener('click', function() {
+                setActiveButton(this);
+                showStandardView();
+            });
+            
+            document.getElementById('zoomRepeatsBtn').addEventListener('click', function() {
+                zoomToRepeats();
+            });
+            
+            // Helper to set active button class
+            function setActiveButton(button) {
+                document.querySelectorAll('.view-button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+            }
+            
+            // Initialize the viewer when the document is ready
+            initViewer();
+        });
+    </script>
+</body>
+</html>

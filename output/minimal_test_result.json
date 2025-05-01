@@ -1,0 +1,21 @@
+{
+  "test_repeat": {
+    "chrom": "chr1",
+    "chromStart": 962901,
+    "chromEnd": 963233,
+    "strand": "+",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 2,
+    "blockSizes": ["16", "125"],
+    "chromStarts": ["0", "207"],
+    "geneName": "KLHL17",
+    "aliases": "AF",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 343-389 on protein Q6TDP4",
+    "repeatType": "Kelch 1",
+    "uniProtId": "Q6TDP4",
+    "repeatLength": 141
+  },
+  "transcript_count": 0
+}

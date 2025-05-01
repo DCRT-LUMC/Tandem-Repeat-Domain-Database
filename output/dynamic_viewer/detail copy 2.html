@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protein Detail - Tandem Repeat Domain Database</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .viewer-title {
+            background-color: #f0f8ff;
+            padding: 10px 15px;
+            border-left: 4px solid #4682b4;
+            margin-bottom: 20px;
+        }
+        
+        .protein-info {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        /* 3D viewer styling */
+        #proteinViewer {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .viewer-container {
+            margin-top: 30px;
+        }
+        
+        .viewer-controls {
+            display: flex;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+        
+        .view-button {
+            padding: 8px 16px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .view-button.active {
+            background-color: #4682b4;
+            color: white;
+        }
+        
+        .loading-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        
+        .viewer-legend {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .color-box {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            border-radius: 3px;
+        }
+        
+        .back-button {
+            margin-bottom: 20px;
+        }
+        
+        .key-fact {
+            background-color: #e9f7ef;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin: 10px 0;
+            display: inline-block;
+        }
+        
+        .error-container {
+            margin: 50px auto;
+            max-width: 500px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f8d7da;
+            border-radius: 5px;
+        }
+        
+        .genomic-data {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .exon-legend-item {
+            margin-top: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="back-button">
+        <a href="index.html" class="btn btn-outline-secondary btn-sm">← Back to Protein List</a>
+    </div>
+    
+    <div id="loading" class="text-center my-5">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-3">Loading protein data...</p>
+    </div>
+    
+    <div id="errorContainer" style="display: none;" class="error-container">
+        <h4>Error</h4>
+        <p id="errorMessage">Unable to load protein data</p>
+        <a href="index.html" class="btn btn-primary mt-3">Return to Protein List</a>
+    </div>
+    
+    <div id="proteinDetails" style="display: none;">
+        <div class="viewer-title">
+            <h2>Tandem Repeat Domain Viewer</h2>
+            <p id="proteinTitle">Protein Structure</p>
+        </div>
+        
+        <div class="protein-info">
+            <div>
+                <strong>UniProt:</strong> <a id="uniprotLink" target="_blank"></a>
+                <br>
+                <strong>Gene:</strong> <span id="geneName"></span>
+            </div>
+            <div>
+                <strong>Repeat Type:</strong> <span id="repeatType"></span>
+                <br>
+                <strong>Status:</strong> <span id="status"></span>
+            </div>
+        </div>
+        
+        <!-- Add 3D Viewer Container -->
+        <div class="viewer-container">
+            <h3>3D Structure Visualization</h3>
+            <div class="viewer-controls">
+                <button class="view-button active" id="highlightRepeatsBtn">Highlight Repeats</button>
+                <button class="view-button" id="standardViewBtn">Standard View</button>
+                <button class="view-button" id="zoomRepeatsBtn">Zoom to Repeats</button>
+                <button class="view-button" id="exonBoundariesBtn">Show Exon Boundaries</button>
+            </div>
+            <div id="proteinViewer">
+                <div class="loading-indicator">Loading protein structure...</div>
+            </div>
+            <div id="viewerLegend" class="viewer-legend">
+                <div class="legend-item">
+                    <div class="color-box" style="background-color: #cccccc;"></div>
+                    <span>Non-repeat regions</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="summary-container mt-4">
+            <h3>Summary of Tandem Repeats</h3>
+            <p id="repeatSummary"></p>
+            <ul id="repeatList"></ul>
+        </div>
+        
+        <div id="genomicData" class="genomic-data">
+            <h3>Genomic Information</h3>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <p><strong>Chromosome:</strong> <span id="chromosome"></span></p>
+                    <p><strong>Genomic Range:</strong> <span id="genomicRange"></span></p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Strand:</strong> <span id="strand"></span></p>
+                    <p><strong>Aliases:</strong> <span id="aliases"></span></p>
+                </div>
+            </div>
+            <div id="exonSummary" class="mt-3">
+                <h4>Exon Information</h4>
+                <p id="exonDataText">Loading exon data...</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="bg-light mt-5 py-3">
+        <div class="container text-center">
+            <p class="mb-0">Tandem Repeat Domain Database - Dynamically generated from JSON data</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add this near the top of your DOMContentLoaded function
+            let originalRepeatRegions = []; // Global variable to store repeat regions with exon data
+
+            // Debug function to check for ensembl_exon_info key
+            function verifyExonData(repeats) {
+                let hasExonInfo = false;
+                let keyName = null;
+                
+                repeats.forEach((repeat, i) => {
+                    const keys = Object.keys(repeat);
+                    if (keys.includes('ensembl_exon_info')) {
+                        hasExonInfo = true;
+                        keyName = 'ensembl_exon_info';
+                        console.log(`Found exon data in repeat ${i} with key 'ensembl_exon_info'`);
+                    }
+                });
+                
+                console.log(`Exon data check: ${hasExonInfo ? 'FOUND with key ' + keyName : 'NOT FOUND'}`);
+                
+                if (!hasExonInfo) {
+                    // Check for other possible keys
+                    const sampleKeys = Object.keys(repeats[0] || {});
+                    console.log("Available keys:", sampleKeys);
+                    
+                    // Try looking for keys containing "exon"
+                    const possibleExonKeys = sampleKeys.filter(key => key.toLowerCase().includes('exon'));
+                    if (possibleExonKeys.length > 0) {
+                        console.log("Possible exon data keys:", possibleExonKeys);
+                    }
+                }
+                
+                return hasExonInfo;
+            }
+
+            // Get the UniProt ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const uniprotId = urlParams.get('id');
+            
+            if (!uniprotId) {
+                showError("No protein ID specified");
+                return;
+            }
+            
+            // Define data URL
+            const dataUrl = './1000_test_exons_hg38_repeats.json';
+            
+            // Initialize viewer variable
+            let viewer = null;
+            
+            // Load the JSON data
+            fetchProteinData(uniprotId, dataUrl);
+            
+            function fetchProteinData(uniprotId, dataUrl) {
+                fetch(dataUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Filter repeats for this protein
+                        const proteinRepeats = data.filter(item => item.uniProtId === uniprotId);
+                        
+                        if (!proteinRepeats.length) {
+                            showError(`No data found for protein ${uniprotId}`);
+                            return;
+                        }
+                        
+                        // Process and display the protein data
+                        processProteinData(proteinRepeats);
+                    })
+                    .catch(error => {
+                        console.error('Error loading data:', error);
+                        showError("Error loading protein data");
+                    });
+            }
+            
+            function processProteinData(repeats) {
+                try {
+                    // Sort repeats by their start position if possible
+                    repeats.sort((a, b) => {
+                        // Extract start positions from the position field
+                        const extractPos = pos => {
+                            if (pos && pos.includes('amino acids')) {
+                                const match = pos.match(/amino acids (\d+)-(\d+)/);
+                                return match ? parseInt(match[1]) : 0;
+                            }
+                            return 0;
+                        };
+                        
+                        return extractPos(a.position) - extractPos(b.position);
+                    });
+                    
+                    // Get basic protein info from first repeat
+                    const firstRepeat = repeats[0];
+                    const proteinInfo = {
+                        uniProtId: firstRepeat.uniProtId,
+                        geneName: firstRepeat.geneName || 'Unknown',
+                        repeatType: firstRepeat.repeatType || 'Unknown',
+                        status: firstRepeat.status || 'Unknown',
+                        chrom: firstRepeat.chrom || 'Unknown',
+                        strand: firstRepeat.strand || 'Unknown',
+                        aliases: firstRepeat.aliases || []
+                    };
+                    
+                    // Extract genomic range
+                    if (repeats.length > 0) {
+                        const chromStarts = repeats.map(r => r.chromStart).filter(s => s !== undefined);
+                        const chromEnds = repeats.map(r => r.chromEnd).filter(e => e !== undefined);
+                        
+                        if (chromStarts.length > 0 && chromEnds.length > 0) {
+                            const minStart = Math.min(...chromStarts);
+                            const maxEnd = Math.max(...chromEnds);
+                            proteinInfo.genomicRange = `${minStart}-${maxEnd}`;
+                        }
+                    }
+                    
+                    // Extract repeat regions with positions
+                    const repeatRegions = [];
+                    repeats.forEach((repeat, index) => {
+                        // Parse position field to get start and end positions
+                        const posMatch = repeat.position && repeat.position.match(/amino acids (\d+)-(\d+)/);
+                        if (posMatch) {
+                            const start = parseInt(posMatch[1]);
+                            const end = parseInt(posMatch[2]);
+                            const length = end - start + 1;
+                            
+                            // Create a color based on index
+                            const colorOptions = ["#ff5f5f", "#5fba7d", "#5f87ff", "#ffaf5f", "#bf5fff", "#dc3545", "#fd7e14", "#ffc107", "#20c997", "#0dcaf0"];
+                            const color = colorOptions[index % colorOptions.length];
+                            const colorHex = color.replace("#", "0x");
+                            
+                            repeatRegions.push({
+                                start,
+                                end,
+                                length,
+                                color,
+                                colorHex,
+                                position: repeat.position,
+                                ensembl_exon_info: repeat.ensembl_exon_info, // Make sure this property name matches
+                                chromStart: repeat.chromStart,
+                                chromEnd: repeat.chromEnd,
+                                label: `${repeat.repeatType}${index + 1}`
+                            });
+                        }
+                    });
+                    
+                    // Store the repeat regions globally
+                    originalRepeatRegions = repeatRegions;
+
+                    // Add this to processProteinData function after the line that sets originalRepeatRegions
+                    verifyExonData(originalRepeatRegions);
+
+                    // Display the protein information
+                    displayProteinInfo(proteinInfo, repeatRegions);
+                    
+                    // Set up the 3D viewer
+                    initializeViewer(proteinInfo.uniProtId, repeatRegions);
+                    
+                } catch (error) {
+                    console.error("Error processing protein data:", error);
+                    showError("Error processing protein data");
+                }
+            }
+            
+            function displayProteinInfo(info, repeats) {
+                // Update the UI with protein information
+                document.getElementById('proteinTitle').textContent = 
+                    `Focused view of ${info.repeatType} repeat domains in protein ${info.uniProtId} (${info.geneName})`;
+                    
+                document.getElementById('uniprotLink').textContent = info.uniProtId;
+                document.getElementById('uniprotLink').href = `https://www.uniprot.org/uniprotkb/${info.uniProtId}`;
+                
+                document.getElementById('geneName').textContent = info.geneName;
+                document.getElementById('repeatType').textContent = info.repeatType;
+                document.getElementById('status').textContent = info.status;
+                
+                // Genomic information
+                document.getElementById('chromosome').textContent = info.chrom;
+                document.getElementById('strand').textContent = info.strand === '+' ? 'Forward (+)' : 'Reverse (-)';
+                document.getElementById('genomicRange').textContent = info.genomicRange || 'Not available';
+                document.getElementById('aliases').textContent = Array.isArray(info.aliases) ? 
+                    info.aliases.join(', ') : (info.aliases || 'None');
+                
+                // Update repeat summary
+                document.getElementById('repeatSummary').textContent = 
+                    `Protein ${info.uniProtId} (${info.geneName}) contains ${repeats.length} ${info.repeatType} repeats in positions:`;
+                
+                // Create repeat list items
+                const repeatList = document.getElementById('repeatList');
+                repeatList.innerHTML = '';
+                repeats.forEach(repeat => {
+                    const li = document.createElement('li');
+                    li.textContent = `${repeat.start}-${repeat.end} (${repeat.length} amino acids)`;
+                    repeatList.appendChild(li);
+                });
+                
+                // Create legend for repeats
+                createLegend(repeats);
+                
+                // Update exon information section
+                const exonSummary = document.getElementById('exonSummary');
+                const exonDataText = document.getElementById('exonDataText');
+
+                // Extract exon data
+                const exonData = extractExonData(repeats);
+
+                if (exonData && exonData.exons.length > 0) {
+                    const transcript = exonData.transcript;
+                    let exonHtml = `
+                        <p>Canonical transcript: <strong>${transcript.transcript_id}</strong> (${transcript.transcript_name})</p>
+                        <p>Exons overlapping repeats: <strong>${exonData.exons.length}</strong></p>
+                        <table class="table table-sm table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Exon #</th>
+                                    <th>Exon Boundaries</th>
+                                    <th>Coding Status</th>
+                                    <th>Overlaps</th>
+                                    <th>Overlap %</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    
+                    exonData.exons.forEach(exon => {
+                        exonHtml += `
+                            <tr>
+                                <td>${exon.exon_number}</td>
+                                <td>${exon.repeat_start}-${exon.repeat_end}</td>
+                                <td>${exon.coding_status || 'Unknown'}</td>
+                                <td>${exon.repeat_region || 'Unknown'}</td>
+                                <td>${exon.overlap_percentage ? exon.overlap_percentage + '%' : 'Unknown'}</td>
+                            </tr>
+                        `;
+                    });
+                    
+                    exonHtml += `
+                            </tbody>
+                        </table>
+                    `;
+                    
+                    exonDataText.innerHTML = exonHtml;
+                } else {
+                    exonDataText.textContent = "No exon data available for this protein or the repeat regions.";
+                }
+                
+                // Hide loading, show protein details
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('proteinDetails').style.display = 'block';
+            }
+            
+            function createLegend(repeats) {
+                const legend = document.getElementById('viewerLegend');
+                
+                // Clear existing items except the "Non-repeat regions"
+                while (legend.childNodes.length > 1) {
+                    legend.removeChild(legend.firstChild);
+                }
+                
+                // Add legend items for each repeat
+                repeats.forEach((repeat, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'legend-item';
+                    
+                    const colorBox = document.createElement('div');
+                    colorBox.className = 'color-box';
+                    colorBox.style.backgroundColor = repeat.color;
+                    
+                    const label = document.createElement('span');
+                    label.textContent = `${repeat.label} (${repeat.start}-${repeat.end})`;
+                    
+                    item.appendChild(colorBox);
+                    item.appendChild(label);
+                    
+                    // Insert at the top
+                    legend.insertBefore(item, legend.firstChild);
+                });
+            }
+            
+            function initializeViewer(uniprotId, repeatRegions) {
+                // Get PDB URL for this protein
+                const pdbPath = `https://alphafold.ebi.ac.uk/files/AF-${uniprotId}-F1-model_v4.pdb`;
+                
+                // Initialize the 3D structure viewer using 3Dmol.js
+                const proteinViewerElement = document.getElementById('proteinViewer');
+                const loadingIndicator = document.querySelector('.loading-indicator');
+                
+                // Initialize the 3Dmol viewer and load the model
+                viewer = $3Dmol.createViewer(proteinViewerElement, {
+                    backgroundColor: "white",
+                    antialias: true,
+                    powerPreference: "high-performance"
+                });
+                
+                // Check AlphaFold first, then fall back to local
+                $.ajax({
+                    url: pdbPath,
+                    success: function(data) {
+                        loadModel(data);
+                    },
+                    error: function() {
+                        // Fall back to local file
+                        $.ajax({
+                            url: `../data/AF-${uniprotId}-F1-model_v4.pdb`,
+                            success: function(data) {
+                                loadModel(data);
+                            },
+                            error: function(xhr, status, error) {
+                                loadingIndicator.textContent = `Error loading structure: Model not available for ${uniprotId}`;
+                                console.error("Failed to load PDB file:", error);
+                            }
+                        });
+                    }
+                });
+                
+                function loadModel(data) {
+                    // Hide loading indicator once the model is loaded
+                    loadingIndicator.style.display = 'none';
+                    
+                    // Add the model to the viewer
+                    let model = viewer.addModel(data, "pdb");
+                    
+                    // Extract repeat regions
+                    const repeatRegions = getRepeatRegionsFromPage();
+                    
+                    // Extract and store exon data for later use
+                    const exonData = extractExonData(repeatRegions);
+                    window.exonData = exonData; // Store for later use
+                    
+                    // Apply the repeats highlight by default
+                    highlightRepeats();
+                    
+                    // Zoom directly to the repeat regions if any
+                    if (repeatRegions.length > 0) {
+                        const firstRepeat = repeatRegions[0].start;
+                        const lastRepeat = repeatRegions[repeatRegions.length - 1].end;
+                        viewer.zoomTo({resi: `${firstRepeat}-${lastRepeat}`});
+                    }
+                    
+                    // Rotate to a good angle for viewing repeats
+                    viewer.rotate(30, {x: 1});
+                    viewer.rotate(20, {y: 1});
+                    
+                    // Enable slabbing and render
+                    viewer.enableSlabbing();
+                    viewer.render();
+                }
+                
+                // Add event listeners to buttons
+                document.getElementById('highlightRepeatsBtn').addEventListener('click', function() {
+                    setActiveButton(this);
+                    highlightRepeats();
+                });
+                
+                document.getElementById('standardViewBtn').addEventListener('click', function() {
+                    setActiveButton(this);
+                    showStandardView();
+                });
+                
+                document.getElementById('zoomRepeatsBtn').addEventListener('click', function() {
+                    zoomToRepeats();
+                });
+
+                // Add event listener for exon boundaries button
+                document.getElementById('exonBoundariesBtn').addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    if (this.classList.contains('active')) {
+                        this.textContent = 'Hide Exon Boundaries';
+                        showExonBoundaries();
+                    } else {
+                        this.textContent = 'Show Exon Boundaries';
+                        hideExonBoundaries();
+                    }
+                });
+            }
+            
+            // Highlight the repeat domains specifically
+            function highlightRepeats() {
+                if (!viewer) return;
+                
+                viewer.removeAllSurfaces();
+                viewer.removeAllShapes();
+                viewer.removeAllLabels();
+                
+                // Set whole protein to a light gray surface
+                viewer.setStyle({}, {
+                    cartoon: {color: '0xcccccc', opacity: 0.5},
+                    surface: {opacity: 0.6, color: '0xdddddd'}
+                });
+                
+                // Get repeat regions from the page
+                const repeatRegions = getRepeatRegionsFromPage();
+                
+                // Highlight each repeat with colored surface
+                repeatRegions.forEach(repeat => {
+                    const selection = {resi: `${repeat.start}-${repeat.end}`};
+                    
+                    viewer.setStyle(selection, {
+                        cartoon: {color: repeat.colorHex, opacity: 1.0},
+                        surface: {opacity: 0.8, color: repeat.colorHex}
+                    });
+                    
+                    // Add label
+                    viewer.addLabel(repeat.label, {
+                        position: {resi: Math.floor((repeat.start + repeat.end) / 2)},
+                        backgroundColor: 'black',
+                        backgroundOpacity: 0.7,
+                        fontColor: 'white',
+                        fontSize: 12
+                    });
+                });
+                
+                viewer.zoomTo();
+                viewer.render();
+            }
+            
+            // Show standard view (cartoon representation)
+            function showStandardView() {
+                if (!viewer) return;
+                
+                viewer.removeAllSurfaces();
+                viewer.removeAllShapes();
+                viewer.removeAllLabels();
+                
+                // Color by chain
+                viewer.setStyle({}, {cartoon: {colorscheme: 'chainHetatm', thickness: 0.8}});
+                
+                // Get repeat regions from the page
+                const repeatRegions = getRepeatRegionsFromPage();
+                
+                // Highlight repeat regions with subtle effect
+                repeatRegions.forEach(repeat => {
+                    viewer.addStyle({resi: `${repeat.start}-${repeat.end}`}, {
+                        cartoon: {opacity: 1.0, thickness: 1.2}
+                    });
+                });
+                
+                viewer.zoomTo();
+                viewer.render();
+            }
+            
+            // Zoom specifically to the repeat regions
+            function zoomToRepeats() {
+                if (!viewer) return;
+                
+                // Get repeat regions from the page
+                const repeatRegions = getRepeatRegionsFromPage();
+                
+                if (repeatRegions.length === 0) return;
+                
+                // First selection includes all repeats to zoom
+                const firstRepeat = repeatRegions[0].start;
+                const lastRepeat = repeatRegions[repeatRegions.length - 1].end;
+                viewer.zoomTo({resi: `${firstRepeat}-${lastRepeat}`});
+                
+                // Rotate to a good angle for viewing repeats
+                viewer.rotate(30, {x: 1});
+                viewer.rotate(20, {y: 1});
+                
+                viewer.render();
+            }
+            
+            // Helper to set active button class
+            function setActiveButton(button) {
+                document.querySelectorAll('.view-button').forEach(btn => {
+                    // Skip the exon button so we don't interfere with its toggle state
+                    if (btn.id !== 'exonBoundariesBtn') {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                if (button.id !== 'exonBoundariesBtn') {
+                    button.classList.add('active');
+                }
+            }
+            
+            // Helper to extract repeat regions from the page
+            function getRepeatRegionsFromPage() {
+                const repeatRegions = [];
+                const items = document.querySelectorAll('#viewerLegend .legend-item');
+                
+                items.forEach(item => {
+                    if (item.querySelector('span').textContent.includes('Non-repeat')) return;
+                    
+                    const text = item.querySelector('span').textContent;
+                    const match = text.match(/(\w+\d+) \((\d+)-(\d+)\)/);
+                    
+                    if (match) {
+                        const label = match[1];
+                        const start = parseInt(match[2]);
+                        const end = parseInt(match[3]);
+                        const colorStyle = item.querySelector('.color-box').style.backgroundColor;
+                        
+                        // Convert RGB to hex
+                        let color = '#cccccc';
+                        if (colorStyle.startsWith('rgb')) {
+                            const rgb = colorStyle.match(/\d+/g);
+                            if (rgb && rgb.length === 3) {
+                                color = `#${Number(rgb[0]).toString(16).padStart(2, '0')}${Number(rgb[1]).toString(16).padStart(2, '0')}${Number(rgb[2]).toString(16).padStart(2, '0')}`;
+                            }
+                        } else {
+                            color = colorStyle;
+                        }
+                        const colorHex = color.replace('#', '0x');
+                        
+                        repeatRegions.push({
+                            label,
+                            start,
+                            end,
+                            color,
+                            colorHex
+                        });
+                    }
+                });
+                
+                return repeatRegions;
+            }
+            
+            // Display error message
+            function showError(message) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('errorContainer').style.display = 'block';
+                document.getElementById('errorMessage').textContent = message;
+            }
+
+            // Function to extract exon data from repeats
+            function extractExonData(repeatRegions) {
+                // Find a canonical transcript across repeats
+                const exonData = { transcript: null, exons: [] };
+                
+                // First check if we have any exon info
+                let hasExonData = false;
+                for (const repeat of repeatRegions) {
+                    // Log the repeat to see what data is available
+                    console.log("Checking repeat for exon data:", repeat);
+                    
+                    if (repeat.ensembl_exon_info && repeat.ensembl_exon_info.transcripts && 
+                        repeat.ensembl_exon_info.transcripts.length > 0) {
+                        hasExonData = true;
+                        break;
+                    }
+                }
+                
+                if (!hasExonData) {
+                    console.log("No exon data found in any repeat regions");
+                    return null;
+                }
+                
+                // Find canonical transcript
+                for (const repeat of repeatRegions) {
+                    if (!repeat.ensembl_exon_info || !repeat.ensembl_exon_info.transcripts) continue;
+                    
+                    const canonical = repeat.ensembl_exon_info.transcripts.find(t => t.is_canonical);
+                    if (canonical) {
+                        exonData.transcript = canonical;
+                        console.log("Found canonical transcript:", canonical);
+                        break;
+                    }
+                }
+                
+                // If no canonical found, use first transcript from first repeat with data
+                if (!exonData.transcript) {
+                    for (const repeat of repeatRegions) {
+                        if (repeat.ensembl_exon_info && repeat.ensembl_exon_info.transcripts && 
+                            repeat.ensembl_exon_info.transcripts.length > 0) {
+                            exonData.transcript = repeat.ensembl_exon_info.transcripts[0];
+                            console.log("Using non-canonical transcript:", exonData.transcript);
+                            break;
+                        }
+                    }
+                }
+                
+                // If no transcript found, return null
+                if (!exonData.transcript) {
+                    console.log("No transcript found in the exon data");
+                    return null;
+                }
+                
+                // The rest of the function stays the same, just change exonInfo to ensembl_exon_info
+                // Get selected transcript ID
+                const selectedTranscriptId = exonData.transcript.transcript_id;
+                
+                // Collect all exons from all repeats for the selected transcript
+                const exonMap = new Map(); // Use map to avoid duplicates
+                
+                // For each repeat, find exons from selected transcript
+                for (const repeat of repeatRegions) {
+                    if (!repeat.ensembl_exon_info || !repeat.ensembl_exon_info.transcripts) continue;
+                    
+                    const transcript = repeat.ensembl_exon_info.transcripts.find(t => t.transcript_id === selectedTranscriptId);
+                    if (!transcript || !transcript.containing_exons) continue;
+                    
+                    // Parse repeat position
+                    const posMatch = repeat.position && repeat.position.match(/amino acids (\d+)-(\d+)/);
+                    if (!posMatch) continue;
+                    
+                    const repeatStart = parseInt(posMatch[1]);
+                    const repeatEnd = parseInt(posMatch[2]);
+                    const repeatLength = repeatEnd - repeatStart + 1;
+                    
+                    for (const exon of transcript.containing_exons) {
+                        // Store protein position based on repeat's amino acid position and exon's overlap info
+                        const existingExon = exonMap.get(exon.exon_number);
+                        
+                        if (!existingExon) {
+                            // Calculate exon boundaries using overlap information
+                            const overlapPercent = exon.overlap_percentage / 100;
+                            const overlapBp = exon.overlap_bp;
+                            
+                            // Estimate where the exon starts/ends in relation to the repeat
+                            let exonStart, exonEnd;
+                            
+                            // If the exon is at the start of the transcript
+                            if (exon.position === 'first_exon' || exon.position === 'single_exon') {
+                                // Most likely the exon starts before or at the repeat start
+                                exonStart = Math.max(1, repeatStart - Math.floor(overlapBp / 3)); // Estimate amino acid position
+                                exonEnd = exonStart + Math.floor(overlapBp / 3);
+                            } 
+                            // If the exon is at the end of the transcript
+                            else if (exon.position === 'last_exon') {
+                                // Most likely the exon ends after or at the repeat end
+                                exonEnd = repeatEnd + Math.floor(overlapBp / 3);
+                                exonStart = exonEnd - Math.floor(overlapBp / 3);
+                            }
+                            // Middle exon
+                            else {
+                                // Calculate rough position based on overlap with repeat
+                                exonStart = Math.max(1, repeatStart - 5);
+                                exonEnd = Math.min(repeatEnd + 5, repeatEnd + Math.floor(overlapBp / 3));
+                            }
+                            
+                            // Store exon info
+                            exonMap.set(exon.exon_number, {
+                                exon_number: exon.exon_number,
+                                exon_id: exon.exon_id,
+                                position: exon.position,
+                                coding_status: exon.coding_status || 'Unknown',  // Make sure this is preserved
+                                frame_status: exon.frame_status,
+                                repeat_region: repeat.label,
+                                repeat_start: exonStart,  // Better estimate for exon start
+                                repeat_end: exonEnd,      // Better estimate for exon end
+                                overlap_percentage: exon.overlap_percentage
+                            });
+
+                            // Add this right after you process a containing_exon:
+                            console.log(`Exon ${exon.exon_number} has coding status: ${exon.coding_status}`);
+                        } else {
+                            // We already have data for this exon, possibly update the repeat_region field
+                            if (existingExon.repeat_region !== repeat.label) {
+                                existingExon.repeat_region += `, ${repeat.label}`;
+                                exonMap.set(exon.exon_number, existingExon);
+                            }
+                        }
+
+                        // And later, after creating the exonMap entry:
+                        console.log(`Stored exon ${exonMap.get(exon.exon_number).exon_number} with status: ${exonMap.get(exon.exon_number).coding_status}`);
+                    }
+                }
+                
+                // Convert map to sorted array (by exon number)
+                exonData.exons = Array.from(exonMap.values()).sort((a, b) => a.exon_number - b.exon_number);
+                
+                // Try to infer exon boundaries for the complete protein
+                if (exonData.exons.length > 0) {
+                    // Process exons to infer their boundaries on the complete protein
+                    inferExonBoundaries(exonData.exons, repeatRegions);
+                }
+                
+                return exonData;
+            }
+
+            // Function to infer exon boundaries across the entire protein
+            function inferExonBoundaries(exons, repeatRegions) {
+                // Get full protein length (use the largest end position from repeats as an estimate)
+                const maxEnd = Math.max(...repeatRegions.map(r => r.end));
+                
+                // Sort repeats by start position
+                const sortedRepeats = [...repeatRegions].sort((a, b) => a.start - b.start);
+                
+                // Sort exons by number
+                exons.sort((a, b) => a.exon_number - b.exon_number);
+                
+                // Map exons to their likely protein coordinates
+                for (let i = 0; i < exons.length; i++) {
+                    const exon = exons[i];
+                    
+                    // If this is an exon that already has known repeat overlap,
+                    // we can use that information directly
+                    if (exon.repeat_start && exon.repeat_end) {
+                        // We already have estimated positions
+                        continue;
+                    }
+                    
+                    // Otherwise try to infer position based on surrounding exons
+                    // This is a placeholder for more sophisticated logic
+                    if (i > 0 && i < exons.length - 1) {
+                        const prevExon = exons[i-1];
+                        const nextExon = exons[i+1];
+                        if (prevExon.repeat_end && nextExon.repeat_start) {
+                            // Estimate position between known exons
+                            exon.repeat_start = prevExon.repeat_end + 1;
+                            exon.repeat_end = nextExon.repeat_start - 1;
+                        }
+                    }
+                }
+                
+                return exons;
+            }
+
+            // Function to show exon boundaries
+            function showExonBoundaries() {
+                if (!viewer) {
+                    console.error("Viewer not initialized");
+                    return;
+                }
+                
+                // Use the original repeat regions with full exon data
+                const repeatRegions = originalRepeatRegions;
+                const exonData = extractExonData(repeatRegions);
+                
+                if (!exonData || !exonData.exons.length) {
+                    console.warn("No exon data available for this protein");
+                    return;
+                }
+                
+                // Clear existing shapes and labels
+                viewer.removeAllShapes();
+                viewer.removeAllLabels();
+                
+                // Keep track of which positions we've marked
+                const markedPositions = new Set();
+                
+                // Add shapes for exon boundaries
+                exonData.exons.forEach((exon, index) => {
+                    if (!exon.repeat_start || !exon.repeat_end) {
+                        console.warn(`Exon ${exon.exon_number} missing position data`, exon);
+                        return;
+                    }
+                    
+                    // Try a more reliable way of selecting positions
+                    // 1. First, get atoms at these positions
+                    const startAtoms = viewer.getModel().selectedAtoms({resi: exon.repeat_start, atom: "CA"});
+                    const endAtoms = viewer.getModel().selectedAtoms({resi: exon.repeat_end, atom: "CA"});
+                    
+                    console.log(`Exon ${exon.exon_number}: Found ${startAtoms.length} atoms at start (${exon.repeat_start}) and ${endAtoms.length} atoms at end (${exon.repeat_end})`);
+                    
+                    // Only proceed if atoms were found
+                    if (startAtoms.length > 0 && !markedPositions.has(exon.repeat_start)) {
+                        // Get the first CA atom coordinates
+                        const atom = startAtoms[0];
+                        
+                        // Add a sphere at the exact coordinates
+                        viewer.addSphere({
+                            center: {x: atom.x, y: atom.y, z: atom.z},
+                            radius: 1.5,
+                            color: '0x00FF00',
+                            wireframe: true,
+                            linewidth: 3,
+                            alpha: 0.9
+                        });
+                        
+                        // Add label
+                        viewer.addLabel(`E${exon.exon_number} start`, {
+                            position: {x: atom.x, y: atom.y, z: atom.z},
+                            backgroundColor: '0x004400',
+                            backgroundOpacity: 0.8,
+                            fontColor: 'white',
+                            fontSize: 12
+                        });
+                        
+                        markedPositions.add(exon.repeat_start);
+                    }
+                    
+                    if (endAtoms.length > 0 && !markedPositions.has(exon.repeat_end)) {
+                        // Get the first CA atom coordinates
+                        const atom = endAtoms[0];
+                        
+                        // Add a sphere at the exact coordinates
+                        viewer.addSphere({
+                            center: {x: atom.x, y: atom.y, z: atom.z},
+                            radius: 1.5,
+                            color: '0xFF0000',
+                            wireframe: true,
+                            linewidth: 3,
+                            alpha: 0.9
+                        });
+                        
+                        // Add label
+                        viewer.addLabel(`E${exon.exon_number} end`, {
+                            position: {x: atom.x, y: atom.y, z: atom.z},
+                            backgroundColor: '0x440000',
+                            backgroundOpacity: 0.8,
+                            fontColor: 'white',
+                            fontSize: 12
+                        });
+                        
+                        markedPositions.add(exon.repeat_end);
+                    }
+                });
+                
+                // Update legend
+                updateLegendWithExons(exonData);
+                
+                viewer.render();
+            }
+
+            // Function to hide exon boundaries
+            function hideExonBoundaries() {
+                if (!viewer) return;
+                viewer.removeAllShapes();
+                viewer.render();
+                
+                // Remove exon-related legend items
+                document.querySelectorAll('.exon-legend-item').forEach(item => item.remove());
+            }
+
+            // Function to update legend with exon data
+            function updateLegendWithExons(exonData) {
+                const legend = document.getElementById('viewerLegend');
+                
+                // Remove any existing exon legend items
+                document.querySelectorAll('.exon-legend-item').forEach(item => item.remove());
+                
+                // Add legend for exon boundaries
+                if (exonData && exonData.exons.length) {
+                    const exonLegendHeader = document.createElement('div');
+                    exonLegendHeader.className = 'exon-legend-item';
+                    exonLegendHeader.style.width = '100%';
+                    exonLegendHeader.style.marginTop = '10px';
+                    exonLegendHeader.style.borderTop = '1px solid #ddd';
+                    exonLegendHeader.style.paddingTop = '5px';
+                    exonLegendHeader.innerHTML = `<strong>Exon Boundaries (${exonData.transcript.transcript_name}):</strong>`;
+                    legend.appendChild(exonLegendHeader);
+                    
+                    // Start boundary legend
+                    const startItem = document.createElement('div');
+                    startItem.className = 'legend-item exon-legend-item';
+                    const startColorBox = document.createElement('div');
+                    startColorBox.className = 'color-box';
+                    startColorBox.style.backgroundColor = '#00FF00';
+                    startColorBox.style.border = '1px solid #000';
+                    const startLabel = document.createElement('span');
+                    startLabel.textContent = 'Exon Start';
+                    startItem.appendChild(startColorBox);
+                    startItem.appendChild(startLabel);
+                    legend.appendChild(startItem);
+                    
+                    // End boundary legend
+                    const endItem = document.createElement('div');
+                    endItem.className = 'legend-item exon-legend-item';
+                    const endColorBox = document.createElement('div');
+                    endColorBox.className = 'color-box';
+                    endColorBox.style.backgroundColor = '#FF0000';
+                    endColorBox.style.border = '1px solid #000';
+                    const endLabel = document.createElement('span');
+                    endLabel.textContent = 'Exon End';
+                    endItem.appendChild(endColorBox);
+                    endItem.appendChild(endLabel);
+                    legend.appendChild(endItem);
+                    
+                    // Add information about the transcript
+                    const transcriptInfo = document.createElement('div');
+                    transcriptInfo.className = 'exon-legend-item';
+                    transcriptInfo.style.width = '100%';
+                    transcriptInfo.style.fontSize = '0.85em';
+                    transcriptInfo.style.marginTop = '5px';
+                    transcriptInfo.innerHTML = `<em>Transcript: ${exonData.transcript.transcript_id}</em>`;
+                    legend.appendChild(transcriptInfo);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

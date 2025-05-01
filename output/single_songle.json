@@ -1,0 +1,121 @@
+[
+  {
+    "chrom": "chr1",
+    "chromStart": 962901,
+    "chromEnd": 963233,
+    "strand": "+",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 2,
+    "blockSizes": ["16", "125"],
+    "chromStarts": ["0", "207"],
+    "geneName": "Gabagool",
+    "aliases": "glababoool",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 343-389 on protein Q6TDP4",
+    "repeatType": "LRR",
+    "uniProtId": "Q6TDP4",
+    "repeatLength": 332,
+    "protein_start": 343,
+    "protein_end": 389,
+    "ensembl_exon_info": {
+      "transcripts_count": 2,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000338591",
+          "versioned_transcript_id": "ENST00000338591",
+          "transcript_name": "ENST00000338591",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 12,
+          "strand": "+",
+          "containing_exons": [
+            {
+              "exon_number": 6,
+              "exon_id": "ENSE00001368267",
+              "exon_start": 962704,
+              "exon_end": 962917,
+              "protein_start": 277,
+              "protein_end": 348,
+              "overlap_bp": 16,
+              "position": "middle_exon_6",
+              "overlap_percentage": 7.51,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 1,
+              "frame_status": "out_of_frame"
+            },
+            {
+              "exon_number": 7,
+              "exon_id": "ENSE00001365077",
+              "exon_start": 963109,
+              "exon_end": 963253,
+              "protein_start": 90,
+              "protein_end": 396,
+              "overlap_bp": 124,
+              "position": "middle_exon_7",
+              "overlap_percentage": 86.11,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 1,
+              "end_phase": 2,
+              "frame_status": "out_of_frame"
+            }
+          ]
+        },
+        {
+          "transcript_id": "ENST00000466300",
+          "versioned_transcript_id": "ENST00000466300",
+          "transcript_name": "ENST00000466300",
+          "is_canonical": false,
+          "biotype": "nonsense_mediated_decay",
+          "location": "exonic",
+          "exon_count": 6,
+          "strand": "+",
+          "containing_exons": [
+            {
+              "exon_number": 1,
+              "exon_id": "ENSE00001944508",
+              "exon_start": 962727,
+              "exon_end": 962917,
+              "protein_start": 1,
+              "protein_end": 348,
+              "overlap_bp": 16,
+              "position": "first_exon",
+              "overlap_percentage": 8.42,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 2,
+              "frame_status": "out_of_frame"
+            },
+            {
+              "exon_number": 2,
+              "exon_id": "ENSE00001858232",
+              "exon_start": 963032,
+              "exon_end": 963253,
+              "protein_start": 64,
+              "protein_end": 138,
+              "overlap_bp": 201,
+              "position": "middle_exon_2",
+              "overlap_percentage": 90.95,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 2,
+              "end_phase": 2,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]
