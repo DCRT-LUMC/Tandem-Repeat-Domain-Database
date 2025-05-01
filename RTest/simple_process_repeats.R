@@ -101,56 +101,90 @@ get_overlapping_transcripts <- function(chrom, start, end, strand = NULL, ensdb)
 # Get exons for a transcript and add protein coordinates
 get_exons_for_transcript <- function(tx_id, ensdb) {
   # Get exons by transcript ID with all available metadata
-  exons <- exonsBy(ensdb, by = "tx", filter = TxIdFilter(tx_id))
-  if (length(exons) == 0) {
-    return(NULL)
+  exons_list <- tryCatch({
+      exonsBy(ensdb, by = "tx", filter = TxIdFilter(tx_id))
+  }, error = function(e) {
+      cat(sprintf("Warning: exonsBy failed for tx_id %s: %s\n", tx_id, conditionMessage(e)))
+      NULL
+  })
+  
+  if (is.null(exons_list) || length(exons_list) == 0 || !(tx_id %in% names(exons_list))) {
+    return(NULL) # Return NULL if no exons found for this transcript
   }
   
-  # Get additional exon metadata including phase information directly from ensembldb
-  # This is more efficient than making separate API calls
-  exon_meta <- exons(ensdb, filter = TxIdFilter(tx_id), 
-                     columns = c("exon_id", "exon_idx", "exon_seq_start", "exon_seq_end", 
-                                "exon_rank", "phase", "end_phase"))
+  exons_with_meta <- exons_list[[tx_id]]
   
-  # Add metadata to exons (if exons exist)
-  exons_with_meta <- exons[[1]]
-  mcols(exons_with_meta) <- cbind(mcols(exons_with_meta), mcols(exon_meta))
+  # Ensure exon_rank is present, if not, add it based on order
+  if (!("exon_rank" %in% colnames(mcols(exons_with_meta)))) {
+      warning(paste("exon_rank missing for", tx_id, "- adding based on order."))
+      exons_with_meta$exon_rank <- 1:length(exons_with_meta)
+  }
   
-  # Get protein coordinates for each exon
-  # Create a list to store protein coordinates
-  protein_coords <- list()
+  # Order by rank just in case
+  exons_with_meta <- exons_with_meta[order(exons_with_meta$exon_rank)]
   
-  for (i in 1:length(exons_with_meta)) {
-    # Create GRanges object for the current exon
-    exon_gr <- GRanges(seqnames = seqnames(exons_with_meta[i]),
-                       ranges = IRanges(start = start(exons_with_meta[i]), 
-                                       end = end(exons_with_meta[i])),
-                       strand = strand(exons_with_meta[i]))
+  # Get additional metadata if needed (like exon_id, phase - though phase calculation is separate)
+  # Note: exonsBy usually returns exon_id, check if other columns are needed
+  # exon_meta <- exons(ensdb, filter = TxIdFilter(tx_id), 
+  #                    columns = c("exon_id", "phase", "end_phase")) # Example
+  # mcols(exons_with_meta) <- cbind(mcols(exons_with_meta), mcols(exon_meta)) # If needed
+
+  # Get protein coordinates for each exon, FILTERING by tx_id
+  protein_coords_list <- lapply(1:length(exons_with_meta), function(i) {
+    exon <- exons_with_meta[i]
     
     # Translate genomic coordinates to protein
-    prot_coords <- tryCatch({
-      genomeToProtein(exon_gr, ensdb)
+    prot_list <- tryCatch({
+      genomeToProtein(exon, ensdb)
     }, error = function(e) {
+      # Optional: Log error for specific exon
+      # cat(sprintf("Warning: genomeToProtein failed for exon rank %d (tx: %s): %s\n", mcols(exon)$exon_rank, tx_id, conditionMessage(e)))
       NULL
     })
     
-    # Store protein start and end or NA if translation failed
-    if (!is.null(prot_coords) && length(prot_coords) > 0) {
-      protein_coords[[i]] <- list(
-        protein_start = min(start(prot_coords)),
-        protein_end = max(end(prot_coords))
-      )
-    } else {
-      protein_coords[[i]] <- list(
-        protein_start = NA_integer_,
-        protein_end = NA_integer_
-      )
-    }
-  }
+    start_prot <- NA_integer_
+    end_prot <- NA_integer_
+    
+    # Process the result (a GRangesList)
+    if (!is.null(prot_list) && length(prot_list) > 0 && length(prot_list[[1]]) > 0) {
+      
+      # Get the GRanges object containing ALL mappings for this genomic exon
+      all_prot_gr <- prot_list[[1]] 
+      
+      # *** FILTERING STEP ***
+      # Keep only the mappings that match our target transcript ID (tx_id)
+      if ("tx_id" %in% colnames(mcols(all_prot_gr))) {
+          filtered_prot_gr <- all_prot_gr[mcols(all_prot_gr)$tx_id == tx_id]
+      } else {
+          warning(paste("tx_id column missing in genomeToProtein result for exon rank", mcols(exon)$exon_rank, "tx:", tx_id))
+          filtered_prot_gr <- GRanges() # Use empty GRanges
+      }
+      # *** END FILTERING STEP ***
+
+      # Now, get the IRanges from the *filtered* GRanges object
+      prot_ranges <- ranges(filtered_prot_gr) 
+      
+      # Calculate min/max ONLY on the filtered ranges
+      if (length(prot_ranges) > 0) {
+        # If filtering resulted in multiple ranges *for the target transcript* 
+        # (less common but possible), min/max still applies *to those*.
+        start_prot <- min(start(prot_ranges)) 
+        end_prot <- max(end(prot_ranges))
+      } 
+      # If prot_ranges is empty after filtering, start/end_prot remain NA
+      
+    } 
+    # If prot_list was NULL or empty initially, start/end_prot remain NA
+
+    return(data.frame(protein_start = start_prot, protein_end = end_prot))
+  })
+  
+  # Combine the list of data frames into single columns
+  coords_df <- dplyr::bind_rows(protein_coords_list)
   
   # Add protein coordinates to exons_with_meta
-  mcols(exons_with_meta)$protein_start <- sapply(protein_coords, function(x) x$protein_start)
-  mcols(exons_with_meta)$protein_end <- sapply(protein_coords, function(x) x$protein_end)
+  mcols(exons_with_meta)$protein_start <- coords_df$protein_start
+  mcols(exons_with_meta)$protein_end <- coords_df$protein_end
   
   return(exons_with_meta)
 }
@@ -540,7 +574,7 @@ simple_process_repeat_data <- function(input_file, output_file, limit = NULL, ra
   }
   
   # Try parallel processing with BiocParallel
-  num_cores <- 8
+  num_cores <- 4
   #num_cores <- min(detectCores() - 1, 16)  # More conservative core usage
   cat("Using", num_cores, "cores for processing with BiocParallel...\n")  # Fix typo: num_ores → num_cores
   

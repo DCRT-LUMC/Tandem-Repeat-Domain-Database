@@ -143,3 +143,137 @@ BiocManager::install("AnnotationHub", lib = Sys.getenv("R_LIBS_USER"))
 # You'll also need ensembldb for your script
 BiocManager::install("ensembldb", lib = Sys.getenv("R_LIBS_USER"))
 ```
+
+```{r}
+# --- Minimal Test using exonsBy for reliable rank ---
+# Assumes 'ensdb', 'GenomicRanges', 'ensembldb', 'dplyr' are loaded.
+
+# 1. Define Transcript ID
+target_tx_id <- "ENST00000338591" # The transcript showing the issue
+problematic_exon_rank <- 7      # Set the rank of the exon to inspect
+
+cat("Testing coordinate mapping for:", target_tx_id, "\n")
+cat("Will print details for exon rank:", problematic_exon_rank, "\n")
+
+# 2. Get Exons using exonsBy
+exons_list <- tryCatch({
+  exonsBy(ensdb, by = "tx", filter = TxIdFilter(target_tx_id))
+}, error = function(e) {
+  cat("Error calling exonsBy():", conditionMessage(e), "\n")
+  NULL
+})
+
+# Check if exons were retrieved
+if (!is.null(exons_list) && target_tx_id %in% names(exons_list)) {
+  
+  exons_gr <- exons_list[[target_tx_id]]
+  
+  if (length(exons_gr) > 0 && "exon_rank" %in% colnames(mcols(exons_gr))) {
+    
+    exons_gr <- exons_gr[order(exons_gr$exon_rank)]
+    
+    cat("Found", length(exons_gr), "exons. Mapping to protein...\n")
+
+    # 3. Map each exon to protein coordinates, FILTERING for target_tx_id
+    protein_coords <- lapply(1:length(exons_gr), function(i) {
+      exon <- exons_gr[i] 
+      current_exon_rank <- mcols(exon)$exon_rank 
+      
+      prot_list <- tryCatch(genomeToProtein(exon, ensdb), error = function(e) NULL)
+      
+      start_prot <- NA_integer_
+      end_prot <- NA_integer_
+      
+      # Process the result (a GRangesList)
+      if (!is.null(prot_list) && length(prot_list) > 0 && length(prot_list[[1]]) > 0) {
+        
+        # Get the GRanges object containing all mappings for this genomic exon
+        all_prot_gr <- prot_list[[1]] 
+        
+        # *** FILTERING STEP ***
+        # Keep only the mappings that match our target transcript ID
+        # Check if 'tx_id' column exists before filtering
+        if ("tx_id" %in% colnames(mcols(all_prot_gr))) {
+            filtered_prot_gr <- all_prot_gr[mcols(all_prot_gr)$tx_id == target_tx_id]
+        } else {
+            # Handle case where tx_id column might be missing (shouldn't happen with genomeToProtein)
+            warning(paste("tx_id column missing in genomeToProtein result for exon rank", current_exon_rank))
+            filtered_prot_gr <- GRanges() # Create empty GRanges to avoid errors
+        }
+
+        # *** END FILTERING STEP ***
+
+        # Now, get the IRanges from the *filtered* GRanges object
+        prot_ranges <- ranges(filtered_prot_gr) 
+        
+        # --- Optional: Inspection block for the problematic exon ---
+        if (current_exon_rank == problematic_exon_rank) {
+            cat("\n--- Inspecting Exon Rank:", current_exon_rank, "---\n")
+            cat("Genomic Coords:", paste0(seqnames(exon), ":", start(exon), "-", end(exon), "(", strand(exon), ")"), "\n")
+            cat("Raw genomeToProtein output (prot_list):\n")
+            print(prot_list) 
+            cat("Filtered Protein GRanges (filtered_prot_gr):\n")
+            print(filtered_prot_gr) # See which ranges remained after filtering
+            cat("Filtered Protein IRanges (prot_ranges):\n")
+            print(prot_ranges) 
+            cat("Number of protein ranges *after filtering*:", length(prot_ranges), "\n")
+        }
+        # --- End Inspection block ---
+
+        # Calculate min/max ONLY on the filtered ranges
+        if (length(prot_ranges) > 0) {
+          # If filtering resulted in multiple ranges *for the target transcript* 
+          # (less common but possible for complex cases), min/max still applies *to those*.
+          start_prot <- min(start(prot_ranges)) 
+          end_prot <- max(end(prot_ranges))
+          
+          if (current_exon_rank == problematic_exon_rank) {
+              cat("Calculated min protein start (post-filter):", start_prot, "\n")
+              cat("Calculated max protein end (post-filter):", end_prot, "\n")
+              cat("--- End Inspection ---\n\n")
+          }
+        } else {
+           # Handle cases where filtering removed all ranges
+           if (current_exon_rank == problematic_exon_rank) {
+               cat("No protein ranges remained after filtering for target_tx_id.\n")
+               cat("--- End Inspection ---\n\n")
+           }
+        }
+      } else {
+         # Handle cases where genomeToProtein returns empty list initially
+         if (current_exon_rank == problematic_exon_rank) {
+             cat("Initial genomeToProtein result was empty or invalid.\n")
+             cat("--- End Inspection ---\n\n")
+         }
+      }
+      return(data.frame(protein_start = start_prot, protein_end = end_prot))
+    })
+
+    # 4. Combine and Print Overall Results (as before)
+    results_df <- tryCatch({
+        dplyr::bind_cols(
+          as.data.frame(mcols(exons_gr)["exon_rank"]), 
+          data.frame(
+            genomic_coords = paste0(seqnames(exons_gr), ":", start(exons_gr), "-", end(exons_gr), "(", strand(exons_gr), ")")
+          ),
+          dplyr::bind_rows(protein_coords)
+        )
+    }, error = function(e) {
+        cat("Error combining results:", conditionMessage(e), "\n")
+        NULL
+    })
+    
+    if (!is.null(results_df)) {
+        cat("\n--- Overall Results Table ---\n")
+        print(results_df)
+    }
+
+  } else {
+     cat("No exons found for transcript", target_tx_id, "or 'exon_rank' column missing.\n")
+  }
+} else {
+  cat("Could not retrieve exons list for transcript:", target_tx_id, "\n")
+}
+```
+
+Now, when you run this chunk, it will still print the final table, but it will also print detailed debugging information specifically for exon rank 15 (or whichever rank you set in `problematic_exon_rank`), showing the raw `GRangesList`, the extracted `IRanges`, and the calculated min/max values for that specific exon. This allows you to see the multiple protein ranges that `genomeToProtein` returned for that single exon.
