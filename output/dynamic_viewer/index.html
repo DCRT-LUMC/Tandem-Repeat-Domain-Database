@@ -196,12 +196,12 @@
                             <h4 class="alert-heading">Error loading data</h4>
                             <p>${error.message || 'NetworkError when attempting to fetch resource'}</p>
                             <hr>
-                            <p class="mb-0">This error often occurs when opening HTML files directly from the file system.</p>
+                            <p class="mb-0">This error can occur when opening HTML files directly from the file system or if the JSON file is missing.</p>
                             <h5 class="mt-3">To fix this issue:</h5>
                             <ol>
-                                <li>Run the local web server using: <code>python ../serve.py</code> from the output directory</li>
-                                <li>Or: <code>python -m http.server</code> in the output directory</li>
-                                <li>Then access the application at: <a href="http://localhost:8000/dynamic_viewer/">http://localhost:8000/dynamic_viewer/</a></li>
+                                <li>If running locally: Run a web server using: <code>python -m http.server</code> in the output directory</li>
+                                <li>If using GitHub Pages: Make sure the JSON file is properly uploaded to your repository</li>
+                                <li>Check that the path to 'all_annotated_repeats.json' is correct relative to this HTML file</li>
                             </ol>
                             <button class="btn btn-primary mt-2" onclick="window.location.reload()">Try Again</button>
                         </div>
