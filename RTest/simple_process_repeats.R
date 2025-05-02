@@ -13,10 +13,6 @@ library(BiocGenerics)
 library(IRanges)
 library(parallel)
 library(BiocParallel)
-# Add these libraries for sequence retrieval
-library(Biostrings)
-library(BSgenome)
-library(BSgenome.Hsapiens.UCSC.hg38)  # Reference genome package
 
 # Load the Ensembl database
 cat("Loading EnsDb.Hsapiens.v113 from AnnotationHub...\n")
@@ -312,34 +308,6 @@ calculate_phase <- function(exon, cds_regions) {
   return(list(phase = phase, end_phase = end_phase))
 }
 
-# Add this function to get exon DNA sequences
-get_exon_sequence <- function(exon, genome = BSgenome.Hsapiens.UCSC.hg38) {
-  # Ensure the chromosome name matches the BSgenome style (with "chr" prefix)
-  seqname <- seqnames(exon)
-  if (!grepl("^chr", seqname)) {
-    seqname <- paste0("chr", seqname)
-  }
-  
-  # Create a GRanges object compatible with BSgenome
-  gr <- GRanges(
-    seqnames = seqname,
-    ranges = IRanges(start = start(exon), end = end(exon)),
-    strand = strand(exon)
-  )
-  
-  # Check if the chromosome exists in the genome
-  if (!seqname %in% seqnames(genome)) {
-    warning(paste("Chromosome", seqname, "not found in genome. Returning NA sequence."))
-    return(NA_character_)
-  }
-  
-  # Get the sequence
-  seq <- getSeq(genome, gr)
-  
-  # Convert to character string and return
-  return(as.character(seq))
-}
-
 # Process a single repeat
 process_repeat <- function(repeat_data, ensdb) {
   # Get CDS regions by transcript - add this line!
@@ -521,14 +489,7 @@ process_repeat <- function(repeat_data, ensdb) {
               coding_percentage = coding_info$percentage,
               phase = phase,
               end_phase = end_phase,
-              frame_status = frame_status,
-              # Add the DNA sequence
-              dna_sequence = tryCatch({
-                get_exon_sequence(exon)
-              }, error = function(e) {
-                warning(paste("Error retrieving DNA sequence for exon:", exon$exon_id, "-", conditionMessage(e)))
-                NA_character_
-              })
+              frame_status = frame_status
             )
             
             containing_exons <- c(containing_exons, list(exon_info))
