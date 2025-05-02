@@ -574,7 +574,7 @@ simple_process_repeat_data <- function(input_file, output_file, limit = NULL, ra
   }
   
   # Try parallel processing with BiocParallel
-  num_cores <- 4
+  num_cores <- 12
   #num_cores <- min(detectCores() - 1, 16)  # More conservative core usage
   cat("Using", num_cores, "cores for processing with BiocParallel...\n")  # Fix typo: num_ores → num_cores
   

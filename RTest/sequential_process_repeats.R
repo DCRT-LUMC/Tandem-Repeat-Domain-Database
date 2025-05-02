@@ -7,7 +7,7 @@ source("/home/dogdorgesh/Documents/GitHub/Tandem-Repeat-Domain-Database/RTest/si
 
 # Set base paths
 input_file <- "/home/dogdorgesh/Documents/GitHub/Tandem-Repeat-Domain-Database/RTest/DEF_gname_hg38_repeats.json"
-output_dir <- "/home/dogdorgesh/Documents/GitHub/Tandem-Repeat-Domain-Database/RTest/output"
+output_dir <- "/home/dogdorgesh/Documents/GitHub/Tandem-Repeat-Domain-Database/RTest/output/canonical_v2"
 
 # Create output directory if it doesn't exist
 if (!dir.exists(output_dir)) {
@@ -15,13 +15,7 @@ if (!dir.exists(output_dir)) {
   dir.create(output_dir, recursive = TRUE)
 }
 
-# Process range 1-500
-cat("\n=== Processing range 1001-1500 ===\n")
-simple_process_repeat_data(
-  input_file = input_file,
-  output_file = file.path(output_dir, "1-500_annotated_repeats.json"),
-  range = "1-500"
-)
+
 
 # Process range 501-1000
 cat("\n=== Processing range 1001-1500 ===\n")
