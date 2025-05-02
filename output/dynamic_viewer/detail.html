@@ -3,45 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protein Detail - Tandem Repeat Domain Database</title>
+    <title>Protein Detail - TandemSkip</title>
     <!-- Add favicon links -->
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --success: #4ade80;
+            --danger: #f87171;
+            --warning: #facc15;
+            --info: #60a5fa;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--dark);
+            line-height: 1.6;
         }
         
         .viewer-title {
-            background-color: #f0f8ff;
-            padding: 10px 15px;
-            border-left: 4px solid #4682b4;
-            margin-bottom: 20px;
+            background-color: var(--light);
+            padding: 16px 24px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 24px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .viewer-title h2 {
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--primary);
         }
         
         .protein-info {
             display: flex;
             justify-content: space-between;
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 15px;
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 24px;
+            box-shadow: var(--box-shadow);
+            flex-wrap: wrap;
+            gap: 16px;
         }
         
         /* 3D viewer styling */
         #proteinViewer {
             width: 100%;
-            height: 400px;
+            height: 450px;
             position: relative;
             margin: 20px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            background-color: #f0f4f8;
         }
         
         .viewer-container {
@@ -50,21 +89,31 @@
         
         .viewer-controls {
             display: flex;
-            margin-bottom: 10px;
-            gap: 10px;
+            margin-bottom: 16px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
         
         .view-button {
-            padding: 8px 16px;
-            background-color: #f0f0f0;
+            padding: 10px 20px;
+            background-color: var(--light);
             cursor: pointer;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            border: none;
+            border-radius: var(--border-radius);
             font-size: 14px;
+            font-weight: 500;
+            color: var(--dark);
+            transition: var(--transition);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .view-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
         .view-button.active {
-            background-color: #4682b4;
+            background-color: var(--primary);
             color: white;
         }
         
@@ -73,72 +122,274 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 24px;
+            border-radius: var(--border-radius);
             text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--box-shadow);
             z-index: 100;
+            min-width: 200px;
         }
         
         .viewer-legend {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
+            margin-top: 16px;
+            padding: 16px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 16px;
+            box-shadow: var(--box-shadow);
         }
         
         .legend-item {
             display: flex;
             align-items: center;
+            background-color: var(--light);
+            padding: 8px 12px;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+        
+        .legend-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         
         .color-box {
             width: 20px;
             height: 20px;
             margin-right: 8px;
-            border-radius: 3px;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
         }
         
         .back-button {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .back-button a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background-color: var(--light);
+            color: var (--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-button a:hover {
+            background-color: var(--primary-light);
+            color: white;
+            transform: translateX(-4px);
         }
         
         .key-fact {
-            background-color: #e9f7ef;
-            padding: 8px 12px;
-            border-radius: 4px;
+            background-color: var(--light);
+            padding: 10px 16px;
+            border-radius: var(--border-radius);
             margin: 10px 0;
             display: inline-block;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         .error-container {
             margin: 50px auto;
             max-width: 500px;
             text-align: center;
-            padding: 20px;
-            background-color: #f8d7da;
-            border-radius: 5px;
+            padding: 30px;
+            background-color: #fee2e2;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
         }
         
         .genomic-data {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
+            background-color: var(--card-bg);
+            padding: 24px;
+            border-radius: var(--border-radius);
+            margin-top: 24px;
+            box-shadow: var(--box-shadow);
         }
 
         .exon-legend-item {
-            margin-top: 3px;
+            margin-top: 6px;
+        }
+
+        /* Styles for section headers and toggles */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            padding: 16px 24px;
+            margin-bottom: 24px;
+            border-radius: var(--border-radius);
+            color: white;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-header h3 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.25rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0.3;
+        }
+        
+        .toggle-button {
+            padding: 6px 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: white;
+            transition: var (--transition);
+            backdrop-filter: blur(2px);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .toggle-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .collapsible-content {
+            overflow: hidden;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+        
+        .collapsed {
+            display: none;
+        }
+        
+        .external-links {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .external-link-btn {
+            font-size: 0.875rem;
+            padding: 6px 12px;
+            text-decoration: none;
+            color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var (--transition);
+        }
+        
+        .external-link-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Table styling */
+        .table {
+            margin-bottom: 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+        
+        .table thead th {
+            background-color: var(--primary-light);
+            color: white;
+            font-weight: 500;
+            border: none;
+        }
+        
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+        /* Loading spinner */
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            border-width: 0.25rem;
+            color: var (--primary);
+        }
+        
+        /* Specific card containers for repeat and genomic info */
+        .summary-card, .genomic-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--box-shadow);
+        }
+        
+        /* Footer styling */
+        footer {
+            margin-top: 40px;
+            padding: 24px 0;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        #proteinDetails {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .protein-info {
+                flex-direction: column;
+            }
+            
+            .viewer-controls {
+                justify-content: center;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="back-button">
-        <a href="index.html" class="btn btn-outline-secondary btn-sm">← Back to Protein List</a>
+        <a href="index.html" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-left"></i> Back to Protein List
+        </a>
     </div>
     
     <div id="loading" class="text-center my-5">
@@ -156,34 +407,75 @@
     
     <div id="proteinDetails" style="display: none;">
         <div class="viewer-title">
-            <h2>Tandem Repeat Domain Viewer</h2>
-            <p id="proteinTitle">Protein Structure</p>
+            <h2>TandemSkip Detail Viewer</h2>
+            <p id="proteinTitle" class="mb-0">Protein Structure</p>
         </div>
         
         <div class="protein-info">
             <div>
-                <strong>UniProt:</strong> <a id="uniprotLink" target="_blank"></a>
-                <br>
-                <strong>Gene:</strong> <span id="geneName"></span>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-id-card me-2 text-primary"></i>
+                    <strong>UniProt:</strong> 
+                    <a id="uniprotLink" target="_blank" class="ms-2 text-decoration-none"></a>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-dna me-2 text-primary"></i>
+                    <strong>Gene:</strong> 
+                    <span id="geneName" class="ms-2"></span>
+                </div>
+                <div class="external-links">
+                    <a id="ensemblLink" href="#" target="_blank" class="external-link-btn">
+                        <i class="fas fa-external-link-alt"></i> Ensembl
+                    </a>
+                    <a id="genecardsLink" href="#" target="_blank" class="external-link-btn">
+                        <i class="fas fa-external-link-alt"></i> GeneCards
+                    </a>
+                    <a id="pdbLink" href="#" target="_blank" class="external-link-btn">
+                        <i class="fas fa-external-link-alt"></i> PDB
+                    </a>
+                </div>
             </div>
             <div>
-                <strong>Repeat Type:</strong> <span id="repeatType"></span>
-                <br>
-                <strong>Status:</strong> <span id="status"></span>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="fas fa-sync-alt me-2 text-primary"></i>
+                    <strong>Repeat Type:</strong> 
+                    <span id="repeatType" class="ms-2 badge bg-info"></span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-info-circle me-2 text-primary"></i>
+                    <strong>Status:</strong> 
+                    <span id="status" class="ms-2 badge bg-success"></span>
+                </div>
             </div>
         </div>
         
         <!-- Add 3D Viewer Container -->
-        <div class="viewer-container">
-            <h3>3D Structure Visualization</h3>
+        <div class="section-header">
+            <h3><i class="fas fa-cube me-2"></i>3D Structure Visualization</h3>
+            <button class="toggle-button" onclick="toggleSection('viewerContainer')">
+                <i class="fas fa-eye-slash me-1"></i> Hide
+            </button>
+        </div>
+        <div id="viewerContainer" class="viewer-container collapsible-content">
             <div class="viewer-controls">
-                <button class="view-button active" id="highlightRepeatsBtn">Highlight Repeats</button>
-                <button class="view-button" id="standardViewBtn">Standard View</button>
-                <button class="view-button" id="zoomRepeatsBtn">Zoom to Repeats</button>
-                <button class="view-button" id="exonBoundariesBtn">Show Exon Boundaries</button>
+                <button class="view-button active" id="highlightRepeatsBtn">
+                    <i class="fas fa-highlighter me-1"></i> Highlight Repeats
+                </button>
+                <button class="view-button" id="standardViewBtn">
+                    <i class="fas fa-atom me-1"></i> Standard View
+                </button>
+                <button class="view-button" id="zoomRepeatsBtn">
+                    <i class="fas fa-search-plus me-1"></i> Zoom to Repeats
+                </button>
+                <button class="view-button" id="exonBoundariesBtn">
+                    <i class="fas fa-project-diagram me-1"></i> Show Exon Boundaries
+                </button>
             </div>
             <div id="proteinViewer">
-                <div class="loading-indicator">Loading protein structure...</div>
+                <div class="loading-indicator">
+                    <div class="spinner-border text-primary" style="width: 2rem; height: 2rem;"></div>
+                    <p class="mt-2 mb-0">Loading protein structure...</p>
+                </div>
             </div>
             <div id="viewerLegend" class="viewer-legend">
                 <div class="legend-item">
@@ -193,34 +485,68 @@
             </div>
         </div>
         
-        <div class="summary-container mt-4">
-            <h3>Summary of Tandem Repeats</h3>
-            <p id="repeatSummary"></p>
-            <ul id="repeatList"></ul>
+        <div class="section-header mt-4">
+            <h3><i class="fas fa-layer-group me-2"></i>Summary of Tandem Repeats</h3>
+            <button class="toggle-button" onclick="toggleSection('summaryContent')">
+                <i class="fas fa-eye-slash me-1"></i> Hide
+            </button>
+        </div>
+        <div id="summaryContent" class="collapsible-content">
+            <p id="repeatSummary" class="lead"></p>
+            <ul id="repeatList" class="list-group list-group-flush mt-3"></ul>
+            
+            <!-- Publication section removed -->
         </div>
         
-        <div id="genomicData" class="genomic-data">
-            <h3>Genomic Information</h3>
+        <div class="section-header mt-4">
+            <h3><i class="fas fa-dna me-2"></i>Genomic Information</h3>
+            <button class="toggle-button" onclick="toggleSection('genomicContent')">
+                <i class="fas fa-eye-slash me-1"></i> Hide
+            </button>
+        </div>
+        <div id="genomicContent" class="collapsible-content">
             <div class="row mb-3">
                 <div class="col-md-6">
-                    <p><strong>Chromosome:</strong> <span id="chromosome"></span></p>
-                    <p><strong>Genomic Range:</strong> <span id="genomicRange"></span></p>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-chromosome me-2 text-primary"></i>
+                        <strong>Chromosome:</strong> 
+                        <span id="chromosome" class="ms-2 badge bg-secondary"></span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                        <strong>Genomic Range:</strong> 
+                        <span id="genomicRange" class="ms-2"></span>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <p><strong>Strand:</strong> <span id="strand"></span></p>
-                    <p><strong>Aliases:</strong> <span id="aliases"></span></p>
+                    <div class="d-flex align-items-center mb-2">
+                        <i class="fas fa-arrows-alt-h me-2 text-primary"></i>
+                        <strong>Strand:</strong> 
+                        <span id="strand" class="ms-2"></span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-tags me-2 text-primary"></i>
+                        <strong>Aliases:</strong> 
+                        <span id="aliases" class="ms-2"></span>
+                    </div>
                 </div>
             </div>
-            <div id="exonSummary" class="mt-3">
-                <h4>Exon Information</h4>
-                <p id="exonDataText">Loading exon data...</p>
+            <div id="exonSummary" class="mt-4">
+                <h4 class="d-flex align-items-center mb-3">
+                    <i class="fas fa-puzzle-piece me-2 text-primary"></i>
+                    Exon Information
+                </h4>
+                <div id="exonDataText" class="table-responsive">Loading exon data...</div>
             </div>
         </div>
     </div>
     
     <footer class="bg-light mt-5 py-3">
         <div class="container text-center">
-            <p class="mb-0">Tandem Repeat Domain Database - Dynamically generated from JSON data</p>
+            <p class="mb-0">
+                <i class="fas fa-database me-1"></i>
+                TandemSkip - <span class="text-primary">Dynamically generated from JSON data</span>
+            </p>
         </div>
     </footer>
     
@@ -230,6 +556,7 @@
         let viewer = null;
         let originalRepeatRegions = []; // Store original repeat data
         let processedRepeatRegions = []; // Store processed repeat regions
+        let viewerInitialized = false; // Track if viewer is fully initialized
 
         function fetchProteinData(uniprotId, dataUrl) {
             fetch(dataUrl)
@@ -447,6 +774,16 @@
             
             // Create legend for repeats
             createLegend(repeats);
+
+            // Add external resource links
+            const ensemblLink = document.getElementById('ensemblLink');
+            ensemblLink.href = `https://www.ensembl.org/Homo_sapiens/Search/Results?q=${info.geneName}`;
+            
+            const genecardsLink = document.getElementById('genecardsLink');
+            genecardsLink.href = `https://www.genecards.org/cgi-bin/carddisp.pl?gene=${info.geneName}`;
+            
+            const pdbLink = document.getElementById('pdbLink');
+            pdbLink.href = `https://www.rcsb.org/search?query=${info.uniProtId}`;
         }
         
         function createLegend(repeats) {
@@ -556,6 +893,25 @@
                     
                     viewer.render();
                     console.log("3D model successfully loaded and rendered");
+                    
+                    // Set viewer as initialized after loading completes
+                    viewerInitialized = true;
+                    
+                    // Apply the repeats highlight by default - this is already done but ensure it works
+                    setTimeout(() => {
+                        // Execute after a short delay to ensure the viewer is fully ready
+                        highlightRepeats();
+                        
+                        // Set active class on highlight repeats button
+                        document.getElementById('highlightRepeatsBtn').classList.add('active');
+                        
+                        // Zoom to repeats area initially
+                        if (repeatRegions.length > 0) {
+                            const firstRepeat = repeatRegions[0].start;
+                            const lastRepeat = repeatRegions[repeatRegions.length - 1].end;
+                            viewer.zoomTo({resi: `${firstRepeat}-${lastRepeat}`});
+                        }
+                    }, 100);
                 } catch (error) {
                     console.error("Error in loadModel function:", error);
                     const loadingIndicator = document.querySelector('.loading-indicator');
@@ -568,144 +924,155 @@
 
         // Highlight the repeat domains specifically
         function highlightRepeats() {
-            if (!viewer) return;
+            if (!viewer || !viewerInitialized) {
+                console.error("Viewer not initialized yet");
+                return;
+            }
             
-            viewer.removeAllSurfaces();
-            viewer.removeAllShapes();
-            viewer.removeAllLabels();
-            
-            // Set whole protein to a light gray surface
-            viewer.setStyle({}, {
-                cartoon: {color: '0xcccccc', opacity: 0.5},
-                surface: {opacity: 0.6, color: '0xdddddd'}
-            });
-            
-            // Get repeat regions from the page
-            const repeatRegions = getRepeatRegionsFromPage();
-            
-            // Highlight each repeat with colored surface
-            repeatRegions.forEach(repeat => {
-                const selection = {resi: `${repeat.start}-${repeat.end}`};
+            try {
+                // Clear all previous styles and settings
+                viewer.removeAllSurfaces();
+                viewer.removeAllShapes();
+                viewer.removeAllLabels();
                 
-                viewer.setStyle(selection, {
-                    cartoon: {color: repeat.colorHex, opacity: 1.0},
-                    surface: {opacity: 0.8, color: repeat.colorHex}
+                // Set whole protein to a light gray surface
+                viewer.setStyle({}, {
+                    cartoon: {color: '0xcccccc', opacity: 0.5},
+                    surface: {opacity: 0.6, color: '0xdddddd'}
                 });
                 
-                // Add label
-                viewer.addLabel(repeat.label, {
-                    position: {resi: Math.floor((repeat.start + repeat.end) / 2)},
-                    backgroundColor: 'black',
-                    backgroundOpacity: 0.7,
-                    fontColor: 'white',
-                    fontSize: 12
+                // Use the globally stored processed repeat regions instead of extracting from DOM
+                const repeatRegions = processedRepeatRegions;
+                
+                if (!repeatRegions || repeatRegions.length === 0) {
+                    console.warn("No repeat regions found");
+                    viewer.render();
+                    return;
+                }
+                
+                // Highlight each repeat with colored surface
+                repeatRegions.forEach(repeat => {
+                    const selection = {resi: `${repeat.start}-${repeat.end}`};
+                    
+                    viewer.setStyle(selection, {
+                        cartoon: {color: repeat.colorHex, opacity: 1.0},
+                        surface: {opacity: 0.8, color: repeat.colorHex}
+                    });
+                    
+                    // Add label
+                    viewer.addLabel(repeat.label, {
+                        position: {resi: Math.floor((repeat.start + repeat.end) / 2)},
+                        backgroundColor: 'black',
+                        backgroundOpacity: 0.7,
+                        fontColor: 'white',
+                        fontSize: 12
+                    });
                 });
-            });
-            
-            viewer.zoomTo();
-            viewer.render();
+                
+                viewer.zoomTo();
+                viewer.render();
+            } catch (error) {
+                console.error("Error in highlightRepeats:", error);
+            }
         }
         
         // Show standard view (cartoon representation)
         function showStandardView() {
-            if (!viewer) return;
+            if (!viewer || !viewerInitialized) {
+                console.error("Viewer not initialized yet");
+                return;
+            }
             
-            viewer.removeAllSurfaces();
-            viewer.removeAllShapes();
-            viewer.removeAllLabels();
-            
-            // Color by chain
-            viewer.setStyle({}, {cartoon: {colorscheme: 'chainHetatm', thickness: 0.8}});
-            
-            // Get repeat regions from the page
-            const repeatRegions = getRepeatRegionsFromPage();
-            
-            // Highlight repeat regions with subtle effect
-            repeatRegions.forEach(repeat => {
-                viewer.addStyle({resi: `${repeat.start}-${repeat.end}`}, {
-                    cartoon: {opacity: 1.0, thickness: 1.2}
+            try {
+                // Clear all previous styles
+                viewer.removeAllSurfaces();
+                viewer.removeAllShapes();
+                viewer.removeAllLabels();
+                
+                // Reset all styles first
+                viewer.setStyle({}, {});
+                
+                // Color by chain
+                viewer.setStyle({}, {cartoon: {colorscheme: 'chainHetatm', thickness: 0.8}});
+                
+                // Use the globally stored processed repeat regions instead of extracting from DOM
+                const repeatRegions = processedRepeatRegions;
+                
+                if (!repeatRegions || repeatRegions.length === 0) {
+                    console.warn("No repeat regions found");
+                    viewer.render();
+                    return;
+                }
+                
+                // Highlight repeat regions with subtle effect
+                repeatRegions.forEach(repeat => {
+                    viewer.addStyle({resi: `${repeat.start}-${repeat.end}`}, {
+                        cartoon: {opacity: 1.0, thickness: 1.2}
+                    });
                 });
-            });
-            
-            viewer.zoomTo();
-            viewer.render();
+                
+                viewer.zoomTo();
+                viewer.render();
+            } catch (error) {
+                console.error("Error in showStandardView:", error);
+            }
         }
         
         // Zoom specifically to the repeat regions
         function zoomToRepeats() {
-            if (!viewer) return;
+            if (!viewer || !viewerInitialized) {
+                console.error("Viewer not initialized yet");
+                return;
+            }
             
-            // Get repeat regions from the page
-            const repeatRegions = getRepeatRegionsFromPage();
-            
-            if (repeatRegions.length === 0) return;
-            
-            // First selection includes all repeats to zoom
-            const firstRepeat = repeatRegions[0].start;
-            const lastRepeat = repeatRegions[repeatRegions.length - 1].end;
-            viewer.zoomTo({resi: `${firstRepeat}-${lastRepeat}`});
-            
-            // Rotate to a good angle for viewing repeats
-            viewer.rotate(30, {x: 1});
-            viewer.rotate(20, {y: 1});
-            
-            viewer.render();
+            try {
+                // Use the globally stored processed repeat regions instead of extracting from DOM
+                const repeatRegions = processedRepeatRegions;
+                
+                if (!repeatRegions || repeatRegions.length === 0) {
+                    console.warn("No repeat regions found");
+                    return;
+                }
+                
+                // First selection includes all repeats to zoom
+                const firstRepeat = repeatRegions[0].start;
+                const lastRepeat = repeatRegions[repeatRegions.length - 1].end;
+                
+                // Set the zoom
+                viewer.zoomTo({resi: `${firstRepeat}-${lastRepeat}`});
+                
+                // Rotate to a good angle for viewing repeats
+                viewer.rotate(30, {x: 1});
+                viewer.rotate(20, {y: 1});
+                
+                viewer.render();
+            } catch (error) {
+                console.error("Error in zoomToRepeats:", error);
+            }
         }
         
         // Helper to set active button class
         function setActiveButton(button) {
-            document.querySelectorAll('.view-button').forEach(btn => {
-                // Skip the exon button so we don't interfere with its toggle state
-                if (btn.id !== 'exonBoundariesBtn') {
-                    btn.classList.remove('active');
+            try {
+                document.querySelectorAll('.view-button').forEach(btn => {
+                    // Skip the exon button so we don't interfere with its toggle state
+                    if (btn.id !== 'exonBoundariesBtn') {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                if (button.id !== 'exonBoundariesBtn') {
+                    button.classList.add('active');
                 }
-            });
-            
-            if (button.id !== 'exonBoundariesBtn') {
-                button.classList.add('active');
+            } catch (error) {
+                console.error("Error in setActiveButton:", error);
             }
         }
         
-        // Helper to extract repeat regions from the page
+        // Helper to extract repeat regions from the page - DEPRECATED, NO LONGER USED
+        // Keeping for reference but all functions now use processedRepeatRegions directly
         function getRepeatRegionsFromPage() {
-            const repeatRegions = [];
-            const items = document.querySelectorAll('#viewerLegend .legend-item');
-            
-            items.forEach(item => {
-                if (item.querySelector('span').textContent.includes('Non-repeat')) return;
-                
-                const text = item.querySelector('span').textContent;
-                const match = text.match(/(\w+\d+) \((\d+)-(\d+)\)/);
-                
-                if (match) {
-                    const label = match[1];
-                    const start = parseInt(match[2]);
-                    const end = parseInt(match[3]);
-                    const colorStyle = item.querySelector('.color-box').style.backgroundColor;
-                    
-                    // Convert RGB to hex
-                    let color = '#cccccc';
-                    if (colorStyle.startsWith('rgb')) {
-                        const rgb = colorStyle.match(/\d+/g);
-                        if (rgb && rgb.length === 3) {
-                            color = `#${Number(rgb[0]).toString(16).padStart(2, '0')}${Number(rgb[1]).toString(16).padStart(2, '0')}${Number(rgb[2]).toString(16).padStart(2, '0')}`;
-                        }
-                    } else {
-                        color = colorStyle;
-                    }
-                    const colorHex = color.replace('#', '0x');
-                    
-                    repeatRegions.push({
-                        label,
-                        start,
-                        end,
-                        color,
-                        colorHex
-                    });
-                }
-            });
-            
-            return repeatRegions;
+            return processedRepeatRegions || [];
         }
         
         // Display error message
@@ -991,21 +1358,26 @@
             fetchProteinData(uniprotId, dataUrl);
             
             // Add event listeners to buttons (moved outside initializeViewer)
-            document.getElementById('highlightRepeatsBtn').addEventListener('click', function() {
+            document.getElementById('highlightRepeatsBtn').addEventListener('click', function(e) {
+                e.preventDefault();
                 setActiveButton(this);
                 highlightRepeats();
             });
             
-            document.getElementById('standardViewBtn').addEventListener('click', function() {
+            document.getElementById('standardViewBtn').addEventListener('click', function(e) {
+                e.preventDefault();
                 setActiveButton(this);
                 showStandardView();
             });
             
-            document.getElementById('zoomRepeatsBtn').addEventListener('click', function() {
+            document.getElementById('zoomRepeatsBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                setActiveButton(this);
                 zoomToRepeats();
             });
             
-            document.getElementById('exonBoundariesBtn').addEventListener('click', function() {
+            document.getElementById('exonBoundariesBtn').addEventListener('click', function(e) {
+                e.preventDefault();
                 this.classList.toggle('active');
                 if (this.classList.contains('active')) {
                     this.textContent = 'Hide Exon Boundaries';
@@ -1038,80 +1410,77 @@
             viewer.removeAllShapes();
             viewer.removeAllLabels();
             
-            // Keep track of which positions we've marked
-            const markedPositions = new Set();
+            // Create a map to track all positions and their boundary types
+            const positionMap = new Map(); // Map position to { sphere: boolean, labels: array of strings }
             
-            // Add shapes for exon boundaries
-            exonData.exons.forEach((exon, index) => {
-                const repeatStart = exon.repeat_start;
-                const repeatEnd = exon.repeat_end;
+            // First pass: Collect all boundary positions and identify overlaps
+            exonData.exons.forEach(exon => {
+                if (!exon.repeat_start || !exon.repeat_end) return;
                 
-                if (!repeatStart || !repeatEnd) {
-                    console.warn(`Exon ${exon.exon_number} missing position data`, exon);
-                    return;
+                // Add start position
+                if (!positionMap.has(exon.repeat_start)) {
+                    positionMap.set(exon.repeat_start, { sphere: false, labels: [] });
                 }
+                positionMap.get(exon.repeat_start).labels.push(`E${exon.exon_number} start`);
                 
-                console.log(`Processing exon ${exon.exon_number} with positions: ${repeatStart}-${repeatEnd}`);
-                
-                // Try to get atoms at these positions
-                const startAtoms = viewer.getModel().selectedAtoms({resi: repeatStart, atom: "CA"});
-                const endAtoms = viewer.getModel().selectedAtoms({resi: repeatEnd, atom: "CA"});
-                
-                console.log(`Exon ${exon.exon_number}: Found ${startAtoms.length} atoms at start and ${endAtoms.length} atoms at end`);
-                
-                // Only proceed if atoms were found
-                if (startAtoms.length > 0 && !markedPositions.has(repeatStart)) {
-                    // Get the first CA atom coordinates
-                    const atom = startAtoms[0];
-                    
-                    // Add a sphere at the exact coordinates
-                    viewer.addSphere({
-                        center: {x: atom.x, y: atom.y, z: atom.z},
-                        radius: 1.5,
-                        color: '0x00FF00',
-                        wireframe: true,
-                        linewidth: 3,
-                        alpha: 0.9
-                    });
-                    
-                    // Add label
-                    viewer.addLabel(`E${exon.exon_number} start`, {
-                        position: {x: atom.x, y: atom.y, z: atom.z},
-                        backgroundColor: '0x004400',
-                        backgroundOpacity: 0.8,
-                        fontColor: 'white',
-                        fontSize: 12
-                    });
-                    
-                    markedPositions.add(repeatStart);
+                // Add end position
+                if (!positionMap.has(exon.repeat_end)) {
+                    positionMap.set(exon.repeat_end, { sphere: false, labels: [] });
                 }
-                
-                if (endAtoms.length > 0 && !markedPositions.has(repeatEnd)) {
-                    // Get the first CA atom coordinates
-                    const atom = endAtoms[0];
-                    
-                    // Add a sphere at the exact coordinates
-                    viewer.addSphere({
-                        center: {x: atom.x, y: atom.y, z: atom.z},
-                        radius: 1.5,
-                        color: '0xFF0000',
-                        wireframe: true,
-                        linewidth: 3,
-                        alpha: 0.9
-                    });
-                    
-                    // Add label
-                    viewer.addLabel(`E${exon.exon_number} end`, {
-                        position: {x: atom.x, y: atom.y, z: atom.z},
-                        backgroundColor: '0x440000',
-                        backgroundOpacity: 0.8,
-                        fontColor: 'white',
-                        fontSize: 12
-                    });
-                    
-                    markedPositions.add(repeatEnd);
-                }
+                positionMap.get(exon.repeat_end).labels.push(`E${exon.exon_number} end`);
             });
+            
+            // Second pass: Add spheres and labels for each position
+            for (const [position, info] of positionMap.entries()) {
+                // Get atoms at this position
+                const atoms = viewer.getModel().selectedAtoms({resi: position, atom: "CA"});
+                
+                if (atoms.length === 0) continue;
+                
+                // Get the first CA atom coordinates
+                const atom = atoms[0];
+                
+                // Use different colors for spheres depending on whether it's a start, end, or both
+                let sphereColor = '0x00FF00'; // Default to green (start)
+                
+                const hasStart = info.labels.some(l => l.includes('start'));
+                const hasEnd = info.labels.some(l => l.includes('end'));
+                
+                if (hasStart && hasEnd) {
+                    // If position has both start and end, use a different color (purple)
+                    sphereColor = '0xFF00FF';
+                } else if (hasEnd) {
+                    // If only end, use red
+                    sphereColor = '0xFF0000';
+                }
+                
+                // Add a single sphere at this position
+                viewer.addSphere({
+                    center: {x: atom.x, y: atom.y, z: atom.z},
+                    radius: 1.5,
+                    color: sphereColor,
+                    wireframe: true,
+                    linewidth: 3,
+                    alpha: 0.9
+                });
+                
+                // Add labels with slight vertical offsets to avoid overlap
+                info.labels.forEach((label, idx) => {
+                    // Offset each label vertically to prevent overlap
+                    const offset = (idx - (info.labels.length - 1) / 2) * 2;
+                    
+                    // Determine label color (green for start, red for end)
+                    const bgColor = label.includes('start') ? '0x004400' : '0x440000';
+                    
+                    viewer.addLabel(label, {
+                        position: {x: atom.x, y: atom.y + offset, z: atom.z},
+                        backgroundColor: bgColor,
+                        backgroundOpacity: 0.8,
+                        fontColor: 'white',
+                        fontSize: 12
+                    });
+                });
+            }
             
             // Update legend with exon info
             updateLegendWithExons(exonData);
@@ -1119,7 +1488,7 @@
             viewer.render();
             console.log("Exon boundaries display complete");
         }
-        
+
         // Helper function to hide exon boundaries
         function hideExonBoundaries() {
             if (!viewer) return;
@@ -1162,6 +1531,30 @@
             endItem.appendChild(endBox);
             endItem.appendChild(document.createTextNode('Exon end'));
             legend.appendChild(endItem);
+            
+            // Add combined marker
+            const bothItem = document.createElement('div');
+            bothItem.className = 'legend-item exon-legend-item';
+            const bothBox = document.createElement('div');
+            bothBox.className = 'color-box';
+            bothBox.style.backgroundColor = '#FF00FF';  // Purple
+            bothItem.appendChild(bothBox);
+            bothItem.appendChild(document.createTextNode('Exon start & end (shared position)'));
+            legend.appendChild(bothItem);
+        }
+
+        // Add toggle function for collapsible sections
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const button = event.currentTarget;
+            
+            if (section.classList.contains('collapsed')) {
+                section.classList.remove('collapsed');
+                button.textContent = 'Hide';
+            } else {
+                section.classList.add('collapsed');
+                button.textContent = 'Show';
+            }
         }
     </script>
 </body>

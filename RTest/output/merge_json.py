@@ -1,11 +1,22 @@
 import json
 import os
 import glob
+import re
 
 def merge_json_files(directory_path, output_filename):
     # Get all JSON files in the directory
     json_files = glob.glob(os.path.join(directory_path, '*_annotated_repeats.json'))
-    json_files.sort()  # Sort files to maintain order
+    
+    # Sort files based on the numerical range they contain
+    def get_start_number(file_path):
+        filename = os.path.basename(file_path)
+        # Extract numbers from the filename using regex
+        match = re.search(r'(\d+)-\d+_', filename)
+        if match:
+            return int(match.group(1))
+        return 0  # Default value if no match is found
+    
+    json_files.sort(key=get_start_number)  # Sort files by numerical order
     
     # Initialize an empty list or dict to store the merged data
     merged_data = None
@@ -41,5 +52,5 @@ def merge_json_files(directory_path, output_filename):
         print("No valid data found to merge")
 
 if __name__ == "__main__":
-    directory = "/home/dogdorgesh/Documents/Github/Tandem-Repeat-Domain-Database/RTest/output/canonical"
-    merge_json_files(directory, "all_cannonical_repeats_annotated.json")
+    directory = "/home/dogdorgesh/Documents/Github/Tandem-Repeat-Domain-Database/RTest/output/canonical_v2"
+    merge_json_files(directory, "v2_all_cannonical_repeats_annotated.json")
