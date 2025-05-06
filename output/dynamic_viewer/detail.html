@@ -204,7 +204,7 @@
             text-align: center;
             padding: 30px;
             background-color: #fee2e2;
-            border-radius: var(--border-radius);
+            border-radius: var (--border-radius);
             box-shadow: var(--box-shadow);
         }
         
@@ -557,6 +557,13 @@
         let originalRepeatRegions = []; // Store original repeat data
         let processedRepeatRegions = []; // Store processed repeat regions
         let viewerInitialized = false; // Track if viewer is fully initialized
+        let autoRotationActive = true; // Track whether auto-rotation is active
+        let rotationAnimationId = null; // Store animation frame ID for cancellation
+        let lastRotationTime = 0;
+        let isPageVisible = true;
+        let isViewerInViewport = true;
+        let viewerIntersectionObserver = null; // For IntersectionObserver instance
+        let handleVisibilityChangeCallback = null; // For visibilitychange event handler
 
         function fetchProteinData(uniprotId, dataUrl) {
             fetch(dataUrl)
@@ -911,6 +918,14 @@
                             const lastRepeat = repeatRegions[repeatRegions.length - 1].end;
                             viewer.zoomTo({resi: `${firstRepeat}-${lastRepeat}`});
                         }
+                        
+                        // Start auto-rotation after everything is set up
+                        startAutoRotation();
+                        
+                        // Add event listener to detect manual rotation
+                        const viewerElement = document.getElementById('proteinViewer');
+                        viewerElement.addEventListener('mousedown', stopAutoRotation);
+                        viewerElement.addEventListener('touchstart', stopAutoRotation);
                     }, 100);
                 } catch (error) {
                     console.error("Error in loadModel function:", error);
@@ -1555,6 +1570,117 @@
                 section.classList.add('collapsed');
                 button.textContent = 'Show';
             }
+        }
+
+        // Optimized auto-rotation function following best practices
+        function startAutoRotation() {
+            if (!viewer || !viewerInitialized) return;
+            
+            autoRotationActive = true;
+            let lastFrameTime = performance.now();
+            const ROTATION_SPEED = 5; // degrees per second
+            let accumulatedRotation = 0; // Track tiny rotations to apply only when significant
+            
+            // Use Intersection Observer for more efficient viewport detection
+            if ('IntersectionObserver' in window) {
+                const viewerElement = document.getElementById('proteinViewer');
+                // Disconnect previous observer if any
+                if (viewerIntersectionObserver) {
+                    viewerIntersectionObserver.disconnect();
+                }
+                viewerIntersectionObserver = new IntersectionObserver((entries) => {
+                    isViewerInViewport = entries[0].isIntersecting;
+                    // Start or stop animation based on visibility
+                    if (isViewerInViewport && isPageVisible && autoRotationActive) {
+                        if (!rotationAnimationId) rotationAnimationId = requestAnimationFrame(rotateStep);
+                    } else {
+                        if (rotationAnimationId) {
+                            cancelAnimationFrame(rotationAnimationId);
+                            rotationAnimationId = null;
+                        }
+                    }
+                }, { threshold: 0.1 });
+                viewerIntersectionObserver.observe(viewerElement);
+            }
+            
+            // Listen for visibility changes
+            // Remove previous listener if any
+            if (handleVisibilityChangeCallback) {
+                document.removeEventListener('visibilitychange', handleVisibilityChangeCallback);
+            }
+            handleVisibilityChangeCallback = () => {
+                isPageVisible = document.visibilityState === 'visible';
+                if (isPageVisible && isViewerInViewport && autoRotationActive) {
+                    if (!rotationAnimationId) {
+                        lastFrameTime = performance.now();
+                        rotationAnimationId = requestAnimationFrame(rotateStep);
+                    }
+                } else {
+                    if (rotationAnimationId) {
+                        cancelAnimationFrame(rotationAnimationId);
+                        rotationAnimationId = null;
+                    }
+                }
+            };
+            document.addEventListener('visibilitychange', handleVisibilityChangeCallback);
+            
+            function rotateStep(timestamp) {
+                if (!autoRotationActive || !viewer || !isPageVisible || !isViewerInViewport) {
+                    rotationAnimationId = null;
+                    return;
+                }
+                
+                // Calculate time since last frame in seconds (with safety cap)
+                const deltaTime = Math.min((timestamp - lastFrameTime) / 1000, 0.1);
+                lastFrameTime = timestamp;
+                
+                // Calculate rotation angle based on time elapsed
+                const rotationAngle = ROTATION_SPEED * deltaTime;
+                
+                // Accumulate small rotations to minimize unnecessary render calls
+                accumulatedRotation += rotationAngle;
+                
+                // Only render when rotation is significant enough to be visible (0.5 degrees)
+                // This reduces resource usage while maintaining perceived smoothness
+                if (accumulatedRotation >= 0.5) {
+                    viewer.rotate(accumulatedRotation, {y: 1});
+                    viewer.render();
+                    accumulatedRotation = 0;
+                }
+                
+                // Request next frame
+                rotationAnimationId = requestAnimationFrame(rotateStep);
+            }
+            
+            // Start the animation loop if visible
+            if (isPageVisible && isViewerInViewport && autoRotationActive && !rotationAnimationId) {
+                rotationAnimationId = requestAnimationFrame(rotateStep);
+            }
+            console.log(`Auto-rotation started at ${ROTATION_SPEED} degrees per second`);
+        }
+
+        // Enhanced stop function that cleans up all event listeners
+        function stopAutoRotation() {
+            autoRotationActive = false;
+            
+            if (rotationAnimationId) {
+                cancelAnimationFrame(rotationAnimationId);
+                rotationAnimationId = null;
+            }
+            
+            // Clean up visibility listeners
+            if (handleVisibilityChangeCallback) {
+                document.removeEventListener('visibilitychange', handleVisibilityChangeCallback);
+                handleVisibilityChangeCallback = null; // Clear the stored callback
+            }
+            
+            // Clean up intersection observer if it exists
+            if (viewerIntersectionObserver) {
+                viewerIntersectionObserver.disconnect();
+                viewerIntersectionObserver = null; // Clear the stored observer
+            }
+            
+            console.log("Auto-rotation stopped");
         }
     </script>
 </body>
