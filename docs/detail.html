@@ -488,14 +488,18 @@
         <div class="section-header mt-4">
             <h3><i class="fas fa-layer-group me-2"></i>Summary of Tandem Repeats</h3>
             <button class="toggle-button" onclick="toggleSection('summaryContent')">
-                <i class="fas fa-eye-slash me-1"></i> Hide
+            <i class="fas fa-eye me-1"></i> Show
             </button>
         </div>
+        <script>
+            // Hide the summary section by default when page loads
+            document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('summaryContent').classList.add('collapsed');
+            });
+        </script>
         <div id="summaryContent" class="collapsible-content">
             <p id="repeatSummary" class="lead"></p>
             <ul id="repeatList" class="list-group list-group-flush mt-3"></ul>
-            
-            <!-- Publication section removed -->
         </div>
         
         <div class="section-header mt-4">

@@ -10,7 +10,7 @@ import os
 import sys
 
 # Default port
-PORT = 8020
+PORT = 8021
 
 def run_server(port):
     """Run a simple HTTP server on the specified port"""
@@ -27,7 +27,7 @@ def run_server(port):
         print(f"\n✅ Server started at http://localhost:{port}")
         print("📂 Serving files from:", os.getcwd())
         print("🧬 To view the Tandem Repeat Domain Database:")
-        print(f"   - Main viewer: http://localhost:{port}/output/dynamic_viewer/index.html")
+        print(f"   - Main viewer: http://localhost:{port}/docs/index.html")
         print(f"   - Detail pages: http://localhost:{port}/output/protein_pages/[UNIPROT_ID].html")
         print("\nPress Ctrl+C to stop the server.\n")
         

@@ -358,6 +358,12 @@
                 width: 100%;
             }
         }
+        
+        /* Set a more specific width for the entries dropdown to avoid text overlap */
+        .dataTables_length select[name="proteinTable_length"] {
+            min-width: 70px; /* Increased width to make dropdown box wider */
+            width: auto;
+        }
     </style>
 </head>
 <body>
@@ -642,13 +648,6 @@
                                 next: '<i class="fas fa-angle-right"></i>',
                                 last: '<i class="fas fa-angle-double-right"></i>'
                             }
-                        },
-                        drawCallback: function() {
-                            // Add some animation when changing pages
-                            $('.dataTable tbody tr').css('opacity', 0);
-                            $('.dataTable tbody tr').each(function(index) {
-                                $(this).delay(index * 50).animate({ opacity: 1 }, 150);
-                            });
                         }
                     });
                     

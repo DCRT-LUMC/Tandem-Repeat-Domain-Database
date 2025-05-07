@@ -134,7 +134,7 @@
         .viewer-legend {
             margin-top: 16px;
             padding: 16px;
-            background-color: var(--card-bg);
+            background-color: var (--card-bg);
             border-radius: var(--border-radius);
             display: flex;
             flex-wrap: wrap;
@@ -569,13 +569,15 @@
             fetch(dataUrl)
                 .then(response => response.json())
                 .then(data => {
-                    // Filter repeats for this protein
-                    const proteinRepeats = data.filter(item => item.uniProtId === uniprotId);
+                    // Extract protein data from hierarchical structure
+                    const proteinData = data[uniprotId];
                     
-                    if (!proteinRepeats.length) {
+                    if (!proteinData) {
                         showError(`No data found for protein ${uniprotId}`);
                         return;
                     }
+                    
+                    const proteinRepeats = proteinData.repeats || [];
                     
                     console.log(`Found ${proteinRepeats.length} repeats for protein ${uniprotId}`);
                     
@@ -583,9 +585,9 @@
                     originalRepeatRegions = proteinRepeats;
                     
                     // Process and display the protein data
-                    processProteinData(proteinRepeats);
+                    processProteinData(proteinRepeats, proteinData);
                     
-                    // Process exon data only once - Fix the undefined function error
+                    // Process exon data only once
                     const exonData = extractExonData(proteinRepeats);
                     if (exonData) {
                         processedExonData = exonData;
@@ -638,7 +640,7 @@
             return hasExonInfo;
         }
 
-        function processProteinData(repeats) {
+        function processProteinData(repeats, proteinData) {
             try {
                 // Sort repeats by their position
                 repeats.sort((a, b) => {
@@ -649,16 +651,15 @@
                     return getStart(a) - getStart(b);
                 });
                 
-                // Get basic protein info from first repeat
-                const firstRepeat = repeats[0];
+                // Get basic protein info from the parent protein data object
                 const proteinInfo = {
-                    uniProtId: firstRepeat.uniProtId,
-                    geneName: firstRepeat.geneName || 'Unknown',
-                    repeatType: firstRepeat.repeatType || 'Unknown',
-                    status: firstRepeat.status || 'Unknown',
-                    chrom: firstRepeat.chrom || 'Unknown',
-                    strand: firstRepeat.strand || 'Unknown',
-                    aliases: firstRepeat.aliases || []
+                    uniProtId: proteinData.uniProtId || proteinData.id || '',
+                    geneName: proteinData.geneName || 'Unknown',
+                    repeatType: proteinData.repeatType || (repeats[0] && repeats[0].repeatType) || 'Unknown',
+                    status: proteinData.status || 'Unknown',
+                    chrom: proteinData.chrom || (repeats[0] && repeats[0].chrom) || 'Unknown',
+                    strand: proteinData.strand || (repeats[0] && repeats[0].strand) || 'Unknown',
+                    aliases: proteinData.aliases || []
                 };
                 
                 // Extract genomic range
@@ -698,7 +699,7 @@
                             ensembl_exon_info: repeat.ensembl_exon_info,
                             chromStart: repeat.chromStart,
                             chromEnd: repeat.chromEnd,
-                            label: `${repeat.repeatType}${index + 1}`
+                            label: `${repeat.repeatType || proteinInfo.repeatType}${index + 1}`
                         });
                     } else {
                         // Fallback to parsing position if direct fields are not available
@@ -723,7 +724,7 @@
                                 ensembl_exon_info: repeat.ensembl_exon_info,
                                 chromStart: repeat.chromStart,
                                 chromEnd: repeat.chromEnd,
-                                label: `${repeat.repeatType}${index + 1}`
+                                label: `${repeat.repeatType || proteinInfo.repeatType}${index + 1}`
                             });
                         }
                     }
@@ -1102,8 +1103,12 @@
             return fetch(dataUrl)
                 .then(response => response.json())
                 .then(data => {
-                    // Filter repeats for this protein
-                    return data.filter(item => item.uniProtId === uniprotId);
+                    // Extract protein data from hierarchical structure
+                    const proteinData = data[uniprotId];
+                    if (!proteinData) {
+                        return [];
+                    }
+                    return proteinData.repeats || [];
                 })
                 .catch(error => {
                     console.error('Error loading all repeats:', error);
@@ -1366,8 +1371,8 @@
                 return;
             }
             
-            // Define data URL
-            const dataUrl = './all_annotated_repeats.json';
+            // Define data URL with new hierarchical file
+            const dataUrl = './all_hierarchical.json';
             
             // Load the JSON data
             fetchProteinData(uniprotId, dataUrl);

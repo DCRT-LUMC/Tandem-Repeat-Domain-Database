@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TandemSkip Database</title>
+    <!-- Add favicon links -->
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    
+    <style>
+        /* Add your CSS styles here */
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --success: #4ade80;
+            --danger: #f87171;
+            --warning: #facc15;
+            --info: #60a5fa;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .page-header {
+            background-color: var(--light);
+            padding: 16px 24px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 24px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .page-header h1 {
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+        
+        .page-header p {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            padding: 16px 24px;
+            margin-bottom: 24px;
+            border-radius: var(--border-radius);
+            color: white;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-header h2 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.25rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0.3;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: none;
+            transition: var(--transition);
+            margin-bottom: 24px;
+        }
+        
+        .card-header {
+            background-color: var(--light);
+            border-bottom: none;
+            padding: 16px 20px;
+            font-weight: 600;
+            color: var(--dark);
+            border-radius: var(--border-radius) var(--border-radius) 0 0 !important;
+        }
+        
+        .table {
+            margin-bottom: 0;
+        }
+        
+        .table th {
+            background-color: var(--primary-light);
+            color: white;
+            font-weight: 500;
+            border: none;
+        }
+        
+        /* DataTables customization */
+        .dataTables_wrapper .dataTables_length, 
+        .dataTables_wrapper .dataTables_filter, 
+        .dataTables_wrapper .dataTables_info, 
+        .dataTables_wrapper .dataTables_processing, 
+        .dataTables_wrapper .dataTables_paginate {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
+        .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+            background: var(--primary);
+            color: white !important;
+            border: 1px solid var(--primary);
+            border-radius: 30px;
+        }
+        
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: var(--primary-light);
+            color: white !important;
+            border: 1px solid var(--primary-light);
+            border-radius: 30px;
+        }
+        
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+        
+        .dataTables_wrapper .dataTables_filter input {
+            border: 1px solid var(--gray);
+            border-radius: 20px;
+            padding: 5px 10px;
+        }
+        
+        .dataTables_wrapper .dataTables_length select {
+            border: 1px solid var(--gray);
+            border-radius: 20px;
+            padding: 5px 10px;
+        }
+        
+        .badge {
+            padding: 6px 10px;
+            border-radius: 12px;
+            font-weight: 500;
+            font-size: 0.75rem;
+        }
+        
+        .action-button {
+            font-size: 0.875rem;
+            padding: 6px 12px;
+            text-decoration: none;
+            color: var(--primary);
+            background-color: rgba(67, 97, 238, 0.1);
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+        
+        .action-button:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Loading indicator */
+        #loading {
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            border-width: 0.25rem;
+            color: var(--primary);
+        }
+        
+        /* Footer styling */
+        footer {
+            margin-top: 40px;
+            padding: 24px 0;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .table-container {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .dataTables_wrapper .dataTables_filter {
+                float: none;
+                text-align: left;
+                margin-top: 10px;
+            }
+            
+            .dataTables_wrapper .dataTables_length {
+                float: none;
+            }
+        }
+        
+        /* Style for number input in repeat filter */
+        .repeat-count-input {
+            width: 70px;
+            text-align: center;
+        }
+        
+        /* Container for the repeat filter elements */
+        .repeat-filter-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Improved filter controls styling */
+        .filter-controls-container {
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: flex-end;
+        }
+        
+        .filter-item {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 0;
+        }
+        
+        .filter-actions {
+            display: flex;
+            align-items: flex-end;
+            margin-left: auto;
+        }
+        
+        /* Repeat filter specific styling */
+        .repeat-filter-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+        
+        .repeat-count-input {
+            width: 70px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin-left: auto;
+        }
+        
+        .form-check-label {
+            font-size: 0.85rem;
+        }
+
+        /* DataTables wrapper layout improvements */
+        .dataTables_wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .dataTables_length {
+            flex: 0 0 auto;
+            margin-right: 15px;
+            margin-bottom: 0 !important;
+        }
+        
+        .dt-buttons {
+            flex: 0 0 auto;
+            margin-right: 15px;
+            margin-bottom: 0 !important;
+        }
+        
+        .dataTables_filter {
+            flex: 1;
+            margin-left: auto;
+            text-align: right !important;
+            margin-bottom: 0 !important;
+        }
+        
+        /* Ensure filter input has proper width */
+        .dataTables_filter input {
+            min-width: 200px;
+        }
+        
+        @media (max-width: 768px) {
+            .dataTables_wrapper {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .dataTables_length, .dt-buttons, .dataTables_filter {
+                margin-bottom: 10px !important;
+                margin-right: 0;
+                width: 100%;
+            }
+            
+            .dataTables_filter {
+                text-align: left !important;
+            }
+            
+            .dataTables_filter input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>TReXome DB</h1>
+        <p>Comprehensive collection of tandem repeat protein domains</p>
+    </div>
+    
+    <div class="section-header">
+        <h2><i class="fas fa-database me-2"></i> Protein List</h2>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-list me-2"></i> Browse Proteins with Tandem Repeats
+        </div>
+        <div class="card-body">
+            <!-- Improved filter controls layout -->
+            <div class="filter-controls-container">
+                <div class="filter-row">
+                    <div class="filter-item">
+                        <label for="repeatTypeFilter" class="filter-label">Repeat Type</label>
+                        <select id="repeatTypeFilter" class="form-select form-select-sm">
+                            <option value="">All Types</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-item">
+                        <label for="statusFilter" class="filter-label">Status</label>
+                        <select id="statusFilter" class="form-select form-select-sm">
+                            <option value="">All</option>
+                            <option value="reviewed">Reviewed</option>
+                            <option value="unreviewed">Unreviewed</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-item">
+                        <label class="filter-label">Repeat Count</label>
+                        <div class="repeat-filter-control">
+                            <div class="form-check mb-0">
+                                <input class="form-check-input" type="checkbox" id="repeatCountCheck">
+                                <label class="form-check-label" for="repeatCountCheck">Min</label>
+                            </div>
+                            <input type="number" id="repeatCountValue" class="form-control form-control-sm repeat-count-input" value="5" min="1" max="100">
+                        </div>
+                    </div>
+
+                    <!-- Combine both filters in a single filter-item with vertical layout -->
+                    <div class="filter-item">
+                        <label class="filter-label">Exon Filters</label>
+                        <div class="d-flex flex-column">
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="inFrameExonCheck">
+                                <label class="form-check-label" for="inFrameExonCheck">Has in-frame exons</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="exonSpanningCheck">
+                                <label class="form-check-label" for="exonSpanningCheck">Only non-spanning repeats</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-actions">
+                        <button id="resetFilters" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-times me-1"></i> Reset Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="loading">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-3">Loading protein data...</p>
+            </div>
+            
+            <div id="tableContainer" class="table-container" style="display: none;">
+                <table id="proteinTable" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Gene</th>
+                            <th>UniProt ID</th>
+                            <th>Repeat Type</th>
+                            <th>Repeats</th>
+                            <th>Chromosome</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <i class="fas fa-info-circle me-2"></i> About TandemSkip
+        </div>
+        <div class="card-body">
+            <p>
+                TandemSkip is a comprehensive database of proteins containing tandem repeat domains.
+                These repeats can play crucial roles in protein function and are often associated with
+                various biological processes and diseases.
+            </p>
+            <p class="mb-0">
+                Click on any protein in the table above to explore its 3D structure with highlighted
+                repeat domains, and to view detailed genomic information.
+            </p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">
+                <i class="fas fa-database me-1"></i>
+                TandemSkip - <span class="text-primary">Tandem Repeat Domain Database</span>
+            </p>
+        </div>
+    </footer>
+    
+    <!-- Add DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            console.log("Document ready, attempting to load data...");
+            
+            // Load the protein data using the hierarchical JSON
+            fetch('./all_hierarchical.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.status}`);
+                    }
+                    console.log("Response received, parsing JSON...");
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Data loaded successfully");
+                    
+                    // Create an array to hold all proteins with repeats
+                    const tableData = [];
+                    const repeatTypes = new Set();
+                    
+                    // Process each chromosome
+                    Object.keys(data).forEach(chrom => {
+                        if (!chrom.startsWith('chr')) return;
+                        
+                        const genes = data[chrom];
+                        
+                        // Process each gene in the chromosome
+                        Object.keys(genes).forEach(geneName => {
+                            if (geneName === "unknown_gene") return; // Skip unknown genes
+                            const gene = genes[geneName];
+                            
+                            if (!gene.transcripts) return;
+                            
+                            // Process each transcript in the gene
+                            Object.keys(gene.transcripts).forEach(transcriptId => {
+                                const transcript = gene.transcripts[transcriptId];
+                                
+                                if (!transcript.proteins) return;
+                                
+                                // Process each protein in the transcript
+                                Object.keys(transcript.proteins).forEach(proteinId => {
+                                    const protein = transcript.proteins[proteinId];
+                                    
+                                    // Get protein metadata
+                                    const status = protein.protein_metadata?.status || 'Unknown';
+                                    
+                                    // Process each repeat type
+                                    if (!protein.repeat_types) return;
+                                    
+                                    Object.keys(protein.repeat_types).forEach(repeatType => {
+                                        repeatTypes.add(repeatType);
+                                        
+                                        const repeatData = protein.repeat_types[repeatType];
+                                        if (!repeatData.repeats || !Array.isArray(repeatData.repeats)) return;
+                                        
+                                        // Check for in-frame exons and exon spanning
+                                        let hasInFrameExons = false;
+                                        let hasSpanningExons = false;
+                                        let hasNonSpanningRepeats = false;
+                                        
+                                        if (repeatData.exons && Array.isArray(repeatData.exons)) {
+                                            hasInFrameExons = repeatData.exons.some(exon => 
+                                                exon.frame_status === 'in_frame' || exon.frame_status === 'in-frame'
+                                            );
+                                        }
+                                        
+                                        // Check for exon spanning in repeats
+                                        if (repeatData.repeats) {
+                                            repeatData.repeats.forEach(repeat => {
+                                                if (repeat.blockCount) {
+                                                    hasSpanningExons = hasSpanningExons || (repeat.blockCount > 1);
+                                                    hasNonSpanningRepeats = hasNonSpanningRepeats || (repeat.blockCount === 1);
+                                                }
+                                            });
+                                        }
+                                        
+                                        // Add to tableData
+                                        tableData.push({
+                                            gene: geneName,
+                                            uniprotId: proteinId,
+                                            repeatType: repeatType,
+                                            status: status,
+                                            chromosome: chrom,
+                                            repeats: repeatData.repeats,
+                                            repeatCount: repeatData.repeats.length,
+                                            hasInFrameExons: hasInFrameExons,
+                                            hasSpanningExons: hasSpanningExons,
+                                            hasNonSpanningRepeats: hasNonSpanningRepeats
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                    
+                    console.log(`Found ${tableData.length} proteins with repeat regions`);
+                    console.log(`Found ${repeatTypes.size} unique repeat types: ${Array.from(repeatTypes).join(', ')}`);
+                    
+                    // If no data found, show a friendly message
+                    if (tableData.length === 0) {
+                        $('#loading').html(`
+                            <div class="alert alert-warning p-4" role="alert">
+                                <h4 class="alert-heading"><i class="fas fa-exclamation-circle me-2"></i> No Repeat Data Found</h4>
+                                <p>No proteins with repeat regions were found in the data.</p>
+                                <hr>
+                                <p class="mb-0">Please check the JSON file structure.</p>
+                            </div>
+                        `);
+                        return;
+                    }
+                    
+                    // Populate repeat type filter dropdown
+                    const repeatTypeFilter = document.getElementById('repeatTypeFilter');
+                    Array.from(repeatTypes).sort().forEach(type => {
+                        const option = document.createElement('option');
+                        option.value = type;
+                        option.textContent = type;
+                        repeatTypeFilter.appendChild(option);
+                    });
+                    
+                    // Initialize DataTable
+                    const table = $('#proteinTable').DataTable({
+                        data: tableData,
+                        columns: [
+                            { data: 'gene' },
+                            { data: 'uniprotId' },
+                            { data: 'repeatType' },
+                            { 
+                                data: 'repeatCount',
+                                render: function(data) {
+                                    return `<span class="badge bg-primary">${data}</span>`;
+                                }
+                            },
+                            { 
+                                data: 'chromosome',
+                                render: function(data) {
+                                    return data.replace('chr', '');
+                                }
+                            },
+                            { 
+                                data: 'status',
+                                render: function(data) {
+                                    let displayText = 'Unknown';
+                                    let badgeClass = 'bg-info';
+                                    
+                                    if (data) {
+                                        const lowercaseStatus = data.toLowerCase();
+                                        if (lowercaseStatus === 'manually reviewed (swiss-prot)') {
+                                            displayText = 'Reviewed';
+                                            badgeClass = 'bg-success';
+                                        } else if (lowercaseStatus === 'unreviewed (trembl)') {
+                                            displayText = 'Unreviewed';
+                                            badgeClass = 'bg-secondary';
+                                        }
+                                    }
+                                    
+                                    return `<span class="badge ${badgeClass}" title="${data}">${displayText}</span>`;
+                                }
+                            },
+                            {
+                                data: 'uniprotId',
+                                render: function(data) {
+                                    return `<a href="detail.html?id=${data}" class="action-button">
+                                        <i class="fas fa-eye"></i> View Details
+                                    </a>`;
+                                },
+                                orderable: false
+                            }
+                        ],
+                        order: [[0, 'asc']],
+                        pageLength: 15,
+                        dom: 'lBfrtip', // Add buttons to DOM
+                        buttons: [
+                            {
+                                extend: 'csv',
+                                text: '<i class="fas fa-file-csv me-1"></i> CSV',
+                                className: 'btn btn-sm btn-outline-primary me-2'
+                            },
+                            {
+                                extend: 'excel',
+                                text: '<i class="fas fa-file-excel me-1"></i> Excel',
+                                className: 'btn btn-sm btn-outline-success'
+                            }
+                        ],
+                        language: {
+                            search: "<i class='fas fa-search'></i> Search:",
+                            paginate: {
+                                first: '<i class="fas fa-angle-double-left"></i>',
+                                previous: '<i class="fas fa-angle-left"></i>',
+                                next: '<i class="fas fa-angle-right"></i>',
+                                last: '<i class="fas fa-angle-double-right"></i>'
+                            }
+                        },
+                        drawCallback: function() {
+                            // Add some animation when changing pages
+                            $('.dataTable tbody tr').css('opacity', 0);
+                            $('.dataTable tbody tr').each(function(index) {
+                                $(this).delay(index * 50).animate({ opacity: 1 }, 150);
+                            });
+                        }
+                    });
+                    
+                    // Add event listeners for custom filters
+                    $('#repeatTypeFilter').on('change', function() {
+                        const val = this.value;
+                        table.column(2).search(val).draw();
+                    });
+                    
+                    $('#statusFilter').on('change', function() {
+                        const val = this.value;
+                        table.column(5).search(val).draw();
+                    });
+                    
+                    // Replace the repeat count filter event handler
+                    // Custom repeat count filter with checkbox
+                    $('#repeatCountCheck, #repeatCountValue').on('change', function() {
+                        // Remove any existing custom search functions
+                        $.fn.dataTable.ext.search = [];
+                        
+                        if ($('#repeatCountCheck').is(':checked')) {
+                            const minCount = parseInt($('#repeatCountValue').val());
+                            
+                            // Add custom search function for repeat count
+                            $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
+                                const count = parseInt(data[3].replace(/<[^>]*>/g, '')); // Strip HTML
+                                return count >= minCount;
+                            });
+                        }
+                        
+                        table.draw();
+                    });
+                    
+                    // Add event listener for in-frame exon filter
+                    $('#inFrameExonCheck').on('change', function() {
+                        // Create a separate search function for this filter
+                        const filterActive = $(this).is(':checked');
+                        
+                        // Find and remove any existing in-frame exon filter
+                        $.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(
+                            func => func.name !== 'inFrameExonFilter'
+                        );
+                        
+                        // Add filter if checkbox is checked
+                        if (filterActive) {
+                            // Add debug info to console
+                            console.log("Filter active. Searching for proteins with in-frame exons.");
+                            const proteinsWithInFrameExons = tableData.filter(p => p.hasInFrameExons).length;
+                            console.log(`Found ${proteinsWithInFrameExons} proteins with in-frame exons out of ${tableData.length} total.`);
+                            
+                            const inFrameExonFilter = function(settings, searchData, index, rowData, counter) {
+                                return rowData.hasInFrameExons === true;
+                            };
+                            inFrameExonFilter.name = 'inFrameExonFilter';
+                            
+                            $.fn.dataTable.ext.search.push(inFrameExonFilter);
+                        }
+                        
+                        table.draw();
+                    });
+                    
+                    // Update event listener for exon spanning filter to show only non-spanning repeats
+                    $('#exonSpanningCheck').on('change', function() {
+                        // Find and remove any existing exon spanning filter
+                        $.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(
+                            func => func.name !== 'exonSpanningFilter'
+                        );
+                        
+                        if ($(this).is(':checked')) {
+                            // Add debug info to console
+                            console.log("Non-spanning filter active. Showing proteins with non-spanning repeats (blockCount = 1).");
+                            const proteinsWithNonSpanningRepeats = tableData.filter(p => p.hasNonSpanningRepeats).length;
+                            console.log(`Found ${proteinsWithNonSpanningRepeats} proteins with non-spanning repeats out of ${tableData.length} total.`);
+                            
+                            const exonSpanningFilter = function(settings, searchData, index, rowData, counter) {
+                                return rowData.hasNonSpanningRepeats === true;
+                            };
+                            exonSpanningFilter.name = 'exonSpanningFilter';
+                            
+                            $.fn.dataTable.ext.search.push(exonSpanningFilter);
+                        }
+                        
+                        table.draw();
+                    });
+                    
+                    // Reset filters button
+                    $('#resetFilters').on('click', function() {
+                        $('#repeatTypeFilter').val('');
+                        $('#statusFilter').val('');
+                        $('#repeatCountCheck').prop('checked', false);
+                        $('#repeatCountValue').val('1');
+                        $('#inFrameExonCheck').prop('checked', false);
+                        $('#exonSpanningCheck').prop('checked', false); // Reset exon spanning filter
+                        
+                        // Clear DataTable search and remove custom search functions
+                        table.search('').columns().search('').draw();
+                        $.fn.dataTable.ext.search = [];
+                    });
+                    
+                    console.log("DataTable initialized successfully");
+                    
+                    // Hide loading, show table
+                    $('#loading').hide();
+                    $('#tableContainer').show();
+                })
+                .catch(error => {
+                    console.error('Error loading data:', error);
+                    $('#loading').html(`
+                        <div class="alert alert-danger p-4" role="alert">
+                            <h4 class="alert-heading"><i class="fas fa-exclamation-triangle me-2"></i> Error Loading Data</h4>
+                            <p>${error.message || 'Unable to load protein data. Please check your connection and try again.'}</p>
+                            <hr>
+                            <p class="mb-0">If the problem persists, please check the browser console for more details or contact support.</p>
+                        </div>
+                    `);
+                });
+        });
+    </script>
+
+    <!-- Add DataTables Buttons extension for export functionality -->
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+</body>
+</html>

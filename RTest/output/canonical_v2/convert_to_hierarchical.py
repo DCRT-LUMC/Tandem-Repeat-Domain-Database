@@ -68,10 +68,10 @@ def normalize_repeat_type(repeat_type):
         return "Spectrin"
     # If starts with a number
     if repeat_type and repeat_type[0].isdigit():
-        return "Unnamed"
+        return "Unknown"
     # If the entire string is a roman numeral I-X (case-insensitive)
     if re.match(r"^(I|II|III|IV|V|VI|VII|VIII|IX|X)$", repeat_type, re.IGNORECASE):
-        return "Unnamed"
+        return "Unknown"
     return repeat_type
 
 def main(input_json, output_json):
