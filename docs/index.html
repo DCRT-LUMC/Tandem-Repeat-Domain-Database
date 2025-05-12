@@ -311,26 +311,39 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 25px; /* Increased from 15px to 25px to add more space */
         }
         
         .dataTables_length {
             flex: 0 0 auto;
             margin-right: 15px;
-            margin-bottom: 0 !important;
+            margin-bottom: 10px !important; /* Added bottom margin */
         }
         
         .dt-buttons {
             flex: 0 0 auto;
             margin-right: 15px;
-            margin-bottom: 0 !important;
+            margin-bottom: 10px !important; /* Added bottom margin */
         }
         
         .dataTables_filter {
             flex: 1;
             margin-left: auto;
             text-align: right !important;
-            margin-bottom: 0 !important;
+            margin-bottom: 10px !important; /* Increased from 10px to 20px */
+        }
+        
+        /* Add more space between search bar and table */
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: 10px !important; /* Increased from 0/10px to 20px */
+        }
+        
+        /* Add space between table and pagination controls */
+        .dataTables_wrapper .dataTables_paginate,
+        .dataTables_wrapper .dataTables_info {
+            margin-top: 10px !important; /* Add space above pagination controls */
+            margin-left: 10px !important; /* Add space to the left of pagination controls */
+            align-items: left !important; /* Align pagination controls to the left */
         }
         
         /* Ensure filter input has proper width */
@@ -363,6 +376,49 @@
         .dataTables_length select[name="proteinTable_length"] {
             min-width: 70px; /* Increased width to make dropdown box wider */
             width: auto;
+        }
+        
+        /* Simple responsive table container */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+            margin-bottom: 1rem;
+            /* Fix for shadow bar on scroll */
+            position: relative;
+            background-clip: padding-box;
+            border-radius: var(--border-radius);
+        }
+        
+        /* Remove DataTables default shadows and borders that cause visual glitches */
+        .dataTables_wrapper .dataTable {
+            box-shadow: none;
+            border: none;
+            margin: 0 !important;
+        }
+        
+        /* Ensure proper container padding */
+        .table-container {
+            padding: 0;
+        }
+        
+        /* Remove horizontal lines between rows */
+        #proteinTable tbody tr {
+            border: none !important;
+        }
+        
+        #proteinTable tbody td {
+            border-bottom: none !important;
+            border-top: none !important;
+        }
+        
+        /* Improve row separation with better stripe styling instead of borders */
+        #proteinTable.table-striped > tbody > tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+        
+        #proteinTable.table-striped > tbody > tr:nth-of-type(even) {
+            background-color: white;
         }
     </style>
 </head>
@@ -442,20 +498,22 @@
             </div>
             
             <div id="tableContainer" class="table-container" style="display: none;">
-                <table id="proteinTable" class="table table-striped" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Gene</th>
-                            <th>UniProt ID</th>
-                            <th>Repeat Type</th>
-                            <th>Repeats</th>
-                            <th>Chromosome</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <div class="table-responsive">
+                    <table id="proteinTable" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Gene</th>
+                                <th>UniProt ID</th>
+                                <th>Repeat Type</th>
+                                <th>Repeats</th>
+                                <th>Chromosome</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -659,7 +717,32 @@
                     
                     $('#statusFilter').on('change', function() {
                         const val = this.value;
-                        table.column(5).search(val).draw();
+                        
+                        // Remove any existing status filter function
+                        $.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(
+                            func => func.name !== 'statusFilter'
+                        );
+                        
+                        // Only add custom filter if a status is selected
+                        if (val) {
+                            const statusFilter = function(settings, searchData, index, rowData, counter) {
+                                const status = rowData.status.toLowerCase();
+                                
+                                if (val === 'reviewed') {
+                                    // For reviewed, exclude anything with 'unreviewed' in it
+                                    return status.includes('reviewed') && !status.includes('unreviewed');
+                                } else if (val === 'unreviewed') {
+                                    return status.includes('unreviewed');
+                                }
+                                
+                                return true;
+                            };
+                            statusFilter.name = 'statusFilter';
+                            
+                            $.fn.dataTable.ext.search.push(statusFilter);
+                        }
+                        
+                        table.draw();
                     });
                     
                     // Replace the repeat count filter event handler
