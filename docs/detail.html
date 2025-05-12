@@ -467,8 +467,14 @@
                 <button class="view-button" id="zoomRepeatsBtn">
                     <i class="fas fa-search-plus me-1"></i> Zoom to Repeats
                 </button>
+                <button class="view-button" id="highlightExonsBtn">
+                    <i class="fas fa-dna me-1"></i> Highlight Exons
+                </button>
                 <button class="view-button" id="exonBoundariesBtn">
                     <i class="fas fa-project-diagram me-1"></i> Show Exon Boundaries
+                </button>
+                <button class="view-button" id="repeatBoundariesBtn">
+                    <i class="fas fa-border-style me-1"></i> Show Repeat Boundaries
                 </button>
             </div>
             <div id="proteinViewer">
@@ -1406,6 +1412,24 @@
                     hideExonBoundaries();
                 }
             });
+            
+            document.getElementById('repeatBoundariesBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                this.classList.toggle('active');
+                if (this.classList.contains('active')) {
+                    this.innerHTML = '<i class="fas fa-border-style me-1"></i> Hide Repeat Boundaries';
+                    showRepeatBoundaries();
+                } else {
+                    this.innerHTML = '<i class="fas fa-border-style me-1"></i> Show Repeat Boundaries';
+                    hideRepeatBoundaries();
+                }
+            });
+            
+            document.getElementById('highlightExonsBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                setActiveButton(this);
+                highlightExons();
+            });
         });
 
         // Function to show exon boundaries
@@ -1517,49 +1541,208 @@
             console.log("Exon boundaries hidden");
         }
         
-        // Function to update legend with exon info
-        function updateLegendWithExons(exonData) {
+        // Function to show repeat boundaries
+        function showRepeatBoundaries() {
+            if (!viewer) {
+                console.error("Viewer not initialized");
+                return;
+            }
+            
+            console.log("Showing repeat boundaries");
+            
+            // Use the globally stored processed repeat regions
+            const repeatRegions = processedRepeatRegions;
+            
+            if (!repeatRegions || repeatRegions.length === 0) {
+                console.warn("No repeat regions available");
+                return;
+            }
+            
+            // Clear existing shapes and labels
+            viewer.removeAllShapes();
+            viewer.removeAllLabels();
+            
+            // Create a map to track all positions and their boundary types
+            const positionMap = new Map(); // Map position to { sphere: boolean, labels: array of strings }
+            
+            // First pass: Collect all boundary positions and identify overlaps
+            repeatRegions.forEach(repeat => {
+                if (!repeat.start || !repeat.end) return;
+                
+                // Add start position
+                if (!positionMap.has(repeat.start)) {
+                    positionMap.set(repeat.start, { sphere: false, labels: [] });
+                }
+                positionMap.get(repeat.start).labels.push(`${repeat.label} start`);
+                
+                // Add end position
+                if (!positionMap.has(repeat.end)) {
+                    positionMap.set(repeat.end, { sphere: false, labels: [] });
+                }
+                positionMap.get(repeat.end).labels.push(`${repeat.label} end`);
+            });
+            
+            // Second pass: Add spheres and labels for each position
+            for (const [position, info] of positionMap.entries()) {
+                // Get atoms at this position
+                const atoms = viewer.getModel().selectedAtoms({resi: position, atom: "CA"});
+                
+                if (atoms.length === 0) continue;
+                
+                // Get the first CA atom coordinates
+                const atom = atoms[0];
+                
+                // Use different colors for spheres based on whether it's a start, end, or both
+                let sphereColor = '0x3498DB'; // Default to blue (start)
+                
+                const hasStart = info.labels.some(l => l.includes('start'));
+                const hasEnd = info.labels.some(l => l.includes('end'));
+                
+                if (hasStart && hasEnd) {
+                    // If position has both start and end, use orange
+                    sphereColor = '0xF39C12';
+                } else if (hasEnd) {
+                    // If only end, use yellow
+                    sphereColor = '0xF1C40F';
+                }
+                
+                // Add a wireframe sphere at this position
+                viewer.addSphere({
+                    center: {x: atom.x, y: atom.y, z: atom.z},
+                    radius: 1.5,
+                    color: sphereColor,
+                    wireframe: true,
+                    linewidth: 3,
+                    alpha: 0.9
+                });
+                
+                // Add labels with slight vertical offsets to avoid overlap
+                info.labels.forEach((label, idx) => {
+                    // Offset each label vertically to prevent overlap
+                    const offset = (idx - (info.labels.length - 1) / 2) * 2;
+                    
+                    // Determine label color (blue for start, yellow for end)
+                    const bgColor = label.includes('start') ? '0x2980B9' : '0xF39C12';
+                    
+                    viewer.addLabel(label, {
+                        position: {x: atom.x, y: atom.y + offset, z: atom.z},
+                        backgroundColor: bgColor,
+                        backgroundOpacity: 0.8,
+                        fontColor: 'white',
+                        fontSize: 12
+                    });
+                });
+            }
+            
+            // Update legend with repeat boundary info
+            updateLegendWithRepeatBoundaries();
+            
+            viewer.render();
+            console.log("Repeat boundaries display complete");
+        }
+
+        // Function to hide repeat boundaries
+        function hideRepeatBoundaries() {
+            if (!viewer) return;
+            viewer.removeAllShapes();
+            viewer.removeAllLabels();
+            
+            // Check which mode is currently active and restore the appropriate legend
+            if (document.getElementById('highlightRepeatsBtn').classList.contains('active')) {
+                createLegend(processedRepeatRegions);
+            } else if (document.getElementById('highlightExonsBtn').classList.contains('active')) {
+                if (processedExonData && processedExonData.exons) {
+                    const exons = processedExonData.exons.map((exon, index) => ({
+                        number: exon.exon_number,
+                        start: exon.repeat_start,
+                        end: exon.repeat_end,
+                        color: ["#4daf4a", "#377eb8", "#ff7f00", "#984ea3", "#e41a1c", 
+                                "#a65628", "#f781bf", "#999999", "#dede00", "#004529"][index % 10]
+                    }));
+                    updateLegendWithExonColors(exons);
+                }
+            } else if (document.getElementById('standardViewBtn').classList.contains('active')) {
+                updateStandardViewLegend();
+            }
+            
+            viewer.render();
+            console.log("Repeat boundaries hidden");
+        }
+
+        // Function to update legend with repeat boundary information
+        function updateLegendWithRepeatBoundaries() {
             const legend = document.getElementById('viewerLegend');
             
-            // Remove existing exon legend items
-            const existingExonItems = document.querySelectorAll('.exon-legend-item');
-            existingExonItems.forEach(item => item.remove());
+            // Remove existing boundary legend items
+            const existingBoundaryItems = document.querySelectorAll('.boundary-legend-item');
+            existingBoundaryItems.forEach(item => item.remove());
             
-            // Add new header for exon legend section
-            const exonHeader = document.createElement('div');
-            exonHeader.className = 'legend-item exon-legend-item';
-            exonHeader.innerHTML = '<strong>Exon Boundaries:</strong>';
-            legend.appendChild(exonHeader);
+            // Add new header for repeat boundary legend section
+            const boundaryHeader = document.createElement('div');
+            boundaryHeader.className = 'legend-item boundary-legend-item';
+            boundaryHeader.innerHTML = '<strong>Repeat Boundaries:</strong>';
+            legend.appendChild(boundaryHeader);
             
             // Add start marker
             const startItem = document.createElement('div');
-            startItem.className = 'legend-item exon-legend-item';
+            startItem.className = 'legend-item boundary-legend-item';
             const startBox = document.createElement('div');
             startBox.className = 'color-box';
-            startBox.style.backgroundColor = '#00FF00';
+            startBox.style.backgroundColor = '#3498DB'; // Blue
             startItem.appendChild(startBox);
-            startItem.appendChild(document.createTextNode('Exon start'));
+            startItem.appendChild(document.createTextNode('Repeat start'));
             legend.appendChild(startItem);
             
             // Add end marker
             const endItem = document.createElement('div');
-            endItem.className = 'legend-item exon-legend-item';
+            endItem.className = 'legend-item boundary-legend-item';
             const endBox = document.createElement('div');
             endBox.className = 'color-box';
-            endBox.style.backgroundColor = '#FF0000';
+            endBox.style.backgroundColor = '#F1C40F'; // Yellow
             endItem.appendChild(endBox);
-            endItem.appendChild(document.createTextNode('Exon end'));
+            endItem.appendChild(document.createTextNode('Repeat end'));
             legend.appendChild(endItem);
             
             // Add combined marker
             const bothItem = document.createElement('div');
-            bothItem.className = 'legend-item exon-legend-item';
+            bothItem.className = 'legend-item boundary-legend-item';
             const bothBox = document.createElement('div');
             bothBox.className = 'color-box';
-            bothBox.style.backgroundColor = '#FF00FF';  // Purple
+            bothBox.style.backgroundColor = '#F39C12'; // Orange
             bothItem.appendChild(bothBox);
-            bothItem.appendChild(document.createTextNode('Exon start & end (shared position)'));
+            bothItem.appendChild(document.createTextNode('Repeat start & end (shared position)'));
             legend.appendChild(bothItem);
+        }
+
+        // Function to help restore the appropriate legend when needed
+        function updateStandardViewLegend() {
+            const legend = document.getElementById('viewerLegend');
+            
+            // Clear existing legend items
+            while (legend.firstChild) {
+                legend.removeChild(legend.firstChild);
+            }
+            
+            // Add standard view legend items
+            const chainItem = document.createElement('div');
+            chainItem.className = 'legend-item';
+            const chainColorBox = document.createElement('div');
+            chainColorBox.className = 'color-box';
+            chainColorBox.style.background = 'linear-gradient(45deg, #6495ED, #1E90FF)';
+            chainItem.appendChild(chainColorBox);
+            chainItem.appendChild(document.createTextNode('Chain coloring'));
+            legend.appendChild(chainItem);
+            
+            // Add highlighted repeats note if they're visible but subtle
+            const repeatItem = document.createElement('div');
+            repeatItem.className = 'legend-item';
+            const repeatColorBox = document.createElement('div');
+            repeatColorBox.className = 'color-box';
+            repeatColorBox.style.border = '2px solid #555';
+            repeatColorBox.style.backgroundColor = 'transparent';
+            repeatItem.appendChild(repeatColorBox);
+            repeatItem.appendChild(document.createTextNode('Repeat regions (subtle highlight)'));
+            legend.appendChild(repeatItem);
         }
 
         // Add toggle function for collapsible sections
@@ -1685,6 +1868,134 @@
             }
             
             console.log("Auto-rotation stopped");
+        }
+
+        // Function to highlight exons with colors
+        function highlightExons() {
+            if (!viewer || !viewerInitialized) {
+                console.error("Viewer not initialized yet");
+                return;
+            }
+            
+            try {
+                // Get exon data
+                const exonData = processedExonData;
+                
+                if (!exonData || !exonData.exons || !exonData.exons.length) {
+                    console.warn("No exon data available for this protein");
+                    return;
+                }
+                
+                // Clear all previous styles and settings
+                viewer.removeAllSurfaces();
+                viewer.removeAllShapes();
+                viewer.removeAllLabels();
+                
+                // Set whole protein to a light gray surface
+                viewer.setStyle({}, {
+                    cartoon: {color: '0xcccccc', opacity: 0.5},
+                    surface: {opacity: 0.6, color: '0xdddddd'}
+                });
+                
+                // Create a color palette for exons (distinct from repeat colors)
+                const exonColors = [
+                    "#4daf4a", "#377eb8", "#ff7f00", "#984ea3", "#e41a1c", 
+                    "#a65628", "#f781bf", "#999999", "#dede00", "#004529",
+                    "#8c510a", "#542788", "#a6cee3", "#b2df8a", "#6a3d9a"
+                ];
+                
+                // Create a record of all highlighted exons for the legend
+                const highlightedExons = [];
+                
+                // Highlight each exon with a unique color
+                exonData.exons.forEach((exon, index) => {
+                    if (!exon.repeat_start || !exon.repeat_end) return;
+                    
+                    const start = exon.repeat_start;
+                    const end = exon.repeat_end;
+                    const exonNumber = exon.exon_number;
+                    
+                    // Get color for this exon - wrap around if more exons than colors
+                    const colorIndex = index % exonColors.length;
+                    const color = exonColors[colorIndex];
+                    const colorHex = color.replace("#", "0x");
+                    
+                    // Highlight this exon region
+                    const selection = {resi: `${start}-${end}`};
+                    
+                    viewer.setStyle(selection, {
+                        cartoon: {color: colorHex, opacity: 1.0},
+                        surface: {opacity: 0.8, color: colorHex}
+                    });
+                    
+                    // Add label
+                    const labelText = `Exon ${exonNumber}`;
+                    viewer.addLabel(labelText, {
+                        position: {resi: Math.floor((start + end) / 2)},
+                        backgroundColor: 'black',
+                        backgroundOpacity: 0.7,
+                        fontColor: 'white',
+                        fontSize: 12
+                    });
+                    
+                    // Add to highlighted exons for legend
+                    highlightedExons.push({
+                        number: exonNumber,
+                        start: start,
+                        end: end,
+                        color: color
+                    });
+                });
+                
+                // Update legend with exon colors
+                updateLegendWithExonColors(highlightedExons);
+                
+                viewer.render();
+                console.log("Exon highlighting complete");
+            } catch (error) {
+                console.error("Error in highlightExons:", error);
+            }
+        }
+
+        // Function to update legend with exon colors
+        function updateLegendWithExonColors(exons) {
+            const legend = document.getElementById('viewerLegend');
+            
+            // Remove all previous legend items
+            while (legend.firstChild) {
+                legend.removeChild(legend.firstChild);
+            }
+            
+            // Add non-repeat regions legend item
+            const nonRepeatItem = document.createElement('div');
+            nonRepeatItem.className = 'legend-item';
+            const nonRepeatColorBox = document.createElement('div');
+            nonRepeatColorBox.className = 'color-box';
+            nonRepeatColorBox.style.backgroundColor = '#cccccc';
+            nonRepeatItem.appendChild(nonRepeatColorBox);
+           
+            nonRepeatItem.appendChild(document.createTextNode('Non-exon regions'));
+            legend.appendChild(nonRepeatItem);
+            
+            // Sort exons by exon number
+            exons.sort((a, b) => a.number - b.number);
+            
+            // Add legend item for each exon
+            exons.forEach(exon => {
+                const item = document.createElement('div');
+                item.className = 'legend-item';
+                
+                const colorBox = document.createElement('div');
+                colorBox.className = 'color-box';
+                colorBox.style.backgroundColor = exon.color;
+                
+                const label = document.createElement('span');
+                label.textContent = `Exon ${exon.number} (${exon.start}-${exon.end})`;
+                
+                item.appendChild(colorBox);
+                item.appendChild(label);
+                legend.appendChild(item);
+            });
         }
     </script>
 </body>
