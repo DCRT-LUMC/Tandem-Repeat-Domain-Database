@@ -40,7 +40,7 @@
             margin: 0 auto;
             padding: 20px;
             background-color: var(--bg-color);
-            color: var(--dark);
+            color: var (--dark);
             line-height: 1.6;
         }
         
@@ -1212,6 +1212,10 @@
                 
                 const repeatLabel = repeat.repeatType + (repeatRegions.indexOf(repeat) + 1);
                 
+                // Check if this repeat has blockCount = 1
+                const hasBlockCount1 = repeat.blockCount === 1;
+                console.log(`- Repeat has blockCount = ${repeat.blockCount}, will mark as blockCount=1: ${hasBlockCount1}`);
+                
                 // Process all exons from this repeat
                 for (const exon of transcript.containing_exons) {
                     const exonKey = exon.exon_id;
@@ -1230,13 +1234,16 @@
                             repeat_regions: [{
                                 label: repeatLabel,
                                 start: repeatStart,
-                                end: repeatEnd
+                                end: repeatEnd,
+                                blockCount: repeat.blockCount
                             }],
                             repeat_start: exon.protein_start,
                             repeat_end: exon.protein_end,
                             overlap_percentage: exon.overlap_percentage,
                             exon_genomic_start: exon.exon_start,
-                            exon_genomic_end: exon.exon_end
+                            exon_genomic_end: exon.exon_end,
+                            has_blockcount_1: hasBlockCount1, // Add flag for blockCount
+                            has_higher_blockcount: repeat.blockCount > 1 // Add flag for higher blockCount
                         });
                     } else {
                         // Update existing exon with additional repeat info
@@ -1250,8 +1257,19 @@
                             existingExon.repeat_regions.push({
                                 label: repeatLabel,
                                 start: repeatStart,
-                                end: repeatEnd
+                                end: repeatEnd,
+                                blockCount: repeat.blockCount
                             });
+                            
+                            // Update the has_blockcount_1 flag if this repeat has blockCount = 1
+                            if (hasBlockCount1) {
+                                existingExon.has_blockcount_1 = true;
+                            }
+                            
+                            // Update the has_higher_blockcount flag if this repeat has blockCount > 1
+                            if (repeat.blockCount > 1) {
+                                existingExon.has_higher_blockcount = true;
+                            }
                             
                             // Update the exon entry
                             exonMap.set(exonKey, existingExon);
@@ -1293,8 +1311,47 @@
             if (exonData && exonData.exons && exonData.exons.length > 0) {
                 const transcript = exonData.transcript;
                 let exonHtml = `
-                    <p>Canonical transcript: <strong>${transcript.transcript_id}</strong> (${transcript.transcript_name})</p>
+                    <p>Canonical transcript: <strong>${transcript?.transcript_id || 'Unknown'}</strong> (${transcript?.transcript_name || 'Unknown'})</p>
                     <p>Exons overlapping repeats: <strong>${exonData.exons.length}</strong></p>
+                    
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <strong>Exon Highlighting Options</strong>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-2">Select criteria for starring exons:</p>
+                            <div class="form-check">
+                                <input class="form-check-input exon-filter" type="checkbox" value="blockcount1" id="blockcount1" checked>
+                                <label class="form-check-label" for="blockcount1">
+                                    Has blockCount = 1 only (non-spanning)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input exon-filter" type="checkbox" value="blockcount1mixed" id="blockcount1mixed" checked>
+                                <label class="form-check-label" for="blockcount1mixed">
+                                    Has blockCount = 1 (can include other blockCounts)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input exon-filter" type="checkbox" value="inframe" id="inframe" checked>
+                                <label class="form-check-label" for="inframe">
+                                    In-frame exons
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input exon-filter" type="checkbox" value="fullycoding" id="fullycoding" checked>
+                                <label class="form-check-label" for="fullycoding">
+                                    Fully coding exons
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-2">
+                        <span class="legend-item exon-legend-item">
+                            <i class="fas fa-star text-success"></i>&nbsp;&nbsp;Exons matching selected criteria
+                        </span>
+                    </div>
                     <table class="table table-sm table-striped">
                         <thead>
                             <tr>
@@ -1308,45 +1365,96 @@
                                 <th>Overlap %</th>
                             </tr>
                         </thead>
-                        <tbody>
-                `;
-                
-                exonData.exons.forEach(exon => {
-                    // Format the repeats this exon overlaps
-                    const repeatLabels = exon.repeat_regions ? 
-                        exon.repeat_regions.map(r => r.label).join(", ") : 
-                        "Unknown";
-                    
-                    // Format the frame status with descriptive text
-                    const frameStatus = formatFrameStatus(exon.frame_status);
-                    
-                    // Format the phase information - just show the numbers
-                    const startPhase = formatPhase(exon.start_phase);
-                    const endPhase = formatPhase(exon.end_phase);
-                    
-                    exonHtml += `
-                        <tr>
-                            <td>${exon.exon_number}</td>
-                            <td>${exon.repeat_start}-${exon.repeat_end}</td>
-                            <td>${exon.coding_status || 'Unknown'}</td>
-                            <td>${startPhase}</td>
-                            <td>${endPhase}</td>
-                            <td>${frameStatus}</td>
-                            <td>${repeatLabels}</td>
-                            <td>${exon.overlap_percentage ? exon.overlap_percentage + '%' : 'Unknown'}</td>
-                        </tr>
-                    `;
-                });
-                
-                exonHtml += `
+                        <tbody id="exonTableBody">
+                            ${generateExonTableRows(exonData.exons)}
                         </tbody>
                     </table>
                 `;
                 
                 exonDataText.innerHTML = exonHtml;
+                
+                // Add event listeners to checkboxes
+                document.querySelectorAll('.exon-filter').forEach(checkbox => {
+                    checkbox.addEventListener('change', () => {
+                        updateExonTableStars(exonData.exons);
+                    });
+                });
+                
+                // Apply stars immediately based on initial checkbox states
+                setTimeout(() => updateExonTableStars(exonData.exons), 0);
             } else {
                 exonDataText.textContent = "No exon data available for this protein or the repeat regions.";
             }
+        }
+
+        // Function to generate exon table rows
+        function generateExonTableRows(exons) {
+            let rowsHtml = '';
+            
+            exons.forEach(exon => {
+                // Format the repeats this exon overlaps
+                const repeatLabels = exon.repeat_regions ? 
+                    exon.repeat_regions.map(r => r.label).join(", ") : 
+                    "Unknown";
+                
+                // Format the frame status with descriptive text
+                const frameStatus = formatFrameStatus(exon.frame_status);
+                
+                // Format the phase information - just show the numbers
+                const startPhase = formatPhase(exon.start_phase);
+                const endPhase = formatPhase(exon.end_phase);
+                
+                // Store the criteria as data attributes for filtering
+                rowsHtml += `
+                    <tr data-exon-id="${exon.exon_id}" 
+                        data-blockcount1="${exon.has_blockcount_1 === true && !exon.has_higher_blockcount}"
+                        data-inframe="${(exon.frame_status === 'in_frame' || exon.frame_status === 'in-frame')}" 
+                        data-fullycoding="${exon.coding_status === 'fully_coding'}">
+                        <td class="exon-number">${exon.exon_number}</td>
+                        <td>${exon.repeat_start}-${exon.repeat_end}</td>
+                        <td>${exon.coding_status || 'Unknown'}</td>
+                        <td>${startPhase}</td>
+                        <td>${endPhase}</td>
+                        <td>${frameStatus}</td>
+                        <td>${repeatLabels}</td>
+                        <td>${exon.overlap_percentage ? exon.overlap_percentage + '%' : 'Unknown'}</td>
+                    </tr>
+                `;
+            });
+            
+            return rowsHtml;
+        }
+
+        // Function to update exon table stars based on selected criteria
+        function updateExonTableStars(exons) {
+            // Get selected criteria
+            const blockcount1Selected = document.getElementById('blockcount1').checked;
+            const blockcount1MixedSelected = document.getElementById('blockcount1mixed').checked;
+            const inframeSelected = document.getElementById('inframe').checked;
+            const fullycodingSelected = document.getElementById('fullycoding').checked;
+            
+            // Update each row
+            const rows = document.querySelectorAll('#exonTableBody tr');
+            rows.forEach(row => {
+                const exonNumberCell = row.querySelector('.exon-number');
+                
+                // Check if this row meets all selected criteria
+                const meetsBlockCountCriteria = !blockcount1Selected || row.dataset.blockcount1 === "true";
+                const meetsBlockCountMixedCriteria = !blockcount1MixedSelected || row.dataset.blockcount1 === "true" || row.dataset.blockcount1 === "false";
+                const meetsInFrameCriteria = !inframeSelected || row.dataset.inframe === "true";
+                const meetsFullyCodingCriteria = !fullycodingSelected || row.dataset.fullycoding === "true";
+                
+                const isSpecialExon = meetsBlockCountCriteria && meetsBlockCountMixedCriteria && meetsInFrameCriteria && meetsFullyCodingCriteria;
+                
+                // Update the exon number cell
+                if (isSpecialExon) {
+                    const exonNumber = exonNumberCell.textContent.trim().split(' ')[0]; // Get just the number
+                    exonNumberCell.innerHTML = `${exonNumber} <i class="fas fa-star text-success" title="Matches selected criteria"></i>`;
+                } else {
+                    const exonNumber = exonNumberCell.textContent.trim().split(' ')[0]; // Get just the number
+                    exonNumberCell.textContent = exonNumber;
+                }
+            });
         }
 
         // Function to log detailed information about repeat regions (for debugging)
@@ -1911,9 +2019,6 @@
                 exonData.exons.forEach((exon, index) => {
                     if (!exon.repeat_start || !exon.repeat_end) return;
                     
-                    const start = exon.repeat_start;
-                    const end = exon.repeat_end;
-                    const exonNumber = exon.exon_number;
                     
                     // Get color for this exon - wrap around if more exons than colors
                     const colorIndex = index % exonColors.length;
