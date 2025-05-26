@@ -395,11 +395,19 @@
             box-shadow: none;
             border: none;
             margin: 0 !important;
+            width: 100% !important;
         }
         
         /* Ensure proper container padding */
         .table-container {
             padding: 0;
+            width: 100%;
+        }
+        
+        /* Ensure table takes full width */
+        #proteinTable {
+            width: 100% !important;
+            table-layout: auto;
         }
         
         /* Remove horizontal lines between rows */
@@ -420,7 +428,126 @@
         #proteinTable.table-striped > tbody > tr:nth-of-type(even) {
             background-color: white;
         }
+        
+        /* Control column widths */
+        #proteinTable th:nth-child(1), /* Chromosome */
+        #proteinTable td:nth-child(1) {
+            width: 7%;
+            max-width: 70px;
+        }
+        
+        #proteinTable th:nth-child(2), /* Gene Name */
+        #proteinTable td:nth-child(2) {
+            width: 10%;
+            max-width: 100px;
+        }
+        
+        #proteinTable th:nth-child(3), /* Aliases */
+        #proteinTable td:nth-child(3) {
+            width: 12%;
+            max-width: 120px;
+        }
+        
+        #proteinTable th:nth-child(4), /* Protein Name */
+        #proteinTable td:nth-child(4) {
+            width: 13%;
+            max-width: 130px;
+        }
+        
+        #proteinTable th:nth-child(5), /* Repeat Type */
+        #proteinTable td:nth-child(5) {
+            width: 13%;
+            max-width: 130px;
+        }
+        
+        #proteinTable th:nth-child(6), /* Repeat Count */
+        #proteinTable td:nth-child(6) {
+            width: 9%;
+            max-width: 90px;
+            text-align: center;
+        }
+        
+        #proteinTable th:nth-child(7), /* Status */
+        #proteinTable td:nth-child(7) {
+            width: 10%;
+            max-width: 100px;
+            text-align: center;
+        }
+        
+        #proteinTable th:nth-child(8), /* Eligibility */
+        #proteinTable td:nth-child(8) {
+            width: 10%;
+            max-width: 100px;
+            text-align: center;
+        }
+        
+        #proteinTable th:nth-child(9), /* Actions */
+        #proteinTable td:nth-child(9) {
+            width: 16%;
+            max-width: 160px;
+            text-align: center;
+        }
     </style>
+    <script>
+        // Global variables
+        let geneEligibilityMap = new Map();
+        
+        // Load and parse CSV data
+        async function loadGeneEligibilityData() {
+            try {
+                const response = await fetch('DCRT_Gene_list_August_2024.csv');
+                const csvText = await response.text();
+                
+                // Parse CSV manually (simple approach)
+                const lines = csvText.split('\n');
+                const headers = lines[0].split('\t');
+                
+                // Find the indices for Entity Name and Eligibility columns
+                const entityNameIndex = headers.findIndex(h => h.trim() === 'Entity Name');
+                const eligibilityIndex = headers.findIndex(h => h.trim() === 'Eligibility');
+                
+                if (entityNameIndex === -1 || eligibilityIndex === -1) {
+                    console.warn('Required columns not found in CSV');
+                    return;
+                }
+                
+                // Process each line (skip header)
+                for (let i = 1; i < lines.length; i++) {
+                    const columns = lines[i].split('\t');
+                    if (columns.length > Math.max(entityNameIndex, eligibilityIndex)) {
+                        const geneName = columns[entityNameIndex]?.trim();
+                        const eligibility = columns[eligibilityIndex]?.trim();
+                        
+                        if (geneName && eligibility) {
+                            geneEligibilityMap.set(geneName, eligibility);
+                        }
+                    }
+                }
+                
+                console.log(`Loaded eligibility data for ${geneEligibilityMap.size} genes`);
+            } catch (error) {
+                console.error('Error loading gene eligibility data:', error);
+            }
+        }
+        
+        // Function to get eligibility status for a gene
+        function getGeneEligibility(geneName) {
+            return geneEligibilityMap.get(geneName) || 'N/A';
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadGeneEligibilityData().then(() => {
+                // Initialize datatable after CSV is loaded
+                initializeDataTable();
+            });
+        });
+        
+        function initializeDataTable() {
+            // Your existing datatable initialization code here
+            // Make sure to add the eligibility column definition
+        }
+    </script>
 </head>
 <body>
     <div class="page-header">
@@ -450,41 +577,57 @@
                     <div class="filter-item">
                         <label for="statusFilter" class="filter-label">Status</label>
                         <select id="statusFilter" class="form-select form-select-sm">
-                            <option value="">All</option>
-                            <option value="reviewed">Reviewed</option>
-                            <option value="unreviewed">Unreviewed</option>
                         </select>
                     </div>
                     
                     <div class="filter-item">
-                        <label class="filter-label">Repeat Count</label>
-                        <div class="repeat-filter-control">
-                            <div class="form-check mb-0">
-                                <input class="form-check-input" type="checkbox" id="repeatCountCheck">
-                                <label class="form-check-label" for="repeatCountCheck">Min</label>
-                            </div>
-                            <input type="number" id="repeatCountValue" class="form-control form-control-sm repeat-count-input" value="5" min="1" max="100">
-                        </div>
+                        <label for="eligibilityFilter" class="filter-label">Eligibility</label>
+                        <select id="eligibilityFilter" class="form-select form-select-sm">
+                            <option value="">All</option>
+                        </select>
                     </div>
-
-                    <!-- Combine both filters in a single filter-item with vertical layout -->
+                </div>
+                
+                <div class="filter-row mt-3">
                     <div class="filter-item">
-                        <label class="filter-label">Exon Filters</label>
-                        <div class="d-flex flex-column">
-                            <div class="form-check form-switch mb-2">
+                        <label for="repeatCountCheck" class="filter-label">
+                            <div class="repeat-filter-control">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="repeatCountCheck">
+                                    <label class="form-check-label" for="repeatCountCheck">
+                                        Repeat Count ≥
+                                    </label>
+                                </div>
+                                <input type="number" id="repeatCountValue" class="form-control form-control-sm repeat-count-input" value="1" min="1">
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <div class="filter-item">
+                        <label for="inFrameExonCheck" class="filter-label">
+                            <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="inFrameExonCheck">
-                                <label class="form-check-label" for="inFrameExonCheck">Has in-frame exons</label>
+                                <label class="form-check-label" for="inFrameExonCheck">
+                                    Has In-Frame Exons
+                                </label>
                             </div>
-                            <div class="form-check form-switch">
+                        </label>
+                    </div>
+                    
+                    <div class="filter-item">
+                        <label for="exonSpanningCheck" class="filter-label">
+                            <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="exonSpanningCheck">
-                                <label class="form-check-label" for="exonSpanningCheck">Only non-spanning repeats</label>
+                                <label class="form-check-label" for="exonSpanningCheck">
+                                    Non-Spanning Repeats Only
+                                </label>
                             </div>
-                        </div>
+                        </label>
                     </div>
                     
                     <div class="filter-actions">
-                        <button id="resetFilters" class="btn btn-outline-secondary btn-sm">
-                            <i class="fas fa-times me-1"></i> Reset Filters
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="resetFilters">
+                            <i class="fas fa-undo me-1"></i> Reset Filters
                         </button>
                     </div>
                 </div>
@@ -499,19 +642,23 @@
             
             <div id="tableContainer" class="table-container" style="display: none;">
                 <div class="table-responsive">
-                    <table id="proteinTable" class="table table-striped" style="width:100%">
+                    <table id="proteinTable" class="table table-striped table-hover" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Gene</th>
-                                <th>UniProt ID</th>
-                                <th>Repeat Type</th>
-                                <th>Repeats</th>
                                 <th>Chromosome</th>
+                                <th>Gene Name</th>
+                                <th>Aliases</th>
+                                <th>Protein Name</th>
+                                <th>Repeat Type</th>
+                                <th>Repeat Count</th>
                                 <th>Status</th>
+                                <th>Eligibility</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -567,18 +714,40 @@
                     // Process data to get unique proteins with additional metadata
                     const uniqueProteins = {};
                     const repeatTypes = new Set();
+                    const statuses = new Set();
                     
                     data.forEach(item => {
                         const uniqueKey = item.uniProtId;
                         repeatTypes.add(item.repeatType || 'Unknown');
+                        statuses.add(item.status || 'Unknown');
                         
-                        // Check if this repeat has in-frame exons - Fix the frame_status check
+                        // Extract aliases from JSON data fields
+                        const aliases = new Set();
+                        
+                        // Add aliases from the JSON data if they exist
+                        if (item.aliases) {
+                            // Handle if aliases is a string (comma-separated) or array
+                            if (typeof item.aliases === 'string') {
+                                item.aliases.split(',').forEach(alias => {
+                                    const trimmed = alias.trim();
+                                    if (trimmed) aliases.add(trimmed);
+                                });
+                            } else if (Array.isArray(item.aliases)) {
+                                item.aliases.forEach(alias => {
+                                    if (alias && alias.trim()) aliases.add(alias.trim());
+                                });
+                            }
+                        }
+                        
+                        const aliasArray = Array.from(aliases).filter(a => a && a !== 'Unknown');
+                        
+                        // Check if this repeat has in-frame exons
                         const hasInFrameExons = item.ensembl_exon_info && 
                                                item.ensembl_exon_info.transcripts && 
                                                item.ensembl_exon_info.transcripts.some(t => 
                                                    t.containing_exons && 
                                                    t.containing_exons.some(e => 
-                                                       e.frame_status === 'in_frame' // Changed from 'in-frame' to 'in_frame'
+                                                       e.frame_status === 'in_frame'
                                                    )
                                                );
                         
@@ -592,39 +761,54 @@
                         if (!uniqueProteins[uniqueKey]) {
                             uniqueProteins[uniqueKey] = {
                                 gene: item.geneName || 'Unknown',
-                                uniprotId: item.uniProtId,
+                                aliases: aliasArray,
+                                aliasString: aliasArray.length > 0 ? aliasArray.join(', ') : '', // For display
+                                searchableText: [
+                                    item.geneName || '',
+                                    item.uniProtId || '',
+                                    ...aliasArray
+                                ].join(' ').toLowerCase(), // For searching
+                                uniprotId: item.uniProtId || 'Unknown',
                                 repeatType: item.repeatType || 'Unknown',
                                 status: item.status || 'Unknown',
                                 chromosome: item.chrom || 'Unknown',
-                                repeats: [item], // Initialize array with this repeat
+                                repeats: [item],
                                 repeatCount: 1,
-                                hasInFrameExons: hasInFrameExons, // New property
-                                hasSpanningExons: spansExons, // Add property for spanning exons
-                                hasNonSpanningRepeats: nonSpanningRepeat // Add property for non-spanning repeats
+                                hasInFrameExons: hasInFrameExons,
+                                hasSpanningExons: spansExons,
+                                hasNonSpanningRepeats: nonSpanningRepeat,
+                                eligibility: getGeneEligibility(item.geneName || 'Unknown')
                             };
                         } else {
-                            // We've seen this protein before, increment count
+                            // We've seen this protein before, increment count and merge aliases
                             uniqueProteins[uniqueKey].repeats.push(item);
                             uniqueProteins[uniqueKey].repeatCount++;
                             
-                            // Update in-frame exon status if found
+                            // Merge aliases
+                            const existingAliases = new Set(uniqueProteins[uniqueKey].aliases);
+                            aliasArray.forEach(alias => existingAliases.add(alias));
+                            uniqueProteins[uniqueKey].aliases = Array.from(existingAliases);
+                            uniqueProteins[uniqueKey].aliasString = Array.from(existingAliases).length > 0 ? Array.from(existingAliases).join(', ') : '';
+                            uniqueProteins[uniqueKey].searchableText = [
+                                uniqueProteins[uniqueKey].gene || '',
+                                uniqueProteins[uniqueKey].uniprotId || '',
+                                ...Array.from(existingAliases)
+                            ].join(' ').toLowerCase();
+                            
+                            // Update properties if found
                             if (hasInFrameExons) {
                                 uniqueProteins[uniqueKey].hasInFrameExons = true;
                             }
-                            
-                            // Update exon spanning status if found
                             if (spansExons) {
                                 uniqueProteins[uniqueKey].hasSpanningExons = true;
                             }
-                            
-                            // Update non-spanning repeat status if found
                             if (nonSpanningRepeat) {
                                 uniqueProteins[uniqueKey].hasNonSpanningRepeats = true;
                             }
                         }
                     });
                     
-                    // Populate repeat type filter dropdown
+                    // Populate filter dropdowns
                     const repeatTypeFilter = document.getElementById('repeatTypeFilter');
                     Array.from(repeatTypes).sort().forEach(type => {
                         const option = document.createElement('option');
@@ -633,48 +817,127 @@
                         repeatTypeFilter.appendChild(option);
                     });
                     
+                    const statusFilter = document.getElementById('statusFilter');
+                    statusFilter.innerHTML = '<option value="">All Status</option><option value="reviewed">Reviewed</option><option value="unreviewed">Unreviewed</option>';
+                    
                     // Convert object to array for DataTables
                     const tableData = Object.values(uniqueProteins);
                     console.log(`Processed ${tableData.length} unique proteins`);
                     
-                    // Initialize DataTable
+                    // Populate eligibility filter with all unique values
+                    const eligibilityValues = new Set();
+                    tableData.forEach(protein => {
+                        eligibilityValues.add(protein.eligibility);
+                    });
+                    
+                    const eligibilityFilter = document.getElementById('eligibilityFilter');
+                    // Clear existing options except "All"
+                    eligibilityFilter.innerHTML = '<option value="">All</option>';
+                    
+                    // Sort eligibility values (numbers first, then N/A)
+                    const sortedEligibility = Array.from(eligibilityValues).sort((a, b) => {
+                        if (a === 'N/A') return 1;
+                        if (b === 'N/A') return -1;
+                        return a.localeCompare(b);
+                    });
+                    
+                    sortedEligibility.forEach(value => {
+                        const option = document.createElement('option');
+                        option.value = value;
+                        option.textContent = value;
+                        eligibilityFilter.appendChild(option);
+                    });
+                    
+                    // Initialize DataTable with proper column configuration
                     const table = $('#proteinTable').DataTable({
                         data: tableData,
                         columns: [
-                            { data: 'gene' },
-                            { data: 'uniprotId' },
-                            { data: 'repeatType' },
+                            { 
+                                data: 'chromosome',
+                                title: 'Chrom.'
+                            },
+                            { 
+                                data: 'gene',
+                                title: 'Gene Name'
+                            },
+                            { 
+                                data: 'aliasString',
+                                title: 'Aliases',
+                                render: function(data, type, row) {
+                                    if (type === 'display') {
+                                        if (!data || data === '') return '<span class="text-muted">-</span>';
+                                        // Truncate long alias lists for display
+                                        if (data.length > 50) {
+                                            const truncated = data.substring(0, 47) + '...';
+                                            return `<span title="${data}">${truncated}</span>`;
+                                        }
+                                        return data;
+                                    }
+                                    // For searching, return the searchable text which includes all aliases
+                                    return row.searchableText || data || '';
+                                }
+                            },
+                            { 
+                                data: 'uniprotId',
+                                title: 'Protein Name'
+                            },
+                            { 
+                                data: 'repeatType',
+                                title: 'Repeat Type'
+                            },
                             { 
                                 data: 'repeatCount',
+                                title: 'Repeat Count',
                                 render: function(data) {
                                     return `<span class="badge bg-primary">${data}</span>`;
                                 }
                             },
-                            { data: 'chromosome' },
                             { 
                                 data: 'status',
+                                title: 'Status',
                                 render: function(data) {
-                                    let displayText = 'Unknown';
-                                    let badgeClass = 'bg-info'; // Blue for unknown
+                                    if (!data) return '<span class="badge bg-secondary">Unknown</span>';
                                     
-                                    // More precise status check to avoid matching "unreviewed" as "reviewed"
-                                    if (data) {
-                                        const lowercaseStatus = data.toLowerCase();
-                                        if (lowercaseStatus === 'reviewed' || 
-                                            (lowercaseStatus.includes('reviewed') && !lowercaseStatus.includes('unreviewed'))) {
-                                            displayText = 'Reviewed';
-                                            badgeClass = 'bg-success'; // Green for reviewed
-                                        } else if (lowercaseStatus.includes('unreviewed')) {
-                                            displayText = 'Unreviewed';
-                                            badgeClass = 'bg-secondary'; // Gray for unreviewed
-                                        }
+                                    let displayText = 'Unknown';
+                                    let badgeClass = 'bg-info';
+                                    
+                                    const lowercaseStatus = data.toLowerCase();
+                                    if (lowercaseStatus === 'reviewed' || 
+                                        (lowercaseStatus.includes('reviewed') && !lowercaseStatus.includes('unreviewed'))) {
+                                        displayText = 'Reviewed';
+                                        badgeClass = 'bg-success';
+                                    } else if (lowercaseStatus.includes('unreviewed')) {
+                                        displayText = 'Unreviewed';
+                                        badgeClass = 'bg-secondary';
                                     }
                                     
                                     return `<span class="badge ${badgeClass}" title="${data}">${displayText}</span>`;
                                 }
                             },
+                            { 
+                                data: 'eligibility',
+                                title: 'Eligibility (Gene List)',
+                                render: function(data, type, row) {
+                                    if (type === 'display') {
+                                        let badgeClass = 'bg-secondary';
+                                        let text = data || 'N/A';
+                                        
+                                        if (data === '1') {
+                                            badgeClass = 'bg-success';
+                                        } else if (data === '2') {
+                                            badgeClass = 'bg-warning text-dark';
+                                        } else if (data === 'N/A') {
+                                            badgeClass = 'bg-secondary';
+                                        }
+                                        
+                                        return `<span class="badge ${badgeClass}">${text}</span>`;
+                                    }
+                                    return data || 'N/A';
+                                }
+                            },
                             {
                                 data: 'uniprotId',
+                                title: 'Actions',
                                 render: function(data) {
                                     return `<a href="detail.html?id=${data}" class="action-button">
                                         <i class="fas fa-eye"></i> View Details
@@ -683,23 +946,23 @@
                                 orderable: false
                             }
                         ],
-                        order: [[0, 'asc']],
+                        order: [[1, 'asc']],
                         pageLength: 15,
-                        dom: 'lBfrtip', // Add buttons to DOM
-                        buttons: [
-                            {
-                                extend: 'csv',
-                                text: '<i class="fas fa-file-csv me-1"></i> CSV',
-                                className: 'btn btn-sm btn-outline-primary me-2'
-                            },
-                            {
-                                extend: 'excel',
-                                text: '<i class="fas fa-file-excel me-1"></i> Excel',
-                                className: 'btn btn-sm btn-outline-success'
-                            }
+                        dom: 'lfrtip',
+                        responsive: true,
+                        columnDefs: [
+                            { width: "7%", targets: 0 },   // Chromosome
+                            { width: "10%", targets: 1 },  // Gene Name
+                            { width: "12%", targets: 2 },  // Aliases
+                            { width: "13%", targets: 3 },  // Protein Name
+                            { width: "13%", targets: 4 },  // Repeat Type
+                            { width: "9%", targets: 5, className: "text-center" },   // Repeat Count
+                            { width: "10%", targets: 6, className: "text-center" },  // Status
+                            { width: "10%", targets: 7, className: "text-center" },  // Eligibility
+                            { width: "16%", targets: 8, className: "text-center", orderable: false }  // Actions
                         ],
                         language: {
-                            search: "<i class='fas fa-search'></i> Search:",
+                            search: "<i class='fas fa-search'></i> Search (genes, aliases, proteins):",
                             paginate: {
                                 first: '<i class="fas fa-angle-double-left"></i>',
                                 previous: '<i class="fas fa-angle-left"></i>',
@@ -709,126 +972,37 @@
                         }
                     });
                     
-                    // Add event listeners for custom filters
-                    $('#repeatTypeFilter').on('change', function() {
-                        const val = this.value;
-                        table.column(2).search(val).draw();
-                    });
-                    
-                    $('#statusFilter').on('change', function() {
-                        const val = this.value;
-                        
-                        // Remove any existing status filter function
-                        $.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(
-                            func => func.name !== 'statusFilter'
-                        );
-                        
-                        // Only add custom filter if a status is selected
-                        if (val) {
-                            const statusFilter = function(settings, searchData, index, rowData, counter) {
-                                const status = rowData.status.toLowerCase();
-                                
-                                if (val === 'reviewed') {
-                                    // For reviewed, exclude anything with 'unreviewed' in it
-                                    return status.includes('reviewed') && !status.includes('unreviewed');
-                                } else if (val === 'unreviewed') {
-                                    return status.includes('unreviewed');
-                                }
-                                
-                                return true;
-                            };
-                            statusFilter.name = 'statusFilter';
-                            
-                            $.fn.dataTable.ext.search.push(statusFilter);
+                    // Add custom search functionality for aliases
+                    // Override the default search to include aliases
+                    $.fn.dataTable.ext.search.push(function(settings, searchData, index, rowData, counter) {
+                        // Only apply this search logic to our table
+                        if (settings.nTable.id !== 'proteinTable') {
+                            return true;
                         }
                         
-                        table.draw();
-                    });
-                    
-                    // Replace the repeat count filter event handler
-                    // Custom repeat count filter with checkbox
-                    $('#repeatCountCheck, #repeatCountValue').on('change', function() {
-                        // Remove any existing custom search functions
-                        $.fn.dataTable.ext.search = [];
+                        // Get the current search term
+                        const searchTerm = settings.oPreviousSearch.sSearch;
                         
-                        if ($('#repeatCountCheck').is(':checked')) {
-                            const minCount = parseInt($('#repeatCountValue').val());
-                            
-                            // Add custom search function for repeat count
-                            $.fn.dataTable.ext.search.push(function(settings, data, dataIndex) {
-                                const count = parseInt(data[3].replace(/<[^>]*>/g, '')); // Strip HTML
-                                return count >= minCount;
-                            });
+                        // If no search term, show all rows
+                        if (!searchTerm) {
+                            return true;
                         }
                         
-                        table.draw();
+                        // Create searchable content including aliases
+                        const searchableContent = [
+                            rowData.gene || '',
+                            rowData.uniprotId || '',
+                            rowData.repeatType || '',
+                            rowData.chromosome || '',
+                            rowData.searchableText || '' // This contains all aliases
+                        ].join(' ').toLowerCase();
+                        
+                        // Check if search term matches
+                        return searchableContent.includes(searchTerm.toLowerCase());
                     });
                     
-                    // Add event listener for in-frame exon filter
-                    $('#inFrameExonCheck').on('change', function() {
-                        // Create a separate search function for this filter
-                        const filterActive = $(this).is(':checked');
-                        
-                        // Find and remove any existing in-frame exon filter
-                        $.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(
-                            func => func.name !== 'inFrameExonFilter'
-                        );
-                        
-                        // Add filter if checkbox is checked
-                        if (filterActive) {
-                            // Add debug info to console
-                            console.log("Filter active. Searching for proteins with in-frame exons.");
-                            const proteinsWithInFrameExons = tableData.filter(p => p.hasInFrameExons).length;
-                            console.log(`Found ${proteinsWithInFrameExons} proteins with in-frame exons out of ${tableData.length} total.`);
-                            
-                            const inFrameExonFilter = function(settings, searchData, index, rowData, counter) {
-                                return rowData.hasInFrameExons === true;
-                            };
-                            inFrameExonFilter.name = 'inFrameExonFilter';
-                            
-                            $.fn.dataTable.ext.search.push(inFrameExonFilter);
-                        }
-                        
-                        table.draw();
-                    });
-                    
-                    // Update event listener for exon spanning filter to show only non-spanning repeats
-                    $('#exonSpanningCheck').on('change', function() {
-                        // Find and remove any existing exon spanning filter
-                        $.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(
-                            func => func.name !== 'exonSpanningFilter'
-                        );
-                        
-                        if ($(this).is(':checked')) {
-                            // Add debug info to console
-                            console.log("Non-spanning filter active. Showing proteins with non-spanning repeats (blockCount = 1).");
-                            const proteinsWithNonSpanningRepeats = tableData.filter(p => p.hasNonSpanningRepeats).length;
-                            console.log(`Found ${proteinsWithNonSpanningRepeats} proteins with non-spanning repeats out of ${tableData.length} total.`);
-                            
-                            const exonSpanningFilter = function(settings, searchData, index, rowData, counter) {
-                                return rowData.hasNonSpanningRepeats === true;
-                            };
-                            exonSpanningFilter.name = 'exonSpanningFilter';
-                            
-                            $.fn.dataTable.ext.search.push(exonSpanningFilter);
-                        }
-                        
-                        table.draw();
-                    });
-                    
-                    // Reset filters button
-                    $('#resetFilters').on('click', function() {
-                        $('#repeatTypeFilter').val('');
-                        $('#statusFilter').val('');
-                        $('#repeatCountCheck').prop('checked', false);
-                        $('#repeatCountValue').val('1');
-                        $('#inFrameExonCheck').prop('checked', false);
-                        $('#exonSpanningCheck').prop('checked', false); // Reset exon spanning filter
-                        
-                        // Clear DataTable search and remove custom search functions
-                        table.search('').columns().search('').draw();
-                        $.fn.dataTable.ext.search = [];
-                    });
+                    // Setup filters
+                    setupFilters(table, tableData);
                     
                     console.log("DataTable initialized successfully");
                     
@@ -848,11 +1022,135 @@
                     `);
                 });
         });
+        
+        function setupFilters(table, tableData) {
+            // Add event listeners for custom filters
+            $('#repeatTypeFilter').on('change', function() {
+                const val = this.value;
+                table.column(4).search(val).draw();
+            });
+            
+            $('#statusFilter').on('change', function() {
+                const val = this.value;
+                
+                // Remove any existing status filter function
+                $.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(
+                    func => func.name !== 'statusFilter'
+                );
+                
+                // Only add custom filter if a status is selected
+                if (val) {
+                    const statusFilter = function(settings, searchData, index, rowData, counter) {
+                        const status = rowData.status ? rowData.status.toLowerCase() : '';
+                        
+                        if (val === 'reviewed') {
+                            return status.includes('reviewed') && !status.includes('unreviewed');
+                        } else if (val === 'unreviewed') {
+                            return status.includes('unreviewed');
+                        }
+                        
+                        return true;
+                    };
+                    statusFilter.name = 'statusFilter';
+                    
+                    $.fn.dataTable.ext.search.push(statusFilter);
+                }
+                
+                table.draw();
+            });
+            
+            // Eligibility filter
+            $('#eligibilityFilter').on('change', function() {
+                const value = this.value;
+                table.column(7).search(value).draw();
+            });
+            
+            // Custom repeat count filter with checkbox
+            $('#repeatCountCheck, #repeatCountValue').on('change', function() {
+                // Remove any existing custom search functions for repeat count
+                $.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(
+                    func => func.name !== 'repeatCountFilter'
+                );
+                
+                if ($('#repeatCountCheck').is(':checked')) {
+                    const minCount = parseInt($('#repeatCountValue').val());
+                    
+                    const repeatCountFilter = function(settings, data, dataIndex) {
+                        const count = parseInt(data[5].replace(/<[^>]*>/g, ''));
+                        return count >= minCount;
+                    };
+                    repeatCountFilter.name = 'repeatCountFilter';
+                    
+                    $.fn.dataTable.ext.search.push(repeatCountFilter);
+                }
+                
+                table.draw();
+            });
+            
+            // Add event listener for in-frame exon filter
+            $('#inFrameExonCheck').on('change', function() {
+                const filterActive = $(this).is(':checked');
+                
+                // Find and remove any existing in-frame exon filter
+                $.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(
+                    func => func.name !== 'inFrameExonFilter'
+                );
+                
+                // Add filter if checkbox is checked
+                if (filterActive) {
+                    console.log("Filter active. Searching for proteins with in-frame exons.");
+                    const proteinsWithInFrameExons = tableData.filter(p => p.hasInFrameExons).length;
+                    console.log(`Found ${proteinsWithInFrameExons} proteins with in-frame exons out of ${tableData.length} total.`);
+                    
+                    const inFrameExonFilter = function(settings, searchData, index, rowData, counter) {
+                        return rowData.hasInFrameExons === true;
+                    };
+                    inFrameExonFilter.name = 'inFrameExonFilter';
+                    
+                    $.fn.dataTable.ext.search.push(inFrameExonFilter);
+                }
+                
+                table.draw();
+            });
+            
+            // Update event listener for exon spanning filter to show only non-spanning repeats
+            $('#exonSpanningCheck').on('change', function() {
+                // Find and remove any existing exon spanning filter
+                $.fn.dataTable.ext.search = $.fn.dataTable.ext.search.filter(
+                    func => func.name !== 'exonSpanningFilter'
+                );
+                
+                if ($(this).is(':checked')) {
+                    console.log("Non-spanning filter active. Showing proteins with non-spanning repeats (blockCount = 1).");
+                    const proteinsWithNonSpanningRepeats = tableData.filter(p => p.hasNonSpanningRepeats).length;
+                    console.log(`Found ${proteinsWithNonSpanningRepeats} proteins with non-spanning repeats out of ${tableData.length} total.`);
+                    
+                    const exonSpanningFilter = function(settings, searchData, index, rowData, counter) {
+                        return rowData.hasNonSpanningRepeats === true;
+                    };
+                    exonSpanningFilter.name = 'exonSpanningFilter';
+                    
+                    $.fn.dataTable.ext.search.push(exonSpanningFilter);
+                }
+                
+                table.draw();
+            });
+            
+            // Reset filters button
+            $('#resetFilters').on('click', function() {
+                $('#repeatTypeFilter').val('');
+                $('#statusFilter').val('');
+                $('#eligibilityFilter').val('');
+                $('#repeatCountCheck').prop('checked', false);
+                $('#repeatCountValue').val('1');
+                $('#inFrameExonCheck').prop('checked', false);
+                $('#exonSpanningCheck').prop('checked', false);
+                
+                // Clear DataTable search and remove custom search functions
+                table.search('').columns().search('').draw();
+                $.fn.dataTable.ext.search = [];
+            });
+        }
     </script>
-
-    <!-- Add DataTables Buttons extension for export functionality -->
-    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
 </body>
 </html>

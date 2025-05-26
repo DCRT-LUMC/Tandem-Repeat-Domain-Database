@@ -3,8 +3,6 @@ library(ensembldb)
 library(AnnotationHub)
 library(Biostrings)
 library(DT)
-# Source our utility functions
-source("exon_skipping_utils.R")
 
 # Define UI
 ui <- fluidPage(
@@ -48,11 +46,7 @@ ui <- fluidPage(
                  
                  hr(),
                  h4("Modified Protein Sequence (without selected exon)"),
-                 verbatimTextOutput("modifiedSeq"),
-                 
-                 hr(),
-                 h4("Analysis Details"),
-                 verbatimTextOutput("analysisDetails"))
+                 verbatimTextOutput("modifiedSeq"))
       )
     )
   )
@@ -71,8 +65,6 @@ server <- function(input, output, session) {
   # Store protein data
   proteinData <- reactiveVal(NULL)
   exonData <- reactiveVal(NULL)
-  transcriptData <- reactiveVal(NULL)
-  analysisDetails <- reactiveVal("")
   
   # When search button is clicked
   observeEvent(input$searchBtn, {
@@ -82,7 +74,6 @@ server <- function(input, output, session) {
     if (input$searchType == "SYMBOL") {
       # Get all transcripts for the gene symbol
       txs <- transcripts(ensdb(), filter = list(SymbolFilter(input$proteinInput)))
-      transcriptData(txs)
       
       # Get proteins for these transcripts
       if (length(txs) > 0) {
@@ -95,7 +86,6 @@ server <- function(input, output, session) {
       } else {
         proteinData(NULL)
         exonData(NULL)
-        transcriptData(NULL)
         showNotification("Gene symbol not found", type = "error")
       }
     } else {
@@ -107,8 +97,6 @@ server <- function(input, output, session) {
         
         # Get the transcripts for these proteins
         txIds <- prts$tx_id
-        txs <- transcripts(ensdb(), filter = list(TxIdFilter(txIds)))
-        transcriptData(txs)
         
         # Get exons for these transcripts
         exns <- exonsBy(ensdb(), by = "tx", filter = list(TxIdFilter(txIds)))
@@ -116,7 +104,6 @@ server <- function(input, output, session) {
       } else {
         proteinData(NULL)
         exonData(NULL)
-        transcriptData(NULL)
         showNotification("Protein ID not found", type = "error")
       }
     }
@@ -178,22 +165,54 @@ server <- function(input, output, session) {
   modifiedSequence <- reactiveVal("")
   
   observeEvent(input$removeBtn, {
-    req(proteinData(), exonData(), input$exonSelect, transcriptData())
+    req(proteinData(), exonData(), input$exonSelect)
     
-    # Get the transcript ID
-    txId <- proteinData()$tx_id[1]
+    # Get the protein sequence
+    protSeq <- proteinData()$protein_sequence[1]
     
     # Get the selected exon
     firstTx <- names(exonData())[1]
     selectedExonIdx <- as.numeric(input$exonSelect)
-    selectedExon <- exonData()[[firstTx]][selectedExonIdx]
     
-    # Use our utility function to simulate exon skipping
-    result <- simulateExonSkippingAtDnaLevel(ensdb(), txId, selectedExon)
+    # Map exon to protein coordinates
+    txId <- proteinData()$tx_id[1]
+    cds <- cdsBy(ensdb(), "tx", filter = list(TxIdFilter(txId)))
     
-    # Update outputs
-    modifiedSequence(result$modified)
-    analysisDetails(result$message)
+    if (length(cds) > 0 && txId %in% names(cds)) {
+      # Get CDS for our transcript
+      txCds <- cds[[txId]]
+      
+      # Get selected exon
+      selectedExon <- exonData()[[firstTx]][selectedExonIdx]
+      
+      # Create a GRanges object with the exon coordinates
+      exonGR <- GRanges(seqnames = as.character(seqnames(selectedExon)),
+                        ranges = IRanges(start = start(selectedExon),
+                                         end = end(selectedExon)),
+                        strand = strand(selectedExon))
+      
+      # Map genomic coordinates to protein
+      protCoords <- genomeToProtein(exonGR, ensdb())
+      
+      if (length(protCoords) > 0 && !is.null(protCoords[[1]])) {
+        # Get the protein coordinates of the exon
+        protStart <- start(protCoords[[1]][1])
+        protEnd <- end(protCoords[[1]][1])
+        
+        # Create modified sequence by removing the exon region
+        if (!is.na(protStart) && !is.na(protEnd) && protStart <= protEnd) {
+          beforeSegment <- substr(protSeq, 1, protStart - 1)
+          afterSegment <- substr(protSeq, protEnd + 1, nchar(protSeq))
+          modifiedSequence(paste0(beforeSegment, afterSegment))
+        } else {
+          modifiedSequence("Could not map exon to protein coordinates")
+        }
+      } else {
+        modifiedSequence("Exon mapping to protein failed")
+      }
+    } else {
+      modifiedSequence("No CDS information available for this transcript")
+    }
   })
   
   # Display modified sequence
@@ -202,15 +221,6 @@ server <- function(input, output, session) {
       return(modifiedSequence())
     } else {
       return("Select an exon and click 'Generate Modified Sequence'")
-    }
-  })
-  
-  # Display analysis details
-  output$analysisDetails <- renderText({
-    if (analysisDetails() != "") {
-      return(analysisDetails())
-    } else {
-      return("No analysis performed yet")
     }
   })
 }

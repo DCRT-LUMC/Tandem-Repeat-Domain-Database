@@ -1,0 +1,4796 @@
+[
+  {
+    "chrom": "chr1",
+    "chromStart": 152214107,
+    "chromEnd": 152214380,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2417-2507 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 2417,
+    "protein_end": 2507,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152214386,
+    "chromEnd": 152214542,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2363-2414 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 156,
+    "protein_start": 2363,
+    "protein_end": 2414,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.66,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152214542,
+    "chromEnd": 152214815,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2272-2362 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 2272,
+    "protein_end": 2362,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152214893,
+    "chromEnd": 152215166,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2155-2245 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 2155,
+    "protein_end": 2245,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152215244,
+    "chromEnd": 152215517,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2038-2128 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 2038,
+    "protein_end": 2128,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152215517,
+    "chromEnd": 152215790,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1947-2037 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 1947,
+    "protein_end": 2037,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152215796,
+    "chromEnd": 152215952,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1893-1944 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 156,
+    "protein_start": 1893,
+    "protein_end": 1944,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.66,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152215952,
+    "chromEnd": 152216225,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1802-1892 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 1802,
+    "protein_end": 1892,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152216303,
+    "chromEnd": 152216576,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1685-1775 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 1685,
+    "protein_end": 1775,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152216654,
+    "chromEnd": 152216927,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1568-1658 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 1568,
+    "protein_end": 1658,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152216927,
+    "chromEnd": 152217200,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1477-1567 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 1477,
+    "protein_end": 1567,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152217206,
+    "chromEnd": 152217362,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1423-1474 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 156,
+    "protein_start": 1423,
+    "protein_end": 1474,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.66,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152217362,
+    "chromEnd": 152217635,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1332-1422 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 1332,
+    "protein_end": 1422,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152217713,
+    "chromEnd": 152217986,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1215-1305 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 1215,
+    "protein_end": 1305,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152218064,
+    "chromEnd": 152218337,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1098-1188 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 1098,
+    "protein_end": 1188,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152218337,
+    "chromEnd": 152218610,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1007-1097 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 1007,
+    "protein_end": 1097,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152218616,
+    "chromEnd": 152218733,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "117",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 966-1004 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 117,
+    "protein_start": 966,
+    "protein_end": 1004,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 117,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152218733,
+    "chromEnd": 152219003,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "270",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 876-965 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 270,
+    "protein_start": 876,
+    "protein_end": 965,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 270,
+              "position": "last_exon",
+              "overlap_percentage": 2.87,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152219003,
+    "chromEnd": 152219114,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "111",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 839-875 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 111,
+    "protein_start": 839,
+    "protein_end": 875,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 111,
+              "position": "last_exon",
+              "overlap_percentage": 1.18,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152219120,
+    "chromEnd": 152219387,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "267",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 748-836 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 267,
+    "protein_start": 748,
+    "protein_end": 836,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 267,
+              "position": "last_exon",
+              "overlap_percentage": 2.84,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152219387,
+    "chromEnd": 152219576,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "189",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 685-747 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 189,
+    "protein_start": 685,
+    "protein_end": 747,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 189,
+              "position": "last_exon",
+              "overlap_percentage": 2.01,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152219579,
+    "chromEnd": 152219852,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 593-683 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 593,
+    "protein_end": 683,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152219930,
+    "chromEnd": 152220209,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "279",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 474-566 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 279,
+    "protein_start": 474,
+    "protein_end": 566,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 279,
+              "position": "last_exon",
+              "overlap_percentage": 2.96,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152220248,
+    "chromEnd": 152220521,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 370-460 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 370,
+    "protein_end": 460,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152220521,
+    "chromEnd": 152220794,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 279-369 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 279,
+    "protein_end": 369,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152220794,
+    "chromEnd": 152221067,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 188-278 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 188,
+    "protein_end": 278,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152221067,
+    "chromEnd": 152221340,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "273",
+    "chromStarts": "0",
+    "geneName": "HRNR",
+    "aliases": "S100A18",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 97-187 on protein Q86YZ3",
+    "repeatType": "Unknown",
+    "uniProtId": "Q86YZ3",
+    "repeatLength": 273,
+    "protein_start": 97,
+    "protein_end": 187,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368801",
+          "versioned_transcript_id": "ENST00000368801.4",
+          "transcript_name": "ENST00000368801",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447986",
+              "exon_start": 152212076,
+              "exon_end": 152221490,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 273,
+              "position": "last_exon",
+              "overlap_percentage": 2.9,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 89.38,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152303269,
+    "chromEnd": 152303425,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 3821-3872 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 156,
+    "protein_start": 3821,
+    "protein_end": 3872,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152303875,
+    "chromEnd": 152304040,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "165",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 3616-3670 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 165,
+    "protein_start": 3616,
+    "protein_end": 3670,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 165,
+              "position": "last_exon",
+              "overlap_percentage": 1.31,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152304241,
+    "chromEnd": 152304397,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 3497-3548 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 156,
+    "protein_start": 3497,
+    "protein_end": 3548,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152304847,
+    "chromEnd": 152305012,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "165",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 3292-3346 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 165,
+    "protein_start": 3292,
+    "protein_end": 3346,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 165,
+              "position": "last_exon",
+              "overlap_percentage": 1.31,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152305213,
+    "chromEnd": 152305369,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 3173-3224 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 156,
+    "protein_start": 3173,
+    "protein_end": 3224,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152305819,
+    "chromEnd": 152305984,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "165",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2968-3022 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 165,
+    "protein_start": 2968,
+    "protein_end": 3022,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 165,
+              "position": "last_exon",
+              "overlap_percentage": 1.31,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152306185,
+    "chromEnd": 152306341,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2849-2900 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 156,
+    "protein_start": 2849,
+    "protein_end": 2900,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152306791,
+    "chromEnd": 152306956,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "165",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2644-2698 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 165,
+    "protein_start": 2644,
+    "protein_end": 2698,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 165,
+              "position": "last_exon",
+              "overlap_percentage": 1.31,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152307157,
+    "chromEnd": 152307313,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2525-2576 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 156,
+    "protein_start": 2525,
+    "protein_end": 2576,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152307763,
+    "chromEnd": 152307928,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "165",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2320-2374 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 165,
+    "protein_start": 2320,
+    "protein_end": 2374,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 165,
+              "position": "last_exon",
+              "overlap_percentage": 1.31,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152308129,
+    "chromEnd": 152308285,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2201-2252 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 156,
+    "protein_start": 2201,
+    "protein_end": 2252,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152308735,
+    "chromEnd": 152308903,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "168",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1995-2050 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 168,
+    "protein_start": 1995,
+    "protein_end": 2050,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 168,
+              "position": "last_exon",
+              "overlap_percentage": 1.34,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152309104,
+    "chromEnd": 152309260,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1876-1927 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 156,
+    "protein_start": 1876,
+    "protein_end": 1927,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152309710,
+    "chromEnd": 152309875,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "165",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1671-1725 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 165,
+    "protein_start": 1671,
+    "protein_end": 1725,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 165,
+              "position": "last_exon",
+              "overlap_percentage": 1.31,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152310076,
+    "chromEnd": 152310232,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1552-1603 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 156,
+    "protein_start": 1552,
+    "protein_end": 1603,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152310682,
+    "chromEnd": 152310847,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "165",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1347-1401 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 165,
+    "protein_start": 1347,
+    "protein_end": 1401,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 165,
+              "position": "last_exon",
+              "overlap_percentage": 1.31,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152311048,
+    "chromEnd": 152311204,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1228-1279 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 156,
+    "protein_start": 1228,
+    "protein_end": 1279,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152311654,
+    "chromEnd": 152311819,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "165",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1023-1077 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 165,
+    "protein_start": 1023,
+    "protein_end": 1077,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 165,
+              "position": "last_exon",
+              "overlap_percentage": 1.31,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152312020,
+    "chromEnd": 152312176,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 904-955 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 156,
+    "protein_start": 904,
+    "protein_end": 955,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152312626,
+    "chromEnd": 152312794,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "168",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 698-753 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 168,
+    "protein_start": 698,
+    "protein_end": 753,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 168,
+              "position": "last_exon",
+              "overlap_percentage": 1.34,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152312995,
+    "chromEnd": 152313151,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "156",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 579-630 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 156,
+    "protein_start": 579,
+    "protein_end": 630,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 156,
+              "position": "last_exon",
+              "overlap_percentage": 1.24,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152313601,
+    "chromEnd": 152313766,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "165",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 374-428 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 165,
+    "protein_start": 374,
+    "protein_end": 428,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 165,
+              "position": "last_exon",
+              "overlap_percentage": 1.31,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152313967,
+    "chromEnd": 152314114,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "147",
+    "chromStarts": "0",
+    "geneName": "FLG",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 258-306 on protein P20930",
+    "repeatType": "Filaggrin",
+    "uniProtId": "P20930",
+    "repeatLength": 147,
+    "protein_start": 258,
+    "protein_end": 306,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000368799",
+          "versioned_transcript_id": "ENST00000368799.2",
+          "transcript_name": "ENST00000368799",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001447981",
+              "exon_start": 152302165,
+              "exon_end": 152314747,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 147,
+              "position": "last_exon",
+              "overlap_percentage": 1.17,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 95.75,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152351218,
+    "chromEnd": 152351386,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "168",
+    "chromStarts": "0",
+    "geneName": "FLG2",
+    "aliases": "IFPS",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 2134-2189 on protein Q5D862",
+    "repeatType": "Filaggrin",
+    "uniProtId": "Q5D862",
+    "repeatLength": 168,
+    "protein_start": 2134,
+    "protein_end": 2189,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000388718",
+          "versioned_transcript_id": "ENST00000388718.5",
+          "transcript_name": "ENST00000388718",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001503744",
+              "exon_start": 152348735,
+              "exon_end": 152357647,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 168,
+              "position": "last_exon",
+              "overlap_percentage": 1.89,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 78.96,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152351668,
+    "chromEnd": 152351836,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "168",
+    "chromStarts": "0",
+    "geneName": "FLG2",
+    "aliases": "IFPS",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1984-2039 on protein Q5D862",
+    "repeatType": "Filaggrin",
+    "uniProtId": "Q5D862",
+    "repeatLength": 168,
+    "protein_start": 1984,
+    "protein_end": 2039,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000388718",
+          "versioned_transcript_id": "ENST00000388718.5",
+          "transcript_name": "ENST00000388718",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001503744",
+              "exon_start": 152348735,
+              "exon_end": 152357647,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 168,
+              "position": "last_exon",
+              "overlap_percentage": 1.89,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 78.96,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152351893,
+    "chromEnd": 152352004,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "111",
+    "chromStarts": "0",
+    "geneName": "FLG2",
+    "aliases": "IFPS",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1928-1964 on protein Q5D862",
+    "repeatType": "Filaggrin",
+    "uniProtId": "Q5D862",
+    "repeatLength": 111,
+    "protein_start": 1928,
+    "protein_end": 1964,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000388718",
+          "versioned_transcript_id": "ENST00000388718.5",
+          "transcript_name": "ENST00000388718",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001503744",
+              "exon_start": 152348735,
+              "exon_end": 152357647,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 111,
+              "position": "last_exon",
+              "overlap_percentage": 1.25,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 78.96,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152352349,
+    "chromEnd": 152352517,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "168",
+    "chromStarts": "0",
+    "geneName": "FLG2",
+    "aliases": "IFPS",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1757-1812 on protein Q5D862",
+    "repeatType": "Filaggrin",
+    "uniProtId": "Q5D862",
+    "repeatLength": 168,
+    "protein_start": 1757,
+    "protein_end": 1812,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000388718",
+          "versioned_transcript_id": "ENST00000388718.5",
+          "transcript_name": "ENST00000388718",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001503744",
+              "exon_start": 152348735,
+              "exon_end": 152357647,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 168,
+              "position": "last_exon",
+              "overlap_percentage": 1.89,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 78.96,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152352799,
+    "chromEnd": 152352967,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "168",
+    "chromStarts": "0",
+    "geneName": "FLG2",
+    "aliases": "IFPS",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1607-1662 on protein Q5D862",
+    "repeatType": "Filaggrin",
+    "uniProtId": "Q5D862",
+    "repeatLength": 168,
+    "protein_start": 1607,
+    "protein_end": 1662,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000388718",
+          "versioned_transcript_id": "ENST00000388718.5",
+          "transcript_name": "ENST00000388718",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001503744",
+              "exon_start": 152348735,
+              "exon_end": 152357647,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 168,
+              "position": "last_exon",
+              "overlap_percentage": 1.89,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 78.96,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152353255,
+    "chromEnd": 152353423,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "168",
+    "chromStarts": "0",
+    "geneName": "FLG2",
+    "aliases": "IFPS",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1455-1510 on protein Q5D862",
+    "repeatType": "Filaggrin",
+    "uniProtId": "Q5D862",
+    "repeatLength": 168,
+    "protein_start": 1455,
+    "protein_end": 1510,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000388718",
+          "versioned_transcript_id": "ENST00000388718.5",
+          "transcript_name": "ENST00000388718",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001503744",
+              "exon_start": 152348735,
+              "exon_end": 152357647,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 168,
+              "position": "last_exon",
+              "overlap_percentage": 1.89,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 78.96,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152354362,
+    "chromEnd": 152354497,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "135",
+    "chromStarts": "0",
+    "geneName": "FLG2",
+    "aliases": "IFPS",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1097-1141 on protein Q5D862",
+    "repeatType": "Filaggrin",
+    "uniProtId": "Q5D862",
+    "repeatLength": 135,
+    "protein_start": 1097,
+    "protein_end": 1141,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000388718",
+          "versioned_transcript_id": "ENST00000388718.5",
+          "transcript_name": "ENST00000388718",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001503744",
+              "exon_start": 152348735,
+              "exon_end": 152357647,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 135,
+              "position": "last_exon",
+              "overlap_percentage": 1.51,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 78.96,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152354632,
+    "chromEnd": 152354731,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "99",
+    "chromStarts": "0",
+    "geneName": "FLG2",
+    "aliases": "IFPS",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1019-1051 on protein Q5D862",
+    "repeatType": "Filaggrin",
+    "uniProtId": "Q5D862",
+    "repeatLength": 99,
+    "protein_start": 1019,
+    "protein_end": 1051,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000388718",
+          "versioned_transcript_id": "ENST00000388718.5",
+          "transcript_name": "ENST00000388718",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001503744",
+              "exon_start": 152348735,
+              "exon_end": 152357647,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 99,
+              "position": "last_exon",
+              "overlap_percentage": 1.11,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 78.96,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152356387,
+    "chromEnd": 152356525,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "138",
+    "chromStarts": "0",
+    "geneName": "FLG2",
+    "aliases": "IFPS",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 421-466 on protein Q5D862",
+    "repeatType": "Filaggrin",
+    "uniProtId": "Q5D862",
+    "repeatLength": 138,
+    "protein_start": 421,
+    "protein_end": 466,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000388718",
+          "versioned_transcript_id": "ENST00000388718.5",
+          "transcript_name": "ENST00000388718",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001503744",
+              "exon_start": 152348735,
+              "exon_end": 152357647,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 138,
+              "position": "last_exon",
+              "overlap_percentage": 1.55,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 78.96,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 152356918,
+    "chromEnd": 152357053,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "135",
+    "chromStarts": "0",
+    "geneName": "FLG2",
+    "aliases": "IFPS",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 245-289 on protein Q5D862",
+    "repeatType": "Filaggrin",
+    "uniProtId": "Q5D862",
+    "repeatLength": 135,
+    "protein_start": 245,
+    "protein_end": 289,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000388718",
+          "versioned_transcript_id": "ENST00000388718.5",
+          "transcript_name": "ENST00000388718",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 3,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00001503744",
+              "exon_start": 152348735,
+              "exon_end": 152357647,
+              "protein_start": -1,
+              "protein_end": -1,
+              "overlap_bp": 135,
+              "position": "last_exon",
+              "overlap_percentage": 1.51,
+              "coding_status": "partial_coding",
+              "utr_status": "3'_UTR",
+              "coding_percentage": 78.96,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 153936089,
+    "chromEnd": 153936547,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 2,
+    "blockSizes": ["99", "6"],
+    "chromStarts": ["0", "452"],
+    "geneName": "DENND4B",
+    "aliases": "KIAA0476",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 812-846 on protein O75064",
+    "repeatType": "PPR",
+    "uniProtId": "O75064",
+    "repeatLength": 105,
+    "protein_start": 812,
+    "protein_end": 846,
+    "ensembl_exon_info": {
+      "transcripts_count": 2,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000361217",
+          "versioned_transcript_id": "ENST00000361217.9",
+          "transcript_name": "ENST00000361217",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 28,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 16,
+              "exon_id": "ENSE00000895340",
+              "exon_start": 153936542,
+              "exon_end": 153936748,
+              "protein_start": 745,
+              "protein_end": 813,
+              "overlap_bp": 5,
+              "position": "middle_exon_16",
+              "overlap_percentage": 2.43,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            },
+            {
+              "exon_number": 17,
+              "exon_id": "ENSE00000895343",
+              "exon_start": 153936060,
+              "exon_end": 153936188,
+              "protein_start": 814,
+              "protein_end": 856,
+              "overlap_bp": 99,
+              "position": "middle_exon_17",
+              "overlap_percentage": 77.34,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        },
+        {
+          "transcript_id": "ENST00000368646",
+          "versioned_transcript_id": "ENST00000368646.6",
+          "transcript_name": "ENST00000368646",
+          "is_canonical": false,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 22,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 16,
+              "exon_id": "ENSE00000895340",
+              "exon_start": 153936542,
+              "exon_end": 153936748,
+              "protein_start": 756,
+              "protein_end": 824,
+              "overlap_bp": 5,
+              "position": "middle_exon_16",
+              "overlap_percentage": 2.43,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            },
+            {
+              "exon_number": 17,
+              "exon_id": "ENSE00000895343",
+              "exon_start": 153936060,
+              "exon_end": 153936188,
+              "protein_start": 825,
+              "protein_end": 867,
+              "overlap_bp": 99,
+              "position": "middle_exon_17",
+              "overlap_percentage": 77.34,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 153936089,
+    "chromEnd": 153936547,
+    "strand": "-",
+    "reserved": ["0", "150", "250"],
+    "blockCount": 2,
+    "blockSizes": ["99", "6"],
+    "chromStarts": ["0", "452"],
+    "geneName": "DENND4B",
+    "aliases": "",
+    "geneType": "",
+    "status": "Unreviewed (TrEMBL)",
+    "position": "amino acids 823-857 on protein E9PAK5",
+    "repeatType": "PPR",
+    "uniProtId": "E9PAK5",
+    "repeatLength": 105,
+    "protein_start": 823,
+    "protein_end": 857,
+    "ensembl_exon_info": {
+      "transcripts_count": 2,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000361217",
+          "versioned_transcript_id": "ENST00000361217.9",
+          "transcript_name": "ENST00000361217",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 28,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 16,
+              "exon_id": "ENSE00000895340",
+              "exon_start": 153936542,
+              "exon_end": 153936748,
+              "protein_start": 745,
+              "protein_end": 813,
+              "overlap_bp": 5,
+              "position": "middle_exon_16",
+              "overlap_percentage": 2.43,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            },
+            {
+              "exon_number": 17,
+              "exon_id": "ENSE00000895343",
+              "exon_start": 153936060,
+              "exon_end": 153936188,
+              "protein_start": 814,
+              "protein_end": 856,
+              "overlap_bp": 99,
+              "position": "middle_exon_17",
+              "overlap_percentage": 77.34,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        },
+        {
+          "transcript_id": "ENST00000368646",
+          "versioned_transcript_id": "ENST00000368646.6",
+          "transcript_name": "ENST00000368646",
+          "is_canonical": false,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 22,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 16,
+              "exon_id": "ENSE00000895340",
+              "exon_start": 153936542,
+              "exon_end": 153936748,
+              "protein_start": 756,
+              "protein_end": 824,
+              "overlap_bp": 5,
+              "position": "middle_exon_16",
+              "overlap_percentage": 2.43,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            },
+            {
+              "exon_number": 17,
+              "exon_id": "ENSE00000895343",
+              "exon_start": 153936060,
+              "exon_end": 153936188,
+              "protein_start": 825,
+              "protein_end": 867,
+              "overlap_bp": 99,
+              "position": "middle_exon_17",
+              "overlap_percentage": 77.34,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 153936547,
+    "chromEnd": 153936658,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "111",
+    "chromStarts": "0",
+    "geneName": "DENND4B",
+    "aliases": "KIAA0476",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 775-811 on protein O75064",
+    "repeatType": "PPR",
+    "uniProtId": "O75064",
+    "repeatLength": 111,
+    "protein_start": 775,
+    "protein_end": 811,
+    "ensembl_exon_info": {
+      "transcripts_count": 2,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000361217",
+          "versioned_transcript_id": "ENST00000361217.9",
+          "transcript_name": "ENST00000361217",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 28,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 16,
+              "exon_id": "ENSE00000895340",
+              "exon_start": 153936542,
+              "exon_end": 153936748,
+              "protein_start": 745,
+              "protein_end": 813,
+              "overlap_bp": 111,
+              "position": "middle_exon_16",
+              "overlap_percentage": 53.88,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        },
+        {
+          "transcript_id": "ENST00000368646",
+          "versioned_transcript_id": "ENST00000368646.6",
+          "transcript_name": "ENST00000368646",
+          "is_canonical": false,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 22,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 16,
+              "exon_id": "ENSE00000895340",
+              "exon_start": 153936542,
+              "exon_end": 153936748,
+              "protein_start": 756,
+              "protein_end": 824,
+              "overlap_bp": 111,
+              "position": "middle_exon_16",
+              "overlap_percentage": 53.88,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155188330,
+    "chromEnd": 155188390,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 1001-1020 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 1001,
+    "protein_end": 1020,
+    "ensembl_exon_info": {
+      "transcripts_count": 2,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000620103",
+          "versioned_transcript_id": "ENST00000620103.4",
+          "transcript_name": "ENST00000620103",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 8,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00003552234",
+              "exon_start": 155188163,
+              "exon_end": 155188616,
+              "protein_start": 145,
+              "protein_end": 296,
+              "overlap_bp": 60,
+              "position": "middle_exon_3",
+              "overlap_percentage": 13.25,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 2,
+              "end_phase": 0,
+              "frame_status": "out_of_frame"
+            }
+          ]
+        },
+        {
+          "transcript_id": "ENST00000462317",
+          "versioned_transcript_id": "ENST00000462317.5",
+          "transcript_name": "ENST00000462317",
+          "is_canonical": false,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 7,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 1,
+              "exon_id": "ENSE00001841841",
+              "exon_start": 155188163,
+              "exon_end": 155188351,
+              "protein_start": 1,
+              "protein_end": 63,
+              "overlap_bp": 21,
+              "position": "first_exon",
+              "overlap_percentage": 11.17,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155188390,
+    "chromEnd": 155188450,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 981-1000 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 981,
+    "protein_end": 1000,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000620103",
+          "versioned_transcript_id": "ENST00000620103.4",
+          "transcript_name": "ENST00000620103",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 8,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00003552234",
+              "exon_start": 155188163,
+              "exon_end": 155188616,
+              "protein_start": 145,
+              "protein_end": 296,
+              "overlap_bp": 60,
+              "position": "middle_exon_3",
+              "overlap_percentage": 13.25,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 2,
+              "end_phase": 0,
+              "frame_status": "out_of_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155188510,
+    "chromEnd": 155188570,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 901-920 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 901,
+    "protein_end": 920,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000620103",
+          "versioned_transcript_id": "ENST00000620103.4",
+          "transcript_name": "ENST00000620103",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 8,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00003552234",
+              "exon_start": 155188163,
+              "exon_end": 155188616,
+              "protein_start": 145,
+              "protein_end": 296,
+              "overlap_bp": 60,
+              "position": "middle_exon_3",
+              "overlap_percentage": 13.25,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 2,
+              "end_phase": 0,
+              "frame_status": "out_of_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155188570,
+    "chromEnd": 155188630,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 881-900 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 881,
+    "protein_end": 900,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000620103",
+          "versioned_transcript_id": "ENST00000620103.4",
+          "transcript_name": "ENST00000620103",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 8,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 3,
+              "exon_id": "ENSE00003552234",
+              "exon_start": 155188163,
+              "exon_end": 155188616,
+              "protein_start": 145,
+              "protein_end": 296,
+              "overlap_bp": 46,
+              "position": "middle_exon_3",
+              "overlap_percentage": 10.15,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 2,
+              "end_phase": 0,
+              "frame_status": "out_of_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155188630,
+    "chromEnd": 155188708,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 2,
+    "blockSizes": ["45", "15"],
+    "chromStarts": ["0", "63"],
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 861-880 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 861,
+    "protein_end": 880,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155188708,
+    "chromEnd": 155188768,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 841-860 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 841,
+    "protein_end": 860,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155188768,
+    "chromEnd": 155188828,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 821-840 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 821,
+    "protein_end": 840,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155188828,
+    "chromEnd": 155188888,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 801-820 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 801,
+    "protein_end": 820,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155188888,
+    "chromEnd": 155189253,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 2,
+    "blockSizes": ["46", "14"],
+    "chromStarts": ["0", "351"],
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 781-800 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 781,
+    "protein_end": 800,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189253,
+    "chromEnd": 155189313,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 761-780 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 761,
+    "protein_end": 780,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189313,
+    "chromEnd": 155189373,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 741-760 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 741,
+    "protein_end": 760,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189373,
+    "chromEnd": 155189433,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 721-740 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 721,
+    "protein_end": 740,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189433,
+    "chromEnd": 155189493,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 701-720 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 701,
+    "protein_end": 720,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189493,
+    "chromEnd": 155189553,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 681-700 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 681,
+    "protein_end": 700,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189553,
+    "chromEnd": 155189613,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 661-680 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 661,
+    "protein_end": 680,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189613,
+    "chromEnd": 155189673,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 641-660 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 641,
+    "protein_end": 660,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189673,
+    "chromEnd": 155189733,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 621-640 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 621,
+    "protein_end": 640,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189733,
+    "chromEnd": 155189793,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 601-620 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 601,
+    "protein_end": 620,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189793,
+    "chromEnd": 155189853,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 581-600 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 581,
+    "protein_end": 600,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189853,
+    "chromEnd": 155189913,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 561-580 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 561,
+    "protein_end": 580,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189913,
+    "chromEnd": 155189973,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 541-560 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 541,
+    "protein_end": 560,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155189973,
+    "chromEnd": 155190033,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 521-540 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 521,
+    "protein_end": 540,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155190033,
+    "chromEnd": 155190093,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 501-520 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 501,
+    "protein_end": 520,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155190093,
+    "chromEnd": 155190153,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 481-500 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 481,
+    "protein_end": 500,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155190153,
+    "chromEnd": 155190390,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 2,
+    "blockSizes": ["49", "11"],
+    "chromStarts": ["0", "226"],
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 461-480 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 461,
+    "protein_end": 480,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155190390,
+    "chromEnd": 155190450,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 441-460 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 441,
+    "protein_end": 460,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155190450,
+    "chromEnd": 155190511,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 2,
+    "blockSizes": ["37", "23"],
+    "chromStarts": ["0", "38"],
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 421-440 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 421,
+    "protein_end": 440,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155190511,
+    "chromEnd": 155190571,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 401-420 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 401,
+    "protein_end": 420,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155190571,
+    "chromEnd": 155190631,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 381-400 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 381,
+    "protein_end": 400,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155191020,
+    "chromEnd": 155191080,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 341-360 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 341,
+    "protein_end": 360,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155191080,
+    "chromEnd": 155191140,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 321-340 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 321,
+    "protein_end": 340,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155191140,
+    "chromEnd": 155191200,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 301-320 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 301,
+    "protein_end": 320,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155191200,
+    "chromEnd": 155191260,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 281-300 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 281,
+    "protein_end": 300,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155191260,
+    "chromEnd": 155191561,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 2,
+    "blockSizes": ["46", "14"],
+    "chromStarts": ["0", "287"],
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 261-280 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 261,
+    "protein_end": 280,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155191561,
+    "chromEnd": 155191621,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 241-260 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 241,
+    "protein_end": 260,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155191621,
+    "chromEnd": 155191681,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 221-240 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 221,
+    "protein_end": 240,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  },
+  {
+    "chrom": "chr1",
+    "chromStart": 155191681,
+    "chromEnd": 155191741,
+    "strand": "-",
+    "reserved": ["12", "12", "120"],
+    "blockCount": 1,
+    "blockSizes": "60",
+    "chromStarts": "0",
+    "geneName": "MUC1",
+    "aliases": "PUM",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 201-220 on protein P15941",
+    "repeatType": "Unknown",
+    "uniProtId": "P15941",
+    "repeatLength": 60,
+    "protein_start": 201,
+    "protein_end": 220,
+    "ensembl_exon_info": {
+      "transcripts_count": 0,
+      "has_canonical_transcript": true,
+      "location_summary": "unknown",
+      "transcripts": []
+    }
+  }
+]
