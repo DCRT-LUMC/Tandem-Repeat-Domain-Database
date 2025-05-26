@@ -14,12 +14,14 @@ export class UIController {
         document.getElementById('repeatType').textContent = info.repeatType;
         document.getElementById('status').textContent = info.status;
         
-        // Genomic information
+        // Add aliases to the protein info section
+        document.getElementById('aliases').textContent = Array.isArray(info.aliases) ? 
+            info.aliases.join(', ') : (info.aliases || 'None');
+        
+        // Genomic information (without aliases now)
         document.getElementById('chromosome').textContent = info.chrom;
         document.getElementById('strand').textContent = info.strand === '+' ? 'Forward (+)' : 'Reverse (-)';
         document.getElementById('genomicRange').textContent = info.genomicRange || 'Not available';
-        document.getElementById('aliases').textContent = Array.isArray(info.aliases) ? 
-            info.aliases.join(', ') : (info.aliases || 'None');
         
         // Update repeat summary
         document.getElementById('repeatSummary').textContent = 

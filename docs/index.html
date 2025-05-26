@@ -19,9 +19,36 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-database me-2"></i>TReXome DB
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="credits.html">Credits</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
     <div class="page-header">
         <h1>TReXome DB</h1>
-        <p>Comprehensive collection of tandem repeat protein domains</p>
+        <p>Discover potential exon-skipping therapy targets in genes with protein tandem repeat domains.</p>
     </div>
     
     <div class="section-header">
@@ -37,14 +64,26 @@
             <div class="filter-controls-container">
                 <div class="filter-row">
                     <div class="filter-item">
-                        <label for="repeatTypeFilter" class="filter-label">Repeat Type</label>
+                        <label for="repeatTypeFilter" class="filter-label">
+                            Repeat Type
+                            <i class="fas fa-info-circle ms-1 text-muted" 
+                               data-bs-toggle="tooltip" 
+                               data-bs-placement="top" 
+                               title="Filter proteins by the type of tandem repeat domain they contain"></i>
+                        </label>
                         <select id="repeatTypeFilter" class="form-select form-select-sm">
                             <option value="">All Types</option>
                         </select>
                     </div>
                     
                     <div class="filter-item">
-                        <label for="statusFilter" class="filter-label">Status</label>
+                        <label for="statusFilter" class="filter-label">
+                            Status
+                            <i class="fas fa-info-circle ms-1 text-muted" 
+                               data-bs-toggle="tooltip" 
+                               data-bs-placement="top" 
+                               title="Filter by review status: reviewed entries have been manually curated"></i>
+                        </label>
                         <select id="statusFilter" class="form-select form-select-sm">
                             <option value="">All Status</option>
                             <option value="reviewed">Reviewed</option>
@@ -53,7 +92,13 @@
                     </div>
                     
                     <div class="filter-item">
-                        <label for="eligibilityFilter" class="filter-label">Eligibility</label>
+                        <label for="eligibilityFilter" class="filter-label">
+                            Eligibility
+                            <i class="fas fa-info-circle ms-1 text-muted" 
+                               data-bs-toggle="tooltip" 
+                               data-bs-placement="top" 
+                               title="Filter by eligibility status on the DCRT gene list"></i>
+                        </label>
                         <select id="eligibilityFilter" class="form-select form-select-sm">
                             <option value="">All</option>
                         </select>
@@ -68,6 +113,10 @@
                                     <input class="form-check-input" type="checkbox" id="repeatCountCheck">
                                     <label class="form-check-label" for="repeatCountCheck">
                                         Repeat Count ≥
+                                        <i class="fas fa-info-circle ms-1 text-muted" 
+                                           data-bs-toggle="tooltip" 
+                                           data-bs-placement="top" 
+                                           title="Filter proteins with at least the specified number of tandem repeats"></i>
                                     </label>
                                 </div>
                                 <input type="number" id="repeatCountValue" class="form-control form-control-sm repeat-count-input" value="1" min="1">
@@ -81,6 +130,10 @@
                                 <input class="form-check-input" type="checkbox" id="inFrameExonCheck">
                                 <label class="form-check-label" for="inFrameExonCheck">
                                     Has In-Frame Exons
+                                    <i class="fas fa-info-circle ms-1 text-muted" 
+                                       data-bs-toggle="tooltip" 
+                                       data-bs-placement="top" 
+                                       title="Show only proteins with exons that maintain reading frame when skipped"></i>
                                 </label>
                             </div>
                         </label>
@@ -92,6 +145,10 @@
                                 <input class="form-check-input" type="checkbox" id="exonSpanningCheck">
                                 <label class="form-check-label" for="exonSpanningCheck">
                                     Non-Spanning Repeats Only
+                                    <i class="fas fa-info-circle ms-1 text-muted" 
+                                       data-bs-toggle="tooltip" 
+                                       data-bs-placement="top" 
+                                       title="Show only proteins where repeats are contained within single exons"></i>
                                 </label>
                             </div>
                         </label>
@@ -145,9 +202,10 @@
         </div>
         <div class="card-body">
             <p>
-                TReXome is a comprehensive database of proteins containing tandem repeat domains.
-                These repeats can play crucial roles in protein function and are often associated with
-                various biological processes and diseases.
+                TReXome DB was built to identify new exon skipping targets for ASO therapy by focusing on
+                genes with protein tandem repeat domains. It offers customizable filters (by exon frame, repeat count, exon spanning or not)
+                and includes a curated list of disease-associated genes, and integrates a 3D model viewer of the proteins for visualization and structural context.
+                This unique focus on repeat-rich domains may reveal therapeuti opportunities often missed by conventional approaches.
             </p>
             <p class="mb-0">
                 Click on any protein in the table above to explore its 3D structure with highlighted
@@ -169,11 +227,22 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Application JavaScript Modules -->
     <script src="js/data-manager.js"></script>
     <script src="js/table-manager.js"></script>
     <script src="js/filter-manager.js"></script>
     <script src="js/app.js"></script>
+    
+    <script>
+        // Initialize tooltips
+        document.addEventListener('DOMContentLoaded', function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
 </body>
 </html>
