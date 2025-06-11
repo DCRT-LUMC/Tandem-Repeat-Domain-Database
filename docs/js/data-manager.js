@@ -106,6 +106,11 @@ class DataManager {
             }
         });
         
+        // Calculate the strict combined property for each unique protein
+        Object.values(uniqueProteins).forEach(protein => {
+            protein.hasOnlyNonSpanningInFrameRepeats = this.checkHasPerfectTargetExon(protein.repeats);
+        });
+        
         this.uniqueProteins = uniqueProteins;
     }
 
@@ -138,6 +143,7 @@ class DataManager {
         const hasInFrameExons = this.checkInFrameExons(item);
         const spansExons = item.blockCount > 1;
         const nonSpanningRepeat = item.blockCount === 1;
+        const hasNonSpanningInFrameRepeats = this.checkNonSpanningInFrameRepeats(item);
         
         return {
             gene: item.geneName || 'Unknown',
@@ -150,7 +156,8 @@ class DataManager {
             chromosome: item.chrom || 'Unknown',
             hasInFrameExons: hasInFrameExons,
             hasSpanningExons: spansExons,
-            hasNonSpanningRepeats: nonSpanningRepeat
+            hasNonSpanningRepeats: nonSpanningRepeat,
+            hasNonSpanningInFrameRepeats: hasNonSpanningInFrameRepeats
         };
     }
 
@@ -166,6 +173,86 @@ class DataManager {
                        e.frame_status === 'in_frame'
                    )
                );
+    }
+
+    /**
+     * Check if protein has non-spanning repeats within in-frame AND fully coding exons
+     */
+    checkNonSpanningInFrameRepeats(item) {
+        // First check if the repeat itself is non-spanning (blockCount = 1)
+        if (!item.blockCount || item.blockCount !== 1) {
+            return false;
+        }
+        
+        // Then check if it has exon info and is within in-frame AND fully coding exons
+        return item.ensembl_exon_info && 
+               item.ensembl_exon_info.transcripts && 
+               item.ensembl_exon_info.transcripts.some(t => 
+                   t.containing_exons && 
+                   t.containing_exons.some(e => 
+                       e.frame_status === 'in_frame' && 
+                       e.coding_status === 'fully_coding'
+                   )
+               );
+    }
+
+    /**
+     * Check if protein has at least one "perfect target exon" that meets all 4 criteria:
+     * 1. In-frame (reading frame aligns with CDS)
+     * 2. Fully coding (entire exon is within CDS boundaries) 
+     * 3. Contains at least one repeat with blockCount=1 (non-spanning repeat)
+     * 4. Does NOT contain any repeat with blockCount>1 (no spanning repeats in that exon)
+     */
+    checkHasPerfectTargetExon(allRepeats) {
+        // Build a map of exon_id -> repeats in that exon
+        const exonToRepeats = new Map();
+        
+        allRepeats.forEach(repeat => {
+            if (repeat.ensembl_exon_info && repeat.ensembl_exon_info.transcripts) {
+                repeat.ensembl_exon_info.transcripts.forEach(transcript => {
+                    if (transcript.containing_exons) {
+                        transcript.containing_exons.forEach(exon => {
+                            const exonKey = `${transcript.transcript_id}_${exon.exon_id}`;
+                            if (!exonToRepeats.has(exonKey)) {
+                                exonToRepeats.set(exonKey, {
+                                    exonInfo: exon,
+                                    repeats: []
+                                });
+                            }
+                            exonToRepeats.get(exonKey).repeats.push(repeat);
+                        });
+                    }
+                });
+            }
+        });
+        
+        // Check each exon to see if it meets all 4 criteria
+        for (const [exonKey, exonData] of exonToRepeats) {
+            const exon = exonData.exonInfo;
+            const repeatsInExon = exonData.repeats;
+            
+            // Criteria 1 & 2: Must be in-frame AND fully coding
+            if (exon.frame_status !== 'in_frame' || exon.coding_status !== 'fully_coding') {
+                continue;
+            }
+            
+            // Criteria 3: Must contain at least one repeat with blockCount=1
+            const hasNonSpanningRepeat = repeatsInExon.some(r => r.blockCount === 1);
+            if (!hasNonSpanningRepeat) {
+                continue;
+            }
+            
+            // Criteria 4: Must NOT contain any repeat with blockCount>1
+            const hasSpanningRepeat = repeatsInExon.some(r => r.blockCount > 1);
+            if (hasSpanningRepeat) {
+                continue;
+            }
+            
+            // If we get here, this exon meets all 4 criteria!
+            return true;
+        }
+        
+        return false;
     }
 
     /**
@@ -206,6 +293,9 @@ class DataManager {
         }
         if (newItem.blockCount === 1) {
             existingProtein.hasNonSpanningRepeats = true;
+        }
+        if (this.checkNonSpanningInFrameRepeats(newItem)) {
+            existingProtein.hasNonSpanningInFrameRepeats = true;
         }
     }
 

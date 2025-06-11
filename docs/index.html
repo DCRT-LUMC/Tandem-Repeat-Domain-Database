@@ -154,6 +154,36 @@
                         </label>
                     </div>
                     
+                    <div class="filter-item">
+                        <label for="combinedExonCheck" class="filter-label">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="combinedExonCheck">
+                                <label class="form-check-label" for="combinedExonCheck">
+                                    Non-Spanning + In-Frame + Fully Coding
+                                    <i class="fas fa-info-circle ms-1 text-muted" 
+                                       data-bs-toggle="tooltip" 
+                                       data-bs-placement="top" 
+                                       title="Show only proteins with non-spanning repeats that are within in-frame AND fully coding exons"></i>
+                                </label>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <div class="filter-item">
+                        <label for="strictCombinedExonCheck" class="filter-label">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="strictCombinedExonCheck">
+                                <label class="form-check-label" for="strictCombinedExonCheck">
+                                    Perfect Target Repeats
+                                    <i class="fas fa-info-circle ms-1 text-muted" 
+                                       data-bs-toggle="tooltip" 
+                                       data-bs-placement="top" 
+                                       title="Show proteins with at least one perfect exon: fully coding + in-frame + contains a non-spanning repeat"></i>
+                                </label>
+                            </div>
+                        </label>
+                    </div>
+                    
                     <div class="filter-actions">
                         <button type="button" class="btn btn-outline-secondary btn-sm" id="resetFilters">
                             <i class="fas fa-undo me-1"></i> Reset Filters
