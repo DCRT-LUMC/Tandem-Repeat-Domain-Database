@@ -1,7 +1,7 @@
 :root {
-    --primary: #4361ee;
-    --primary-light: #4895ef;
-    --secondary: #3f37c9;
+    --primary: #606cb4;
+    --primary-light: #7a84c7;
+    --secondary: #4a5491;
     --accent: #4cc9f0;
     --success: #4ade80;
     --danger: #f87171;
@@ -15,6 +15,61 @@
     --border-radius: 12px;
     --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --transition: all 0.3s ease;
+}
+
+/* Bootstrap Override - Navbar */
+.navbar.bg-primary,
+.navbar-dark.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: white !important;
+}
+
+/* Bootstrap Override - Buttons */
+.btn-primary {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--secondary) !important;
+    border-color: var(--secondary) !important;
+}
+
+.btn-outline-primary {
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: white !important;
+}
+
+/* Bootstrap Override - Text Colors */
+.text-primary {
+    color: var(--primary) !important;
+}
+
+/* Bootstrap Override - Background Colors */
+.bg-primary {
+    background-color: var(--primary) !important;
 }
 
 /* Base Styles */
@@ -32,7 +87,7 @@ body {
 .page-header {
     background-color: var(--light);
     padding: 16px 24px;
-    border-left: 4px solid var(--primary);
+    border-left: 0px solid var(--primary);
     margin-bottom: 24px;
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
     box-shadow: var(--box-shadow);
@@ -42,6 +97,13 @@ body {
     font-weight: 700;
     margin-bottom: 4px;
     color: var(--primary);
+}
+
+.page-header-logo {
+    height: 60px;
+    max-width: 100%;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .page-header p {
@@ -135,16 +197,16 @@ body {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-    background: var(--primary);
+    background: var(--primary) !important;
     color: white !important;
-    border: 1px solid var(--primary);
+    border: 1px solid var(--primary) !important;
     border-radius: 30px;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    background: var(--primary-light);
+    background: var(--primary-light) !important;
     color: white !important;
-    border: 1px solid var(--primary-light);
+    border: 1px solid var(--primary-light) !important;
     border-radius: 30px;
 }
 
@@ -153,19 +215,29 @@ body {
     transition: var(--transition);
 }
 
-.dataTables_wrapper .dataTables_filter input {
-    border: 1px solid var(--gray);
-    border-radius: 20px;
-    padding: 5px 10px;
-    min-width: 200px;
+/* Bootstrap Pagination Override */
+.paginate_button.page-item.active .page-link,
+.page-item.active .page-link {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: white !important;
 }
 
-.dataTables_wrapper .dataTables_length select {
-    border: 1px solid var(--gray);
-    border-radius: 20px;
-    padding: 5px 10px;
-    min-width: 70px;
-    width: auto;
+.paginate_button.page-item.active .page-link:hover,
+.page-item.active .page-link:hover {
+    background-color: var(--secondary) !important;
+    border-color: var(--secondary) !important;
+    color: white !important;
+}
+
+.page-link {
+    color: var(--primary) !important;
+}
+
+.page-link:hover {
+    background-color: var(--primary-light) !important;
+    border-color: var(--primary-light) !important;
+    color: white !important;
 }
 
 /* Filter Controls */
@@ -233,7 +305,7 @@ body {
     padding: 6px 12px;
     text-decoration: none;
     color: var(--primary);
-    background-color: rgba(67, 97, 238, 0.1);
+    background-color: rgba(96, 108, 180, 0.1);
     border-radius: 20px;
     display: inline-flex;
     align-items: center;
@@ -357,4 +429,11 @@ footer {
     .dataTables_filter input {
         width: 100%;
     }
+}
+
+/* Custom Navbar Icon */
+.navbar-icon {
+    height: 24px;
+    width: 24px;
+    filter: brightness(0) invert(1);
 }

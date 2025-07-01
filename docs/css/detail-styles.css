@@ -1,7 +1,7 @@
 :root {
-    --primary: #4361ee;
-    --primary-light: #4895ef;
-    --secondary: #3f37c9;
+    --primary: #382c84;
+    --primary-light: #4a3ca0;
+    --secondary: #2e2370;
     --accent: #4cc9f0;
     --success: #4ade80;
     --danger: #f87171;
@@ -284,7 +284,7 @@ body {
     padding: 6px 12px;
     text-decoration: none;
     color: var(--primary);
-    background-color: rgba(67, 97, 238, 0.1);
+    background-color: rgba(56, 44, 132, 0.1);
     border-radius: 20px;
     display: inline-flex;
     align-items: center;
