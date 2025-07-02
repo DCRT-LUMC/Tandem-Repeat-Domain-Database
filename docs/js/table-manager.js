@@ -45,7 +45,7 @@ class TableManager {
             },
             { 
                 data: 'uniprotId',
-                title: 'Protein Name'
+                title: 'UniProt ID'
             },
             { 
                 data: 'repeatType',
@@ -63,7 +63,7 @@ class TableManager {
             },
             { 
                 data: 'eligibility',
-                title: 'Eligibility (Gene List)',
+                title: 'Eligibility',
                 render: this.renderEligibility
             },
             {

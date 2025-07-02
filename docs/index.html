@@ -79,7 +79,7 @@
                             <i class="fas fa-info-circle ms-1 text-muted" 
                                data-bs-toggle="tooltip" 
                                data-bs-placement="top" 
-                               title="Filter by review status: reviewed entries have been manually curated"></i>
+                               title="Filter by review status: Reviewed proteins have annotations that were manually verified by UniProt (Swiss-Prot). Unreviewed proteins were not manually verified after being computationally annotated (TrEMBL)"></i>
                         </label>
                         <select id="statusFilter" class="form-select form-select-sm">
                             <option value="">All Status</option>
@@ -94,7 +94,7 @@
                             <i class="fas fa-info-circle ms-1 text-muted" 
                                data-bs-toggle="tooltip" 
                                data-bs-placement="top" 
-                               title="Filter by eligibility status on the DCRT gene list"></i>
+                               title="The DCRT has compiled a list of genes and diseases that we consider eligible for RNA therapy. This is by no means a comprehensive list, but a starting point for clinicians and researchers to get an idea what conditions we can target with personalized antisense oligonucleotides."></i>
                         </label>
                         <select id="eligibilityFilter" class="form-select form-select-sm">
                             <option value="">All</option>
@@ -171,11 +171,11 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" id="strictCombinedExonCheck">
                                 <label class="form-check-label" for="strictCombinedExonCheck">
-                                    Perfect Target Repeats
+                                    Suitable candidates
                                     <i class="fas fa-info-circle ms-1 text-muted" 
                                        data-bs-toggle="tooltip" 
                                        data-bs-placement="top" 
-                                       title="Show proteins with at least one perfect exon: fully coding + in-frame + contains a non-spanning repeat"></i>
+                                       title="Show proteins with at least one candidate exon: fully coding + in-frame + contains a non-spanning repeat"></i>
                                 </label>
                             </div>
                         </label>
@@ -206,7 +206,7 @@
                                 <th>Chromosome</th>
                                 <th>Gene Name</th>
                                 <th>Aliases</th>
-                                <th>Protein Name</th>
+                                <th>UniProt ID</th>
                                 <th>Repeat Type</th>
                                 <th>Repeat Count</th>
                                 <th>Status</th>

@@ -437,3 +437,43 @@ footer {
     width: 24px;
     filter: brightness(0) invert(1);
 }
+
+/* Credits Section Styling */
+.credits-section {
+    border-left: 3px solid var(--primary-light);
+    padding-left: 20px;
+    margin-left: 10px;
+}
+
+.credit-item {
+    background-color: var(--light);
+    padding: 16px;
+    border-radius: var(--border-radius);
+    margin-bottom: 16px;
+    transition: var(--transition);
+}
+
+.credit-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
+}
+
+.credit-item:last-child {
+    margin-bottom: 0;
+}
+
+.credit-item strong {
+    color: var(--dark);
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.credit-item p {
+    margin-bottom: 4px;
+    line-height: 1.5;
+}
+
+.credit-item .btn {
+    margin-top: 8px;
+}
