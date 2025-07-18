@@ -125,9 +125,32 @@ export class UIController {
                 </div>
                 
                 <div class="mb-2">
-                    <span class="legend-item exon-legend-item">
+                    <div class="legend-item exon-legend-item">
+                        <strong>Exon Boundaries:</strong>&nbsp;genomic coordinates where exon overlaps with repeat regions
+                    </div>
+                    <div class="legend-item exon-legend-item">
+                        <strong>Coding Status:</strong>
+                        <ul class="mb-0 mt-1" style="font-size: 0.9em;">
+                            <li><em>Fully coding</em> - entire exon codes for protein</li>
+                            <li><em>Partially coding</em> - part of exon codes for protein</li>
+                        </ul>
+                    </div>
+                    <div class="legend-item exon-legend-item">
+                        <strong>Frame Status:</strong>
+                        <ul class="mb-0 mt-1" style="font-size: 0.9em;">
+                            <li><em>In frame</em> - exon length maintains reading frame (divisible by 3)</li>
+                            <li><em>Out of frame</em> - exon length shifts reading frame</li>
+                        </ul>
+                    </div>
+                    <div class="legend-item exon-legend-item">
+                        <strong>Start/End Phase:</strong>&nbsp;reading frame position at exon boundaries (0, 1, or 2)
+                    </div>
+                    <div class="legend-item exon-legend-item">
+                        Overlap %: percentage of exon covered by repeats
+                    </div>
+                    <div class="legend-item exon-legend-item">
                         <i class="fas fa-star text-success"></i>&nbsp;&nbsp;Exons matching selected criteria
-                    </span>
+                    </div>
                 </div>
                 <table class="table table-sm table-striped">
                     <thead>
@@ -173,8 +196,10 @@ export class UIController {
                 "Unknown";
             
             const frameStatus = this.formatFrameStatus(exon.frame_status);
+            const codingStatus = this.formatCodingStatus(exon.coding_status);
             const startPhase = this.formatPhase(exon.start_phase);
             const endPhase = this.formatPhase(exon.end_phase);
+            const exonBoundaries = this.formatExonBoundaries(exon.repeat_start, exon.repeat_end);
             
             rowsHtml += `
                 <tr data-exon-id="${exon.exon_id}" 
@@ -182,8 +207,8 @@ export class UIController {
                     data-inframe="${(exon.frame_status === 'in_frame' || exon.frame_status === 'in-frame')}" 
                     data-fullycoding="${exon.coding_status === 'fully_coding'}">
                     <td class="exon-number">${exon.exon_number}</td>
-                    <td>${exon.repeat_start}-${exon.repeat_end}</td>
-                    <td>${exon.coding_status || 'Unknown'}</td>
+                    <td>${exonBoundaries}</td>
+                    <td>${codingStatus}</td>
                     <td>${startPhase}</td>
                     <td>${endPhase}</td>
                     <td>${frameStatus}</td>
@@ -227,13 +252,36 @@ export class UIController {
         return phase !== undefined ? phase : 'Unknown';
     }
 
+    formatCodingStatus(status) {
+        if (!status) return 'Unknown';
+        
+        // Convert to lowercase and handle various formats
+        const normalizedStatus = status.toString().toLowerCase().trim();
+        
+        if (normalizedStatus === 'fully_coding' || normalizedStatus === 'fully coding') return 'Fully coding';
+        if (normalizedStatus === 'partially_coding' || normalizedStatus === 'partially coding' || normalizedStatus === 'partial_coding') return 'Partially coding';
+        if (normalizedStatus === 'non_coding' || normalizedStatus === 'non coding') return 'Non coding';
+        
+        // If no match found, capitalize first letter and replace underscores with spaces
+        return status.toString().replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    }
+
     formatFrameStatus(status) {
         if (!status) return 'Unknown';
-        if (status === 'in-frame') return 'In-frame';
-        if (status === 'out-of-frame') return 'Out-of-frame';
+        if (status === 'in-frame' || status === 'in_frame') return 'In frame';
+        if (status === 'out-of-frame' || status === 'out_of_frame') return 'Out of frame';
         if (status === 'maintained') return 'Maintained';
-        if (status === 'not-maintained') return 'Not maintained';
+        if (status === 'not-maintained' || status === 'not_maintained') return 'Not maintained';
         return status;
+    }
+
+    formatExonBoundaries(start, end) {
+        // Handle invalid boundary values
+        if (start === -1 || end === -1 || start === '-1' || end === '-1' || 
+            !start || !end || start === 'undefined' || end === 'undefined') {
+            return 'N/A';
+        }
+        return `${start}-${end}`;
     }
 
     setActiveButton(button) {

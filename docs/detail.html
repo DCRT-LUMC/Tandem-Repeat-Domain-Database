@@ -25,7 +25,7 @@
     </div>
     
     <div id="loading" class="text-center my-5">
-        <div class="spinner-border text-primary" role="status">
+        <div class="spinner-border primary" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
         <p class="mt-3">Loading protein data...</p>
@@ -46,17 +46,17 @@
         <div class="protein-info">
             <div>
                 <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-id-card me-2 text-primary"></i>
+                    <i class="fas fa-id-card me-2 primary"></i>
                     <strong>UniProt:</strong> 
                     <a id="uniprotLink" target="_blank" class="ms-2 text-decoration-none"></a>
                 </div>
                 <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-dna me-2 text-primary"></i>
+                    <i class="fas fa-dna me-2 primary"></i>
                     <strong>Gene:</strong> 
                     <span id="geneName" class="ms-2"></span>
                 </div>
                 <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-tags me-2 text-primary"></i>
+                    <i class="fas fa-tags me-2 primary"></i>
                     <strong>Aliases:</strong> 
                     <span id="aliases" class="ms-2"></span>
                 </div>
@@ -74,12 +74,12 @@
             </div>
             <div>
                 <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-sync-alt me-2 text-primary"></i>
+                    <i class="fas fa-sync-alt me-2" style="color: #382c84;"></i>
                     <strong>Repeat Type:</strong> 
-                    <span id="repeatType" class="ms-2 badge bg-info"></span>
+                    <span id="repeatType" class="ms-2 badge" style="background-color: #382c84; color: white;"></span>
                 </div>
                 <div class="d-flex align-items-center">
-                    <i class="fas fa-info-circle me-2 text-primary"></i>
+                    <i class="fas fa-info-circle me-2 primary"></i>
                     <strong>Status:</strong> 
                     <span id="status" class="ms-2 badge bg-success"></span>
                 </div>
@@ -88,35 +88,47 @@
         
         <!-- 3D Viewer Container -->
         <div class="section-header">
-            <h3><i class="fas fa-cube me-2"></i>3D Structure Visualization</h3>
+            <h3><i class="fas fa-cube me-2 primary"></i>3D Structure Visualization</h3>
             <button class="toggle-button" onclick="toggleSection('viewerContainer')">
                 <i class="fas fa-eye-slash me-1"></i> Hide
             </button>
         </div>
         <div id="viewerContainer" class="viewer-container collapsible-content">
             <div class="viewer-controls">
-                <button class="view-button active" id="highlightRepeatsBtn">
+                <button class="view-button active" id="highlightRepeatsBtn" 
+                        title="Highlight Tandem Repeats: Colors each tandem repeat domain in the protein structure with a unique color. This view helps you identify where these repeat regions are located within the 3D structure.">
                     <i class="fas fa-highlighter me-1"></i> Highlight Repeats
+                    <i class="fas fa-info-circle ms-1 primary" style="font-size: 0.8em;"></i>
                 </button>
-                <button class="view-button" id="standardViewBtn">
+                <button class="view-button" id="standardViewBtn"
+                        title="Standard View: Displays the protein structure using default molecular coloring schemes (typically by atom type or secondary structure). This provides a neutral view of the protein without any special highlighting.">
                     <i class="fas fa-atom me-1"></i> Standard View
+                    <i class="fas fa-info-circle ms-1 primary" style="font-size: 0.8em;"></i>
                 </button>
-                <button class="view-button" id="zoomRepeatsBtn">
+                <button class="view-button" id="zoomRepeatsBtn"
+                        title="Zoom to Repeats: Automatically adjusts the camera position and zoom level to focus specifically on the tandem repeat regions of the protein.">
                     <i class="fas fa-search-plus me-1"></i> Zoom to Repeats
+                    <i class="fas fa-info-circle ms-1 primary" style="font-size: 0.8em;"></i>
                 </button>
-                <button class="view-button" id="highlightExonsBtn">
+                <button class="view-button" id="highlightExonsBtn"
+                        title="Highlight Exons: Colors different exon regions within the protein structure. This view shows how the exon structure maps onto the 3D protein structure.">
                     <i class="fas fa-dna me-1"></i> Highlight Exons
+                    <i class="fas fa-info-circle ms-1 primary" style="font-size: 0.8em;"></i>
                 </button>
-                <button class="view-button" id="exonBoundariesBtn">
-                    <i class="fas fa-project-diagram me-1"></i> Show Exon Boundaries
+                <button class="view-button" id="exonBoundariesBtn"
+                        title="Show Exon Boundaries: Displays visual markers at the boundaries between different exons in the protein structure. This helps you see where exons are compared to the repeats">
+                    <i class="fas fa-grip-lines me-1"></i> Show Exon Boundaries
+                    <i class="fas fa-info-circle ms-1 primary" style="font-size: 0.8em;"></i>
                 </button>
-                <button class="view-button" id="repeatBoundariesBtn">
+                <button class="view-button" id="repeatBoundariesBtn"
+                        title="Show Repeat Boundaries: Displays visual markers that show the start and end points of individual tandem repeat units within the protein structure.">
                     <i class="fas fa-border-style me-1"></i> Show Repeat Boundaries
+                    <i class="fas fa-info-circle ms-1 primary" style="font-size: 0.8em;"></i>
                 </button>
             </div>
             <div id="proteinViewer">
                 <div class="loading-indicator">
-                    <div class="spinner-border text-primary" style="width: 2rem; height: 2rem;"></div>
+                    <div class="spinner-border primary" style="width: 2rem; height: 2rem;"></div>
                     <p class="mt-2 mb-0">Loading protein structure...</p>
                 </div>
             </div>
@@ -129,7 +141,7 @@
         </div>
         
         <div class="section-header mt-4">
-            <h3><i class="fas fa-layer-group me-2"></i>Summary of Tandem Repeats</h3>
+            <h3><i class="fas fa-layer-group me-2 primary"></i>Summary of Tandem Repeats</h3>
             <button class="toggle-button" onclick="toggleSection('summaryContent')">
                 <i class="fas fa-eye me-1"></i> Show
             </button>
@@ -140,7 +152,7 @@
         </div>
         
         <div class="section-header mt-4">
-            <h3><i class="fas fa-dna me-2"></i>Genomic Information</h3>
+            <h3><i class="fas fa-dna me-2 primary"></i>Genomic Information</h3>
             <button class="toggle-button" onclick="toggleSection('genomicContent')">
                 <i class="fas fa-eye-slash me-1"></i> Hide
             </button>
@@ -149,19 +161,19 @@
             <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="d-flex align-items-center mb-2">
-                        <i class="fas fa-chromosome me-2 text-primary"></i>
+                        <i class="fas fa-chromosome me-2" style="color: #382c84;"></i>
                         <strong>Chromosome:</strong> 
-                        <span id="chromosome" class="ms-2 badge bg-secondary"></span>
+                        <span id="chromosome" class="ms-2 badge" style="background-color: #382c84; color: white;"></span>
                     </div>
                     <div class="d-flex align-items-center">
-                        <i class="fas fa-map-marker-alt me-2 text-primary"></i>
+                        <i class="fas fa-map-marker-alt me-2 primary"></i>
                         <strong>Genomic Range:</strong> 
                         <span id="genomicRange" class="ms-2"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="d-flex align-items-center mb-2">
-                        <i class="fas fa-arrows-alt-h me-2 text-primary"></i>
+                        <i class="fas fa-arrows-alt-h me-2 primary"></i>
                         <strong>Strand:</strong> 
                         <span id="strand" class="ms-2"></span>
                     </div>
@@ -169,7 +181,7 @@
             </div>
             <div id="exonSummary" class="mt-4">
                 <h4 class="d-flex align-items-center mb-3">
-                    <i class="fas fa-puzzle-piece me-2 text-primary"></i>
+                    <i class="fas fa-puzzle-piece me-2 primary"></i>
                     Exon Information
                 </h4>
                 <div id="exonDataText" class="table-responsive">Loading exon data...</div>
@@ -181,12 +193,24 @@
         <div class="container text-center">
             <p class="mb-0">
                 <i class="fas fa-database me-1"></i>
-                TReXome DB - <span class="text-primary">Dynamically generated from JSON data</span>
+                TReXome DB - <span class="primary">Dynamically generated from JSON data</span>
             </p>
         </div>
     </footer>
     
     <!-- Load modular JavaScript -->
     <script type="module" src="./js/main.js"></script>
+    <script>
+        // Initialize Bootstrap tooltips for better styling
+        document.addEventListener('DOMContentLoaded', function() {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[title]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl, {
+                    placement: 'top',
+                    trigger: 'hover'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
