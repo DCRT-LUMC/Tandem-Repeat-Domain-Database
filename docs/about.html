@@ -44,7 +44,7 @@
 
     <div class="page-header">
         <h1>About TReXome DB</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p>Tandem Repeat eXome DataBase </p>
     </div>
 
     <div class="container my-5">
@@ -52,38 +52,36 @@
             <div class="col-lg-8 mx-auto">
                 <div class="card">
                     <div class="card-header">
-                        <i class="fas fa-info-circle me-2"></i> Project Overview
+                        <i class="fas fa-info-circle me-2"></i> Project overview
                     </div>
                     <div class="card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p><strong>Exon skipping RNA therapy:</strong> Antisense oligonucleotide (ASO)-mediated exon skipping is a precision medicine strategy for genetic diseases. Exons containing pathogenic variants, like a truncating DNA variant, can be skipped (removed from the mRNA) while maintaining the reading frame and produce a truncated, but partially functional protein. This principle can be applied to develop custom-made treatments for patients with very rare disorders and unique pathogenic variants.</p>
+                        <p><strong>Challenges with current targets:</strong>Exon skipping therapies usually focus on truncating mutations (nonsense or frameshift), because removing a frameshifting variant can restore the protein’s reading frame. In contrast, pathogenic missense variants typically reside in crucial parts of a protein. Skipping an exon carrying such a variant often removes an important functional domain, yielding a nonfunctional protein. For this reason, missense variants or pathogenic variants in protein domains are generally considered poor candidates for exon skipping, and potentially useful targets may be overlooked.</p>
+                        <p><strong>Tandem repeat domains as an opportunity: </strong> </p>
+                        <p><strong>Challenges with current targets:</strong>Some proteins contain multiple adjacent, similar domains (tandem repeat domains). In such proteins, losing one repeat may not fully disrupt function, as the remaining repeats can potentially compensate. This makes tandem-repeat proteins potential exceptions: if a missense mutation affects one repeat, skipping the corresponding exon could still produce a functional protein, presenting an opportunity for exon skipping therapy.  </p>
+                        <p><strong>The TReXome DB: </strong>To leverage this idea, we created TReXome DB, a web-accessible database of human genes with tandem repeat protein domains. Users can search and filter these genes by exon frame, exon length, and repeat count, and even restrict to disease-associated genes curated for genetic therapy suitability. The database highlights which exons fall in repeat regions and provides metrics for each. It also integrates external tools – for example, AlphaFold protein structures with annotated repeats to visualize the different regions. In practice, researchers or clinicians can look up a gene of interest, see if it contains protein tandem repeats, and use the filters to find feasible skipping candidates that might restore function. </p>
                     </div>
                 </div>
 
                 <div class="card mt-4">
                     <div class="card-header">
-                        <i class="fas fa-bullseye me-2"></i> Objectives
+                        <i class="fas fa-bullseye me-2"></i> Conditions of Use
                     </div>
                     <div class="card-body">
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                        <ul>
-                            <li>Lorem ipsum dolor sit amet consectetur</li>
-                            <li>Adipiscing elit sed do eiusmod tempor</li>
-                            <li>Incididunt ut labore et dolore magna</li>
-                            <li>Aliqua ut enim ad minim veniam</li>
-                        </ul>
+                        <p>TReXome DB is intended for researchers and clinicians working on RNA therapies, genetic disease, and protein function. It can help guide lab and clinical investigations by suggesting non-obvious exon-skipping targets.</p>
                     </div>
                 </div>
 
-                <div class="card mt-4">
+
+                 <div class="card mt-4">
                     <div class="card-header">
-                        <i class="fas fa-microscope me-2"></i> Methodology
+                        <i class="fas fa-bullseye me-2"></i> Data availabiliy
                     </div>
                     <div class="card-body">
-                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
-                        <p>Consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>
+                        <p>TReXome DB code is freely available via GitHub: https://github.com/DCRT-LUMC/Tandem-Repeat-Domain-Database under an AGPL-3.0 license.</p>
                     </div>
                 </div>
+
 
                 <div class="card mt-4">
                     <div class="card-header">
@@ -159,28 +157,32 @@
                         <div class="credits-section mb-4">
                             <h6 class="text-primary mb-3"><i class="fas fa-users me-2"></i>People & Institutions</h6>
                             <div class="credit-item">
-                                <strong>Dr. Lorem Ipsum</strong>
-                                <p class="mb-1">Principal Investigator</p>
-                                <p class="text-muted small mb-2">University of Lorem, Department of Consectetur Adipiscing</p>
+                                <strong>Dutch Center for RNA Therapeutics</strong>
+                                <p class="mb-1">Leiden University Medical Center</p>
+                                <p class="text-muted small mb-2">https://rnatherapy.nl/</p>
                             </div>
                             
                             <div class="credit-item">
-                                <strong>Jane Dolor Sit</strong>
-                                <p class="mb-1">Research Associate</p>
-                                <p class="text-muted small mb-2">Institute of Amet Consectetur, Elit Research Division</p>
+                                <strong>Okke Faber</strong>
+                                <p class="mb-1">MSc student</p>
+                            </div>
+
+                            <div class="credit-item">
+                                <strong>Jack Morgan</strong>
+                                <p class="mb-1">PhD candidate</p>
                             </div>
                             
                             <div class="credit-item">
-                                <strong>Tempor Incididunt Laboratory</strong>
-                                <p class="mb-1">Collaborative research partner providing expertise in labore et dolore magna aliqua</p>
-                                <p class="text-muted small mb-2">University of Ut Enim, School of Minim Veniam</p>
+                                <strong>Dr. Marlen Lauffer</strong>
+                                <p class="mb-1">Senior researcher</p>
+                                <p class="text-muted small mb-2">Project lead</p>
                             </div>
                         </div>
 
                         <div class="credits-section">
                             <h6 class="text-primary mb-3"><i class="fas fa-heart me-2"></i>Acknowledgments</h6>
                             <div class="credit-item">
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+                                <p>The DCRT Leiden team for feedback!</p>
                             </div>
                         </div>
 
