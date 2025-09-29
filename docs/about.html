@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <p><strong>Exon skipping RNA therapy:</strong> Antisense oligonucleotide (ASO)-mediated exon skipping is a precision medicine strategy for genetic diseases. Exons containing pathogenic variants, like a truncating DNA variant, can be skipped (removed from the mRNA) while maintaining the reading frame and produce a truncated, but partially functional protein. This principle can be applied to develop custom-made treatments for patients with very rare disorders and unique pathogenic variants.</p>
                         <p><strong>Challenges with current targets:</strong>Exon skipping therapies usually focus on truncating mutations (nonsense or frameshift), because removing a frameshifting variant can restore the protein’s reading frame. In contrast, pathogenic missense variants typically reside in crucial parts of a protein. Skipping an exon carrying such a variant often removes an important functional domain, yielding a nonfunctional protein. For this reason, missense variants or pathogenic variants in protein domains are generally considered poor candidates for exon skipping, and potentially useful targets may be overlooked.</p>
-                        <p><strong>Tandem repeat domains as an opportunity: </strong> </p>
+                        <p><strong>Tandem repeat domains as an opportunity: </strong> Some proteins contain multiple adjacent, similar domains (tandem repeat domains). In such proteins, losing one repeat may not fully disrupt function, as the remaining repeats can potentially compensate. This makes tandem-repeat proteins potential exceptions: if a missense mutation affects one repeat, skipping the corresponding exon could still produce a functional protein, presenting an opportunity for exon skipping therapy.  </p>
                         <p><strong>Challenges with current targets:</strong>Some proteins contain multiple adjacent, similar domains (tandem repeat domains). In such proteins, losing one repeat may not fully disrupt function, as the remaining repeats can potentially compensate. This makes tandem-repeat proteins potential exceptions: if a missense mutation affects one repeat, skipping the corresponding exon could still produce a functional protein, presenting an opportunity for exon skipping therapy.  </p>
                         <p><strong>The TReXome DB: </strong>To leverage this idea, we created TReXome DB, a web-accessible database of human genes with tandem repeat protein domains. Users can search and filter these genes by exon frame, exon length, and repeat count, and even restrict to disease-associated genes curated for genetic therapy suitability. The database highlights which exons fall in repeat regions and provides metrics for each. It also integrates external tools – for example, AlphaFold protein structures with annotated repeats to visualize the different regions. In practice, researchers or clinicians can look up a gene of interest, see if it contains protein tandem repeats, and use the filters to find feasible skipping candidates that might restore function. </p>
                     </div>
@@ -65,20 +65,12 @@
 
                 <div class="card mt-4">
                     <div class="card-header">
-                        <i class="fas fa-bullseye me-2"></i> Conditions of Use
+                        <i class="fas fa-bullseye me-2"></i> Conditions of Use and Data Availability
                     </div>
                     <div class="card-body">
                         <p>TReXome DB is intended for researchers and clinicians working on RNA therapies, genetic disease, and protein function. It can help guide lab and clinical investigations by suggesting non-obvious exon-skipping targets.</p>
-                    </div>
-                </div>
-
-
-                 <div class="card mt-4">
-                    <div class="card-header">
-                        <i class="fas fa-bullseye me-2"></i> Data availabiliy
-                    </div>
-                    <div class="card-body">
                         <p>TReXome DB code is freely available via GitHub: https://github.com/DCRT-LUMC/Tandem-Repeat-Domain-Database under an AGPL-3.0 license.</p>
+                        <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.</p>
                     </div>
                 </div>
 
