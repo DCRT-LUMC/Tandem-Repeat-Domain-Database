@@ -1,16 +1,41 @@
 async function getAfdbUrlAndFormat(uniprotId) {
-  const res = await fetch(`https://alphafold.ebi.ac.uk/api/uniprot/summary/${uniprotId}`);
-  if (!res.ok) throw new Error(`AFDB summary fetch failed: ${res.status}`);
-  const data = await res.json();
+  // Correct AlphaFold DB endpoint (returns an array of predictions)
+  const res = await fetch(`https://alphafold.ebi.ac.uk/api/prediction/${uniprotId}`);
 
-  const model = data.models?.[0];
-  if (!model) return { url: null, format: null };
+  // If AFDB doesn’t have this UniProt ID, return nulls gracefully
+  if (!res.ok) {
+    console.warn(`AFDB: no prediction for ${uniprotId} (status ${res.status})`);
+    return { url: null, format: null };
+    // Known AFDB docs/examples use /api/prediction/<ID>. (Ref: NAR 2022 paper & AFDB API notes)
+  }
 
-  const files = model.files || {};
-  // Prefer mmCIF (works in 3Dmol) and fall back to PDB.
-  if (files.mmcif?.url) return { url: files.mmcif.url, format: "mmcif" };
-  if (files.pdb?.url)   return { url: files.pdb.url,   format: "pdb" };
+  const arr = await res.json();
+  if (!Array.isArray(arr) || arr.length === 0) {
+    console.warn(`AFDB: empty prediction list for ${uniprotId}`);
+    return { url: null, format: null };
+  }
 
+  // Pick the first model (you can refine if you need a specific isoform)
+  const m = arr[0];
+
+  // The API fields have changed over time; check multiple possibilities.
+  // Prefer mmCIF (works in 3Dmol) and only then PDB. (3Dmol does not read binaryCIF.)
+  const mmcifUrl =
+    m.mmcifUrl ||               // older field
+    m.cifUrl ||                 // some docs/clients use cifUrl
+    m.files?.mmcif?.url ||      // newer nested 'files' shape
+    m.files?.cif?.url || null;
+
+  if (mmcifUrl) return { url: mmcifUrl, format: "mmcif" };
+
+  const pdbUrl =
+    m.pdbUrl ||                 // older field
+    m.files?.pdb?.url || null;  // newer nested 'files' shape
+
+  if (pdbUrl) return { url: pdbUrl, format: "pdb" };
+
+  // (We deliberately ignore bcif here because 3Dmol can’t read it.)
+  console.warn(`AFDB: no mmCIF/PDB URL found for ${uniprotId}`);
   return { url: null, format: null };
 }
 
