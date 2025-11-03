@@ -1,3 +1,20 @@
+async function getAfdbUrlAndFormat(uniprotId) {
+  const res = await fetch(`https://alphafold.ebi.ac.uk/api/uniprot/summary/${uniprotId}`);
+  if (!res.ok) throw new Error(`AFDB summary fetch failed: ${res.status}`);
+  const data = await res.json();
+
+  const model = data.models?.[0];
+  if (!model) return { url: null, format: null };
+
+  const files = model.files || {};
+  // Prefer mmCIF (works in 3Dmol) and fall back to PDB.
+  if (files.mmcif?.url) return { url: files.mmcif.url, format: "mmcif" };
+  if (files.pdb?.url)   return { url: files.pdb.url,   format: "pdb" };
+
+  return { url: null, format: null };
+}
+
+
 export class ProteinViewer {
     constructor() {
         this.viewer = null;
@@ -10,77 +27,96 @@ export class ProteinViewer {
         this.handleVisibilityChangeCallback = null;
     }
 
-    initialize(uniprotId, repeatRegions) {
-        const pdbPath = `https://alphafold.ebi.ac.uk/files/AF-${uniprotId}-F1-model_v4.pdb`;
-        const proteinViewerElement = document.getElementById('proteinViewer');
-        
-        this.viewer = $3Dmol.createViewer(proteinViewerElement, {
-            backgroundColor: "white",
-            antialias: true,
-            powerPreference: "high-performance"
+initialize(uniprotId, repeatRegions) {
+  const proteinViewerElement = document.getElementById('proteinViewer');
+
+  this.viewer = $3Dmol.createViewer(proteinViewerElement, {
+    backgroundColor: "white",
+    antialias: true,
+    powerPreference: "high-performance"
+  });
+
+  return new Promise(async (resolve, reject) => {
+    try {
+      // Ask AlphaFold which file is available for this UniProt ID
+      const { url, format } = await getAfdbUrlAndFormat(uniprotId);
+
+      // Helper to try loading a given URL with a given format
+      const tryLoad = (fileUrl, fmt) => {
+        $.ajax({
+          url: fileUrl,
+          success: (data) => { this.loadModel(data, repeatRegions, fmt); resolve(true); },
+          error: () => reject(new Error(`Failed to fetch ${fileUrl}`))
         });
-        
-        // Return a promise to allow the main app to handle success/failure
-        return new Promise((resolve, reject) => {
-            // Try AlphaFold first, then fall back to local
+      };
+
+      if (url && format) {
+        // Load the remote AFDB file first
+        tryLoad(url, format);
+      } else {
+        // Remote not available → try your local fallbacks (first mmcif, then pdb)
+        const localCif = `../data/AF-${uniprotId}-F1-model_v4.cif`;
+        const localPdb = `../data/AF-${uniprotId}-F1-model_v4.pdb`;
+
+        $.ajax({
+          url: localCif,
+          success: (data) => { this.loadModel(data, repeatRegions, "mmcif"); resolve(true); },
+          error: () => {
             $.ajax({
-                url: pdbPath,
-                success: (data) => {
-                    this.loadModel(data, repeatRegions);
-                    resolve(true); // Model loaded successfully
-                },
-                error: () => {
-                    $.ajax({
-                        url: `../data/AF-${uniprotId}-F1-model_v4.pdb`,
-                        success: (data) => {
-                            this.loadModel(data, repeatRegions);
-                            resolve(true); // Model loaded successfully
-                        },
-                        error: (xhr, status, error) => {
-                            console.log(`No 3D model available for ${uniprotId}`);
-                            this.showLoadingError(`No 3D structure available for ${uniprotId}`);
-                            reject(new Error(`No 3D model available for ${uniprotId}`)); // No model available
-                        }
-                    });
-                }
+              url: localPdb,
+              success: (data) => { this.loadModel(data, repeatRegions, "pdb"); resolve(true); },
+              error: () => {
+                console.log(`No 3D model available for ${uniprotId}`);
+                this.showLoadingError(`No 3D structure available for ${uniprotId}`);
+                reject(new Error(`No 3D model available for ${uniprotId}`));
+              }
             });
+          }
         });
+      }
+    } catch (err) {
+      console.error(err);
+      this.showLoadingError("Error contacting AlphaFold");
+      reject(err);
+    }
+  });
+}
+
+loadModel(data, repeatRegions, format = "pdb") {
+  try {
+    this.hideLoadingIndicator();
+
+    // Use the correct parser: "mmcif" or "pdb"
+    const model = this.viewer.addModel(data, format);
+
+    this.highlightRepeats(repeatRegions);
+
+    if (repeatRegions.length > 0) {
+      const firstRepeat = repeatRegions[0].start;
+      const lastRepeat = repeatRegions[repeatRegions.length - 1].end;
+      this.viewer.zoomTo({ resi: `${firstRepeat}-${lastRepeat}` });
     }
 
-    loadModel(data, repeatRegions) {
-        try {
-            this.hideLoadingIndicator();
-            let model = this.viewer.addModel(data, "pdb");
-            
-            this.highlightRepeats(repeatRegions);
-            
-            if (repeatRegions.length > 0) {
-                const firstRepeat = repeatRegions[0].start;
-                const lastRepeat = repeatRegions[repeatRegions.length - 1].end;
-                this.viewer.zoomTo({resi: `${firstRepeat}-${lastRepeat}`});
-            }
-            
-            this.viewer.rotate(30, {x: 1});
-            this.viewer.rotate(20, {y: 1});
-            
-            if (typeof this.viewer.enableSlabbing === 'function') {
-                this.viewer.enableSlabbing();
-            }
-            
-            this.viewer.render();
-            this.viewerInitialized = true;
-            
-            setTimeout(() => {
-                this.highlightRepeats(repeatRegions);
-                this.startAutoRotation();
-                this.setupManualRotationDetection();
-            }, 100);
-        } catch (error) {
-            console.error("Error in loadModel function:", error);
-            this.showLoadingError("Error loading protein structure");
-        }
+    this.viewer.rotate(30, { x: 1 });
+    this.viewer.rotate(20, { y: 1 });
+
+    if (typeof this.viewer.enableSlabbing === 'function') {
+      this.viewer.enableSlabbing();
     }
 
+    this.viewer.render();
+    this.viewerInitialized = true;
+
+    setTimeout(() => {
+      this.highlightRepeats(repeatRegions);
+      this.startAutoRotation();
+      this.setupManualRotationDetection();
+    }, 100);
+  } catch (error) {
+    console.error("Error in loadModel function:", error);
+    this.showLoadingError("Error loading protein structure");
+  }
+}
     highlightRepeats(repeatRegions) {
         if (!this.viewer || !this.viewerInitialized) return;
         
