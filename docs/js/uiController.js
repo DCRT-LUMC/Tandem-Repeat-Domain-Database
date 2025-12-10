@@ -88,7 +88,7 @@ export class UIController {
         if (exonData && exonData.exons && exonData.exons.length > 0) {
             const transcript = exonData.transcript;
             let exonHtml = `
-                <p>Canonical transcript: <strong>${transcript?.transcript_id || 'Unknown'}</strong> (${transcript?.transcript_name || 'Unknown'})</p>
+                <p>Canonical transcript: <strong>${transcript?.transcript_id || 'Unknown'}</strong> (${transcript?.versioned_transcript_id || 'Unknown'})</p>
                 <p>Exons overlapping repeats: <strong>${exonData.exons.length}</strong></p>
                 
                 <div class="card mb-3">
