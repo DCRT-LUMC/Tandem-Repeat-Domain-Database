@@ -457,7 +457,15 @@
             </button>
         </div>
         <div id="viewerContainer" class="viewer-container collapsible-content">
-            <div class="viewer-controls">
+            <div class="viewer-controls align-items-center">
+                <div class="d-flex align-items-center me-3">
+                    <label for="isoformSelect" class="me-2 mb-0 fw-bold">Isoform Selection:</label>
+                    <select id="isoformSelect" class="form-select form-select-sm" style="width: auto; min-width: 120px;">
+                        <option value="placeholder1">Placeholder 1</option>
+                        <option value="placeholder2">Placeholder 2</option>
+                        <option value="placeholder3">Placeholder 3</option>
+                    </select>
+                </div>
                 <button class="view-button active" id="highlightRepeatsBtn">
                     <i class="fas fa-highlighter me-1"></i> Highlight Repeats
                 </button>

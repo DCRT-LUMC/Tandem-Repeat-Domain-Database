@@ -1,5 +1,125 @@
 [
   {
+    "chrom": "chr10",
+    "chromStart": 60172310,
+    "chromEnd": 60172403,
+    "strand": "-",
+    "reserved": [
+      "12",
+      "12",
+      "120"
+    ],
+    "blockCount": 1,
+    "blockSizes": "93",
+    "chromStarts": "0",
+    "geneName": "ANK3",
+    "aliases": "",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 795-825 on protein Q12955",
+    "repeatType": "ANK",
+    "uniProtId": "Q12955",
+    "repeatLength": 93,
+    "protein_start": 795,
+    "protein_end": 825,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000280772",
+          "versioned_transcript_id": "ENST00000280772.7",
+          "transcript_name": "ENST00000280772",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 44,
+          "strand": "-",
+          "containing_exons": [
+            {
+              "exon_number": 21,
+              "exon_id": "ENSE00003361820",
+              "exon_start": 60172308,
+              "exon_end": 60172403,
+              "protein_start": 795,
+              "protein_end": 826,
+              "overlap_bp": 93,
+              "position": "middle_exon_21",
+              "overlap_percentage": 97.89,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "chrom": "chr4",
+    "chromStart": 113174418,
+    "chromEnd": 113174517,
+    "strand": "+",
+    "reserved": [
+      "12",
+      "12",
+      "120"
+    ],
+    "blockCount": 1,
+    "blockSizes": "99",
+    "chromStarts": "0",
+    "geneName": "ANK2",
+    "aliases": "ANKB",
+    "geneType": "",
+    "status": "Manually reviewed (Swiss-Prot)",
+    "position": "amino acids 30-62 on protein Q01484",
+    "repeatType": "ANK",
+    "uniProtId": "Q01484",
+    "repeatLength": 99,
+    "protein_start": 30,
+    "protein_end": 62,
+    "ensembl_exon_info": {
+      "transcripts_count": 1,
+      "has_canonical_transcript": true,
+      "location_summary": "exonic",
+      "transcripts": [
+        {
+          "transcript_id": "ENST00000357077",
+          "versioned_transcript_id": "ENST00000357077.9",
+          "transcript_name": "ENST00000357077",
+          "is_canonical": true,
+          "biotype": "protein_coding",
+          "location": "exonic",
+          "exon_count": 46,
+          "strand": "+",
+          "containing_exons": [
+            {
+              "exon_number": 2,
+              "exon_id": "ENSE00003506631",
+              "exon_start": 113174416,
+              "exon_end": 113174517,
+              "protein_start": 29,
+              "protein_end": 62,
+              "overlap_bp": 99,
+              "position": "middle_exon_2",
+              "overlap_percentage": 98.02,
+              "coding_status": "fully_coding",
+              "utr_status": "none",
+              "coding_percentage": 100,
+              "phase": 0,
+              "end_phase": 0,
+              "frame_status": "in_frame"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
     "chrom": "chr1",
     "chromStart": 962901,
     "chromEnd": 963233,

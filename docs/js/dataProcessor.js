@@ -38,6 +38,8 @@ export class DataProcessor {
             const firstRepeat = repeats[0];
             const proteinInfo = {
                 uniProtId: firstRepeat.uniProtId,
+                canonicalUniProtId: firstRepeat.canonicalUniProtId || firstRepeat.uniProtId || 'Unknown',
+                uniProtDescription: firstRepeat.uniProtDescription || 'Unknown',
                 geneName: firstRepeat.geneName || 'Unknown',
                 repeatType: firstRepeat.repeatType || 'Unknown',
                 status: firstRepeat.status || 'Unknown',

@@ -9,6 +9,10 @@ export class UIController {
             
         document.getElementById('uniprotLink').textContent = info.uniProtId;
         document.getElementById('uniprotLink').href = `https://www.uniprot.org/uniprotkb/${info.uniProtId}`;
+
+        // NEW: Protein name + canonical-UniProt (as provided by your JSON processing)
+        document.getElementById('uniProtDescription').textContent = info.uniProtDescription || 'Unknown';
+        document.getElementById('canonicalUniProtId').textContent = info.canonicalUniProtId || info.uniProtId || 'Unknown';
         
         document.getElementById('geneName').textContent = info.geneName;
         document.getElementById('repeatType').textContent = info.repeatType;

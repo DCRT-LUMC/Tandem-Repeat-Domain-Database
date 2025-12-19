@@ -1,44 +1,65 @@
-async function getAfdbUrlAndFormat(uniprotId) {
+async function getAfdbUrlAndFormat(uniprotId, preferredAccession = null) {
   // Correct AlphaFold DB endpoint (returns an array of predictions)
   const res = await fetch(`https://alphafold.ebi.ac.uk/api/prediction/${uniprotId}`);
 
   // If AFDB doesn’t have this UniProt ID, return nulls gracefully
   if (!res.ok) {
     console.warn(`AFDB: no prediction for ${uniprotId} (status ${res.status})`);
-    return { url: null, format: null };
-    // Known AFDB docs/examples use /api/prediction/<ID>. (Ref: NAR 2022 paper & AFDB API notes)
+    return { url: null, format: null, chosenAccession: null };
   }
 
   const arr = await res.json();
   if (!Array.isArray(arr) || arr.length === 0) {
     console.warn(`AFDB: empty prediction list for ${uniprotId}`);
-    return { url: null, format: null };
+    return { url: null, format: null, chosenAccession: null };
   }
 
-  // Pick the first model (you can refine if you need a specific isoform)
-  const m = arr[0];
+  // Choose prediction:
+  // 1) If preferredAccession provided, find a prediction whose accession matches it.
+  // 2) Otherwise (or if no match), fall back to the last prediction in the array.
+  const pref = preferredAccession ? String(preferredAccession).trim() : "";
+  let m = null;
 
-  // The API fields have changed over time; check multiple possibilities.
+  if (pref) {
+    m = arr.find(p => {
+      const acc = p.uniprotAccession || p.uniprotId || p.entryId || p.accession;
+      return acc && String(acc).trim() === pref;
+    }) || null;
+  }
+
+  if (!m) m = arr[arr.length - 1];
+
+  const chosenAccession = m?.uniprotAccession || m?.uniprotId || m?.entryId || m?.accession || null;
+
   // Prefer mmCIF (works in 3Dmol) and only then PDB. (3Dmol does not read binaryCIF.)
   const mmcifUrl =
-    m.mmcifUrl ||               // older field
-    m.cifUrl ||                 // some docs/clients use cifUrl
-    m.files?.mmcif?.url ||      // newer nested 'files' shape
+    m.mmcifUrl ||
+    m.cifUrl ||
+    m.files?.mmcif?.url ||
     m.files?.cif?.url || null;
 
-  if (mmcifUrl) return { url: mmcifUrl, format: "mmcif" };
+  if (mmcifUrl) return { url: mmcifUrl, format: "mmcif", chosenAccession };
 
   const pdbUrl =
-    m.pdbUrl ||                 // older field
-    m.files?.pdb?.url || null;  // newer nested 'files' shape
+    m.pdbUrl ||
+    m.files?.pdb?.url || null;
 
-  if (pdbUrl) return { url: pdbUrl, format: "pdb" };
+  if (pdbUrl) return { url: pdbUrl, format: "pdb", chosenAccession };
 
-  // (We deliberately ignore bcif here because 3Dmol can’t read it.)
   console.warn(`AFDB: no mmCIF/PDB URL found for ${uniprotId}`);
-  return { url: null, format: null };
+  return { url: null, format: null, chosenAccession };
 }
 
+async function fetchAfdbPredictions(uniprotId) {
+  const res = await fetch(`https://alphafold.ebi.ac.uk/api/prediction/${uniprotId}`);
+  if (!res.ok) return [];
+  const arr = await res.json();
+  return Array.isArray(arr) ? arr : [];
+}
+
+function predictionAccession(p) {
+  return p?.uniprotAccession || p?.uniprotId || p?.entryId || p?.accession || null;
+}
 
 export class ProteinViewer {
     constructor() {
@@ -50,98 +71,189 @@ export class ProteinViewer {
         this.isViewerInViewport = true;
         this.viewerIntersectionObserver = null;
         this.handleVisibilityChangeCallback = null;
+        this._isoformSelectInitialized = false;
     }
 
-initialize(uniprotId, repeatRegions) {
-  const proteinViewerElement = document.getElementById('proteinViewer');
+    async populateIsoformSelect(uniprotId, canonicalUniProtId = null, preferredAccession = null) {
+        const sel = document.getElementById('isoformSelect');
+        if (!sel) return;
 
-  this.viewer = $3Dmol.createViewer(proteinViewerElement, {
-    backgroundColor: "white",
-    antialias: true,
-    powerPreference: "high-performance"
-  });
+        const arr = await fetchAfdbPredictions(uniprotId);
 
-  return new Promise(async (resolve, reject) => {
-    try {
-      // Ask AlphaFold which file is available for this UniProt ID
-      const { url, format } = await getAfdbUrlAndFormat(uniprotId);
+        // Build unique accession list
+        const accessions = [];
+        for (const p of arr) {
+            const acc = predictionAccession(p);
+            if (!acc) continue;
+            const s = String(acc).trim();
+            if (!s) continue;
+            if (!accessions.includes(s)) accessions.push(s);
+        }
 
-      // Helper to try loading a given URL with a given format
-      const tryLoad = (fileUrl, fmt) => {
-        $.ajax({
-          url: fileUrl,
-          success: (data) => { this.loadModel(data, repeatRegions, fmt); resolve(true); },
-          error: () => reject(new Error(`Failed to fetch ${fileUrl}`))
-        });
-      };
+        // If AlphaFold returns nothing, keep the existing options (don’t wipe the control)
+        if (accessions.length === 0) return;
 
-      if (url && format) {
-        // Load the remote AFDB file first
-        tryLoad(url, format);
-      } else {
-        // Remote not available → try your local fallbacks (first mmcif, then pdb)
-        const localCif = `../data/AF-${uniprotId}-F1-model_v4.cif`;
-        const localPdb = `../data/AF-${uniprotId}-F1-model_v4.pdb`;
+        const canon = canonicalUniProtId ? String(canonicalUniProtId).trim() : "";
+        const pref = preferredAccession ? String(preferredAccession).trim() : "";
 
-        $.ajax({
-          url: localCif,
-          success: (data) => { this.loadModel(data, repeatRegions, "mmcif"); resolve(true); },
-          error: () => {
-            $.ajax({
-              url: localPdb,
-              success: (data) => { this.loadModel(data, repeatRegions, "pdb"); resolve(true); },
-              error: () => {
-                console.log(`No 3D model available for ${uniprotId}`);
-                this.showLoadingError(`No 3D structure available for ${uniprotId}`);
-                reject(new Error(`No 3D model available for ${uniprotId}`));
-              }
+        sel.innerHTML = "";
+
+        // IMPORTANT: only label the true canonical accession, not the currently selected one
+        for (const acc of accessions) {
+            const opt = document.createElement('option');
+            opt.value = acc;
+            opt.textContent = (canon && acc === canon) ? `${acc} (canonical)` : acc;
+            sel.appendChild(opt);
+        }
+
+        // Selection priority: preferredAccession (what we intend/actually load) -> canonical -> first
+        if (pref && accessions.includes(pref)) {
+            sel.value = pref;
+        } else if (canon && accessions.includes(canon)) {
+            sel.value = canon;
+        } else {
+            sel.value = accessions[0];
+        }
+
+        // Attach handler once: selecting an accession forces that accession to be chosen from AFDB
+        if (!this._isoformSelectInitialized) {
+            sel.addEventListener('change', async () => {
+                if (!this.viewer) return;
+
+                // Clear current model
+                try {
+                    this.viewer.removeAllModels();
+                    this.viewer.render();
+                    this.viewerInitialized = false;
+                } catch (_) {
+                    // ignore
+                }
+
+                // Re-initialize using the selected accession as the preferredAccession,
+                // while keeping the canonicalUniProtId unchanged.
+                await this.initialize(uniprotId, this.processedRepeatRegions || [], canonicalUniProtId, sel.value);
             });
-          }
+            this._isoformSelectInitialized = true;
+        }
+    }
+
+    // canonicalUniProtId: the canonical from your data
+    // preferredAccession: the user-selected accession to load (optional)
+    initialize(uniprotId, repeatRegions, canonicalUniProtId = null, preferredAccession = null) {
+        const proteinViewerElement = document.getElementById('proteinViewer');
+
+        this.viewer = $3Dmol.createViewer(proteinViewerElement, {
+            backgroundColor: "white",
+            antialias: true,
+            powerPreference: "high-performance"
         });
-      }
-    } catch (err) {
-      console.error(err);
-      this.showLoadingError("Error contacting AlphaFold");
-      reject(err);
+
+        return new Promise(async (resolve, reject) => {
+            try {
+                // Store for re-initialization from the isoform dropdown
+                this.processedRepeatRegions = repeatRegions;
+
+                // If canonical wasn't passed, try to derive it from the repeatRegions payload
+                if (!canonicalUniProtId && Array.isArray(repeatRegions) && repeatRegions.length > 0) {
+                    canonicalUniProtId = repeatRegions[0]?.canonicalUniProtId || null;
+                }
+
+                // Prefer user-selected accession if present; otherwise prefer canonical
+                const preferred = preferredAccession || canonicalUniProtId || null;
+
+                // Build dropdown using what we intend to load
+                await this.populateIsoformSelect(uniprotId, canonicalUniProtId, preferred);
+
+                // Ask AlphaFold which file is available, preferring the preferred accession match
+                const { url, format, chosenAccession } = await getAfdbUrlAndFormat(uniprotId, preferred);
+
+                // Sync dropdown to the actually chosen accession (API may fall back to last entry)
+                const sel = document.getElementById('isoformSelect');
+                if (sel && chosenAccession) {
+                    const ca = String(chosenAccession).trim();
+                    if (ca && Array.from(sel.options).some(o => o.value === ca)) {
+                        sel.value = ca;
+                    }
+                }
+
+                // Helper to try loading a given URL with a given format
+                const tryLoad = (fileUrl, fmt) => {
+                    $.ajax({
+                        url: fileUrl,
+                        success: (data) => { this.loadModel(data, repeatRegions, fmt); resolve(true); },
+                        error: () => reject(new Error(`Failed to fetch ${fileUrl}`))
+                    });
+                };
+
+                if (url && format) {
+                    tryLoad(url, format);
+                } else {
+                    // Remote not available → try your local fallbacks (first mmcif, then pdb)
+                    // Use chosenAccession if we have it, otherwise fall back to the input uniprotId.
+                    const idForLocal = chosenAccession || canonicalUniProtId || uniprotId;
+                    const localCif = `../data/AF-${idForLocal}-F1-model_v4.cif`;
+                    const localPdb = `../data/AF-${idForLocal}-F1-model_v4.pdb`;
+
+                    $.ajax({
+                        url: localCif,
+                        success: (data) => { this.loadModel(data, repeatRegions, "mmcif"); resolve(true); },
+                        error: () => {
+                            $.ajax({
+                                url: localPdb,
+                                success: (data) => { this.loadModel(data, repeatRegions, "pdb"); resolve(true); },
+                                error: () => {
+                                    console.log(`No 3D model available for ${idForLocal}`);
+                                    this.showLoadingError(`No 3D structure available for ${idForLocal}`);
+                                    reject(new Error(`No 3D model available for ${idForLocal}`));
+                                }
+                            });
+                        }
+                    });
+                }
+            } catch (err) {
+                console.error(err);
+                this.showLoadingError("Error contacting AlphaFold");
+                reject(err);
+            }
+        });
     }
-  });
-}
 
-loadModel(data, repeatRegions, format = "pdb") {
-  try {
-    this.hideLoadingIndicator();
+    loadModel(data, repeatRegions, format = "pdb") {
+        try {
+            this.hideLoadingIndicator();
 
-    // Use the correct parser: "mmcif" or "pdb"
-    const model = this.viewer.addModel(data, format);
+            // Use the correct parser: "mmcif" or "pdb"
+            const model = this.viewer.addModel(data, format);
 
-    this.highlightRepeats(repeatRegions);
+            this.highlightRepeats(repeatRegions);
 
-    if (repeatRegions.length > 0) {
-      const firstRepeat = repeatRegions[0].start;
-      const lastRepeat = repeatRegions[repeatRegions.length - 1].end;
-      this.viewer.zoomTo({ resi: `${firstRepeat}-${lastRepeat}` });
+            if (repeatRegions.length > 0) {
+                const firstRepeat = repeatRegions[0].start;
+                const lastRepeat = repeatRegions[repeatRegions.length - 1].end;
+                this.viewer.zoomTo({ resi: `${firstRepeat}-${lastRepeat}` });
+            }
+
+            this.viewer.rotate(30, { x: 1 });
+            this.viewer.rotate(20, { y: 1 });
+
+            if (typeof this.viewer.enableSlabbing === 'function') {
+                this.viewer.enableSlabbing();
+            }
+
+            this.viewer.render();
+            this.viewerInitialized = true;
+
+            setTimeout(() => {
+                this.highlightRepeats(repeatRegions);
+                this.startAutoRotation();
+                this.setupManualRotationDetection();
+            }, 100);
+        } catch (error) {
+            console.error("Error in loadModel function:", error);
+            this.showLoadingError("Error loading protein structure");
+        }
     }
 
-    this.viewer.rotate(30, { x: 1 });
-    this.viewer.rotate(20, { y: 1 });
-
-    if (typeof this.viewer.enableSlabbing === 'function') {
-      this.viewer.enableSlabbing();
-    }
-
-    this.viewer.render();
-    this.viewerInitialized = true;
-
-    setTimeout(() => {
-      this.highlightRepeats(repeatRegions);
-      this.startAutoRotation();
-      this.setupManualRotationDetection();
-    }, 100);
-  } catch (error) {
-    console.error("Error in loadModel function:", error);
-    this.showLoadingError("Error loading protein structure");
-  }
-}
     highlightRepeats(repeatRegions) {
         if (!this.viewer || !this.viewerInitialized) return;
         

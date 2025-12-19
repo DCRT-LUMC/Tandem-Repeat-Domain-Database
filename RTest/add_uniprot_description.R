@@ -12,8 +12,6 @@ library(dplyr)
 library(purrr)
 library(BiocGenerics)
 library(IRanges)
-library(parallel)
-library(BiocParallel)
 
 # Load the Ensembl database
 cat("Loading EnsDb.Hsapiens.v113 from AnnotationHub...\n")
@@ -67,54 +65,97 @@ process_repeat <- function(repeat_data, ensdb) {
   start <- as.integer(repeat_data$chromStart)
   end <- as.integer(repeat_data$chromEnd)
   strand <- repeat_data$strand
-  
-  # Get overlapping transcripts
-  transcripts_result <- get_overlapping_transcripts(chrom, start, end, strand, ensdb)
-  
+
   description <- NA
   uniProtIdCanonical <- NA
-  
-  if (!is.null(transcripts_result) && length(transcripts_result) > 0) {
-    # Use the first canonical transcript found
-    transcript <- transcripts_result[1]
-    gene_id <- transcript$gene_id
-    
-    # Fetch DESCRIPTION and UNIPROTID
+
+  # Prefer lookup by the UniProt ID present in the JSON
+  avail_cols <- columns(ensdb)
+  if (!is.null(repeat_data$uniProtId) && !is.na(repeat_data$uniProtId) && "UNIPROTID" %in% avail_cols) {
+    # Normalize: remove isoform suffix (-#) if present, and take first token if multiple IDs are present
+    up_raw <- as.character(repeat_data$uniProtId)
+    up_raw <- strsplit(up_raw, "[;,]")[[1]][1]
+    up_raw <- trimws(up_raw)
+
+    # Query EnsDb may store isoforms like Q01484-4; use base accession for matching
+    up_base <- sub("-.*$", "", up_raw)
+
+    cols_to_fetch <- c("UNIPROTID")
+    if ("DESCRIPTION" %in% avail_cols) cols_to_fetch <- c(cols_to_fetch, "DESCRIPTION")
+
     tryCatch({
-      # Check available columns to avoid errors
-      avail_cols <- columns(ensdb)
-      cols_to_fetch <- c()
-      if ("DESCRIPTION" %in% avail_cols) cols_to_fetch <- c(cols_to_fetch, "DESCRIPTION")
-      if ("UNIPROTID" %in% avail_cols) cols_to_fetch <- c(cols_to_fetch, "UNIPROTID")
-      
-      if (length(cols_to_fetch) > 0) {
-        info <- select(ensdb, keys = gene_id, keytype = "GENEID", columns = cols_to_fetch)
-        
-        if (nrow(info) > 0) {
-          if ("DESCRIPTION" %in% colnames(info)) {
-             desc <- info$DESCRIPTION[1]
-             if (!is.na(desc)) {
-               description <- desc
-             }
+      info_up <- ensembldb::select(
+        ensdb,
+        keys = up_base,
+        keytype = "UNIPROTID",
+        columns = cols_to_fetch
+      )
+
+      if (!is.null(info_up) && nrow(info_up) > 0) {
+        if ("DESCRIPTION" %in% colnames(info_up)) {
+          desc <- info_up$DESCRIPTION[1]
+          if (!is.na(desc)) {
+            # Strip bracketed source suffix if present
+            description <- trimws(gsub("\\s*\\[.*\\]\\s*$", "", desc))
           }
-          
-          if ("UNIPROTID" %in% colnames(info)) {
-            uids <- unique(info$UNIPROTID[!is.na(info$UNIPROTID)])
-            if (length(uids) > 0) {
-              uniProtIdCanonical <- paste(uids, collapse = ";")
-            }
-          }
+        }
+
+        # Prefer isoform UniProt IDs that contain '-'
+        uids <- unique(info_up$UNIPROTID[!is.na(info_up$UNIPROTID)])
+        iso_uids <- uids[grepl("-", uids, fixed = TRUE)]
+        if (length(iso_uids) > 0) {
+          uniProtIdCanonical <- iso_uids[1]
         }
       }
     }, error = function(e) {
-      # Silent fail
+      # silent fail; will fall back below
     })
   }
-  
+
+  # Fallback: current coordinate -> canonical transcript -> gene_id lookup
+  if (is.na(description) || is.na(uniProtIdCanonical)) {
+    transcripts_result <- get_overlapping_transcripts(chrom, start, end, strand, ensdb)
+
+    if (!is.null(transcripts_result) && length(transcripts_result) > 0) {
+      transcript <- transcripts_result[1]
+      gene_id <- transcript$gene_id
+
+      tryCatch({
+        avail_cols <- columns(ensdb)
+        cols_to_fetch <- c()
+        if (is.na(description) && "DESCRIPTION" %in% avail_cols) cols_to_fetch <- c(cols_to_fetch, "DESCRIPTION")
+        if (is.na(uniProtIdCanonical) && "UNIPROTID" %in% avail_cols) cols_to_fetch <- c(cols_to_fetch, "UNIPROTID")
+
+        if (length(cols_to_fetch) > 0) {
+          info <- ensembldb::select(ensdb, keys = gene_id, keytype = "GENEID", columns = cols_to_fetch)
+
+          if (nrow(info) > 0) {
+            if (is.na(description) && "DESCRIPTION" %in% colnames(info)) {
+              desc <- info$DESCRIPTION[1]
+              if (!is.na(desc)) {
+                description <- trimws(gsub("\\s*\\[.*\\]\\s*$", "", desc))
+              }
+            }
+
+            if (is.na(uniProtIdCanonical) && "UNIPROTID" %in% colnames(info)) {
+              uids <- unique(info$UNIPROTID[!is.na(info$UNIPROTID)])
+              iso_uids <- uids[grepl("-", uids, fixed = TRUE)]
+              if (length(iso_uids) > 0) {
+                uniProtIdCanonical <- iso_uids[1]
+              }
+            }
+          }
+        }
+      }, error = function(e) {
+        # Silent fail
+      })
+    }
+  }
+
   # Reconstruct list to insert fields after uniProtId
   new_repeat_data <- list()
   found_target <- FALSE
-  
+
   keys <- names(repeat_data)
   for (k in keys) {
     new_repeat_data[[k]] <- repeat_data[[k]]
@@ -124,12 +165,12 @@ process_repeat <- function(repeat_data, ensdb) {
       found_target <- TRUE
     }
   }
-  
+
   if (!found_target) {
     new_repeat_data[["description"]] <- description
     new_repeat_data[["uniProtIdCanonical"]] <- uniProtIdCanonical
   }
-  
+
   return(new_repeat_data)
 }
 
@@ -158,32 +199,18 @@ simple_process_repeat_data <- function(input_file, output_file, limit = NULL, ra
       }
     }
   } else if (!is.null(limit) && is.numeric(limit) && limit > 0) {
-    valid_repeats <- valid_repeats[1:min(limit, length(valid_repeats))]
+    n_keep <- min(limit, length(valid_repeats))
+    valid_repeats <- if (n_keep > 0) valid_repeats[seq_len(n_keep)] else list()
     cat("Processing first", length(valid_repeats), "out of", length(repeats), "repeats...\n")
   }
   
-  # Parallel processing setup
-  num_cores <- 12
-  cat("Using", num_cores, "cores for processing with BiocParallel...\n")
+  cat("Processing repeats sequentially...\n")
   
-  processed_repeats <- NULL
-  tryCatch({
-    bp_param <- MulticoreParam(workers = num_cores, progressbar = TRUE, stop.on.error = FALSE, tasks = min(100, length(valid_repeats)))
-    register(bp_param)
-    
-    cat("Processing repeats in parallel...\n")
-    processed_repeats <- bplapply(valid_repeats, function(repeat_data) {
-      result <- process_repeat(repeat_data, ensdb)
-      return(result)
-    }, BPPARAM = bp_param)
-    
-    cat("Parallel processing completed successfully.\n")
-  }, error = function(e) {
-    cat("Parallel processing failed:", conditionMessage(e), "\nFalling back to sequential...\n")
-    processed_repeats <<- lapply(valid_repeats, function(repeat_data) {
-      process_repeat(repeat_data, ensdb)
-    })
+  processed_repeats <- lapply(seq_along(valid_repeats), function(i) {
+    if (i %% 50 == 0) cat(sprintf("Processing %d/%d...\r", i, length(valid_repeats)))
+    process_repeat(valid_repeats[[i]], ensdb)
   })
+  cat("\n")
   
   cat("Writing results to", output_file, "...\n")
   write_json(processed_repeats, output_file, auto_unbox = TRUE, pretty = TRUE)
