@@ -37,3 +37,31 @@ def get_raw_repeats():
         "count": len(repeats_data),
         "results": repeats_data[:10]
     }
+
+@app.get("/api/repeats")
+def get_repeats():
+    results = []
+
+    for item in repeats_data:
+        gene = item.get("geneName", "Unknown")
+
+        results.append({
+            "gene": gene,
+            "uniprot_id": item.get("uniProtId"),
+            "repeat_type": item.get("repeatType"),
+            "status": item.get("status"),
+            "chrom": item.get("chrom"),
+            "protein_start": item.get("protein_start"),
+            "protein_end": item.get("protein_end"),
+            "block_count": item.get("blockCount"),
+            "eligibility": gene_eligibility.get(gene, "N/A"),
+            "source": item
+        })
+
+    return {
+        "page": 1,
+        "page_size": len(results),
+        "total_results": len(results),
+        "total_pages": 1,
+        "results": results[:50]
+    }
