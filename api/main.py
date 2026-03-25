@@ -321,3 +321,115 @@ def get_proteins(
         "total_pages": total_pages,
         "results": paginated_results
     }
+
+
+
+@app.get("/api/proteins")
+def get_proteins(
+    gene: str | None = None,
+    uniprot_id: str | None = None,
+    repeat_type: str | None = None,
+    status: str | None = None,
+    eligibility: str | None = None,
+    single_repeat_exon: bool = False,
+    page: int = Query(1, ge=1),
+    page_size: int = Query(50, ge=1, le=200),
+):
+    proteins = {}
+
+    for row in ALL_REPEAT_EXON_MATCHES:
+        key = row["uniprot_id"]
+        if not key:
+            continue
+
+        if key not in proteins:
+            proteins[key] = {
+                "gene": row["gene"],
+                "uniprot_id": row["uniprot_id"],
+                "repeat_type": row["repeat_type"],
+                "status": row["status"],
+                "chrom": row["chrom"],
+                "eligibility": row["eligibility"],
+                "repeat_count": 0,
+                "transcript_ids": set(),
+                "exon_ids": set(),
+                "exon_numbers": set(),
+                "has_in_frame_exons": False,
+                "has_fully_coding_exons": False,
+                "has_single_repeat_exon": False,
+                "source_repeats": []
+            }
+
+        protein = proteins[key]
+        protein["transcript_ids"].add(row["transcript_id"])
+        protein["exon_ids"].add(row["exon_id"])
+        protein["exon_numbers"].add(row["exon_number"])
+
+        if row["frame_status"] == "in_frame":
+            protein["has_in_frame_exons"] = True
+
+        if row["coding_status"] == "fully_coding":
+            protein["has_fully_coding_exons"] = True
+
+        exon_key = (row["transcript_id"], row["exon_id"])
+        if exon_key in SINGLE_REPEAT_EXON_KEYS:
+            protein["has_single_repeat_exon"] = True
+
+        source_repeat = row["source"]
+        repeat_identifier = (
+            source_repeat.get("uniProtId"),
+            source_repeat.get("protein_start"),
+            source_repeat.get("protein_end"),
+            source_repeat.get("position"),
+        )
+
+        if "_seen_repeats" not in protein:
+            protein["_seen_repeats"] = set()
+
+        if repeat_identifier not in protein["_seen_repeats"]:
+            protein["_seen_repeats"].add(repeat_identifier)
+            protein["repeat_count"] += 1
+            protein["source_repeats"].append(source_repeat)
+
+    results = []
+    for protein in proteins.values():
+        protein.pop("_seen_repeats", None)
+
+        protein["transcript_ids"] = sorted([x for x in protein["transcript_ids"] if x is not None])
+        protein["exon_ids"] = sorted([x for x in protein["exon_ids"] if x is not None])
+        protein["exon_numbers"] = sorted([x for x in protein["exon_numbers"] if x is not None])
+
+        if gene and safe_lower(protein["gene"]) != safe_lower(gene):
+            continue
+
+        if uniprot_id and safe_lower(protein["uniprot_id"]) != safe_lower(uniprot_id):
+            continue
+
+        if repeat_type and safe_lower(protein["repeat_type"]) != safe_lower(repeat_type):
+            continue
+
+        if status and safe_lower(protein["status"]) != safe_lower(status):
+            continue
+
+        if eligibility and safe_lower(protein["eligibility"]) != safe_lower(eligibility):
+            continue
+
+        if single_repeat_exon and not protein["has_single_repeat_exon"]:
+            continue
+
+        results.append(protein)
+
+    total_results = len(results)
+    total_pages = math.ceil(total_results / page_size) if total_results > 0 else 0
+
+    start_idx = (page - 1) * page_size
+    end_idx = start_idx + page_size
+    paginated_results = results[start_idx:end_idx]
+
+    return {
+        "page": page,
+        "page_size": page_size,
+        "total_results": total_results,
+        "total_pages": total_pages,
+        "results": paginated_results
+    }
