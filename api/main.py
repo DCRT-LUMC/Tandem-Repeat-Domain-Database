@@ -152,6 +152,9 @@ def get_repeats(
     transcript_id: str | None = None,
     exon_id: str | None = None,
     exon_number: str | None = None,
+    chrom: str | None = None,
+    start: int | None = None,
+    end: int | None = None,
     single_repeat_exon: bool = False,
     page: int = Query(1, ge=1),
     page_size: int = Query(50, ge=1, le=200),
@@ -172,6 +175,19 @@ def get_repeats(
             continue
 
         if exon_number is not None and str(row["exon_number"]) != str(exon_number):
+            continue
+
+        if chrom and safe_lower(row["chrom"]) != safe_lower(chrom):
+            continue
+
+        # Overlap logic for genomic interval queries
+        row_start = row.get("chrom_start")
+        row_end = row.get("chrom_end")
+
+        if start is not None and row_end is not None and row_end < start:
+            continue
+
+        if end is not None and row_start is not None and row_start > end:
             continue
 
         if single_repeat_exon:
