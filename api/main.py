@@ -73,8 +73,8 @@ def flatten_repeat_exon_matches():
                     "exon_number": exon.get("exon_number"),
                     "frame_status": exon.get("frame_status"),
                     "coding_status": exon.get("coding_status"),
-                    "transcript_start": exon.get("transcript_start"),
-                    "transcript_end": exon.get("transcript_end"),
+                    "exon_start": exon.get("exon_start"),
+                    "exon_end": exon.get("exon_end"),
                     "source": item
                 })
 
