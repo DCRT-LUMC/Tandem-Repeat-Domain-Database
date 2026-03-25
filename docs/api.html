@@ -18,193 +18,182 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <img src="./trexome db logo.png" alt="TReXome DB" class="navbar-icon me-2">TReXome DB
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="api.html">API</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="./trexome db logo.png" alt="TReXome DB" class="navbar-icon me-2">TReXome DB
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="api.html">API</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>TReXome DB API</h1>
+        <p>Programmatic access to tandem repeat domain data</p>
     </div>
-</nav>
 
-  <section class="api-hero">
-    <h1>TReXome DB API</h1>
-    <p>
-      The TReXome DB API provides public read-only access to tandem repeat domain data,
-      including repeat-level records, exon associations, transcript identifiers, and
-      protein-level summaries. It is intended for integration into external analysis
-      tools, pipelines, and visualisation platforms.
-    </p>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
 
-    <div class="api-button-row">
-      <a class="btn" href="https://tandem-repeat-domain-database.onrender.com/docs" target="_blank" rel="noopener noreferrer">
-        Open Interactive API Docs
-      </a>
-      <a class="btn" href="https://tandem-repeat-domain-database.onrender.com/api/repeats" target="_blank" rel="noopener noreferrer">
-        View /api/repeats
-      </a>
-      <a class="btn" href="https://tandem-repeat-domain-database.onrender.com/api/proteins" target="_blank" rel="noopener noreferrer">
-        View /api/proteins
-      </a>
-    </div>
-  </section>
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-code me-2"></i> API overview
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            The TReXome DB API provides public read-only access to tandem repeat domain data,
+                            including repeat-level records, exon associations, transcript identifiers, and
+                            protein-level summaries. It is intended for integration into external analysis
+                            tools, pipelines, and visualisation platforms.
+                        </p>
 
-  <section class="api-section">
-    <h2>Available endpoints</h2>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <a class="btn btn-primary btn-sm" href="https://tandem-repeat-domain-database.onrender.com/docs" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-book me-1"></i> Interactive API Docs
+                            </a>
+                            <a class="btn btn-outline-primary btn-sm" href="https://tandem-repeat-domain-database.onrender.com/api/repeats" target="_blank" rel="noopener noreferrer">
+                                View /api/repeats
+                            </a>
+                            <a class="btn btn-outline-primary btn-sm" href="https://tandem-repeat-domain-database.onrender.com/api/proteins" target="_blank" rel="noopener noreferrer">
+                                View /api/proteins
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="api-grid">
-      <div class="api-card">
-        <h3>Repeat-level endpoint</h3>
-        <p>
-          Returns one row per repeat–exon match, including flattened repeat and exon
-          fields together with the original source object.
-        </p>
-        <div class="endpoint">GET /api/repeats</div>
-      </div>
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <i class="fas fa-plug me-2"></i> Available endpoints
+                    </div>
+                    <div class="card-body">
+                        <p><strong>GET /api/repeats</strong><br>
+                        Returns one row per repeat–exon match, including flattened repeat and exon fields together with the original source object.</p>
 
-      <div class="api-card">
-        <h3>Protein-level endpoint</h3>
-        <p>
-          Returns one row per protein, aggregating repeat counts, transcript IDs,
-          exon IDs, exon numbers, and summary properties.
-        </p>
-        <div class="endpoint">GET /api/proteins</div>
-      </div>
+                        <p><strong>GET /api/proteins</strong><br>
+                        Returns one row per protein, aggregating repeat counts, transcript IDs, exon IDs, exon numbers, and summary properties.</p>
 
-      <div class="api-card">
-        <h3>Interactive documentation</h3>
-        <p>
-          Explore parameters and test requests directly in the built-in OpenAPI page.
-        </p>
-        <div class="endpoint">GET /docs</div>
-      </div>
-    </div>
-  </section>
+                        <p class="mb-0"><strong>GET /docs</strong><br>
+                        Interactive OpenAPI documentation for exploring parameters and testing requests.</p>
+                    </div>
+                </div>
 
-  <section class="api-section">
-    <h2>Common filters</h2>
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <i class="fas fa-filter me-2"></i> Common filters
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Endpoint</th>
+                                        <th>Parameter</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>/api/repeats</code></td>
+                                        <td><code>gene</code></td>
+                                        <td>Filter by gene symbol.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/api/repeats</code></td>
+                                        <td><code>uniprot_id</code></td>
+                                        <td>Filter by UniProt accession.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/api/repeats</code></td>
+                                        <td><code>transcript_id</code></td>
+                                        <td>Filter by Ensembl transcript ID.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/api/repeats</code></td>
+                                        <td><code>exon_id</code></td>
+                                        <td>Filter by Ensembl exon ID.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/api/repeats</code></td>
+                                        <td><code>exon_number</code></td>
+                                        <td>Filter by exon number.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/api/repeats</code></td>
+                                        <td><code>chrom</code>, <code>start</code>, <code>end</code></td>
+                                        <td>Query repeats overlapping a genomic region.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/api/repeats</code></td>
+                                        <td><code>single_repeat_exon</code></td>
+                                        <td>Restrict to exons that are in-frame, fully coding, and contain exactly one repeat.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/api/repeats</code> and <code>/api/proteins</code></td>
+                                        <td><code>page</code>, <code>page_size</code></td>
+                                        <td>Pagination parameters. Maximum page size is 200.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>/api/proteins</code></td>
+                                        <td><code>gene</code>, <code>uniprot_id</code>, <code>repeat_type</code>, <code>status</code>, <code>eligibility</code></td>
+                                        <td>Protein-level filters.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="api-table-wrap">
-      <table class="api-table">
-        <thead>
-          <tr>
-            <th>Endpoint</th>
-            <th>Parameter</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>/api/repeats</code></td>
-            <td><code>gene</code></td>
-            <td>Filter by gene symbol.</td>
-          </tr>
-          <tr>
-            <td><code>/api/repeats</code></td>
-            <td><code>uniprot_id</code></td>
-            <td>Filter by UniProt accession.</td>
-          </tr>
-          <tr>
-            <td><code>/api/repeats</code></td>
-            <td><code>transcript_id</code></td>
-            <td>Filter by Ensembl transcript ID.</td>
-          </tr>
-          <tr>
-            <td><code>/api/repeats</code></td>
-            <td><code>exon_id</code></td>
-            <td>Filter by Ensembl exon ID.</td>
-          </tr>
-          <tr>
-            <td><code>/api/repeats</code></td>
-            <td><code>exon_number</code></td>
-            <td>Filter by exon number.</td>
-          </tr>
-          <tr>
-            <td><code>/api/repeats</code></td>
-            <td><code>chrom</code>, <code>start</code>, <code>end</code></td>
-            <td>Query repeats overlapping a genomic region.</td>
-          </tr>
-          <tr>
-            <td><code>/api/repeats</code></td>
-            <td><code>single_repeat_exon</code></td>
-            <td>Restrict to exons that are in-frame, fully coding, and contain exactly one repeat.</td>
-          </tr>
-          <tr>
-            <td><code>/api/repeats</code> and <code>/api/proteins</code></td>
-            <td><code>page</code>, <code>page_size</code></td>
-            <td>Pagination parameters. Maximum page size is 200.</td>
-          </tr>
-          <tr>
-            <td><code>/api/proteins</code></td>
-            <td><code>gene</code>, <code>uniprot_id</code>, <code>repeat_type</code>, <code>status</code>, <code>eligibility</code></td>
-            <td>Protein-level filters.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <i class="fas fa-terminal me-2"></i> Example requests
+                    </div>
+                    <div class="card-body">
+                        <p><strong>All repeats for one gene</strong><br>
+                        <code>GET https://tandem-repeat-domain-database.onrender.com/api/repeats?gene=KLHL17</code></p>
 
-  <section class="api-section">
-    <h2>Example requests</h2>
+                        <p><strong>Filter by exon ID</strong><br>
+                        <code>GET https://tandem-repeat-domain-database.onrender.com/api/repeats?exon_id=ENSE00001365077</code></p>
 
-    <div class="api-grid">
-      <div class="api-card">
-        <h3>All repeats for one gene</h3>
-        <div class="code-block"><code>GET https://tandem-repeat-domain-database.onrender.com/api/repeats?gene=KLHL17</code></div>
-      </div>
+                        <p><strong>Filter by genomic interval</strong><br>
+                        <code>GET https://tandem-repeat-domain-database.onrender.com/api/repeats?chrom=chr1&amp;start=963000&amp;end=964000</code></p>
 
-      <div class="api-card">
-        <h3>Filter by exon ID</h3>
-        <div class="code-block"><code>GET https://tandem-repeat-domain-database.onrender.com/api/repeats?exon_id=ENSE00001365077</code></div>
-      </div>
+                        <p><strong>Single-repeat candidate exons</strong><br>
+                        <code>GET https://tandem-repeat-domain-database.onrender.com/api/repeats?single_repeat_exon=true</code></p>
 
-      <div class="api-card">
-        <h3>Filter by genomic interval</h3>
-        <div class="code-block"><code>GET https://tandem-repeat-domain-database.onrender.com/api/repeats?chrom=chr1&amp;start=963000&amp;end=964000</code></div>
-      </div>
+                        <p><strong>Protein-level summary</strong><br>
+                        <code>GET https://tandem-repeat-domain-database.onrender.com/api/proteins?gene=KLHL17</code></p>
 
-      <div class="api-card">
-        <h3>Single-repeat candidate exons</h3>
-        <div class="code-block"><code>GET https://tandem-repeat-domain-database.onrender.com/api/repeats?single_repeat_exon=true</code></div>
-      </div>
+                        <p class="mb-0"><strong>Paginated query</strong><br>
+                        <code>GET https://tandem-repeat-domain-database.onrender.com/api/repeats?page=1&amp;page_size=50</code></p>
+                    </div>
+                </div>
 
-      <div class="api-card">
-        <h3>Protein-level summary</h3>
-        <div class="code-block"><code>GET https://tandem-repeat-domain-database.onrender.com/api/proteins?gene=KLHL17</code></div>
-      </div>
-
-      <div class="api-card">
-        <h3>Paginated query</h3>
-        <div class="code-block"><code>GET https://tandem-repeat-domain-database.onrender.com/api/repeats?page=1&amp;page_size=50</code></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="api-section">
-    <h2>Response format</h2>
-
-    <div class="api-card">
-      <p>Responses are paginated and follow a general structure like this:</p>
-      <div class="code-block">
-<code>{
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <i class="fas fa-file-code me-2"></i> Response format
+                    </div>
+                    <div class="card-body">
+                        <p>Responses are paginated and follow this general structure:</p>
+<pre class="mb-3"><code>{
   "page": 1,
   "page_size": 50,
   "total_results": 124,
@@ -216,30 +205,38 @@
       "repeat_type": "Kelch"
     }
   ]
-}</code>
-      </div>
+}</code></pre>
+                        <p class="mb-0">
+                            The API is public and read-only. Repeat-level results include flattened fields for easy downstream use, as well as the original nested source object for full context.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <i class="fas fa-lightbulb me-2"></i> Suggested use cases
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-0">
+                            Tool integration, variant interpretation workflows, candidate exon prioritisation,
+                            custom visualisation, and downstream data reuse.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 
-    <div class="note-box">
-      The API is public and read-only. Repeat-level results include flattened fields for easy downstream use, as well as the original nested source object for full context.
-    </div>
-  </section>
+    <footer>
+        <div class="container text-center">
+            <p class="mb-0">
+                <i class="fas fa-database me-1"></i>
+                TReXome DB - <span class="text-primary">Tandem Repeat Domain Database</span>
+            </p>
+        </div>
+    </footer>
 
-  <section class="api-section">
-    <h2>Suggested use cases</h2>
-    <div>
-      <span class="pill">tool integration</span>
-      <span class="pill">variant interpretation workflows</span>
-      <span class="pill">candidate exon prioritisation</span>
-      <span class="pill">custom visualisation</span>
-      <span class="pill">data reuse</span>
-    </div>
-  </section>
-
-  <div class="api-footer-space"></div>
-
-  <footer>
-    <p>TReXome DB - Tandem Repeat Domain Database</p>
-  </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
