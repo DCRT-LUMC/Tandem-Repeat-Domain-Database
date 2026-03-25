@@ -44,19 +44,33 @@ def get_repeats():
 
     for item in repeats_data:
         gene = item.get("geneName", "Unknown")
+        exon_info = item.get("ensembl_exon_info", {})
+        transcripts = exon_info.get("transcripts", [])
 
-        results.append({
-            "gene": gene,
-            "uniprot_id": item.get("uniProtId"),
-            "repeat_type": item.get("repeatType"),
-            "status": item.get("status"),
-            "chrom": item.get("chrom"),
-            "protein_start": item.get("protein_start"),
-            "protein_end": item.get("protein_end"),
-            "block_count": item.get("blockCount"),
-            "eligibility": gene_eligibility.get(gene, "N/A"),
-            "source": item
-        })
+        for transcript in transcripts:
+            transcript_id = transcript.get("transcript_id")
+            containing_exons = transcript.get("containing_exons", [])
+
+            for exon in containing_exons:
+                results.append({
+                    "gene": gene,
+                    "uniprot_id": item.get("uniProtId"),
+                    "repeat_type": item.get("repeatType"),
+                    "status": item.get("status"),
+                    "chrom": item.get("chrom"),
+                    "protein_start": item.get("protein_start"),
+                    "protein_end": item.get("protein_end"),
+                    "block_count": item.get("blockCount"),
+                    "eligibility": gene_eligibility.get(gene, "N/A"),
+                    "transcript_id": transcript_id,
+                    "exon_id": exon.get("exon_id"),
+                    "exon_number": exon.get("exon_number"),
+                    "frame_status": exon.get("frame_status"),
+                    "coding_status": exon.get("coding_status"),
+                    "transcript_start": exon.get("transcript_start"),
+                    "transcript_end": exon.get("transcript_end"),
+                    "source": item
+                })
 
     return {
         "page": 1,
