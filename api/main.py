@@ -59,24 +59,26 @@ def flatten_repeat_exon_matches():
 
             for exon in containing_exons:
                 results.append({
-                    "gene": gene,
-                    "uniprot_id": item.get("uniProtId"),
-                    "repeat_type": item.get("repeatType"),
-                    "status": item.get("status"),
-                    "chrom": item.get("chrom"),
-                    "protein_start": item.get("protein_start"),
-                    "protein_end": item.get("protein_end"),
-                    "block_count": item.get("blockCount"),
-                    "eligibility": gene_eligibility.get(gene, "N/A"),
-                    "transcript_id": transcript_id,
-                    "exon_id": exon.get("exon_id"),
-                    "exon_number": exon.get("exon_number"),
-                    "frame_status": exon.get("frame_status"),
-                    "coding_status": exon.get("coding_status"),
-                    "exon_start": exon.get("exon_start"),
-                    "exon_end": exon.get("exon_end"),
-                    "source": item
-                })
+                "gene": gene,
+                "uniprot_id": item.get("uniProtId"),
+                "repeat_type": item.get("repeatType"),
+                "status": item.get("status"),
+                "chrom": item.get("chrom"),
+                "chrom_start": item.get("chromStart"),
+                "chrom_end": item.get("chromEnd"),
+                "protein_start": item.get("protein_start"),
+                "protein_end": item.get("protein_end"),
+                "block_count": item.get("blockCount"),
+                "eligibility": gene_eligibility.get(gene, "N/A"),
+                "transcript_id": transcript_id,
+                "exon_id": exon.get("exon_id"),
+                "exon_number": exon.get("exon_number"),
+                "frame_status": exon.get("frame_status"),
+                "coding_status": exon.get("coding_status"),
+                "exon_start": exon.get("exon_start"),
+                "exon_end": exon.get("exon_end"),
+                "source": item
+            })
 
     return results
 
