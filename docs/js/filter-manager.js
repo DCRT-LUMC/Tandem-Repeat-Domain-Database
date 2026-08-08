@@ -79,9 +79,10 @@ class FilterManager {
             if ($('#repeatCountCheck').is(':checked')) {
                 const minCount = parseInt($('#repeatCountValue').val());
                 
-                const repeatCountFilter = (settings, data, dataIndex) => {
-                    const count = parseInt(data[5].replace(/<[^>]*>/g, ''));
-                    return count >= minCount;
+                const repeatCountFilter = (settings, data, dataIndex, rowData) => {
+                    const counts = Object.values(rowData.repeatTypeCounts || {});
+                    const maxCount = counts.length > 0 ? Math.max(...counts) : 0;
+                    return maxCount >= minCount;
                 };
                 
                 this.addCustomFilter('repeatCountFilter', repeatCountFilter);
