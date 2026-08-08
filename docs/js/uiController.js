@@ -28,15 +28,19 @@ export class UIController {
         document.getElementById('genomicRange').textContent = info.genomicRange || 'Not available';
         
         // Update repeat summary
-        document.getElementById('repeatSummary').textContent = 
-            `Protein ${info.uniProtId} (${info.geneName}) contains ${repeats.length} ${info.repeatType} repeats in positions:`;
+        const repeatSummaryText = Object.entries(info.repeatTypeCounts || {})
+            .map(([type, count]) => `${count} ${type} repeat${count === 1 ? '' : 's'}`)
+            .join(', ');
+        
+        document.getElementById('repeatSummary').textContent =
+            `Protein ${info.uniProtId} (${info.geneName}) contains ${repeatSummaryText} in positions:`;
         
         // Create repeat list items
         const repeatList = document.getElementById('repeatList');
         repeatList.innerHTML = '';
         repeats.forEach(repeat => {
             const li = document.createElement('li');
-            li.textContent = `${repeat.start}-${repeat.end} (${repeat.length} amino acids)`;
+            li.textContent = `${repeat.label}: ${repeat.start}-${repeat.end} (${repeat.length} amino acids)`;
             repeatList.appendChild(li);
         });
         
