@@ -110,7 +110,7 @@ export class UIController {
                         <div class="form-check">
                             <input class="form-check-input exon-filter" type="checkbox" value="blockcount1mixed" id="blockcount1mixed" checked>
                             <label class="form-check-label" for="blockcount1mixed">
-                                Has blockCount = 1 (can include other blockCounts)
+                                Has blockCount = 1 xxxx (can include other blockCounts)
                             </label>
                         </div>
                         <div class="form-check">
