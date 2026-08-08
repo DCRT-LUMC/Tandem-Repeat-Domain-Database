@@ -130,7 +130,7 @@ export class UIController {
                 
                 <div class="mb-2">
                     <div class="legend-item exon-legend-item">
-                        <strong>Exon Boundaries:</strong>&nbsp;genomic coordinates where exon overlaps with repeat regions
+                        <strong>Exon Boundaries:</strong>&nbsp;Exon boundaries indicated by start and end amino acid number of the exon
                     </div>
                     <div class="legend-item exon-legend-item">
                         <strong>Coding Status:</strong>
@@ -142,15 +142,15 @@ export class UIController {
                     <div class="legend-item exon-legend-item">
                         <strong>Frame Status:</strong>
                         <ul class="mb-0 mt-1" style="font-size: 0.9em;">
-                            <li><em>In frame</em> - exon length maintains reading frame (divisible by 3)</li>
-                            <li><em>Out of frame</em> - exon length shifts reading frame</li>
+                            <li><em>In frame</em> - exon length in nucleotides divisible by 3</li>
+                            <li><em>Out of frame</em> - exon length in nucleotides not divisble by 3</li>
                         </ul>
                     </div>
                     <div class="legend-item exon-legend-item">
-                        <strong>Start/End Phase:</strong>&nbsp;reading frame position at exon boundaries (0, 1, or 2)
+                        <strong>Start/End Phase:</strong>&nbsp;Reading frame position at exon boundaries (0, 1, or 2)
                     </div>
                     <div class="legend-item exon-legend-item">
-                        Overlap %: percentage of exon covered by repeats
+                        <strong>Overlap %:</strong>&nbsp; Percentage of exon covered by repeats
                     </div>
                     <div class="legend-item exon-legend-item">
                         <i class="fas fa-star text-success"></i>&nbsp;&nbsp;Exons matching selected criteria
