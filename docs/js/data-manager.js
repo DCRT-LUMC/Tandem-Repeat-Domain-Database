@@ -281,6 +281,10 @@ class DataManager {
         
         existingProtein.repeatTypeCounts = existingProtein.repeatTypeCounts || {};
         existingProtein.repeatTypeCounts[repeatType] = (existingProtein.repeatTypeCounts[repeatType] || 0) + 1;
+
+        existingProtein.repeatType = Object.keys(existingProtein.repeatTypeCounts)
+            .sort()
+            .join(' / ');
         
         // Merge aliases
         const existingAliases = new Set(existingProtein.aliases);
