@@ -104,25 +104,31 @@ export class UIController {
                         <div class="form-check">
                             <input class="form-check-input exon-filter" type="checkbox" value="blockcount1" id="blockcount1" checked>
                             <label class="form-check-label" for="blockcount1">
-                                Has blockCount = 1 only (non-spanning)
+                                Non-spanning repeats only = Repeat domains contained within a single exon
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input exon-filter" type="checkbox" value="blockcount1mixed" id="blockcount1mixed" checked>
                             <label class="form-check-label" for="blockcount1mixed">
-                                Has blockCount = 1 xxxx (can include other blockCounts)
+                                Non-spanning repeats inclusive = At least one repeat domain is contained within a single exon but other repeats can be exon-exon spaning
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input exon-filter" type="checkbox" value="inframe" id="inframe" checked>
                             <label class="form-check-label" for="inframe">
-                                In-frame exons
+                                In-frame exons = Exon length in nucleotides is divisible by 3
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input exon-filter" type="checkbox" value="fullycoding" id="fullycoding" checked>
                             <label class="form-check-label" for="fullycoding">
-                                Fully coding exons
+                                Fully coding exons = The exon is fully coding and does not contain non-coding sections
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input exon-filter" type="checkbox" value="singlerepeat" id="singlerepeat" checked>
+                            <label class="form-check-label" for="singlerepeat">
+                                Single repeat = The exon contains exactly one
                             </label>
                         </div>
                     </div>
@@ -209,7 +215,8 @@ export class UIController {
                 <tr data-exon-id="${exon.exon_id}" 
                     data-blockcount1="${exon.has_blockcount_1 === true && !exon.has_higher_blockcount}"
                     data-inframe="${(exon.frame_status === 'in_frame' || exon.frame_status === 'in-frame')}" 
-                    data-fullycoding="${exon.coding_status === 'fully_coding'}">
+                    data-fullycoding="${exon.coding_status === 'fully_coding'}"
+                    data-singlerepeat="${Array.isArray(exon.repeat_regions) && exon.repeat_regions.length === 1}">
                     <td class="exon-number">${exon.exon_number}</td>
                     <td>${exonBoundaries}</td>
                     <td>${codingStatus}</td>
@@ -230,6 +237,7 @@ export class UIController {
         const blockcount1MixedSelected = document.getElementById('blockcount1mixed').checked;
         const inframeSelected = document.getElementById('inframe').checked;
         const fullycodingSelected = document.getElementById('fullycoding').checked;
+        const singleRepeatSelected = document.getElementById('singlerepeat').checked;
         
         const rows = document.querySelectorAll('#exonTableBody tr');
         rows.forEach(row => {
@@ -239,8 +247,9 @@ export class UIController {
             const meetsBlockCountMixedCriteria = !blockcount1MixedSelected || row.dataset.blockcount1 === "true" || row.dataset.blockcount1 === "false";
             const meetsInFrameCriteria = !inframeSelected || row.dataset.inframe === "true";
             const meetsFullyCodingCriteria = !fullycodingSelected || row.dataset.fullycoding === "true";
+            const meetsSingleRepeatCriteria = !singleRepeatSelected || row.dataset.singlerepeat === "true";
             
-            const isSpecialExon = meetsBlockCountCriteria && meetsBlockCountMixedCriteria && meetsInFrameCriteria && meetsFullyCodingCriteria;
+            const isSpecialExon = meetsBlockCountCriteria && meetsBlockCountMixedCriteria && meetsInFrameCriteria && meetsFullyCodingCriteria && meetsSingleRepeatCriteria;
             
             if (isSpecialExon) {
                 const exonNumber = exonNumberCell.textContent.trim().split(' ')[0];
@@ -251,7 +260,6 @@ export class UIController {
             }
         });
     }
-
     formatPhase(phase) {
         return phase !== undefined ? phase : 'Unknown';
     }
