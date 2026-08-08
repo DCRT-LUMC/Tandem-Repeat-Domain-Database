@@ -94,14 +94,18 @@ class DataManager {
             const aliases = this.extractAliases(item);
             const proteinMetadata = this.createProteinMetadata(item, aliases);
             
-            if (!uniqueProteins[uniqueKey]) {
-                uniqueProteins[uniqueKey] = {
-                    ...proteinMetadata,
-                    repeats: [item],
-                    repeatCount: 1,
-                    eligibility: this.getGeneEligibility(item.geneName || 'Unknown')
-                };
-            } else {
+          if (!uniqueProteins[uniqueKey]) {
+            const initialRepeatType = item.repeatType || 'Unknown';
+            uniqueProteins[uniqueKey] = {
+                ...proteinMetadata,
+                repeats: [item],
+                repeatCount: 1,
+                repeatTypeCounts: {
+                    [initialRepeatType]: 1
+                },
+                eligibility: this.getGeneEligibility(item.geneName || 'Unknown')
+            };
+        }else {
                 this.mergeProteinData(uniqueProteins[uniqueKey], item, aliases);
             }
         });
@@ -270,8 +274,13 @@ class DataManager {
      * Merge additional protein data into existing entry
      */
     mergeProteinData(existingProtein, newItem, newAliases) {
+        const repeatType = newItem.repeatType || 'Unknown';
+
         existingProtein.repeats.push(newItem);
         existingProtein.repeatCount++;
+        
+        existingProtein.repeatTypeCounts = existingProtein.repeatTypeCounts || {};
+        existingProtein.repeatTypeCounts[repeatType] = (existingProtein.repeatTypeCounts[repeatType] || 0) + 1;
         
         // Merge aliases
         const existingAliases = new Set(existingProtein.aliases);
