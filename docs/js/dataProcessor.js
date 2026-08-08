@@ -35,19 +35,31 @@ export class DataProcessor {
                 return getStart(a) - getStart(b);
             });
             
-            const firstRepeat = repeats[0];
-            const proteinInfo = {
-                uniProtId: firstRepeat.uniProtId,
-                canonicalUniProtId: firstRepeat.canonicalUniProtId || firstRepeat.uniProtId || 'Unknown',
-                uniProtDescription: firstRepeat.uniProtDescription || 'Unknown',
-                geneName: firstRepeat.geneName || 'Unknown',
-                repeatType: firstRepeat.repeatType || 'Unknown',
-                status: firstRepeat.status || 'Unknown',
-                chrom: firstRepeat.chrom || 'Unknown',
-                strand: firstRepeat.strand || 'Unknown',
-                aliases: firstRepeat.aliases || []
-            };
+            const repeatTypesPresent = [...new Set(repeats.map(r => r.repeatType).filter(Boolean))];
+
+            const repeatTypeCounts = repeats.reduce((acc, repeat) => {
+                const type = repeat.repeatType || 'Unknown';
+                acc[type] = (acc[type] || 0) + 1;
+                return acc;
+            }, {});
             
+            const repeatTypeSummary = repeatTypesPresent.length > 0
+                ? repeatTypesPresent.join(' / ')
+                : 'Unknown';
+            
+            const proteinInfo = {
+                uniProtId: repeats[0].uniProtId,
+                canonicalUniProtId: repeats[0].canonicalUniProtId || repeats[0].uniProtId || 'Unknown',
+                uniProtDescription: repeats[0].uniProtDescription || 'Unknown',
+                geneName: repeats[0].geneName || 'Unknown',
+                repeatType: repeatTypeSummary,
+                repeatTypesPresent: repeatTypesPresent,
+                repeatTypeCounts: repeatTypeCounts,
+                status: repeats[0].status || 'Unknown',
+                chrom: repeats[0].chrom || 'Unknown',
+                strand: repeats[0].strand || 'Unknown',
+                aliases: repeats[0].aliases || []
+            };
             // Extract genomic range
             if (repeats.length > 0) {
                 const chromStarts = repeats.map(r => r.chromStart).filter(s => s !== undefined);
@@ -65,7 +77,7 @@ export class DataProcessor {
             this.processedRepeatRegions = repeatRegions;
             
             // Process exon data
-            const exonData = this.extractExonData(repeats);
+            const exonData = this.extractExonData(repeatRegions);
             if (exonData) {
                 this.processedExonData = exonData;
             }
@@ -78,18 +90,46 @@ export class DataProcessor {
     }
 
     extractRepeatRegions(repeats) {
-        const repeatRegions = [];
-        const colorOptions = ["#ff5f5f", "#5fba7d", "#5f87ff", "#ffaf5f", "#bf5fff", "#dc3545", "#fd7e14", "#ffc107", "#20c997", "#0dcaf0"];
-        
-        repeats.forEach((repeat, index) => {
-            const start = repeat.protein_start;
-            const end = repeat.protein_end;
-            
-            if (start && end) {
+    const repeatRegions = [];
+    const colorOptions = ["#ff5f5f", "#5fba7d", "#5f87ff", "#ffaf5f", "#bf5fff", "#dc3545", "#fd7e14", "#ffc107", "#20c997", "#0dcaf0"];
+    const typeCounters = {};
+
+    repeats.forEach((repeat, index) => {
+        const start = repeat.protein_start;
+        const end = repeat.protein_end;
+        const repeatType = repeat.repeatType || 'Unknown';
+
+        typeCounters[repeatType] = (typeCounters[repeatType] || 0) + 1;
+        const label = `${repeatType}${typeCounters[repeatType]}`;
+
+        if (start && end) {
+            const length = end - start + 1;
+            const color = colorOptions[index % colorOptions.length];
+            const colorHex = color.replace("#", "0x");
+
+            repeatRegions.push({
+                start,
+                end,
+                length,
+                color,
+                colorHex,
+                position: repeat.position,
+                ensembl_exon_info: repeat.ensembl_exon_info,
+                chromStart: repeat.chromStart,
+                chromEnd: repeat.chromEnd,
+                repeatType: repeatType,
+                blockCount: repeat.blockCount,
+                label: label
+            });
+        } else {
+            const posMatch = repeat.position && repeat.position.match(/amino acids (\d+)-(\d+)/);
+            if (posMatch) {
+                const start = parseInt(posMatch[1]);
+                const end = parseInt(posMatch[2]);
                 const length = end - start + 1;
                 const color = colorOptions[index % colorOptions.length];
                 const colorHex = color.replace("#", "0x");
-                
+
                 repeatRegions.push({
                     start,
                     end,
@@ -100,35 +140,15 @@ export class DataProcessor {
                     ensembl_exon_info: repeat.ensembl_exon_info,
                     chromStart: repeat.chromStart,
                     chromEnd: repeat.chromEnd,
-                    label: `${repeat.repeatType}${index + 1}`
+                    repeatType: repeatType,
+                    blockCount: repeat.blockCount,
+                    label: label
                 });
-            } else {
-                // Fallback to parsing position
-                const posMatch = repeat.position && repeat.position.match(/amino acids (\d+)-(\d+)/);
-                if (posMatch) {
-                    const start = parseInt(posMatch[1]);
-                    const end = parseInt(posMatch[2]);
-                    const length = end - start + 1;
-                    const color = colorOptions[index % colorOptions.length];
-                    const colorHex = color.replace("#", "0x");
-                    
-                    repeatRegions.push({
-                        start,
-                        end,
-                        length,
-                        color,
-                        colorHex,
-                        position: repeat.position,
-                        ensembl_exon_info: repeat.ensembl_exon_info,
-                        chromStart: repeat.chromStart,
-                        chromEnd: repeat.chromEnd,
-                        label: `${repeat.repeatType}${index + 1}`
-                    });
-                }
             }
-        });
-        
-        return repeatRegions;
+        }
+    });
+
+    return repeatRegions;
     }
 
     extractExonData(repeatRegions) {
@@ -189,7 +209,7 @@ export class DataProcessor {
             
             if (!repeatStart || !repeatEnd) continue;
             
-            const repeatLabel = repeat.repeatType + (repeatRegions.indexOf(repeat) + 1);
+            const repeatLabel = repeat.label || `${repeat.repeatType || 'Unknown'}1`;
             const hasBlockCount1 = repeat.blockCount === 1;
             
             for (const exon of transcript.containing_exons) {
@@ -206,6 +226,7 @@ export class DataProcessor {
                         end_phase: exon.end_phase !== undefined ? exon.end_phase : 'Unknown',
                         repeat_regions: [{
                             label: repeatLabel,
+                            repeatType: repeat.repeatType || 'Unknown',
                             start: repeatStart,
                             end: repeatEnd,
                             blockCount: repeat.blockCount
@@ -224,8 +245,9 @@ export class DataProcessor {
                         r.start === repeatStart && r.end === repeatEnd);
                     
                     if (!hasRepeat) {
-                        existingExon.repeat_regions.push({
+                     existingExon.repeat_regions.push({
                             label: repeatLabel,
+                            repeatType: repeat.repeatType || 'Unknown',
                             start: repeatStart,
                             end: repeatEnd,
                             blockCount: repeat.blockCount
