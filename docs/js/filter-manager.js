@@ -70,28 +70,30 @@ class FilterManager {
     }
 
     /**
-     * Setup repeat count filter
-     */
-    setupRepeatCountFilter() {
-        $('#repeatCountCheck, #repeatCountValue').on('change', () => {
-            this.removeCustomFilter('repeatCountFilter');
-            
-            if ($('#repeatCountCheck').is(':checked')) {
-                const minCount = parseInt($('#repeatCountValue').val());
-                
-                const repeatCountFilter = (settings, data, dataIndex, rowData) => {
-                    const counts = Object.values(rowData.repeatTypeCounts || {});
-                    const maxCount = counts.length > 0 ? Math.max(...counts) : 0;
-                    return maxCount >= minCount;
-                };
-                
-                this.addCustomFilter('repeatCountFilter', repeatCountFilter);
-            }
-            
-            this.table.draw();
-        });
-    }
-
+ * Setup repeat count filter
+ */
+        setupRepeatCountFilter() {
+            $('#repeatCountValue').on('input change', () => {
+                this.removeCustomFilter('repeatCountFilter');
+        
+                const minCount = parseInt($('#repeatCountValue').val(), 10);
+        
+                if (!Number.isNaN(minCount) && minCount > 0) {
+                    const repeatCountFilter = (settings, data, dataIndex, rowData) => {
+                        const counts = Object.values(rowData.repeatTypeCounts || {});
+                        const maxCount = counts.length > 0 ? Math.max(...counts) : 0;
+                        return maxCount >= minCount;
+                    };
+        
+                    this.addCustomFilter('repeatCountFilter', repeatCountFilter);
+                }
+        
+                this.table.draw();
+            });
+        
+            // Trigger once on load so the default value is respected
+            $('#repeatCountValue').trigger('change');
+        }
     /**
      * Setup in-frame exon filter
      */
