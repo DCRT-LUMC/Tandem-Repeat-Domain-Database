@@ -145,6 +145,7 @@ class DataManager {
      */
     createProteinMetadata(item, aliases) {
         const hasInFrameExons = this.checkInFrameExons(item);
+        const hasFullyCodingExons = this.checkFullyCodingExons(item);
         const spansExons = item.blockCount > 1;
         const nonSpanningRepeat = item.blockCount === 1;
         const hasNonSpanningInFrameRepeats = this.checkNonSpanningInFrameRepeats(item);
@@ -159,6 +160,7 @@ class DataManager {
             status: item.status || 'Unknown',
             chromosome: item.chrom || 'Unknown',
             hasInFrameExons: hasInFrameExons,
+            hasFullyCodingExons: hasFullyCodingExons,
             hasSpanningExons: spansExons,
             hasNonSpanningRepeats: nonSpanningRepeat,
             hasNonSpanningInFrameRepeats: hasNonSpanningInFrameRepeats
@@ -179,6 +181,19 @@ class DataManager {
                );
     }
 
+    /**
+     * Check if protein has fully coding exons
+     */
+    checkFullyCodingExons(item) {
+        return item.ensembl_exon_info &&
+               item.ensembl_exon_info.transcripts &&
+               item.ensembl_exon_info.transcripts.some(t =>
+                   t.containing_exons &&
+                   t.containing_exons.some(e =>
+                       e.coding_status === 'fully_coding'
+                   )
+               );
+    }
     /**
      * Check if protein has non-spanning repeats within in-frame AND fully coding exons
      */
@@ -259,6 +274,35 @@ class DataManager {
         return false;
     }
 
+
+            /**
+         * Check if protein has at least one exon containing exactly one repeat
+         */
+        checkHasSingleRepeatExon(allRepeats) {
+            const exonToRepeats = new Map();
+        
+            allRepeats.forEach(repeat => {
+                if (repeat.ensembl_exon_info && repeat.ensembl_exon_info.transcripts) {
+                    repeat.ensembl_exon_info.transcripts.forEach(transcript => {
+                        if (transcript.containing_exons) {
+                            transcript.containing_exons.forEach(exon => {
+                                const exonKey = `${transcript.transcript_id}_${exon.exon_id}`;
+        
+                                if (!exonToRepeats.has(exonKey)) {
+                                    exonToRepeats.set(exonKey, []);
+                                }
+        
+                                exonToRepeats.get(exonKey).push(repeat);
+                            });
+                        }
+                    });
+                }
+            });
+        
+            return Array.from(exonToRepeats.values()).some(
+                repeatsInExon => repeatsInExon.length === 1
+            );
+        }
     /**
      * Create searchable text for protein
      */
@@ -300,6 +344,9 @@ class DataManager {
         // Update properties if found
         if (this.checkInFrameExons(newItem)) {
             existingProtein.hasInFrameExons = true;
+        }
+        if (this.checkFullyCodingExons(newItem)) {
+            existingProtein.hasFullyCodingExons = true;
         }
         if (newItem.blockCount > 1) {
             existingProtein.hasSpanningExons = true;
