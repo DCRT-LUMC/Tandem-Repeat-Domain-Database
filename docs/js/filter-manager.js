@@ -15,8 +15,8 @@ class FilterManager {
         this.setupRepeatCountFilter();
         this.setupInFrameExonFilter();
         this.setupExonSpanningFilter();
-        this.setupCombinedExonFilter();
-        this.setupStrictCombinedExonFilter();
+        this.setupFullyCodingFilter();
+        this.setupSingleRepeatFilter();
         this.setupResetButton();
     }
 
@@ -140,52 +140,49 @@ class FilterManager {
         });
     }
 
-    /**
-     * Setup combined exon filter (non-spanning repeats within in-frame exons)
-     */
-    setupCombinedExonFilter() {
-        $('#combinedExonCheck').on('change', (event) => {
-            this.removeCustomFilter('combinedExonFilter');
-            
-            if ($(event.target).is(':checked')) {
-                console.log("Combined filter active. Showing proteins with non-spanning repeats within in-frame AND fully coding exons.");
-                const proteinsWithCombinedFeatures = this.tableData.filter(p => p.hasNonSpanningInFrameRepeats).length;
-                console.log(`Found ${proteinsWithCombinedFeatures} proteins with non-spanning repeats within in-frame AND fully coding exons out of ${this.tableData.length} total.`);
+         /**
+         * Setup fully coding filter
+         */
+        setupFullyCodingFilter() {
+            $('#fullyCodingCheck').on('change', (event) => {
+                this.removeCustomFilter('fullyCodingFilter');
                 
-                const combinedExonFilter = (settings, searchData, index, rowData, counter) => {
-                    return rowData.hasNonSpanningInFrameRepeats === true;
-                };
+                if ($(event.target).is(':checked')) {
+                    console.log("Fully coding filter active. Showing proteins with fully coding exons.");
+                    const proteinsWithFullyCodingExons = this.tableData.filter(p => p.hasFullyCodingExons).length;
+                    console.log(`Found ${proteinsWithFullyCodingExons} proteins with fully coding exons out of ${this.tableData.length} total.`);
+                    
+                    const fullyCodingFilter = (settings, searchData, index, rowData, counter) => {
+                        return rowData.hasFullyCodingExons === true;
+                    };
+                    
+                    this.addCustomFilter('fullyCodingFilter', fullyCodingFilter);
+                }
                 
-                this.addCustomFilter('combinedExonFilter', combinedExonFilter);
-            }
-            
-            this.table.draw();
-        });
-    }
+                this.table.draw();
+            });
+        }
 
-    /**
-     * Setup strict combined exon filter (ALL repeats are non-spanning within in-frame exons)
-     */
-    setupStrictCombinedExonFilter() {
-        $('#strictCombinedExonCheck').on('change', (event) => {
-            this.removeCustomFilter('strictCombinedExonFilter');
-            
-            if ($(event.target).is(':checked')) {
-                console.log("Perfect Target filter active. Showing proteins with at least one perfect exon (fully coding + in-frame + contains non-spanning repeat).");
-                const proteinsWithStrictCombinedFeatures = this.tableData.filter(p => p.hasOnlyNonSpanningInFrameRepeats).length;
-                console.log(`Found ${proteinsWithStrictCombinedFeatures} proteins with at least one perfect target exon out of ${this.tableData.length} total.`);
+            /**
+         * Setup single-repeat exon filter
+         */
+        setupSingleRepeatFilter() {
+            $('#singleRepeatCheck').on('change', (event) => {
+                this.removeCustomFilter('singleRepeatFilter');
                 
-                const strictCombinedExonFilter = (settings, searchData, index, rowData, counter) => {
-                    return rowData.hasOnlyNonSpanningInFrameRepeats === true;
-                };
+                if ($(event.target).is(':checked')) {
+                    console.log("Single-repeat filter active. Showing proteins with at least one exon containing exactly one tandem repeat.");
+                    
+                    const singleRepeatFilter = (settings, searchData, index, rowData, counter) => {
+                        return rowData.hasSingleRepeatExon === true;
+                    };
+                    
+                    this.addCustomFilter('singleRepeatFilter', singleRepeatFilter);
+                }
                 
-                this.addCustomFilter('strictCombinedExonFilter', strictCombinedExonFilter);
-            }
-            
-            this.table.draw();
-        });
-    }
-
+                this.table.draw();
+            });
+        }
     /**
      * Setup reset filters button
      */
