@@ -4,12 +4,12 @@ class TableManager {
         this.tableData = [];
     }
 
-    /**
+       /**
      * Initialize DataTable with configuration
      */
     initializeTable(tableData) {
         this.tableData = tableData;
-        
+    
         this.table = $('#proteinTable').DataTable({
             data: tableData,
             columns: this.getColumnConfiguration(),
@@ -18,14 +18,17 @@ class TableManager {
             dom: 'lfrtip',
             responsive: true,
             columnDefs: this.getColumnDefinitions(),
-            language: this.getLanguageConfiguration()
+            language: this.getLanguageConfiguration(),
+            initComplete: function () {
+                const searchBox = $('#proteinTable_filter');
+                $('#datatableSearchSlot').append(searchBox);
+            }
         });
-
+    
         this.setupCustomSearch();
         return this.table;
     }
-
-    /**
+        /**
      * Get column configuration for DataTable
      */
     getColumnConfiguration() {
