@@ -110,14 +110,10 @@ class DataManager {
             }
         });
         
-        // Calculate the strict combined property for each unique protein
+     // Calculate exon-level properties across all repeats for each protein
         Object.values(uniqueProteins).forEach(protein => {
-            protein.hasOnlyNonSpanningInFrameRepeats = this.checkHasPerfectTargetExon(protein.repeats);
+            protein.hasSingleRepeatExon = this.checkHasSingleRepeatExon(protein.repeats);
         });
-        
-        this.uniqueProteins = uniqueProteins;
-    }
-
     /**
      * Extract aliases from protein item
      */
@@ -149,6 +145,7 @@ class DataManager {
         const spansExons = item.blockCount > 1;
         const nonSpanningRepeat = item.blockCount === 1;
         const hasNonSpanningInFrameRepeats = this.checkNonSpanningInFrameRepeats(item);
+        const hasSingleRepeatExon = this.checkHasSingleRepeatExon(item);
         
         return {
             gene: item.geneName || 'Unknown',
@@ -161,6 +158,7 @@ class DataManager {
             chromosome: item.chrom || 'Unknown',
             hasInFrameExons: hasInFrameExons,
             hasFullyCodingExons: hasFullyCodingExons,
+            hasSingleRepeatExon: hasSingleRepeatExon,
             hasSpanningExons: spansExons,
             hasNonSpanningRepeats: nonSpanningRepeat,
             hasNonSpanningInFrameRepeats: hasNonSpanningInFrameRepeats
