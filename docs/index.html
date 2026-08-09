@@ -82,7 +82,15 @@
         <div class="card-body">
             <!-- Filter Controls -->
             <div class="filter-controls-container">
-                <div class="filter-row">
+                <div class="filter-toolbar d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                    <div id="datatableSearchSlot"></div>
+                    <div class="toolbar-actions">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" id="resetFilters">
+                            <i class="fas fa-undo me-1"></i> Reset Filters
+                        </button>
+                    </div>
+                </div>
+                                <div class="filter-row">
                     <div class="filter-item">
                         <label for="repeatTypeFilter" class="filter-label">
                             Repeat Type
@@ -125,7 +133,7 @@
                     </div>
                 </div>
                 
-               <div class="filter-row mt-3">
+                 <div class="filter-row mt-3">
                 <div class="filter-item">
                     <div class="filter-label">
                         Repeat Count ≥
@@ -134,13 +142,8 @@
                            data-bs-placement="top" 
                            title="Filter proteins with at least the specified number of tandem repeats"></i>
                     </div>
-                    <div class="repeat-filter-control">
-                        <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" id="repeatCountCheck">
-                            <label class="form-check-label" for="repeatCountCheck">Enable</label>
-                        </div>
-                        <input type="number" id="repeatCountValue" class="form-control form-control-sm repeat-count-input" value="1" min="1">
-                    </div>
+                    <input type="number" id="repeatCountValue" class="form-control form-control-sm repeat-count-input" value="1" min="1">
+                    
                 </div>
             
                 <div class="filter-item">
@@ -153,7 +156,9 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="inFrameExonCheck">
-                        <label class="form-check-label" for="inFrameExonCheck">Enable</label>
+                        <label class="form-check-label" for="inFrameExonCheck">
+                            Show proteins with in-frame exons
+                        </label>
                     </div>
                 </div>
             
@@ -167,7 +172,9 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="exonSpanningCheck">
-                        <label class="form-check-label" for="exonSpanningCheck">Enable</label>
+                        <label class="form-check-label" for="exonSpanningCheck">
+                            Show non-spanning repeats
+                        </label>
                     </div>
                 </div>
             
@@ -181,7 +188,9 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="fullyCodingCheck">
-                        <label class="form-check-label" for="fullyCodingCheck">Enable</label>
+                        <label class="form-check-label" for="fullyCodingCheck">
+                            Show fully coding proteins
+                        </label>
                     </div>
                 </div>
             
@@ -195,15 +204,12 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="singleRepeatCheck">
-                        <label class="form-check-label" for="singleRepeatCheck">Enable</label>
+                        <label class="form-check-label" for="singleRepeatCheck">
+                            Show single-repeat exons
+                        </label>
                     </div>
                 </div>
             
-                <div class="filter-actions">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" id="resetFilters">
-                        <i class="fas fa-undo me-1"></i> Reset Filters
-                    </button>
-                </div>
             </div>
             <!-- Loading Indicator -->
             <div id="loading">
