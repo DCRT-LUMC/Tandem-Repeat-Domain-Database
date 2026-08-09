@@ -13,7 +13,7 @@
     --bg-color: #ffffff;
     --card-bg: #ffffff;
     --border-radius: 12px;
-    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)xf;
     --transition: all 0.3s ease;
 }
 
@@ -304,9 +304,17 @@ body {
 
 .filter-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 15px;
     align-items: start;
+}
+
+.filter-row:first-of-type {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-bottom: 15px;
+}
+
+.filter-row:nth-of-type(2) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .filter-item {
@@ -333,7 +341,7 @@ body {
 .filter-actions {
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 
 .repeat-filter-control {
@@ -344,13 +352,32 @@ body {
     width: 100%;
 }
 
-.repeat-filter-control .form-check {
-    margin-bottom: 0;
-}
-
+.repeat-filter-control .form-check,
 .filter-item .form-check {
     margin-bottom: 0;
 }
+
+@media (max-width: 1200px) {
+    .filter-row:first-of-type {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .filter-row:nth-of-type(2) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-row:first-of-type,
+    .filter-row:nth-of-type(2) {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-actions {
+        justify-content: flex-start;
+    }
+}
+
 
 /* Exon Legend Items */
 .exon-legend-item {
