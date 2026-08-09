@@ -302,18 +302,38 @@ body {
     margin-bottom: 20px;
 }
 
+.filter-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+#datatableSearchSlot {
+    flex: 1 1 320px;
+    min-width: 280px;
+}
+
+.toolbar-actions {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
 .filter-row {
     display: grid;
     gap: 15px;
     align-items: start;
 }
 
-.filter-row:first-of-type {
+.filter-row-top {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-bottom: 15px;
 }
 
-.filter-row:nth-of-type(2) {
+.filter-row-filters {
     grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
@@ -357,28 +377,60 @@ body {
     margin-bottom: 0;
 }
 
+/* DataTables top controls */
+#proteinTable_wrapper .row:first-child {
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+#proteinTable_wrapper .dataTables_length {
+    text-align: right;
+}
+
+#proteinTable_wrapper .dataTables_length label,
+#proteinTable_wrapper .dataTables_filter label {
+    margin-bottom: 0;
+}
+
+#proteinTable_wrapper .dataTables_filter {
+    display: flex;
+    justify-content: flex-start;
+}
+
 @media (max-width: 1200px) {
-    .filter-row:first-of-type {
+    .filter-row-top {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .filter-row:nth-of-type(2) {
+    .filter-row-filters {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 768px) {
-    .filter-row:first-of-type,
-    .filter-row:nth-of-type(2) {
+    .filter-row-top,
+    .filter-row-filters {
         grid-template-columns: 1fr;
     }
 
     .filter-actions {
         justify-content: flex-start;
     }
+
+    .filter-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .toolbar-actions {
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+
+    #proteinTable_wrapper .dataTables_length {
+        text-align: left;
+    }
 }
-
-
 /* Exon Legend Items */
 .exon-legend-item {
     margin-bottom: 8px;
