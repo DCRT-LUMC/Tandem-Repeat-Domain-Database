@@ -226,8 +226,8 @@ class FilterManager {
         $('#repeatCountValue').val('1');
         $('#inFrameExonCheck').prop('checked', false);
         $('#exonSpanningCheck').prop('checked', false);
-        $('#combinedExonCheck').prop('checked', false);
-        $('#strictCombinedExonCheck').prop('checked', false);
+        $('#fullyCodingCheck').prop('checked', false);
+        $('#singleRepeatCheck').prop('checked', false);
         
         // Clear DataTable search and remove custom search functions
         this.table.search('').columns().search('').draw();
