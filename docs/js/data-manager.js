@@ -110,13 +110,18 @@ class DataManager {
             }
         });
         
-     // Calculate exon-level properties across all repeats for each protein
+             // Calculate exon-level properties across all repeats for each protein
         Object.values(uniqueProteins).forEach(protein => {
             protein.hasSingleRepeatExon = this.checkHasSingleRepeatExon(protein.repeats);
         });
-    /**
-     * Extract aliases from protein item
-     */
+        
+        this.uniqueProteins = uniqueProteins;
+        }
+
+        /**
+         * Extract aliases from protein item
+         */
+
     extractAliases(item) {
         const aliases = new Set();
         
@@ -136,34 +141,32 @@ class DataManager {
         return Array.from(aliases).filter(a => a && a !== 'Unknown');
     }
 
-    /**
-     * Create protein metadata object
-     */
-    createProteinMetadata(item, aliases) {
-        const hasInFrameExons = this.checkInFrameExons(item);
-        const hasFullyCodingExons = this.checkFullyCodingExons(item);
-        const spansExons = item.blockCount > 1;
-        const nonSpanningRepeat = item.blockCount === 1;
-        const hasNonSpanningInFrameRepeats = this.checkNonSpanningInFrameRepeats(item);
-        const hasSingleRepeatExon = this.checkHasSingleRepeatExon(item);
+   /**
+ * Create protein metadata object
+ */
+        createProteinMetadata(item, aliases) {
+            const hasInFrameExons = this.checkInFrameExons(item);
+            const hasFullyCodingExons = this.checkFullyCodingExons(item);
+            const spansExons = item.blockCount > 1;
+            const nonSpanningRepeat = item.blockCount === 1;
+            const hasNonSpanningInFrameRepeats = this.checkNonSpanningInFrameRepeats(item);
         
-        return {
-            gene: item.geneName || 'Unknown',
-            aliases: aliases,
-            aliasString: aliases.length > 0 ? aliases.join(', ') : '',
-            searchableText: this.createSearchableText(item, aliases),
-            uniprotId: item.uniProtId || 'Unknown',
-            repeatType: item.repeatType || 'Unknown',
-            status: item.status || 'Unknown',
-            chromosome: item.chrom || 'Unknown',
-            hasInFrameExons: hasInFrameExons,
-            hasFullyCodingExons: hasFullyCodingExons,
-            hasSingleRepeatExon: hasSingleRepeatExon,
-            hasSpanningExons: spansExons,
-            hasNonSpanningRepeats: nonSpanningRepeat,
-            hasNonSpanningInFrameRepeats: hasNonSpanningInFrameRepeats
-        };
-    }
+            return {
+                gene: item.geneName || 'Unknown',
+                aliases: aliases,
+                aliasString: aliases.length > 0 ? aliases.join(', ') : '',
+                searchableText: this.createSearchableText(item, aliases),
+                uniprotId: item.uniProtId || 'Unknown',
+                repeatType: item.repeatType || 'Unknown',
+                status: item.status || 'Unknown',
+                chromosome: item.chrom || 'Unknown',
+                hasInFrameExons: hasInFrameExons,
+                hasFullyCodingExons: hasFullyCodingExons,
+                hasSpanningExons: spansExons,
+                hasNonSpanningRepeats: nonSpanningRepeat,
+                hasNonSpanningInFrameRepeats: hasNonSpanningInFrameRepeats
+            };
+        }
 
     /**
      * Check if protein has in-frame exons
