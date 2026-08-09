@@ -138,7 +138,7 @@
                                            data-bs-placement="top" 
                                            title="Filter proteins with at least the specified number of tandem repeats"></i>
                                     </label>
-                                </div>
+                                   </div>
                                 <input type="number" id="repeatCountValue" class="form-control form-control-sm repeat-count-input" value="1" min="1">
                             </div>
                         </label>
@@ -174,31 +174,31 @@
                         </label>
                     </div>
                     
-                    <div class="filter-item">
-                        <label for="combinedExonCheck" class="filter-label">
+                   <div class="filter-item">
+                        <label for="fullyCodingCheck" class="filter-label">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="combinedExonCheck">
-                                <label class="form-check-label" for="combinedExonCheck">
-                                    Non-Spanning + In-Frame + Fully Coding
+                                <input class="form-check-input" type="checkbox" id="fullyCodingCheck">
+                                <label class="form-check-label" for="fullyCodingCheck">
+                                    Fully Coding
                                     <i class="fas fa-info-circle ms-1 text-muted" 
                                        data-bs-toggle="tooltip" 
                                        data-bs-placement="top" 
-                                       title="Show only proteins with non-spanning repeats that are within in-frame AND fully coding exons"></i>
+                                       title="Show only proteins with fully coding exons"></i>
                                 </label>
                             </div>
                         </label>
                     </div>
                     
                     <div class="filter-item">
-                        <label for="strictCombinedExonCheck" class="filter-label">
+                        <label for="singleRepeatCheck" class="filter-label">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="strictCombinedExonCheck">
-                                <label class="form-check-label" for="strictCombinedExonCheck">
-                                    Suitable candidates
+                                <input class="form-check-input" type="checkbox" id="singleRepeatCheck">
+                                <label class="form-check-label" for="singleRepeatCheck">
+                                    Exactly one tandem repeat
                                     <i class="fas fa-info-circle ms-1 text-muted" 
                                        data-bs-toggle="tooltip" 
                                        data-bs-placement="top" 
-                                       title="Show proteins with at least one candidate exon: fully coding + in-frame + contains a non-spanning repeat"></i>
+                                       title="Show only proteins that contain exactly one repeat of the selected type"></i>
                                 </label>
                             </div>
                         </label>
