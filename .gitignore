@@ -1,5 +1,18 @@
-#/output
-user.name
-/tests
-/cache
-/col_data/cache
+# R
+.Rhistory
+.RData
+.Ruserdata
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Generated output
+output/
+results/
